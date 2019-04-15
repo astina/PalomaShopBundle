@@ -1,0 +1,42 @@
+{
+    "name": "paloma/shop-bundle",
+    "description": "Symfony bundle for Paloma web shop",
+    "type": "library",
+    "require": {
+        "paloma/shop-client": "^3.0@dev",
+        "symfony/serializer": "^4.2",
+        "symfony/property-access": "^4.2"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": "^4.2",
+        "symfony/test-pack": "^1.0",
+        "symfony/phpunit-bridge": "^4.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Astina",
+            "email": "admin@astina.ch"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Paloma\\ShopBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Paloma\\ShopBundle\\Tests\\": "Tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../paloma-shop-client-bundle"
+        }
+    ]
+}

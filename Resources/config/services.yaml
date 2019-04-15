@@ -1,0 +1,88 @@
+parameters:
+  # TODO remove
+  paloma_shop.client.options:
+    base_url: https://demo.paloma.one/api
+    api_key: test
+  paloma_shop.default_channel: 'demo_b2c'
+
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  # Controllers
+
+  paloma_shop.controller.category_resource:
+    class: Paloma\ShopBundle\Controller\CategoryResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.product_resource:
+    class: Paloma\ShopBundle\Controller\ProductResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.search_resource:
+    class: Paloma\ShopBundle\Controller\SearchResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.cart_resource:
+    class: Paloma\ShopBundle\Controller\CartResource
+    tags: ['controller.service_arguments']
+
+  # Paloma
+
+  paloma_shop.catalog:
+    class: Paloma\Shop\Catalog\Catalog
+
+  paloma_shop.checkout:
+    class: Paloma\Shop\Checkout\Checkout
+
+  paloma_shop.customers:
+    class: Paloma\Shop\Customers\Customers
+
+  paloma_shop.client_factory:
+    class: Paloma\ShopBundle\SymfonyPalomaClientFactory
+    arguments:
+      - '@paloma_shop.channel_resolver'
+      - '@session'
+      - '%paloma_shop.client.options%'
+    tags:
+      - { name: kernel.event_listener, event: kernel.request }
+
+  paloma_shop.client:
+    class: Paloma\Shop\PalomaClient
+    factory: 'paloma_shop.client_factory:create'
+
+  paloma_shop.channel_resolver:
+    class: Paloma\ShopBundle\DefaultChannelResolver
+    arguments:
+      - '%paloma_shop.default_channel%'
+
+  paloma_shop.serializer:
+    class: Paloma\ShopBundle\PalomaSerializer
+
+  # Aliases
+
+  Paloma\Shop\Catalog\CatalogInterface:
+    alias: paloma_shop.catalog
+
+  Paloma\Shop\Checkout\CheckoutInterface:
+    alias: paloma_shop.checkout
+
+  Paloma\Shop\Customers\CustomersInterface:
+    alias: paloma_shop.customers
+
+  Paloma\Shop\PalomaClientInterface:
+    alias: paloma_shop.client
+
+  Paloma\Shop\Catalog\CatalogClientInterface:
+    alias: paloma_shop.client.catalog
+
+  Paloma\Shop\Checkout\CheckoutClientInterface:
+    alias: paloma_shop.client.checkout
+
+  Paloma\Shop\Customers\CustomersClientInterface:
+    alias: paloma_shop.client.customers
+
+  Paloma\ShopBundle\PalomaSerializer:
+    alias: paloma_shop.serializer

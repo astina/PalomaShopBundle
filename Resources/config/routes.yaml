@@ -1,0 +1,67 @@
+# Categories
+
+paloma_api_categories_list:
+  path: /categories/list
+  controller: paloma_shop.controller.category_resource::list
+  methods: GET
+
+paloma_api_categories_get:
+  path: /categories/get
+  controller: paloma_shop.controller.category_resource::get
+  methods: GET
+
+# Products
+
+paloma_api_products_get:
+  path: /products/get
+  controller: paloma_shop.controller.product_resource:get
+  methods: GET
+
+paloma_api_products_similar:
+  path: /products/similar
+  controller: paloma_shop.controller.product_resource:similar
+  methods: GET
+
+paloma_api_products_recommended:
+  path: /products/recommended
+  controller: paloma_shop.controller.product_resource:recommended
+  methods: GET
+
+# Search
+
+paloma_api_search:
+  path: /search
+  controller: paloma_shop.controller.search_resource:search
+  methods: [ GET, POST ]
+
+paloma_api_search_suggestions:
+  path: /search/suggestions
+  controller: paloma_shop.controller.search_resource:suggestions
+  methods: GET
+
+# Cart
+
+paloma_api_cart:
+  path: /cart
+  controller: paloma_shop.controller.cart_resource:get
+  methods: GET
+
+paloma_api_cart_add_item:
+  path: /cart/items/add
+  controller: paloma_shop.controller.cart_resource:addItem
+  methods: POST
+
+paloma_api_cart_update_item:
+  path: /cart/items/update
+  controller: paloma_shop.controller.cart_resource:updateItem
+  methods: POST
+
+paloma_api_cart_remove_item:
+  path: /cart/items/remove
+  controller: paloma_shop.controller.cart_resource:removeItem
+  methods: DELETE
+
+# Checkout
+
+
+# Customer

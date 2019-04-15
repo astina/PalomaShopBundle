@@ -1,0 +1,3 @@
+Paloma Shop Bundle
+=====
+
