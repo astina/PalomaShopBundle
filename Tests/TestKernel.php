@@ -42,6 +42,8 @@ class TestKernel extends Kernel
                 'storage_id' => 'session.storage.mock_file',
             ],
         ]);
+
+        $loader->load(__DIR__ . '/Resources/config/services.yaml');
     }
 
     public function getCacheDir()

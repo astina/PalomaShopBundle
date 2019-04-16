@@ -46,22 +46,90 @@ paloma_api_cart:
   controller: paloma_shop.controller.cart_resource:get
   methods: GET
 
-paloma_api_cart_add_item:
+paloma_api_cart_item_add:
   path: /cart/items/add
   controller: paloma_shop.controller.cart_resource:addItem
   methods: POST
 
-paloma_api_cart_update_item:
+paloma_api_cart_item_update:
   path: /cart/items/update
   controller: paloma_shop.controller.cart_resource:updateItem
   methods: POST
 
-paloma_api_cart_remove_item:
+paloma_api_cart_item_remove:
   path: /cart/items/remove
   controller: paloma_shop.controller.cart_resource:removeItem
   methods: DELETE
 
 # Checkout
 
+paloma_api_checkout_addresses_update:
+  path: /checkout/addresses
+  controller: paloma_shop.controller.checkout_resource:setAddresses
+  methods: POST
+
+paloma_api_checkout_shipping_methods_list:
+  path: /checkout/shipping_methods/list
+  controller: paloma_shop.controller.checkout_resource:listShippingMethods
+  methods: GET
+
+paloma_api_checkout_shipping_methods_options:
+  path: /checkout/shipping_methods/options
+  controller: paloma_shop.controller.checkout_resource:getShippingMethodOptions
+  methods: GET
+
+paloma_api_checkout_shipping_methods_set:
+  path: /checkout/shipping_methods/set
+  controller: paloma_shop.controller.checkout_resource:setShippingMethod
+  methods: POST
+
+paloma_api_checkout_payment_methods_list:
+  path: /checkout/payment_methods/list
+  controller: paloma_shop.controller.checkout_resource:listPaymentMethods
+  methods: GET
+
+paloma_api_checkout_payment_methods_set:
+  path: /checkout/payment_methods/set
+  controller: paloma_shop.controller.checkout_resource:setPaymentMethod
+  methods: POST
+
+paloma_api_checkout_coupon_code_add:
+  path: /checkout/coupon_codes/add
+  controller: paloma_shop.controller.checkout_resource:addCouponCode
+  methods: POST
+
+paloma_api_checkout_coupon_code_remove:
+  path: /checkout/coupon_codes/remove
+  controller: paloma_shop.controller.checkout_resource:removeCouponCode
+  methods: DELETE
+
+paloma_api_checkout_payments_initialize:
+  path: /checkout/payments/initialize
+  controller: paloma_shop.controller.checkout_resource:initializePayment
+  methods: POST
+
+paloma_api_checkout_purchase:
+  path: /checkout/purchase
+  controller: paloma_shop.controller.checkout_resource:purchase
+  methods: POST
 
 # Customer
+
+paloma_api_customer_get:
+  path: /customer/get
+  controller: paloma_shop.controller.customer_resource:get
+  methods: GET
+
+paloma_api_customer_register:
+  path: /customer/register
+  controller: paloma_shop.controller.customer_resource:register
+  methods: POST
+
+paloma_api_customer_update:
+  path: /customer/update
+  controller: paloma_shop.controller.customer_resource:update
+  methods: POST
+
+# User
+
+# Orders

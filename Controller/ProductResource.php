@@ -27,7 +27,7 @@ class ProductResource
             return $serializer->toJsonResponse($product);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         } catch (ProductNotFound $e) {
             return new Response(null, 404);
         }
@@ -48,7 +48,7 @@ class ProductResource
             return $serializer->toJsonResponse($products);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         } catch (ProductNotFound $e) {
             return new Response(null, 404);
         }
@@ -69,7 +69,7 @@ class ProductResource
             return $serializer->toJsonResponse($products);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         } catch (ProductNotFound $e) {
             return new Response(null, 404);
         }

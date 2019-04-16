@@ -23,7 +23,7 @@ class CartResource
             return $serializer->toJsonResponse($cart);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         }
     }
 
@@ -45,7 +45,7 @@ class CartResource
             return $serializer->toJsonResponse($cart);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         } catch (InsufficientStock $e) {
             return new Response('TODO', 400); // TODO
         } catch (ProductVariantNotFound $e) {
@@ -73,7 +73,7 @@ class CartResource
             return $serializer->toJsonResponse($cart);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         } catch (InsufficientStock $e) {
             return new Response('TODO', 400); // TODO
         } catch (ProductVariantUnavailable $e) {
@@ -98,7 +98,7 @@ class CartResource
             return $serializer->toJsonResponse($cart);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         }
     }
 }

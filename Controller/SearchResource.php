@@ -31,9 +31,9 @@ class SearchResource
             return $serializer->toJsonResponse($product);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         } catch (InvalidInput $e) {
-            return $serializer->toJsonResponse($e->getValidation(), 400);
+            return $serializer->toJsonResponse($e->getErrors(), 400);
         }
     }
 
@@ -52,7 +52,7 @@ class SearchResource
             return $serializer->toJsonResponse($suggestions);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         }
     }
 }

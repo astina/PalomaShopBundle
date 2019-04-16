@@ -22,7 +22,7 @@ class CategoryResource
             return $serializer->toJsonResponse($categories);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         }
     }
 
@@ -42,7 +42,7 @@ class CategoryResource
             return $serializer->toJsonResponse($category);
 
         } catch (BackendUnavailable $e) {
-            return new Response(null, 503);
+            return new Response('Service unavailable', 503);
         } catch (CategoryNotFound $e) {
             return new Response(null, 404);
         }

@@ -4,6 +4,7 @@ parameters:
     base_url: https://demo.paloma.one/api
     api_key: test
   paloma_shop.default_channel: 'demo_b2c'
+  paloma_shop.registration_confirmation_base_url: 'https://todo'
 
 services:
 
@@ -27,6 +28,14 @@ services:
 
   paloma_shop.controller.cart_resource:
     class: Paloma\ShopBundle\Controller\CartResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.checkout_resource:
+    class: Paloma\ShopBundle\Controller\CheckoutResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.customer_resource:
+    class: Paloma\ShopBundle\Controller\CustomerResource
     tags: ['controller.service_arguments']
 
   # Paloma
@@ -53,10 +62,20 @@ services:
     class: Paloma\Shop\PalomaClient
     factory: 'paloma_shop.client_factory:create'
 
+  paloma_shop.config:
+    class: Paloma\ShopBundle\PalomaConfig
+    arguments:
+      - '%paloma_shop.registration_confirmation_base_url%'
+
   paloma_shop.channel_resolver:
     class: Paloma\ShopBundle\DefaultChannelResolver
     arguments:
       - '%paloma_shop.default_channel%'
+
+  paloma_shop.security.user_provider:
+    class: Paloma\ShopBundle\Security\DefaultUserProvider
+    arguments:
+      - '@security.token_storage'
 
   paloma_shop.serializer:
     class: Paloma\ShopBundle\PalomaSerializer
@@ -83,6 +102,12 @@ services:
 
   Paloma\Shop\Customers\CustomersClientInterface:
     alias: paloma_shop.client.customers
+
+  Paloma\Shop\PalomaConfigInterface:
+    alias: paloma_shop.config
+
+  Paloma\Shop\Customers\UserProviderInterface:
+    alias: paloma_shop.security.user_provider
 
   Paloma\ShopBundle\PalomaSerializer:
     alias: paloma_shop.serializer
