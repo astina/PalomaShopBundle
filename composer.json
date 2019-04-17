@@ -11,7 +11,8 @@
     "require-dev": {
         "symfony/framework-bundle": "^4.2",
         "symfony/test-pack": "^1.0",
-        "symfony/phpunit-bridge": "^4.2"
+        "symfony/phpunit-bridge": "^4.2",
+        "phpunit/phpunit": "^8.1"
     },
     "license": "MIT",
     "authors": [
@@ -37,7 +38,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../paloma-shop-client-bundle"
+            "url": "../paloma-shop-client-php"
         }
     ]
 }

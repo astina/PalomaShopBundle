@@ -130,6 +130,56 @@ paloma_api_customer_update:
   controller: paloma_shop.controller.customer_resource:update
   methods: POST
 
+paloma_api_customer_address_update:
+  path: /customer/addresses/update
+  controller: paloma_shop.controller.customer_resource:updateAddress
+  methods: POST
+
+paloma_api_customer_confirm_email:
+  path: /customer/confirm/email
+  controller: paloma_shop.controller.customer_resource:confirmEmailAddress
+  methods: POST
+
+paloma_api_customer_exists_email:
+  path: /customer/exists/email
+  controller: paloma_shop.controller.customer_resource:existsCustomerByEmailAddress
+  methods: GET
+
 # User
 
+paloma_api_user_authenticate:
+  path: /user/authenticate
+  controller: paloma_shop.controller.user_resource:authenticate
+  methods: POST
+
+paloma_api_user_password_update:
+  path: /user/password/update
+  controller: paloma_shop.controller.user_resource:updatePassword
+  methods: POST
+
+paloma_api_user_password_reset_start:
+  path: /user/password/reset/start
+  controller: paloma_shop.controller.user_resource:startPasswordReset
+  methods: POST
+
+paloma_api_user_password_reset_exists:
+  path: /user/password/reset/exists
+  controller: paloma_shop.controller.user_resource:existsPasswordReset
+  methods: GET
+
+paloma_api_user_password_reset_complete:
+  path: /user/password/reset/complete
+  controller: paloma_shop.controller.user_resource:completePasswordReset
+  methods: POST
+
 # Orders
+
+paloma_api_orders_list:
+  path: /orders/list
+  controller: paloma_shop.controller.order_resource:list
+  methods: GET
+
+paloma_api_orders_get:
+  path: /orders/get
+  controller: paloma_shop.controller.order_resource:get
+  methods: GET

@@ -57,4 +57,23 @@ class CustomerResourceTest extends FunctionalTest
 
         $this->assertEquals(401, $client->getResponse()->getStatusCode());
     }
+
+    public function testUpdateAddress()
+    {
+        $client = static::createClient();
+
+        $client->request(
+            'POST',
+            '/api/customer/addresses/update',
+            [],
+            [],
+            ['content-type' => 'application/json'],
+            '{
+                "addressType": "billing",
+                "firstName": "Hans"
+            }'
+        );
+
+        $this->assertEquals(401, $client->getResponse()->getStatusCode());
+    }
 }

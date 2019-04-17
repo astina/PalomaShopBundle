@@ -3,10 +3,10 @@
 namespace Paloma\ShopBundle\Security;
 
 use Paloma\Shop\Customers\UserDetailsInterface;
-use Paloma\Shop\Customers\UserProviderInterface;
+use Paloma\Shop\PalomaSecurityInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class DefaultUserProvider implements UserProviderInterface
+class DefaultPalomaSecurity implements PalomaSecurityInterface
 {
     private $security;
 
@@ -19,5 +19,10 @@ class DefaultUserProvider implements UserProviderInterface
     {
         // TODO: Implement getUser() method.
         return null;
+    }
+
+    function setAuthenticated(UserDetailsInterface $user): void
+    {
+        // TODO: Implement setAuthenticated() method.
     }
 }

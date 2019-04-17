@@ -33,7 +33,7 @@ class SearchResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidInput $e) {
-            return $serializer->toJsonResponse($e->getErrors(), 400);
+            return $serializer->toJsonResponse($e->getValidation(), 400);
         }
     }
 
