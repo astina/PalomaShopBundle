@@ -5,7 +5,9 @@ namespace Paloma\ShopBundle\Controller;
 use Exception;
 use Paloma\Shop\Customers\CustomersInterface;
 use Paloma\Shop\Customers\PasswordReset;
+use Paloma\Shop\Customers\PasswordResetInterface;
 use Paloma\Shop\Customers\PasswordUpdate;
+use Paloma\Shop\Customers\PasswordUpdateInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\BadCredentials;
 use Paloma\Shop\Error\InvalidConfirmationToken;
@@ -17,36 +19,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserResource
 {
-    public function authenticate(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
+    public function authenticate()
     {
-        $username = null;
-        $password = null;
-        try {
+        // Actual authentication is done by the Symfony security component
+        // see config/packages/security.yaml
 
-            $credentials = $serializer->toArray($request->getContent());
-
-            $username = $credentials['username'];
-            $password = $credentials['password'];
-
-        } catch (Exception $e) {}
-
-        if (!$username || !$password) {
-            return new Response('Expecting credentials as JSON: {"username": "...", "password": "...."}', 400);
-        }
-
-        try {
-
-            $customers->authenticate($username, $password);
-
-        } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
-        } catch (BadCredentials $e) {
-            return new Response('Bad credentials', 403);
-        }
+        return new Response(null, 204);
     }
 
     public function updatePassword(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
     {
+        /** @var PasswordUpdateInterface $update */
         $update = $serializer->deserialize($request->getContent(), PasswordUpdate::class);
 
         try {
@@ -116,6 +99,7 @@ class UserResource
 
     public function completePasswordReset(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
     {
+        /** @var PasswordResetInterface $reset */
         $reset = $serializer->deserialize($request->getContent(), PasswordReset::class);
 
         try {

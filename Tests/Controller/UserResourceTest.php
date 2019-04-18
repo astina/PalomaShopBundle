@@ -6,22 +6,6 @@ use Paloma\ShopBundle\Tests\FunctionalTest;
 
 class UserResourceTest extends FunctionalTest
 {
-    public function testAuthenticate()
-    {
-        $client = static::createClient();
-
-        $client->request(
-            'POST',
-            '/api/user/authenticate',
-            [],
-            [],
-            ['content-type' => 'application/json'],
-            '{ "username": "test@astina.io", "password": "invalid" }'
-        );
-
-        $this->assertEquals(403, $client->getResponse()->getStatusCode());
-    }
-
     public function testUpdatePassword()
     {
         $client = static::createClient();
@@ -31,7 +15,7 @@ class UserResourceTest extends FunctionalTest
             '/api/user/password/update',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ "currentPassword": "invalid", "newPassword": "newpassword" }'
         );
 
@@ -47,7 +31,7 @@ class UserResourceTest extends FunctionalTest
             '/api/user/password/reset/start',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ "emailAddress": "test+unknown@astina.io" }'
         );
 
@@ -79,7 +63,7 @@ class UserResourceTest extends FunctionalTest
             '/api/user/password/reset/complete',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ "token": "invalid", "newPassword": "newpassword" }'
         );
 

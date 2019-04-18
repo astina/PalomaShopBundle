@@ -3,10 +3,12 @@
     "description": "Symfony bundle for Paloma web shop",
     "type": "library",
     "require": {
+        "ext-json": "*",
         "paloma/shop-client": "^3.0@dev",
         "symfony/serializer": "^4.2",
         "symfony/property-access": "^4.2",
-        "symfony/security": "^4.2"
+        "symfony/security": "^4.2",
+        "symfony/security-bundle": "^4.2",
     },
     "require-dev": {
         "symfony/framework-bundle": "^4.2",

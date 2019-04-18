@@ -29,7 +29,7 @@ class CartResourceTest extends FunctionalTest
             '/api/cart/items/add',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ "sku": "5881388", "quantity": 1 }'
         );
 
@@ -50,7 +50,7 @@ class CartResourceTest extends FunctionalTest
             '/api/cart/items/update',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ "itemId": "123", "quantity": 2 }'
         );
 
@@ -87,7 +87,7 @@ class CartResourceTest extends FunctionalTest
             '/api/cart/repeat_order',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ "orderNumber": "123" }'
         );
 

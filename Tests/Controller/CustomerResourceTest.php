@@ -19,12 +19,38 @@ class CustomerResourceTest extends FunctionalTest
     {
         $client = static::createClient();
 
+        $emailAddress = 'test+' . time() . '@astina.io';
+
         $client->request(
             'POST',
             '/api/customer/register',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            '{
+                "emailAddress": "' . $emailAddress . '",
+                "password": "' . uniqid() . '"
+            }'
+        );
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        $customer = json_decode($client->getResponse()->getContent(), true);
+
+        $this->assertNotNull($customer);
+        $this->assertEquals($emailAddress, $customer['emailAddress']);
+    }
+
+    public function testRegisterEmailAddressExists()
+    {
+        $client = static::createClient();
+
+        $client->request(
+            'POST',
+            '/api/customer/register',
+            [],
+            [],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{
                 "emailAddress": "test@astina.io",
                 "password": "password"
@@ -41,6 +67,25 @@ class CustomerResourceTest extends FunctionalTest
 
     public function testUpdate()
     {
+        $client = static::createAuthorizedClient('test@astina.io', 'password');
+
+        $client->request(
+            'POST',
+            '/api/customer/update',
+            [],
+            [],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            '{
+                "emailAddress": "test@astina.io",
+                "firstName": "Hans",
+                "lastName": "Muster"
+            }'
+        );
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+    public function testUpdateUnauthorized()
+    {
         $client = static::createClient();
 
         $client->request(
@@ -48,7 +93,7 @@ class CustomerResourceTest extends FunctionalTest
             '/api/customer/update',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{
                 "emailAddress": "test@astina.io",
                 "firstName": "Hans"
@@ -67,7 +112,7 @@ class CustomerResourceTest extends FunctionalTest
             '/api/customer/addresses/update',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{
                 "addressType": "billing",
                 "firstName": "Hans"

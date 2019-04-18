@@ -15,7 +15,7 @@ class SearchResourceTest extends FunctionalTest
             '/api/search',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ 
                 "query": "test", 
                 "filters": [ {"property": "master.pricing.grossPrice", "lessThan": "100.00"} ], 

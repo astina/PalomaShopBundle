@@ -5,9 +5,9 @@ namespace Paloma\ShopBundle\Tests;
 use Paloma\ShopBundle\PalomaShopBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
@@ -24,13 +24,17 @@ class TestKernel extends Kernel
     {
         return [
             new FrameworkBundle(),
+            new SecurityBundle(),
             new PalomaShopBundle(),
         ];
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        $routes->import(__DIR__ . '/../Resources/config/routes.yaml', '/api');
+        $routes->import(__DIR__ . '/../Resources/config/routes.yaml');
+        $routes->import(__DIR__ . '/../Resources/config/routes_api.yaml', '/api');
+
+        $routes->add('/', null, 'index');
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
@@ -39,7 +43,7 @@ class TestKernel extends Kernel
             'base_url' => 'https://local.paloma.one/api',
             'api_key' => 'test',
         ]);
-        $c->setParameter('paloma_shop.default_channel', 'demo_b2c');
+        $c->setParameter('paloma_shop.default_channel', 'test');
         $c->setParameter('paloma_shop.registration_confirmation_base_url', 'https://test');
         $c->setParameter('paloma_shop.password_reset_confirmation_base_url', 'https://test');
 
@@ -52,6 +56,8 @@ class TestKernel extends Kernel
         ]);
 
         $loader->load(__DIR__ . '/Resources/config/services.yaml');
+
+        $loader->load(__DIR__ . '/Resources/config/security.yaml');
     }
 
     public function getCacheDir()

@@ -15,7 +15,7 @@ class CheckoutResourceTest extends FunctionalTest
             '/api/checkout/addresses',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ 
                 "billing": {
                     "title": "mr",
@@ -73,7 +73,7 @@ class CheckoutResourceTest extends FunctionalTest
             '/api/checkout/shipping_methods/set',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ "method": "unknown" }'
         );
 
@@ -102,7 +102,7 @@ class CheckoutResourceTest extends FunctionalTest
             '/api/checkout/payment_methods/set',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ "method": "unknown" }'
         );
 
@@ -118,7 +118,7 @@ class CheckoutResourceTest extends FunctionalTest
             '/api/checkout/payments/initialize',
             [],
             [],
-            ['content-type' => 'application/json'],
+            ['HTTP_CONTENT_TYPE' => 'application/json'],
             '{ 
                 "successUrl": "https://success",
                 "errorUrl": "https://error",

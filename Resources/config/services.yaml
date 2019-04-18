@@ -6,6 +6,10 @@ services:
 
   # Controllers
 
+  paloma_shop.controller.security:
+    class: Paloma\ShopBundle\Controller\SecurityController
+    tags: ['controller.service_arguments']
+
   paloma_shop.controller.category_resource:
     class: Paloma\ShopBundle\Controller\CategoryResource
     tags: ['controller.service_arguments']
@@ -56,7 +60,7 @@ services:
       - '@session'
       - '%paloma_shop.client.options%'
     tags:
-      - { name: kernel.event_listener, event: kernel.request }
+      - { name: kernel.event_listener, event: kernel.request, priority: 256 } # before symfony security listeners
 
   paloma_shop.client:
     class: Paloma\Shop\PalomaClient
@@ -77,6 +81,15 @@ services:
     class: Paloma\ShopBundle\Security\DefaultPalomaSecurity
     arguments:
       - '@security.token_storage'
+
+  paloma_shop.security.user_provider:
+    class: Paloma\ShopBundle\Security\PalomaUserProvider
+
+  paloma_shop.security.login_form_authenticator:
+    class: Paloma\ShopBundle\Security\LoginFormAuthenticator
+
+  paloma_shop.security.http_json_authenticator:
+    class: Paloma\ShopBundle\Security\HttpJsonAuthenticator
 
   paloma_shop.serializer:
     class: Paloma\ShopBundle\PalomaSerializer
@@ -109,6 +122,12 @@ services:
 
   Paloma\Shop\PalomaSecurityInterface:
     alias: paloma_shop.security
+
+  Paloma\ShopBundle\Security\LoginFormAuthenticator:
+    alias: paloma_shop.security.login_form_authenticator
+
+  Paloma\ShopBundle\Security\HttpJsonAuthenticator:
+    alias: paloma_shop.security.http_json_authenticator
 
   Paloma\ShopBundle\PalomaSerializer:
     alias: paloma_shop.serializer
