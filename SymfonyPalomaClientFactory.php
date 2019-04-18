@@ -3,6 +3,7 @@
 namespace Paloma\ShopBundle;
 
 use Paloma\Shop\PalomaClientFactory;
+use Paloma\Shop\PalomaProfiler;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -20,9 +21,13 @@ class SymfonyPalomaClientFactory extends PalomaClientFactory
 
     private $traceId;
 
-    public function __construct(ChannelResolverInterface $channelResolver, SessionInterface $session, array $options)
+    public function __construct(ChannelResolverInterface $channelResolver,
+                                SessionInterface $session,
+                                array $options,
+                                PalomaProfiler $profiler = null)
     {
         $options['session'] = $session;
+        $options['profiler'] = $profiler;
 
         parent::__construct($options);
 

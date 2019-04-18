@@ -59,6 +59,7 @@ services:
       - '@paloma_shop.channel_resolver'
       - '@session'
       - [] # injected by bundle extension
+      - '@?paloma_shop.paloma_profiler'
     tags:
       - { name: kernel.event_listener, event: kernel.request, priority: 256 } # before symfony security listeners
 

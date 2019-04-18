@@ -7,4 +7,4 @@ paloma_security_login:
 
 paloma_security_logout:
   path: /logout
-  methods: POST
+  methods: [ POST, GET ]

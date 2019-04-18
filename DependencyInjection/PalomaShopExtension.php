@@ -18,14 +18,19 @@ class PalomaShopExtension extends Extension
 
         $loader->load('services.yaml');
 
-        $def = $container->getDefinition('paloma_shop.client_factory');
-        $def->replaceArgument(2, $config['client']);
-
         $def = $container->getDefinition('paloma_shop.config');
         $def->replaceArgument(1, $config['urls']['confirm_registration']);
         $def->replaceArgument(2, $config['urls']['confirm_password_reset']);
 
         $def = $container->getDefinition('paloma_shop.channel_resolver');
         $def->replaceArgument(0, $config['channels']['default']);
+
+        $def = $container->getDefinition('paloma_shop.client_factory');
+        $def->replaceArgument(2, $config['client']);
+
+        $env = $container->getParameter('kernel.environment');
+        if ('dev' === $env) {
+            $loader->load('profiler.yaml');
+        }
     }
 }

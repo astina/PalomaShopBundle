@@ -1,0 +1,13 @@
+services:
+
+  paloma_shop.paloma_profiler:
+    class: Paloma\Shop\PalomaProfiler
+    public: false
+
+  paloma_shop.paloma_data_collector:
+    class: Paloma\ShopBundle\PalomaDataCollector
+    arguments:
+      - '@paloma_shop.paloma_profiler'
+    public: false
+    tags:
+      - { name: data_collector, template: '@PalomaShop/profiler.html.twig', id: paloma }
