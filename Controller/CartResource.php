@@ -4,9 +4,12 @@ namespace Paloma\ShopBundle\Controller;
 
 use Paloma\Shop\Catalog\CatalogInterface;
 use Paloma\Shop\Checkout\CheckoutInterface;
+use Paloma\Shop\Customers\CustomersInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\CartItemNotFound;
 use Paloma\Shop\Error\InsufficientStock;
+use Paloma\Shop\Error\NotAuthenticated;
+use Paloma\Shop\Error\OrderNotFound;
 use Paloma\Shop\Error\ProductVariantNotFound;
 use Paloma\Shop\Error\ProductVariantUnavailable;
 use Paloma\ShopBundle\PalomaSerializer;
@@ -115,6 +118,31 @@ class CartResource
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
+        }
+    }
+
+    public function repeatOrder(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
+    {
+        $params = $serializer->toArray($request->getContent());
+
+        $orderNumber = $params['orderNumber'] ?? null;
+
+        if (!$orderNumber) {
+            return new Response('Parameter `orderNumber` missing', 400);
+        }
+
+        try {
+
+            $result = $customers->addOrderItemsToCart($orderNumber);
+
+            return $serializer->toJsonResponse($result);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        } catch (OrderNotFound $e) {
+            return new Response('Order not found', 404);
         }
     }
 }

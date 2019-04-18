@@ -77,4 +77,20 @@ class CartResourceTest extends FunctionalTest
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
+
+    public function testRepeatOrder()
+    {
+        $client = static::createClient();
+
+        $client->request(
+            'POST',
+            '/api/cart/repeat_order',
+            [],
+            [],
+            ['content-type' => 'application/json'],
+            '{ "orderNumber": "123" }'
+        );
+
+        $this->assertEquals(401, $client->getResponse()->getStatusCode());
+    }
 }

@@ -66,6 +66,11 @@ paloma_api_cart_recommendations:
   controller: paloma_shop.controller.cart_resource:recommendations
   methods: GET
 
+paloma_api_cart_repeat_order:
+  path: /cart/repeat_order
+  controller: paloma_shop.controller.cart_resource:repeatOrder
+  methods: POST
+
 # Checkout
 
 paloma_api_checkout_addresses_update:
