@@ -8,7 +8,7 @@
         "symfony/serializer": "^4.2",
         "symfony/property-access": "^4.2",
         "symfony/security": "^4.2",
-        "symfony/security-bundle": "^4.2",
+        "symfony/security-bundle": "^4.2"
     },
     "require-dev": {
         "symfony/framework-bundle": "^4.2",

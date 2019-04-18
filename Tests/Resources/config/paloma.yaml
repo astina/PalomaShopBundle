@@ -1,0 +1,12 @@
+paloma_shop:
+
+  client:
+    base_url: 'https://local.paloma.one/api'
+    api_key: test
+
+  channels:
+    default: test
+
+  urls:
+    confirm_registration: 'paloma_register_confirm'
+    confirm_password_reset: 'paloma_password_reset_confirm'

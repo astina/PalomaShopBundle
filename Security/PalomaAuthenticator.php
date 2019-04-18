@@ -108,7 +108,7 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
             return new Response('Bad credentials', 403);
         }
 
-        return self::onAuthenticationFailure($request, $exception);
+        return parent::onAuthenticationFailure($request, $exception);
     }
 
     protected function getLoginUrl()

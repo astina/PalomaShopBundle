@@ -35,18 +35,12 @@ class TestKernel extends Kernel
         $routes->import(__DIR__ . '/../Resources/config/routes_api.yaml', '/api');
 
         $routes->add('/', null, 'index');
+        $routes->add('/register/confirm', null, 'paloma_register_confirm');
+        $routes->add('/password_reset/confirm', null, 'paloma_password_reset_confirm');
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
-        $c->setParameter('paloma_shop.client.options', [
-            'base_url' => 'https://local.paloma.one/api',
-            'api_key' => 'test',
-        ]);
-        $c->setParameter('paloma_shop.default_channel', 'test');
-        $c->setParameter('paloma_shop.registration_confirmation_base_url', 'https://test');
-        $c->setParameter('paloma_shop.password_reset_confirmation_base_url', 'https://test');
-
         $c->loadFromExtension('framework', [
             'test' => true,
             'secret' => 'test',
@@ -54,6 +48,8 @@ class TestKernel extends Kernel
                 'storage_id' => 'session.storage.mock_file',
             ],
         ]);
+
+        $loader->load(__DIR__ . '/Resources/config/paloma.yaml');
 
         $loader->load(__DIR__ . '/Resources/config/services.yaml');
 

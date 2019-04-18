@@ -58,7 +58,7 @@ services:
     arguments:
       - '@paloma_shop.channel_resolver'
       - '@session'
-      - '%paloma_shop.client.options%'
+      - [] # injected by bundle extension
     tags:
       - { name: kernel.event_listener, event: kernel.request, priority: 256 } # before symfony security listeners
 
@@ -69,13 +69,14 @@ services:
   paloma_shop.config:
     class: Paloma\ShopBundle\PalomaConfig
     arguments:
-      - '%paloma_shop.registration_confirmation_base_url%'
-      - '%paloma_shop.password_reset_confirmation_base_url%'
+      - '@router'
+      - ~ # injected by bundle extension
+      - ~ # injected by bundle extension
 
   paloma_shop.channel_resolver:
     class: Paloma\ShopBundle\DefaultChannelResolver
     arguments:
-      - '%paloma_shop.default_channel%'
+      - ~ # injected by bundle extension
 
   paloma_shop.security.user_provider:
     class: Paloma\ShopBundle\Security\PalomaUserProvider

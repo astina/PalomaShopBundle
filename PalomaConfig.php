@@ -3,26 +3,36 @@
 namespace Paloma\ShopBundle;
 
 use Paloma\Shop\PalomaConfigInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class PalomaConfig implements PalomaConfigInterface
 {
-    private $registrationConfirmationBaseUrl;
+    private $registrationConfirmationRoute;
 
-    private $passwordResetConfirmationBaseUrl;
+    private $passwordResetConfirmationRoute;
 
-    public function __construct(string $registrationConfirmationBaseUrl, string $passwordResetConfirmationBaseUrl)
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
+    public function __construct(
+        UrlGeneratorInterface $urlGenerator,
+        string $registrationConfirmationRoute,
+        string $passwordResetConfirmationRoute)
     {
-        $this->registrationConfirmationBaseUrl = $registrationConfirmationBaseUrl;
-        $this->passwordResetConfirmationBaseUrl = $passwordResetConfirmationBaseUrl;
+        $this->registrationConfirmationRoute = $registrationConfirmationRoute;
+        $this->passwordResetConfirmationRoute = $passwordResetConfirmationRoute;
+        $this->urlGenerator = $urlGenerator;
     }
 
     function getRegistrationConfirmationBaseUrl(): string
     {
-        return $this->registrationConfirmationBaseUrl;
+        return $this->urlGenerator->generate($this->registrationConfirmationRoute);
     }
 
     function getPasswordResetConfirmationBaseUrl(): string
     {
-        return $this->passwordResetConfirmationBaseUrl;
+        return $this->urlGenerator->generate($this->passwordResetConfirmationRoute);
     }
 }
