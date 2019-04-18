@@ -2,6 +2,7 @@
 
 namespace Paloma\ShopBundle\Controller;
 
+use Paloma\Shop\Catalog\CatalogInterface;
 use Paloma\Shop\Checkout\CheckoutInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\CartItemNotFound;
@@ -96,6 +97,21 @@ class CartResource
             $cart = $checkout->removeCartItem($itemId);
 
             return $serializer->toJsonResponse($cart);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        }
+    }
+
+    public function recommendations(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
+    {
+        $size = min(20, max(1, (int) $request->get('size', 5)));
+
+        try {
+
+            $products = $catalog->getProductsForCart($size);
+
+            return $serializer->toJsonResponse($products);
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);

@@ -61,6 +61,11 @@ paloma_api_cart_item_remove:
   controller: paloma_shop.controller.cart_resource:removeItem
   methods: DELETE
 
+paloma_api_cart_recommendations:
+  path: /cart/recommendations
+  controller: paloma_shop.controller.cart_resource:recommendations
+  methods: GET
+
 # Checkout
 
 paloma_api_checkout_addresses_update:

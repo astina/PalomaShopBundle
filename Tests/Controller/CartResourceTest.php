@@ -68,4 +68,13 @@ class CartResourceTest extends FunctionalTest
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
+
+    public function testRecommendations()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/cart/recommendations');
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
 }
