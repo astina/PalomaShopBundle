@@ -28,6 +28,12 @@
         </div>
     {% endset %}
 
+    {% if collector.totalTime > 1000 or collector.exchanges|length > 10 %}
+        {% set status = 'yellow' %}
+    {% elseif collector.totalTime > 10000 or collector.exchanges|length > 50 %}
+        {% set status = 'red' %}
+    {% endif %}
+
     {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: true }) }}
 
 {% endblock %}
@@ -51,6 +57,20 @@
 {% block panel %}
 
     <h2>Paloma</h2>
+
+    <p class="text-muted">HTTP requests to the Paloma backend and their responses are shown here.</p>
+
+    <div class="metrics">
+        <div class="metric">
+            <span class="value">{{ collector.exchanges|length }}</span>
+            <span class="label">Requests</span>
+        </div>
+
+        <div class="metric">
+            <span class="value">{{ collector.totalTime }} <span class="unit">ms</span></span>
+            <span class="label">Total time</span>
+        </div>
+    </div>
 
     {% for exchange in collector.exchanges %}
         <table style="width: 100%">

@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('client')
                     ->children()
                         ->scalarNode('base_url')->isRequired()->end()
-                        ->scalarNode('api_key')->isRequired()->end()
+                        ->scalarNode('api_key')->isRequired()->defaultValue('%env(PALOMA_API_KEY)%')->end()
                     ->end()
                 ->end()
 

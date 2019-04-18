@@ -32,15 +32,9 @@ Configure the bundle in `config/packages/paloma_shop.yaml`:
 
 ```yaml
 paloma_shop:
-
   client:
-  
     # this URL probably differs for each environment 
     base_url: 'https://my-project.paloma.one/api'
-    
-    api_key: '%env(PALOMA_API_KEY)%'
-    
-  
 ```
 
 Add the Paloma API key to `.env.local`:
@@ -51,14 +45,41 @@ PALOMA_API_KEY=mysecretapikey
 ```
 
 Load the routing config in `config/routes.yaml:
+{% extends '@PalomaShop/layout.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me" checked> Remember me
+            </label>
+        </div>
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            Sign in
+        </button>
+    </form>
+{% endblock %}
 
 ```yaml
 paloma:
   resource: '@PalomaShopBundle/Resources/config/routes.yaml'
-
-paloma_api:
-  resource: '@PalomaShopBundle/Resources/config/routes_api.yaml'
-  prefix: /api
 ```
 
 Configure `config/packages/security.yaml` to use Paloma for security: 
@@ -89,7 +110,6 @@ security:
         secret: '%kernel.secret%'
         lifetime: 604800
         path: /
-        always_remember_me: false
       
   access_control:
   
