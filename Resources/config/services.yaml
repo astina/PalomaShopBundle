@@ -77,19 +77,13 @@ services:
     arguments:
       - '%paloma_shop.default_channel%'
 
-  paloma_shop.security:
-    class: Paloma\ShopBundle\Security\DefaultPalomaSecurity
+  paloma_shop.security.user_provider:
+    class: Paloma\ShopBundle\Security\PalomaUserProvider
     arguments:
       - '@security.token_storage'
 
-  paloma_shop.security.user_provider:
-    class: Paloma\ShopBundle\Security\PalomaUserProvider
-
-  paloma_shop.security.login_form_authenticator:
-    class: Paloma\ShopBundle\Security\LoginFormAuthenticator
-
-  paloma_shop.security.http_json_authenticator:
-    class: Paloma\ShopBundle\Security\HttpJsonAuthenticator
+  paloma_shop.security.authenticator:
+    class: Paloma\ShopBundle\Security\PalomaAuthenticator
 
   paloma_shop.serializer:
     class: Paloma\ShopBundle\PalomaSerializer
@@ -117,17 +111,11 @@ services:
   Paloma\Shop\Customers\CustomersClientInterface:
     alias: paloma_shop.client.customers
 
+  Paloma\Shop\Security\UserProviderInterface:
+    alias: paloma_shop.security.user_provider
+
   Paloma\Shop\PalomaConfigInterface:
     alias: paloma_shop.config
-
-  Paloma\Shop\PalomaSecurityInterface:
-    alias: paloma_shop.security
-
-  Paloma\ShopBundle\Security\LoginFormAuthenticator:
-    alias: paloma_shop.security.login_form_authenticator
-
-  Paloma\ShopBundle\Security\HttpJsonAuthenticator:
-    alias: paloma_shop.security.http_json_authenticator
 
   Paloma\ShopBundle\PalomaSerializer:
     alias: paloma_shop.serializer

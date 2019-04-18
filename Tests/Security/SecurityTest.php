@@ -2,7 +2,7 @@
 
 namespace Paloma\ShopBundle\Tests;
 
-use Paloma\Shop\PalomaSecurityInterface;
+use Paloma\Shop\Security\UserProviderInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class SecurityTest extends FunctionalTest
@@ -22,6 +22,7 @@ class SecurityTest extends FunctionalTest
                 'username' => 'test@astina.io',
                 'password' => 'password',
                 '_csrf_token' => $token->getValue(),
+                '_remember_me' => '1'
             ]
         );
 
@@ -29,10 +30,10 @@ class SecurityTest extends FunctionalTest
         $this->assertNotNull($cookies->get('MOCKSESSID'));
         $this->assertNotNull($cookies->get('REMEMBERME'));
 
-        /** @var PalomaSecurityInterface $security */
-        $security = static::$container->get('paloma_shop.security');
+        /** @var UserProviderInterface $userProvider */
+        $userProvider = static::$container->get('paloma_shop.security.user_provider');
 
-        $user = $security->getUser();
+        $user = $userProvider->getUser();
 
         $this->assertNotNull($user);
         $this->assertEquals('test@astina.io', $user->getUsername());
@@ -52,7 +53,7 @@ class SecurityTest extends FunctionalTest
             [],
             [],
             [
-                'HTTP_CONTENT_TYPE' => 'application/json',
+                'CONTENT_TYPE' => 'application/json',
                 'HTTP_X_CSRF_TOKEN' => $token->getValue(),
             ],
             '{ 
@@ -62,6 +63,14 @@ class SecurityTest extends FunctionalTest
         );
 
         $this->assertEquals(204, $client->getResponse()->getStatusCode());
+
+        /** @var UserProviderInterface $userProvider */
+        $userProvider = static::$container->get('paloma_shop.security.user_provider');
+
+        $user = $userProvider->getUser();
+
+        $this->assertNotNull($user);
+        $this->assertEquals('test@astina.io', $user->getUsername());
     }
 
     public function testHttpJsonAuthenticationWithBadCredentials()
@@ -78,7 +87,7 @@ class SecurityTest extends FunctionalTest
             [],
             [],
             [
-                'HTTP_CONTENT_TYPE' => 'application/json',
+                'CONTENT_TYPE' => 'application/json',
                 'HTTP_X_CSRF_TOKEN' => $token->getValue(),
             ],
             '{ 
@@ -88,5 +97,12 @@ class SecurityTest extends FunctionalTest
         );
 
         $this->assertEquals(403, $client->getResponse()->getStatusCode());
+
+        /** @var UserProviderInterface $userProvider */
+        $userProvider = static::$container->get('paloma_shop.security.user_provider');
+
+        $user = $userProvider->getUser();
+
+        $this->assertNull($user);
     }
 }

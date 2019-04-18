@@ -26,7 +26,7 @@ class CustomerResourceTest extends FunctionalTest
             '/api/customer/register',
             [],
             [],
-            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/json'],
             '{
                 "emailAddress": "' . $emailAddress . '",
                 "password": "' . uniqid() . '"
@@ -50,7 +50,7 @@ class CustomerResourceTest extends FunctionalTest
             '/api/customer/register',
             [],
             [],
-            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/json'],
             '{
                 "emailAddress": "test@astina.io",
                 "password": "password"
@@ -67,23 +67,34 @@ class CustomerResourceTest extends FunctionalTest
 
     public function testUpdate()
     {
-        $client = static::createAuthorizedClient('test@astina.io', 'password');
+        $client = static::createAuthorizedClient();
+
+        $company = 'Example ' . rand(1000, 9999);
 
         $client->request(
             'POST',
             '/api/customer/update',
             [],
             [],
-            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/json'],
             '{
                 "emailAddress": "test@astina.io",
                 "firstName": "Hans",
-                "lastName": "Muster"
+                "lastName": "Muster",
+                "company": "' . $company . '",
+                "locale": "de_CH",
+                "gender": "male",
+                "dateOfBirth": "1980-01-01"
             }'
         );
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        $customer = json_decode($client->getResponse()->getContent(), true);
+
+        $this->assertEquals($company, $customer['company']);
     }
+
     public function testUpdateUnauthorized()
     {
         $client = static::createClient();
@@ -93,7 +104,7 @@ class CustomerResourceTest extends FunctionalTest
             '/api/customer/update',
             [],
             [],
-            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/json'],
             '{
                 "emailAddress": "test@astina.io",
                 "firstName": "Hans"
@@ -105,20 +116,31 @@ class CustomerResourceTest extends FunctionalTest
 
     public function testUpdateAddress()
     {
-        $client = static::createClient();
+        $client = static::createAuthorizedClient();
+
+        $street = 'Musterweg ' . rand(1000, 9999);
 
         $client->request(
             'POST',
             '/api/customer/addresses/update',
             [],
             [],
-            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/json'],
             '{
                 "addressType": "billing",
-                "firstName": "Hans"
+                "firstName": "Hans",
+                "lastName": "Muster",
+                "street": "'. $street . '",
+                "zipCode": "8000",
+                "city": "Zürich",
+                "country": "CH"
             }'
         );
 
-        $this->assertEquals(401, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        $address = json_decode($client->getResponse()->getContent(), true);
+
+        $this->assertEquals($street, $address['street']);
     }
 }

@@ -15,7 +15,7 @@ class UserResourceTest extends FunctionalTest
             '/api/user/password/update',
             [],
             [],
-            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/json'],
             '{ "currentPassword": "invalid", "newPassword": "newpassword" }'
         );
 
@@ -31,7 +31,23 @@ class UserResourceTest extends FunctionalTest
             '/api/user/password/reset/start',
             [],
             [],
-            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/json'],
+            '{ "emailAddress": "test@astina.io" }'
+        );
+
+        $this->assertEquals(204, $client->getResponse()->getStatusCode());
+    }
+
+    public function testStartPasswordResetWithUnknownUser()
+    {
+        $client = static::createClient();
+
+        $client->request(
+            'POST',
+            '/api/user/password/reset/start',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
             '{ "emailAddress": "test+unknown@astina.io" }'
         );
 
@@ -63,7 +79,7 @@ class UserResourceTest extends FunctionalTest
             '/api/user/password/reset/complete',
             [],
             [],
-            ['HTTP_CONTENT_TYPE' => 'application/json'],
+            ['CONTENT_TYPE' => 'application/json'],
             '{ "token": "invalid", "newPassword": "newpassword" }'
         );
 

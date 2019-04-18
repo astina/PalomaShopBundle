@@ -2,7 +2,7 @@
 
 namespace Paloma\ShopBundle\Security;
 
-use Paloma\Shop\Customers\UserDetailsInterface;
+use Paloma\Shop\Security\UserDetailsInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class PalomaUser implements UserInterface

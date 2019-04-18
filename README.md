@@ -25,24 +25,14 @@ security:
     
     # ...
       
-    paloma_api:
-
-      pattern: ^/api/
+    paloma:
 
       anonymous: true
 
       guard:
         authenticators:
-          - Paloma\ShopBundle\Security\HttpJsonAuthenticator
-    
-    paloma_main:
-    
-      anonymous: true
-      
-      guard:
-        authenticators:
-          - Paloma\ShopBundle\Security\LoginFormAuthenticator
-          
+          - paloma_shop.security.authenticator
+
       logout:
         path: paloma_security_logout
 
@@ -50,8 +40,7 @@ security:
         secret: '%kernel.secret%'
         lifetime: 604800
         path: /
-        always_remember_me: true
-        secure: true
+        always_remember_me: false
       
   access_control:
     # TODO

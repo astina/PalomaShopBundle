@@ -19,14 +19,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserResource
 {
-    public function authenticate()
-    {
-        // Actual authentication is done by the Symfony security component
-        // see config/packages/security.yaml
-
-        return new Response(null, 204);
-    }
-
     public function updatePassword(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
     {
         /** @var PasswordUpdateInterface $update */

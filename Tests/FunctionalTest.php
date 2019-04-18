@@ -2,9 +2,8 @@
 
 namespace Paloma\ShopBundle\Tests;
 
-use Paloma\Shop\Customers\CustomersInterface;
-use Paloma\Shop\Customers\UserDetailsInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 abstract class FunctionalTest extends WebTestCase
 {
@@ -13,20 +12,24 @@ abstract class FunctionalTest extends WebTestCase
         return TestKernel::class;
     }
 
-    protected static function createAuthorizedClient($username, $password)
+    protected static function createAuthorizedClient($username = 'test@astina.io', $password = 'password')
     {
         $client = static::createClient();
 
-        // TODO
+        /** @var CsrfTokenManagerInterface $tokenManager */
+        $tokenManager = static::$container->get('security.csrf.token_manager');
+        $token = $tokenManager->getToken('authenticate');
+
+        $client->request(
+            'POST',
+            '/login',
+            [
+                'username' => $username,
+                'password' => $password,
+                '_csrf_token' => $token->getValue(),
+            ]
+        );
 
         return $client;
-    }
-
-    protected function authenticateUser($username, $password): UserDetailsInterface
-    {
-        /** @var CustomersInterface $customers */
-        $customers = static::$container->get('paloma_shop.customers');
-
-        return $customers->authenticate($username, $password);
     }
 }

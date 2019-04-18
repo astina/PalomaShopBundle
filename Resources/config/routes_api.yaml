@@ -159,7 +159,6 @@ paloma_api_customer_exists_email:
 
 paloma_api_user_authenticate:
   path: /user/authenticate
-  controller: paloma_shop.controller.user_resource:authenticate
   methods: POST
 
 paloma_api_user_logout:
