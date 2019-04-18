@@ -35,6 +35,14 @@ class TestKernel extends Kernel
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
+        $c->setParameter('paloma_shop.client.options', [
+            'base_url' => 'https://local.paloma.one/api',
+            'api_key' => 'test',
+        ]);
+        $c->setParameter('paloma_shop.default_channel', 'demo_b2c');
+        $c->setParameter('paloma_shop.registration_confirmation_base_url', 'https://test');
+        $c->setParameter('paloma_shop.password_reset_confirmation_base_url', 'https://test');
+
         $c->loadFromExtension('framework', [
             'test' => true,
             'secret' => 'test',

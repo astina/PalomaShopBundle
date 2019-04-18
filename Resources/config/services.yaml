@@ -1,12 +1,3 @@
-parameters:
-  # TODO remove
-  paloma_shop.client.options:
-    base_url: https://demo.paloma.one/api
-    api_key: test
-  paloma_shop.default_channel: 'demo_b2c'
-  paloma_shop.registration_confirmation_base_url: 'https://todo'
-  paloma_shop.password_reset_confirmation_base_url: 'https://todo'
-
 services:
 
   _defaults:
