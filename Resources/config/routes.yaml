@@ -193,3 +193,8 @@ paloma_api_orders_get:
   path: /orders/get
   controller: paloma_shop.controller.order_resource:get
   methods: GET
+
+paloma_api_orders_latest:
+  path: /orders/latest
+  controller: paloma_shop.controller.order_resource:latest
+  methods: GET

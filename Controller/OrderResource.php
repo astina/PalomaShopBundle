@@ -17,7 +17,7 @@ class OrderResource
     {
         $page = max(0, (int) $request->get('page', 0));
         $size = min(10, (int) $request->get('size', 5));
-        $orderDesc = (bool) $request->get('orderDesc', false);
+        $orderDesc = (bool) $request->get('orderDesc', true);
 
         try {
 
@@ -54,6 +54,29 @@ class OrderResource
             return new Response('Unauthorized', 401);
         } catch (OrderNotFound $e) {
             return new Response('Order not found', 404);
+        }
+    }
+
+    public function latest(CustomersInterface $customers, PalomaSerializer $serializer)
+    {
+        try {
+
+            $orders = $customers->getOrders(0, 1, true);
+
+            if (count($orders->getContent()) === 0) {
+                return new Response(null, 204);
+            }
+
+            $order = $orders->getContent()[0];
+
+            return $serializer->toJsonResponse($order);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        } catch (InvalidInput $e) {
+            return $serializer->toJsonResponse($e->getValidation(), 400);
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
         }
     }
 }

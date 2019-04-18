@@ -23,4 +23,13 @@ class OrderResourceTest extends FunctionalTest
 
         $this->assertEquals(401, $client->getResponse()->getStatusCode());
     }
+
+    public function testLatest()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/api/orders/latest');
+
+        $this->assertEquals(401, $client->getResponse()->getStatusCode());
+    }
 }
