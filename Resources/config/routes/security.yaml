@@ -1,5 +1,3 @@
-# Security
-
 paloma_security_login:
   path: /login
   controller: paloma_shop.controller.security:login

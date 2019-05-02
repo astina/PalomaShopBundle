@@ -34,7 +34,7 @@ Configure the bundle in `config/packages/paloma_shop.yaml`:
 paloma_shop:
   client:
     # this URL probably differs for each environment 
-    base_url: 'https://my-project.paloma.one/api'
+    base_url: 'https://[project].paloma.one/api'
 ```
 
 Add the Paloma API key to `.env.local`:
@@ -44,11 +44,11 @@ Add the Paloma API key to `.env.local`:
 PALOMA_API_KEY=mysecretapikey
 ```
 
-Load the routing config in `config/routes.yaml:
+Load the routing config in `config/routes.yaml`:
 
 ```yaml
 paloma:
-  resource: '@PalomaShopBundle/Resources/config/routes.yaml'
+  resource: '@PalomaShopBundle/Resources/config/routes/all.yaml'
 ```
 
 Configure `config/packages/security.yaml` to use Paloma for security: 
@@ -84,3 +84,9 @@ security:
   
     # ...
 ```
+
+That's it!
+
+# Customizing the front end
+
+TODO

@@ -1,6 +1,6 @@
 <?php
 
-namespace Paloma\ShopBundle\Controller;
+namespace Paloma\ShopBundle\Controller\Security;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +15,9 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('@PalomaShop/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render(
+            '@PalomaShop/security/login.html.twig',
+            ['last_username' => $lastUsername, 'error' => $error]
+        );
     }
 }

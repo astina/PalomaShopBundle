@@ -1,6 +1,6 @@
 <?php
 
-namespace Paloma\ShopBundle\Tests\Controller;
+namespace Paloma\ShopBundle\Tests\Controller\Api;
 
 use Paloma\ShopBundle\Tests\FunctionalTest;
 

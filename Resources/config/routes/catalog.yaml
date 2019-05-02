@@ -1,0 +1,4 @@
+paloma_catalog_home:
+  path: /
+  controller: paloma_shop.controller.catalog_home::view
+  methods: GET

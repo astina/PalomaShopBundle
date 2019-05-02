@@ -1,6 +1,6 @@
 {% extends '@PalomaShop/layout.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Log in! - {{ parent() }}{% endblock %}
 
 {% block body %}
     <form method="post">
@@ -20,7 +20,7 @@
 
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" name="_remember_me"> Remember me
+                <input type="checkbox" name="_remember_me" checked> Remember me
             </label>
         </div>
 

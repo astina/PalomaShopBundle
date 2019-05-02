@@ -1,0 +1,55 @@
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  # Security
+
+  paloma_shop.controller.security:
+    class: Paloma\ShopBundle\Controller\Security\SecurityController
+    tags: ['controller.service_arguments']
+
+  # API
+
+  paloma_shop.controller.category_resource:
+    class: Paloma\ShopBundle\Controller\Api\CategoryResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.product_resource:
+    class: Paloma\ShopBundle\Controller\Api\ProductResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.search_resource:
+    class: Paloma\ShopBundle\Controller\Api\SearchResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.cart_resource:
+    class: Paloma\ShopBundle\Controller\Api\CartResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.checkout_resource:
+    class: Paloma\ShopBundle\Controller\Api\CheckoutResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.customer_resource:
+    class: Paloma\ShopBundle\Controller\Api\CustomerResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.user_resource:
+    class: Paloma\ShopBundle\Controller\Api\UserResource
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.order_resource:
+    class: Paloma\ShopBundle\Controller\Api\OrderResource
+    tags: ['controller.service_arguments']
+
+  # Catalog
+
+  paloma_shop.controller.catalog_home:
+    class: Paloma\ShopBundle\Controller\Catalog\HomeController
+    tags: ['controller.service_arguments']
+
+  paloma_shop.controller.catalog_category:
+    class: Paloma\ShopBundle\Controller\Catalog\CategoryController
+    tags: ['controller.service_arguments']

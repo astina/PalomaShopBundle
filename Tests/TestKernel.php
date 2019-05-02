@@ -31,8 +31,7 @@ class TestKernel extends Kernel
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        $routes->import(__DIR__ . '/../Resources/config/routes.yaml');
-        $routes->import(__DIR__ . '/../Resources/config/routes_api.yaml', '/api');
+        $routes->import(__DIR__ . '/../Resources/config/routes/all.yaml');
 
         $routes->add('/', null, 'index');
         $routes->add('/register/confirm', null, 'paloma_register_confirm');

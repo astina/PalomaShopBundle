@@ -1,6 +1,6 @@
 <?php
 
-namespace Paloma\ShopBundle\Controller;
+namespace Paloma\ShopBundle\Controller\Api;
 
 use Paloma\Shop\Catalog\CatalogInterface;
 use Paloma\Shop\Catalog\SearchRequest;

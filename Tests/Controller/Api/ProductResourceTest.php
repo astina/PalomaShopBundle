@@ -1,9 +1,8 @@
 <?php
 
-namespace Paloma\ShopBundle\Tests\Controller;
+namespace Paloma\ShopBundle\Tests\Controller\Api;
 
 use Paloma\ShopBundle\Tests\FunctionalTest;
-use Paloma\ShopBundle\Tests\TestKernel;
 
 class ProductResourceTest extends FunctionalTest
 {

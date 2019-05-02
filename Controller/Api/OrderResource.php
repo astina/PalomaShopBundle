@@ -1,6 +1,6 @@
 <?php
 
-namespace Paloma\ShopBundle\Controller;
+namespace Paloma\ShopBundle\Controller\Api;
 
 use Paloma\Shop\Customers\CustomersInterface;
 use Paloma\Shop\Error\BackendUnavailable;

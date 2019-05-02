@@ -17,7 +17,7 @@ class SecurityTest extends FunctionalTest
 
         $client->request(
             'POST',
-            '/login',
+            '/security/login',
             [
                 'username' => 'test@astina.io',
                 'password' => 'password',

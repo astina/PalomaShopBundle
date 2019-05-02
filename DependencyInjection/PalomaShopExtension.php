@@ -16,7 +16,7 @@ class PalomaShopExtension extends Extension
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
-        $loader->load('services.yaml');
+        $loader->load('services/core.yaml');
 
         $def = $container->getDefinition('paloma_shop.config');
         $def->replaceArgument(1, $config['urls']['confirm_registration']);
@@ -27,6 +27,9 @@ class PalomaShopExtension extends Extension
 
         $def = $container->getDefinition('paloma_shop.client_factory');
         $def->replaceArgument(2, $config['client']);
+
+        // TODO only load controllers if needed (if default UI is used)
+        $loader->load('services/controllers.yaml');
 
         $env = $container->getParameter('kernel.environment');
         if ('dev' === $env) {

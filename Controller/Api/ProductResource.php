@@ -1,6 +1,6 @@
 <?php
 
-namespace Paloma\ShopBundle\Controller;
+namespace Paloma\ShopBundle\Controller\Api;
 
 use Paloma\Shop\Catalog\CatalogInterface;
 use Paloma\Shop\Error\BackendUnavailable;
@@ -8,7 +8,6 @@ use Paloma\Shop\Error\ProductNotFound;
 use Paloma\ShopBundle\PalomaSerializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class ProductResource
 {

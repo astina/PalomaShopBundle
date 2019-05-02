@@ -4,46 +4,6 @@ services:
     autowire: true
     autoconfigure: true
 
-  # Controllers
-
-  paloma_shop.controller.security:
-    class: Paloma\ShopBundle\Controller\SecurityController
-    tags: ['controller.service_arguments']
-
-  paloma_shop.controller.category_resource:
-    class: Paloma\ShopBundle\Controller\CategoryResource
-    tags: ['controller.service_arguments']
-
-  paloma_shop.controller.product_resource:
-    class: Paloma\ShopBundle\Controller\ProductResource
-    tags: ['controller.service_arguments']
-
-  paloma_shop.controller.search_resource:
-    class: Paloma\ShopBundle\Controller\SearchResource
-    tags: ['controller.service_arguments']
-
-  paloma_shop.controller.cart_resource:
-    class: Paloma\ShopBundle\Controller\CartResource
-    tags: ['controller.service_arguments']
-
-  paloma_shop.controller.checkout_resource:
-    class: Paloma\ShopBundle\Controller\CheckoutResource
-    tags: ['controller.service_arguments']
-
-  paloma_shop.controller.customer_resource:
-    class: Paloma\ShopBundle\Controller\CustomerResource
-    tags: ['controller.service_arguments']
-
-  paloma_shop.controller.user_resource:
-    class: Paloma\ShopBundle\Controller\UserResource
-    tags: ['controller.service_arguments']
-
-  paloma_shop.controller.order_resource:
-    class: Paloma\ShopBundle\Controller\OrderResource
-    tags: ['controller.service_arguments']
-
-  # Paloma
-
   paloma_shop.catalog:
     class: Paloma\Shop\Catalog\Catalog
 

@@ -22,7 +22,7 @@ abstract class FunctionalTest extends WebTestCase
 
         $client->request(
             'POST',
-            '/login',
+            '/security/login',
             [
                 'username' => $username,
                 'password' => $password,
