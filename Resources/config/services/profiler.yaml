@@ -10,4 +10,4 @@ services:
       - '@paloma_shop.paloma_profiler'
     public: false
     tags:
-      - { name: data_collector, template: '@PalomaShop/profiler.html.twig', id: paloma }
+      - { name: data_collector, template: '@PalomaShop/dev/profiler.html.twig', id: paloma }

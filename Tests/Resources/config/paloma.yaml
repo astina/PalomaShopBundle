@@ -5,7 +5,8 @@ paloma_shop:
     api_key: test
 
   channels:
-    default: test
+    test:
+      is_default: true
 
   urls:
     confirm_registration: 'paloma_register_confirm'

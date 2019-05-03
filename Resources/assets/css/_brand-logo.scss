@@ -1,0 +1,13 @@
+.brand-logo {
+  display: inline-block;
+  width: 220px;
+  margin: 0 20px 20px 0;
+}
+
+.brand-logo--example {
+  background: $grey-lighter;
+  color: $cyan;
+  line-height: 60px;
+  font-weight: 600;
+  text-align: center;
+}

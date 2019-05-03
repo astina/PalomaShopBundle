@@ -22,9 +22,19 @@ class Configuration implements ConfigurationInterface
                 ->end()
 
                 ->arrayNode('channels')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('default')->isRequired()->defaultValue('default')->end()
+                    ->useAttributeAsKey('name')
+                    ->addDefaultChildrenIfNoneSet([
+                        'default' => [
+                            'is_default' => true,
+                        ]
+                    ])
+                    ->arrayPrototype()
+                        ->children()
+                            ->scalarNode('is_default')->defaultFalse()->end()
+                            ->arrayNode('locales')
+                                ->scalarPrototype()->defaultValue(['de', 'en'])->end()
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
 

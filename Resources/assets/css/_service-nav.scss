@@ -1,0 +1,20 @@
+.service-nav {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.service-nav__pages {
+  font-size: 0.85rem;
+}
+
+.service-nav__page {
+  color: $grey;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.service-nav__locales {
+  margin-left: 70px;
+  font-size: 0.9rem;
+}

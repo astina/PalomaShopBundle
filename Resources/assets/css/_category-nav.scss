@@ -1,0 +1,33 @@
+.category-nav {
+
+}
+
+.category-nav__item {
+  display: inline-block;
+  padding: 10px 15px;
+  color: $grey;
+}
+
+.category-nav__item:first-of-type {
+  padding-left: 0;
+}
+
+.category-nav__item--has-children {
+  position: relative;
+}
+
+.category-nav__item--has-children a {
+  font-weight: bolder;
+  color: $grey;
+}
+
+.category-nav__dropdown {
+  display: none;
+  position: absolute;
+  min-width: 200px;
+  background: $white;
+}
+
+.category-nav__item:hover .category-nav__dropdown {
+  display: block;
+}

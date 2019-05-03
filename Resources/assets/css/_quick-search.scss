@@ -1,0 +1,43 @@
+.quick-search {
+  background: $white-ter;
+  display: flex;
+  border: 1px solid $grey-lighter;
+  border-radius: $radius-small;
+}
+
+.quick-search__input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 0.85rem;
+  line-height: 30px;
+  display: inline-block;
+  padding: 0 5px;
+  flex: 1;
+}
+
+.quick-search__input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $grey-light;
+  opacity: 1; /* Firefox */
+}
+
+.quick-search__input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $grey-light;
+}
+
+.quick-search__input::-ms-input-placeholder { /* Microsoft Edge */
+  color: $grey-light;
+}
+
+.quick-search__button {
+  border: 0;
+  background: transparent;
+  display: inline-block;
+  color: $grey-light;
+  cursor: pointer;
+  outline: none;
+}
+
+.quick-search__button:hover {
+  color: $grey;
+}

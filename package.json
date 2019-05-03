@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "bulma": "^0.7.4",
+    "node-sass": "^4.12.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "node-sass --omit-source-map-url Resources/assets/css/paloma.scss Resources/public/dist/css/paloma.css",
+    "watch": "npm run build -- --watch"
+  }
+}

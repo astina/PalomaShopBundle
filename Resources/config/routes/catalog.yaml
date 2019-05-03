@@ -2,3 +2,8 @@ paloma_catalog_home:
   path: /
   controller: paloma_shop.controller.catalog_home::view
   methods: GET
+
+paloma_catalog_search:
+  path: /search
+  controller: paloma_shop.controller.catalog_search::view
+  methods: [ GET, POST ]

@@ -28,6 +28,8 @@ return [
 
 # Configuration
 
+## Backend configuration
+
 Configure the bundle in `config/packages/paloma_shop.yaml`:
 
 ```yaml
@@ -44,12 +46,16 @@ Add the Paloma API key to `.env.local`:
 PALOMA_API_KEY=mysecretapikey
 ```
 
+## Routes
+
 Load the routing config in `config/routes.yaml`:
 
 ```yaml
 paloma:
   resource: '@PalomaShopBundle/Resources/config/routes/all.yaml'
 ```
+
+## Security
 
 Configure `config/packages/security.yaml` to use Paloma for security: 
 
@@ -85,7 +91,33 @@ security:
     # ...
 ```
 
+## Web Shop Frontend
+
+If you want to use the Paloma shop front-end, you also need to install [Webpack Encore](https://symfony.com/doc/current/frontend.html).
+See the [Symfony documentation](https://symfony.com/doc/current/frontend/encore/installation.html) for detailed instructions.
+
+```
+composer require encore
+yarn install
+```
+
+TODO app.js/app.scss
+
+### CSS
+
+The Paloma shop frontend uses Sass for CSS, so this needs to be enabled/installed as well: 
+https://symfony.com/doc/current/frontend/encore/simple-example.html#using-sass-less-stylus
+
+```
+yarn add bulma
+```
+
 That's it!
+
+
+# Localization
+
+TODO JMSI18nRoutingBundle
 
 # Customizing the front end
 

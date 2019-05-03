@@ -50,6 +50,10 @@ services:
     class: Paloma\ShopBundle\Controller\Catalog\HomeController
     tags: ['controller.service_arguments']
 
+  paloma_shop.controller.catalog_search:
+    class: Paloma\ShopBundle\Controller\Catalog\SearchController
+    tags: ['controller.service_arguments']
+
   paloma_shop.controller.catalog_category:
     class: Paloma\ShopBundle\Controller\Catalog\CategoryController
     tags: ['controller.service_arguments']

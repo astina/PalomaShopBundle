@@ -1,0 +1,26 @@
+.locales {
+
+}
+
+.locales__item {
+  color: $grey;
+  //padding-left: 10px;
+  //padding-right: 10px;
+}
+
+.locales__item:hover {
+  color: $grey;
+}
+
+.locales__item:before {
+  content: ' | ';
+  display: inline-block;
+}
+
+.locales__item:first-of-type:before {
+  content: '';
+}
+
+.locales__item--active {
+  font-weight: bolder;
+}
