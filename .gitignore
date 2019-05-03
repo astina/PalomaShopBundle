@@ -6,3 +6,5 @@
 .phpunit.result.cache
 /cache/
 /var/
+/node_modules/
+/yarn.lock
