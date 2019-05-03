@@ -9,6 +9,7 @@
 @import "../../../node_modules/bulma/sass/elements/content";
 @import "../../../node_modules/bulma/sass/elements/image";
 @import "../../../node_modules/bulma/sass/elements/icon";
+@import "../../../node_modules/bulma/sass/components/level";
 
 @import "mixins";
 @import "layout";
@@ -19,3 +20,4 @@
 @import "locales";
 @import "quick-search";
 @import "category-nav";
+@import "user-nav";
