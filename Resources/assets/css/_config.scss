@@ -4,28 +4,28 @@ $paloma-brand-logo: '../img/paloma-logo.svg';
 
 // Colors
 
-$black:        hsl(0, 0%, 7%);
-$black-bis:    hsl(0, 0%, 7%);
-$black-ter:    hsl(0, 0%, 14%);
+$black: hsl(0, 0%, 7%);
+$black-bis: hsl(0, 0%, 7%);
+$black-ter: hsl(0, 0%, 14%);
 
-$grey-darker:  hsl(0, 0%, 21%);
-$grey-dark:    hsl(0, 0%, 29%);
-$grey:         hsl(0, 0%, 48%);
-$grey-light:   hsl(0, 0%, 71%);
+$grey-darker: hsl(0, 0%, 21%);
+$grey-dark: hsl(0, 0%, 29%);
+$grey: hsl(0, 0%, 48%);
+$grey-light: hsl(0, 0%, 71%);
 $grey-lighter: hsl(0, 0%, 86%);
 
-$white-ter:    hsl(0, 0%, 96%);
-$white-bis:    hsl(0, 0%, 98%);
-$white:        hsl(0, 0%, 100%);
+$white-ter: hsl(0, 0%, 96%);
+$white-bis: hsl(0, 0%, 98%);
+$white: hsl(0, 0%, 100%);
 
-$orange:       hsl(14,  100%, 53%);
-$yellow:       hsl(48,  100%, 67%);
-$green:        hsl(141, 71%,  48%);
-$turquoise:    hsl(171, 100%, 41%);
-$cyan:         hsl(204, 86%,  53%);
-$blue:         hsl(217, 71%,  53%);
-$purple:       hsl(271, 100%, 71%);
-$red:          hsl(348, 100%, 61%);
+$orange: hsl(14, 100%, 53%);
+$yellow: hsl(48, 100%, 67%);
+$green: hsl(81, 53%, 45%);
+$turquoise: hsl(144, 58%, 44%);
+$cyan: hsl(203, 76%, 49%);
+$blue: hsl(209, 80%, 48%);
+$purple: hsl(271, 100%, 71%);
+$red: hsl(358, 100%, 58%);
 
 // Typography
 
@@ -72,3 +72,6 @@ $radius-large: 6px;
 $radius-rounded: 290486px;
 $speed: 86ms;
 
+
+$primary: $blue;
+$text: $grey

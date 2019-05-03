@@ -2,9 +2,70 @@
 
 {% block main %}
 
-    <div class="container">
+    <section class="hero is-medium is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Primary bold title
+                </h1>
+                <h2 class="subtitle">
+                    Primary bold subtitle
+                </h2>
+            </div>
+        </div>
+    </section>
 
+    <section class="section">
+        <div class="container">
+            <div class="content">
+                <h3>Paloma – Digital Commerce Platform</h3>
+                <p>Paloma gibt Ihrer bestehenden Systemlandschaft die notwendige Flexibilität, um Ihre Kunden online
+                    perfekt bedienen zu können. Angesichts des sich rasant verändernden Handelsumfelds sollten Sie Ihren
+                    Kunden ein konsistentes und überzeugendes Erlebnis bieten – und zwar zu jeder Zeit über jeden
+                    Kanal.</p>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <section class="section">
+        <div class="container">
+            <div class="content">
+                <h4>Neuheiten</h4>
+
+                {% set product %}
+                    <div class="column is-3">
+                        <div class="product-card">
+                            test
+                        </div>
+                    </div>
+                {% endset %}
+
+                <div class="columns is-multiline">
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                    {{ product }}
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="content">
+                <h4>Top Seller</h4>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
