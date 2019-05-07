@@ -13,6 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends AbstractPalomaController
 {
+    public function view()
+    {
+        return $this->render('@PalomaShop/catalog/category/view.html.twig', [
+        ]);
+    }
+
     public function product(string $categorySlug, string $categoryCode,
                             string $productSlug, string $itemNumber,
                             CatalogInterface $catalog)

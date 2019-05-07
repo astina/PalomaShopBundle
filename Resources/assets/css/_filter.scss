@@ -1,0 +1,50 @@
+.filter {
+  margin: 0 10px 10px 0;
+}
+
+.filter__title {
+  background: $grey-lighter;
+  color: $grey-dark;
+  font-size: 0.95rem;
+  padding: 5px 10px;
+}
+
+.filter__values .control {
+  font-size: 0.95rem;
+}
+
+.filter__values .checkbox {
+  display: flex;
+}
+
+.filter__checkbox {
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.filter__value {
+  flex: 1;
+}
+
+.filter__count {
+  color: $grey;
+  font-size: 0.9rem;
+}
+
+.active-filter {
+  background: $grey-lighter;
+  color: $grey-dark;
+  font-size: 0.85rem;
+  padding: 2px 7px;
+}
+
+.active-filter__remove {
+  color: $grey;
+  margin-left: 5px;
+}
+
+.active-filter__remove-all {
+  color: $grey;
+  font-size: 0.85rem;
+  margin-left: 5px;
+}

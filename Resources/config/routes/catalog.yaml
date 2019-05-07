@@ -7,3 +7,8 @@ paloma_catalog_search:
   path: /search
   controller: paloma_shop.controller.catalog_search::view
   methods: [ GET, POST ]
+
+paloma_catalog_category:
+  path: /c/todo
+  controller: paloma_shop.controller.catalog_category::view
+  methods: GET
