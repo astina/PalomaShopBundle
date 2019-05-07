@@ -1,0 +1,18 @@
+.availability {
+
+}
+
+.availability--green {
+
+}
+
+.availability__indicator {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+}
+
+.availability--green .availability__indicator {
+  background: $availability-available;
+}

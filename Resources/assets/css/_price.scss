@@ -1,0 +1,16 @@
+.price {
+  display: inline-block;
+}
+
+.price__currency {
+  font-size: 0.9rem;
+}
+
+.price__amount {
+  font-weight: $weight-medium;
+}
+
+.price__original {
+  font-size: 0.9rem;
+  text-decoration: line-through;
+}

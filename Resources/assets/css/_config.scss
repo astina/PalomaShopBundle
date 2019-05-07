@@ -20,7 +20,7 @@ $white: hsl(0, 0%, 100%);
 
 $orange: hsl(14, 100%, 53%);
 $yellow: hsl(48, 100%, 67%);
-$green: hsl(81, 53%, 45%);
+$green: hsl(102, 55%, 45%);
 $turquoise: hsl(144, 58%, 44%);
 $cyan: hsl(203, 76%, 49%);
 $blue: hsl(209, 80%, 48%);
@@ -72,6 +72,11 @@ $radius-large: 6px;
 $radius-rounded: 290486px;
 $speed: 86ms;
 
+// Derived
 
 $primary: $blue;
-$text: $grey
+$text: $grey;
+
+// Paloma
+
+$availability-available: darken($green, 5%);
