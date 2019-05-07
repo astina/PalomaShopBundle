@@ -1,0 +1,49 @@
+.product-summary {
+}
+
+.product-summary__breadcrumb {
+}
+
+.product-summary__title {
+  font-size: 1.6rem;
+  font-weight: $weight-medium;
+  color: $text-strong;
+}
+
+.product-summary__annotations {
+  margin-bottom: 40px;
+}
+
+.product-summary__annotation {
+  font-size: 0.9rem;
+  color: $text-light;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.product-summary__description {
+  font-size: 0.95rem;
+  margin-bottom: 40px;
+}
+
+.product-summary__price {
+  margin-bottom: 40px;
+}
+
+.product-summary__price .price__currency {
+  font-size: 1.2rem;
+}
+
+.product-summary__price .price__amount {
+  font-size: 1.6rem;
+  color: $text-strong;
+}
+
+.product-summary__price .price__original {
+  font-size: 1.2rem;
+}
+
+.product-summary__price-info {
+  font-size: 0.85rem;
+  color: $grey-light;
+}

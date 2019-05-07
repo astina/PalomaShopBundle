@@ -1,0 +1,178 @@
+{% extends '@PalomaShop/layout.html.twig' %}
+
+{% block main %}
+
+    <section class="section">
+        <div class="container">
+
+            <div class="columns">
+                <div class="column">
+
+                    <div class="product-images">
+
+                        <div class="product-images__image">
+                            <div class="image is-square">
+                                <img src="https://placeimg.com/960/960/any">
+                            </div>
+                        </div>
+
+                        <div class="product-images__thumbs">
+                            <a class="product-images__thumb product-images__thumb--active" href="">
+                                <div class="image is-square">
+                                    <img src="https://placeimg.com/96/96/any">
+                                </div>
+                            </a>
+                            <a class="product-images__thumb" href="">
+                                <div class="image is-square">
+                                    <img src="https://placeimg.com/96/96/any">
+                                </div>
+                            </a>
+                            <a class="product-images__thumb" href="">
+                                <div class="image is-square">
+                                    <img src="https://placeimg.com/96/96/any">
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="column">
+
+                    <div class="product-summary">
+
+                        <nav class="product-summary__breadcrumb breadcrumb is-small" aria-label="breadcrumbs">
+                            <ul>
+                                <li><a href="{{ path('paloma_catalog_category') }}">Category A</a></li>
+                                <li class="is-active"><a href="{{ path('paloma_catalog_category') }}" aria-current="page">Category A.1</a></li>
+                            </ul>
+                        </nav>
+
+                        <h1 class="product-summary__title">
+                            Example Product Anything Lorem
+                        </h1>
+
+                        <div class="product-summary__annotations">
+                            <span class="product-summary__annotation">Brand name</span>
+                            <span class="product-summary__annotation">Item no.: 123456-456-40</span>
+                        </div>
+
+                        <div class="product-summary__description">
+                            Paloma gibt Ihrer bestehenden Systemlandschaft die notwendige Flexibilität, um Ihre Kunden online perfekt bedienen zu können.
+                        </div>
+
+                        <div class="product-summary__price">
+                            <div class="price">
+                                <span class="price__currency">CHF</span>
+                                <span class="price__amount">165.60</span>
+                                <span class="price__original">199.95</span>
+                            </div>
+                            <div class="product-summary__price-info">
+                                inkl. 7.7% MWSt., exkl. Liefergebühren
+                            </div>
+                        </div>
+
+                        <div class="product-summary__variants">
+
+
+                        </div>
+
+                        <div class="product-summary__cart-form">
+
+                            <form action="">
+                                <div class="field is-grouped">
+
+                                    <div class="control">
+                                        <button class="button is-primary">
+                                            In den Warenkorb
+                                        </button>
+                                    </div>
+
+                                    <div class="control">
+                                        <a class="button is-outlined" title="Merken">
+                                            <span class="icon">
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="control">
+                                        <a class="button is-outlined" title="Share">
+                                            <span class="icon">
+                                                <i class="fas fa-share-alt"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="section">
+
+        <div class="container">
+
+            <div class="columns">
+                <div class="column">
+
+                    <div class="content">
+                        <h3 class="title is-5">Details</h3>
+                    </div>
+
+                    <div class="product-specs">
+                        <div class="product-specs__item">
+                            <div class="product-specs__name">Auflösung</div>
+                            <div class="product-specs__value">1440 &times; 1080 Pixel</div>
+                        </div>
+                        <div class="product-specs__item">
+                            <div class="product-specs__name">Kapazität</div>
+                            <div class="product-specs__value">1821 mAh</div>
+                        </div>
+                        <div class="product-specs__item">
+                            <div class="product-specs__name">Bildseitenverhältnis</div>
+                            <div class="product-specs__value">16:9</div>
+                        </div>
+                        <div class="product-specs__item">
+                            <div class="product-specs__name">Auflösung</div>
+                            <div class="product-specs__value">1440 &times; 1080 Pixel</div>
+                        </div>
+                        <div class="product-specs__item">
+                            <div class="product-specs__name">Kapazität</div>
+                            <div class="product-specs__value">1821 mAh</div>
+                        </div>
+                        <div class="product-specs__item">
+                            <div class="product-specs__name">Bildseitenverhältnis</div>
+                            <div class="product-specs__value">16:9</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="column">
+
+                    <div class="content">
+
+                        <h3 class="title is-5">Beschreibung</h3>
+                        <p>
+                            Paloma gibt Ihrer bestehenden Systemlandschaft die notwendige Flexibilität, um Ihre Kunden online
+                            perfekt bedienen zu können. Angesichts des sich rasant verändernden Handelsumfelds sollten Sie Ihren
+                            Kunden ein konsistentes und überzeugendes Erlebnis bieten – und zwar zu jeder Zeit über jeden Kanal.
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

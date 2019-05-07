@@ -1,0 +1,22 @@
+.product-images {
+}
+
+.product-images__thumbs {
+  margin: 10px 0;
+}
+
+.product-images__thumb {
+  width: 48px;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  opacity: 0.5;
+}
+
+.product-images__thumb--active {
+  border: 1px solid $primary;
+  opacity: 1;
+}
+
+.product-images__thumb:hover {
+  opacity: 1;
+}

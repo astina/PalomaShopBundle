@@ -1,0 +1,19 @@
+.product-specs {
+  margin-bottom: 50px;
+}
+
+.product-specs__item {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.product-specs__name {
+  width: 33%;
+  font-size: 0.85rem;
+  font-weight: $weight-medium;
+}
+
+.product-specs__value {
+  width: 67%;
+  font-size: 0.85rem;
+}

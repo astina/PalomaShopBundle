@@ -57,3 +57,7 @@ services:
   paloma_shop.controller.catalog_category:
     class: Paloma\ShopBundle\Controller\Catalog\CategoryController
     tags: ['controller.service_arguments']
+
+  paloma_shop.controller.catalog_product:
+    class: Paloma\ShopBundle\Controller\Catalog\ProductController
+    tags: ['controller.service_arguments']
