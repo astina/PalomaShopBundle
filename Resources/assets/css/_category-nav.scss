@@ -1,10 +1,12 @@
+@import "mixins";
+
 .category-nav {
 
 }
 
 .category-nav__item {
   display: inline-block;
-  padding: 10px 15px;
+  padding: 10px 15px 20px 15px;
   color: $grey;
 }
 
@@ -13,21 +15,32 @@
 }
 
 .category-nav__item--has-children {
-  position: relative;
 }
 
-.category-nav__item--has-children a {
+.category-nav__item--has-children .category-nav__item-link {
   font-weight: bolder;
   color: $grey;
 }
 
 .category-nav__dropdown {
+  @include shadow_bottom();
+  border-top: 1px solid $grey-lighter;
   display: none;
   position: absolute;
-  min-width: 200px;
-  background: $white;
+  width: calc(100vw - 15px);
+  left: 0;
+  top: 165px;
+  background: $white-bis;
+  z-index: 10;
 }
 
 .category-nav__item:hover .category-nav__dropdown {
   display: block;
+}
+
+//.category-nav__item:first-of-type .category-nav__dropdown {
+//  display: block;
+//}
+
+.category-nav__sitemap {
 }

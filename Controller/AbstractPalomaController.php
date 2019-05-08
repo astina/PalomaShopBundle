@@ -106,7 +106,7 @@ abstract class AbstractPalomaController extends AbstractController
 
     protected function mainCategories()
     {
-        return $this->catalog->getCategories(1);
+        return $this->catalog->getCategories(2);
     }
 
     protected function redirectToCategory(CategoryInterface $category, bool $permanent = false)

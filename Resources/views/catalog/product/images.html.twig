@@ -5,7 +5,7 @@
     <div class="product-images__image">
         <div class="image is-square">
             {% if image_current %}
-                <img src="{{ image_current.getSource('medium').url }}" alt="{{ image_current.name }}">
+                <img src="{{ image_current.getSource('large').url }}" alt="{{ image_current.name }}">
             {% else %}
                 {# TODO placeholder image #}
             {% endif %}

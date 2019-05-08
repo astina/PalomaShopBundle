@@ -6937,6 +6937,9 @@ body {
 .page-header {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
 
+.page-header__container {
+  position: initial; }
+
 .page-header__center {
   display: flex; }
 
@@ -6948,8 +6951,7 @@ body {
   margin-bottom: 20px; }
 
 .page-header__bottom {
-  display: flex;
-  margin-bottom: 10px; }
+  display: flex; }
 
 .page-header__category-nav {
   flex: 1; }
@@ -6989,6 +6991,29 @@ body {
 .service-nav__locales {
   margin-left: 70px;
   font-size: 0.9rem; }
+
+.sitemap {
+  padding: 30px 0; }
+
+.sitemap__section {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 50px; }
+
+.sitemap__section-link {
+  display: block;
+  margin-bottom: 10px;
+  color: #7a7a7a;
+  font-weight: 500; }
+
+.sitemap__nav {
+  margin-bottom: 50px; }
+
+.sitemap__nav-item {
+  display: block;
+  font-size: 0.9rem;
+  color: #7a7a7a;
+  line-height: 1.6; }
 
 .locales__item {
   color: #7a7a7a; }
@@ -7049,24 +7074,26 @@ body {
 
 .category-nav__item {
   display: inline-block;
-  padding: 10px 15px;
+  padding: 10px 15px 20px 15px;
   color: #7a7a7a; }
 
 .category-nav__item:first-of-type {
   padding-left: 0; }
 
-.category-nav__item--has-children {
-  position: relative; }
-
-.category-nav__item--has-children a {
+.category-nav__item--has-children .category-nav__item-link {
   font-weight: bolder;
   color: #7a7a7a; }
 
 .category-nav__dropdown {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #dbdbdb;
   display: none;
   position: absolute;
-  min-width: 200px;
-  background: white; }
+  width: calc(100vw - 15px);
+  left: 0;
+  top: 165px;
+  background: #fafafa;
+  z-index: 10; }
 
 .category-nav__item:hover .category-nav__dropdown {
   display: block; }
@@ -7122,10 +7149,10 @@ body {
 
 .product-card__image-inner {
   position: absolute;
-  top: 20px;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
+  top: 5%;
+  bottom: 5%;
+  left: 5%;
+  right: 5%;
   background-color: silver; }
 
 .product-card__meta {
@@ -7179,7 +7206,7 @@ body {
 
 .product-list__head {
   display: flex;
-  border-bottom: 1px solid #7a7a7a;
+  border-bottom: 1px solid #dbdbdb;
   padding-bottom: 10px;
   margin-bottom: 20px; }
 
@@ -7236,6 +7263,9 @@ body {
 .product-summary__price-info {
   font-size: 0.85rem;
   color: #b5b5b5; }
+
+.product-images__image {
+  padding: 0; }
 
 .product-images__thumbs {
   margin: 10px 0; }

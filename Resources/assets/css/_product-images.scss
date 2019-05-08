@@ -1,6 +1,10 @@
 .product-images {
 }
 
+.product-images__image {
+  padding: $product-image-padding;
+}
+
 .product-images__thumbs {
   margin: 10px 0;
 }

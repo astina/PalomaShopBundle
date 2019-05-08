@@ -3,18 +3,6 @@
 @import "config";
 
 @import "../../../node_modules/bulma/bulma";
-//@import "../../../node_modules/bulma/sass/utilities/_all";
-//@import "../../../node_modules/bulma/sass/base/_all";
-//@import "../../../node_modules/bulma/sass/grid/columns";
-//@import "../../../node_modules/bulma/sass/layout/hero";
-//@import "../../../node_modules/bulma/sass/layout/section";
-//@import "../../../node_modules/bulma/sass/elements/container";
-//@import "../../../node_modules/bulma/sass/elements/content";
-//@import "../../../node_modules/bulma/sass/elements/image";
-//@import "../../../node_modules/bulma/sass/elements/icon";
-//@import "../../../node_modules/bulma/sass/elements/title";
-//@import "../../../node_modules/bulma/sass/components/level";
-//@import "../../../node_modules/bulma/sass/components/dropdown";
 
 @import "mixins";
 @import "layout";
@@ -22,6 +10,7 @@
 @import "page-footer";
 @import "brand-logo";
 @import "service-nav";
+@import "sitemap";
 @import "locales";
 @import "quick-search";
 @import "category-nav";

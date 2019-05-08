@@ -19,9 +19,9 @@
 {#        {% include '@PalomaShop/catalog/product/filters.html.twig' %}#}
 {#    </div>#}
 
-    <div class="columns is-multiline">
+    <div class="columns is-multiline is-mobile">
         {% for product in search.results.content %}
-            <div class="column is-3">
+            <div class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
                 {% include '@PalomaShop/catalog/product/card.html.twig' with { product: product, category: category } %}
             </div>
         {% endfor %}

@@ -1,3 +1,5 @@
+@import "./config";
+
 .product-card {
   position: relative;
   border-bottom: 1px solid $grey-lighter;
@@ -35,10 +37,10 @@
 
 .product-card__image-inner {
   position: absolute;
-  top: 20px;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
+  top: $product-card-image-padding;
+  bottom: $product-card-image-padding;
+  left: $product-card-image-padding;
+  right: $product-card-image-padding;
   background-color: silver;
 }
 
@@ -90,6 +92,10 @@
 .product-card__price {
   width: 70%;
 }
+
+//.product-card__price .price__amount {
+//  color: $text-strong;
+//}
 
 .product-card__actions {
   width: 30%;

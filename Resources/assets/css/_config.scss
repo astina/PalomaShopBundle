@@ -79,4 +79,7 @@ $text: $grey;
 
 // Paloma
 
-$availability-available: darken($green, 5%);
+$availability-available: darken($green, 5%) !default;
+
+$product-image-padding: 0 !default; //10%;
+$product-card-image-padding: 5% !default;

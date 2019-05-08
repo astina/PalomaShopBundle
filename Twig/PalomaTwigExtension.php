@@ -100,6 +100,7 @@ class PalomaTwigExtension extends AbstractExtension
 
         $routeParams = array_merge(
             $request->attributes->get('_route_params'),
+            $request->query->all(),
             $parameters
         );
 
