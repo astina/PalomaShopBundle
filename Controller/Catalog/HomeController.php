@@ -8,7 +8,6 @@ class HomeController extends AbstractPalomaController
 {
     public function view()
     {
-        return $this->render('@PalomaShop/catalog/home/view.html.twig', [
-        ]);
+        return $this->renderPalomaView('catalog/home/view.html.twig', []);
     }
 }

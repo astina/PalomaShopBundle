@@ -4,197 +4,22 @@
 
     <section class="section">
         <div class="container">
-            <div class="content">
-                <h1>Category</h1>
-                <p>Paloma gibt Ihrer bestehenden Systemlandschaft die notwendige Flexibilität, um Ihre Kunden online
-                    perfekt bedienen zu können. Angesichts des sich rasant verändernden Handelsumfelds sollten Sie Ihren
-                    Kunden ein konsistentes und überzeugendes Erlebnis bieten – und zwar zu jeder Zeit über jeden
-                    Kanal.</p>
-            </div>
+            {% block category_content %}
+                <div class="content">
+                    <h1>{{ category.title }}</h1>
+                    {% if category.description %}
+                        <p>{{ category.description }}</p>
+                    {% endif %}
+                </div>
+            {% endblock %}
         </div>
     </section>
 
     <section class="section">
         <div class="container">
-            <div class="product-list">
-
-                <div class="product-list__head">
-                    <h4 class="product-list__title">1'123 Artikel</h4>
-                    <div class="product-list__sort sort">
-                        <span class="sort__label">
-                            Sortieren nach:
-                        </span>
-                        <div class="dropdown is-right is-hoverable">
-                            <div class="dropdown-trigger">
-                                <a class="sort__button" aria-haspopup="true" aria-controls="sort-dropdown-menu">
-                                    <span>Beliebtheit</span>
-                                    <span class="icon is-small">
-                                        <i class="fas fa-angle-down"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="dropdown-menu" id="sort-dropdown-menu" role="menu">
-                                <div class="sort__options dropdown-content">
-                                    <a class="dropdown-item" href="">
-                                        Preis absteigend
-                                    </a>
-                                    <a class="dropdown-item" href="">
-                                        Preis aufsteigend
-                                    </a>
-                                    <hr class="dropdown-divider">
-                                    <a class="dropdown-item" href="">
-                                        Bezeichnung
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-list__filters">
-                    {% set filter %}
-                        <div class="dropdown filter is-hoverable">
-                            <div class="dropdown-trigger">
-                                <a class="filter__title">
-                                    <span>Farben</span>
-                                    <span class="icon is-small">
-                                        <i class="fas fa-angle-down"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="dropdown-menu" role="menu">
-                                <form class="filter__values dropdown-content">
-                                    <div class="dropdown-item">
-                                        <div class="field">
-                                            <div class="control">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" class="filter__checkbox">
-                                                    <span class="filter__value">Rot</span>
-                                                    <span class="filter__count">4</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <div class="field">
-                                            <div class="control">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" class="filter__checkbox">
-                                                    <span class="filter__value">Blau</span>
-                                                    <span class="filter__count">12</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    {% endset %}
-                    {{ filter }}
-                    {{ filter }}
-                    {{ filter }}
-                    {{ filter }}
-                    {{ filter }}
-                    {{ filter }}
-                    {{ filter }}
-                    {{ filter }}
-                    {{ filter }}
-
-                    <div class="product-list__filters-active level">
-                        <div class="level-left">
-                            <span class="level-item">Aktive Filter:</span>
-                            <div class="active-filter level-item">
-                                <span class="active-filter__value">Blau</span>
-                                <a class="active-filter__remove" href="">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-times"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="active-filter level-item">
-                                <span class="active-filter__value">Rot</span>
-                                <a class="active-filter__remove" href="">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-times"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <a href="" class="active-filter__remove-all level-item">
-                                alle entfernen
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                {% set product %}
-                    <div class="column is-3">
-                        <div class="product-card">
-                            <div class="product-card__inner">
-                                <div class="product-card__image">
-                                    <div class="product-card__image-inner">
-                                        <div class="image is-square">
-                                            <img src="https://placeimg.com/480/480/any">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-card__info">
-                                    <div class="product-card__brand">Marke</div>
-                                    <a href="{{ path('paloma_catalog_category_product') }}" class="product-card__title">
-                                        Example product name anything
-                                    </a>
-                                </div>
-                                <div class="product-card__controls">
-                                    <div class="product-card__price">
-                                        <span class="price">
-                                            <span class="price__currency">CHF</span>
-                                            <span class="price__amount">21.45</span>
-                                            <span class="price__original">24.95</span>
-                                        </span>
-                                    </div>
-                                    <div class="product-card__actions">
-                                        <form method="post" action="">
-                                            <button>
-                                                <span class="icon is-small">
-                                                    <span class="fas fa-shopping-cart"></span>
-                                                </span>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="product-card__meta">
-                                    <div class="product-card__badges">
-                                        <div class="product-card__badge"><span class="badge">Neu!</span></div>
-                                        <div class="product-card__badge"><span class="badge badge--red">-12 %</span></div>
-                                    </div>
-                                    <div class="product-card__availability">
-                                        <div class="availability availability--green">
-                                            <span class="availability__indicator"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="{{ path('paloma_catalog_category_product') }}" class="product-card__link"></a>
-                        </div>
-                    </div>
-                {% endset %}
-
-                <div class="columns is-multiline">
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                    {{ product }}
-                </div>
-
-            </div>
+            {% block category_products %}
+                {% include '@PalomaShop/catalog/product/list.html.twig' %}
+            {% endblock %}
         </div>
     </section>
 

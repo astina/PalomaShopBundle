@@ -1,0 +1,12 @@
+<div class="content">
+    <h3 class="title is-5">Details</h3>
+</div>
+
+<div class="product-specs">
+    {% for attribute in product.attributes %}
+        <div class="product-specs__item">
+            <div class="product-specs__name">{{ attribute.label }}</div>
+            <div class="product-specs__value">{{ attribute.value }}</div>
+        </div>
+    {% endfor %}
+</div>

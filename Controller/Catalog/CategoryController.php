@@ -3,12 +3,22 @@
 namespace Paloma\ShopBundle\Controller\Catalog;
 
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
+use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends AbstractPalomaController
 {
-    public function view()
+    public function view($categorySlug, $categoryCode, Request $request)
     {
-        return $this->render('@PalomaShop/catalog/category/view.html.twig', [
+        $category = $this->catalog->getCategory($categoryCode);
+
+        // Redirect to proper URL if slug differs
+        if ($category->getSlug() && $categorySlug !== $category->getSlug()) {
+            return $this->redirectToCategory($category, true);
+        }
+
+        return $this->renderPalomaView('catalog/category/view.html.twig', [
+            'category' => $category,
+            'search' => $this->search($request, $category),
         ]);
     }
 }

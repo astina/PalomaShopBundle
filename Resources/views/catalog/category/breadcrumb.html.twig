@@ -1,0 +1,17 @@
+
+<nav class="product-summary__breadcrumb breadcrumb is-small" aria-label="breadcrumbs">
+    <ul>
+        {% for cat in category.ancestors %}
+            <li>
+                <a href="{{ category_path(cat) }}">
+                    {{ cat.name }}
+                </a>
+            </li>
+        {% endfor %}
+        <li>
+            <a href="{{ category_path(category) }}" aria-current="page">
+                {{ category.name }}
+            </a>
+        </li>
+    </ul>
+</nav>

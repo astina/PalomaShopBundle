@@ -1,0 +1,20 @@
+<div class="dropdown is-right is-hoverable">
+    <div class="dropdown-trigger">
+        <div class="sort__button" aria-haspopup="true" aria-controls="sort-dropdown-menu">
+            <span>{{ ('catalog.products.sort.' ~ search.sort.current) | trans }}</span>
+            <span class="icon is-small">
+                <i class="fas fa-angle-down"></i>
+            </span>
+        </div>
+    </div>
+    <div class="dropdown-menu" id="sort-dropdown-menu" role="menu">
+        <div class="sort__options dropdown-content">
+            {% for sort_name, sort_option in search.sort.options %}
+                <a class="dropdown-item"
+                   href="{{ current_path({sort: sort_option.property, desc: sort_option.desc}) }}">
+                    {{ ('catalog.products.sort.' ~ sort_name) | trans }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

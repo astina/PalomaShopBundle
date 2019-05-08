@@ -1,0 +1,25 @@
+
+<div class="product-images">
+
+    {% set image_current = product.firstImage %}
+    <div class="product-images__image">
+        <div class="image is-square">
+            {% if image_current %}
+                <img src="{{ image_current.getSource('medium').url }}" alt="{{ image_current.name }}">
+            {% else %}
+                {# TODO placeholder image #}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="product-images__thumbs">
+        {% for image in product.images %}
+            <a class="product-images__thumb{% if image.name == image_current.name %} product-images__thumb--active{% endif %}" href="">
+                <div class="image is-square">
+                    <img src="{{ image.getSource('small').url }}" alt="{{ image.name }}">
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+</div>

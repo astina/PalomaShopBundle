@@ -1,0 +1,21 @@
+locale:
+  en: EN
+  de: DE
+  fr: FR
+
+search:
+  placeholder: Suchen...
+
+catalog:
+  products:
+    title: Artikel
+    sort_by: 'Sortieren nach:'
+    sort:
+      position: Beliebtheit
+      relevance: Relevanz
+      price_asc: Preis aufsteigend
+      price_desc: Preis absteigend
+    item_number: 'Artikel Nr.:'
+    vat_info_incl: inkl. %rate% MWSt.
+    vat_info_excl: exkl. %rate% MWSt.
+    add_to_cart: In den Warenkorb

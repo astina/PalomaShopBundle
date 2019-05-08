@@ -1,0 +1,73 @@
+
+{% set filter %}
+    <div class="dropdown filter is-hoverable">
+        <div class="dropdown-trigger">
+            <a class="filter__title">
+                <span>Farben</span>
+                <span class="icon is-small">
+                    <i class="fas fa-angle-down"></i>
+                </span>
+            </a>
+        </div>
+        <div class="dropdown-menu" role="menu">
+            <form class="filter__values dropdown-content">
+                <div class="dropdown-item">
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox" class="filter__checkbox">
+                                <span class="filter__value">Rot</span>
+                                <span class="filter__count">4</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-item">
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox" class="filter__checkbox">
+                                <span class="filter__value">Blau</span>
+                                <span class="filter__count">12</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endset %}
+{{ filter }}
+{{ filter }}
+{{ filter }}
+{{ filter }}
+{{ filter }}
+{{ filter }}
+{{ filter }}
+{{ filter }}
+{{ filter }}
+
+<div class="product-list__filters-active level">
+    <div class="level-left">
+        <span class="level-item">Aktive Filter:</span>
+        <div class="active-filter level-item">
+            <span class="active-filter__value">Blau</span>
+            <a class="active-filter__remove" href="">
+                <span class="icon is-small">
+                    <i class="fas fa-times"></i>
+                </span>
+            </a>
+        </div>
+        <div class="active-filter level-item">
+            <span class="active-filter__value">Rot</span>
+            <a class="active-filter__remove" href="">
+                <span class="icon is-small">
+                    <i class="fas fa-times"></i>
+                </span>
+            </a>
+        </div>
+        <a href="" class="active-filter__remove-all level-item">
+            alle entfernen
+        </a>
+    </div>
+</div>

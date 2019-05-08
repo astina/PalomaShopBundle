@@ -2,12 +2,7 @@
 
 namespace Paloma\ShopBundle\Controller\Catalog;
 
-use Paloma\Shop\Catalog\CatalogInterface;
-use Paloma\Shop\Catalog\CategoryInterface;
 use Paloma\Shop\Catalog\ProductInterface;
-use Paloma\Shop\Error\BackendUnavailable;
-use Paloma\Shop\Error\CategoryNotFound;
-use Paloma\Shop\Error\ProductNotFound;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
 
 class ProductController extends AbstractPalomaController
@@ -18,67 +13,37 @@ class ProductController extends AbstractPalomaController
         ]);
     }
 
-    public function viewInCategory()
+    public function viewInCategory(string $categorySlug, string $categoryCode,
+                                   string $productSlug, string $itemNumber)
     {
-        return $this->render('@PalomaShop/catalog/product/view.html.twig', [
-        ]);
-    }
-
-    public function _viewInCategory(string $categorySlug, string $categoryCode,
-                            string $productSlug, string $itemNumber,
-                            CatalogInterface $catalog)
-    {
-        try {
-            $product = $catalog->getProduct($itemNumber);
-        } catch (BackendUnavailable $e) {
-        } catch (ProductNotFound $e) {
-        }
+        $product = $this->catalog->getProduct($itemNumber);
 
         if (!$this->isProductInCategory($product, $categoryCode)) {
             return $this->redirectToProduct($product);
         }
 
-        try {
-            $category = $catalog->getCategory($categoryCode);
-        } catch (BackendUnavailable $e) {
-        } catch (CategoryNotFound $e) {
-        }
+        $category = $this->catalog->getCategory($categoryCode);
 
         // If slugs do not match, redirect to proper URL
         if ($product->getSlug() !== $productSlug
             || $category->getSlug() !== $categorySlug) {
-            return $this->redirectToProductAndCategory($product, $category);
+            return $this->redirectToProductAndCategory($product, $category, true);
         }
 
-        try {
-            $categories = $catalog->getCategories(1);
-        } catch (BackendUnavailable $e) {
-        }
-
-        return $this->render('@PalomaShop/catalog/category/product.html.twig', [
-            'category' => $category,
-            'categories' => $categories,
+        return $this->renderPalomaView('catalog/product/view.html.twig', [
             'product' => $product,
+            'category' => $category,
         ]);
-    }
-
-    private function redirectToProductAndCategory(ProductInterface $product, CategoryInterface $category)
-    {
-        return $this->redirectToRoute('paloma_category_product', [
-            'categorySlug' => $category->getSlug(),
-            'categoryCode' => $category->getCode(),
-            'productSlug' => $product->getSlug(),
-            'itemNumber' => $product->getItemNumber(),
-        ],Response::HTTP_MOVED_PERMANENTLY);
-    }
-
-    private function redirectToProduct(ProductInterface $product)
-    {
-        // TODO
     }
 
     private function isProductInCategory(ProductInterface $product, string $categoryCode)
     {
-        return true;
+        foreach ($product->getCategories() as $category) {
+            if ($category->getCode() === $categoryCode) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

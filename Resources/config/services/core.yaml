@@ -53,6 +53,11 @@ services:
   paloma_shop.serializer:
     class: Paloma\ShopBundle\PalomaSerializer
 
+  paloma_shop.twig_extension:
+    class: Paloma\ShopBundle\Twig\PalomaTwigExtension
+    tags:
+      - { name: twig.extension }
+
   paloma_shop.twig_helper:
     class: Paloma\ShopBundle\Twig\PalomaTwigHelper
     arguments:

@@ -1,0 +1,48 @@
+<div class="product-list">
+
+    <div class="product-list__head">
+
+        <h4 class="product-list__title">
+            {{ search.results.totalElements | number_format }}
+            {{ 'catalog.products.title' | trans }}
+        </h4>
+
+        <div class="product-list__sort sort">
+            <span class="sort__label">
+                {{ 'catalog.products.sort_by' | trans }}
+            </span>
+            {% include '@PalomaShop/catalog/product/sort.html.twig' %}
+        </div>
+    </div>
+
+{#    <div class="product-list__filters">#}
+{#        {% include '@PalomaShop/catalog/product/filters.html.twig' %}#}
+{#    </div>#}
+
+    <div class="columns is-multiline">
+        {% for product in search.results.content %}
+            <div class="column is-3">
+                {% include '@PalomaShop/catalog/product/card.html.twig' with { product: product, category: category } %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if search.results.totalPages > 1 %}
+        <div class="product-list__pagination">
+            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                <a class="pagination-previous"
+                   {% if search.results.first %} disabled{% else %} href="{{ current_path({page: search.results.number - 1}) }}"{% endif %}>
+                    Previous
+                </a>
+                <a class="pagination-next"
+                    {% if search.results.last %} disabled{% else %} href="{{ current_path({page: search.results.number + 1}) }}"{% endif %}>
+                    Next page
+                </a>
+                <ul class="pagination-list">
+                    <li>{{ search.results.number + 1 }} / {{ search.results.totalPages }}</li>
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+
+</div>
