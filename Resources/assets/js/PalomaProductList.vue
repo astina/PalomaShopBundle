@@ -11,11 +11,29 @@
                 </span>
             </h4>
 
-            <div v-if="results" class="product-list__sort sort">
+            <div class="product-list__sort sort">
                 <span class="sort__label">
                     {{ $trans('catalog.products.sort_by') }}
                 </span>
-                <!-- TODO -->
+                <div class="dropdown is-right is-hoverable">
+                    <div class="dropdown-trigger">
+                        <div class="sort__button" aria-haspopup="true" aria-controls="sort-dropdown-menu">
+                            <span>{{ $trans('catalog.products.sort.' + search.sort.current) }}</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="dropdown-menu" id="sort-dropdown-menu" role="menu">
+                        <div class="sort__options dropdown-content">
+                            <a v-for="(option, name) in search.sort.options" class="dropdown-item"
+                               @click.prevent="sort(name, option)"
+                               href="">
+                                {{ $trans('catalog.products.sort.' + name) }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -73,11 +91,25 @@
         methods: {
 
             searchProducts() {
+
+                this.results = null;
+
                 paloma.catalog
                     .searchProducts(this.search.request)
                     .then(results => {
                         this.results = results;
                     });
+            },
+
+            sort(name, options) {
+
+                this.search.sort.current = name;
+                this.search.request.sort = options.property;
+                this.search.request.orderDesc = options.desc;
+
+                this.search.request.page = 0;
+
+                this.searchProducts();
             },
 
             nextPage() {
@@ -86,7 +118,6 @@
                     return;
                 }
 
-                this.results = null;
                 this.search.request.page++;
                 this.searchProducts();
             },
@@ -97,7 +128,6 @@
                     return;
                 }
 
-                this.results = null;
                 this.search.request.page--;
                 this.searchProducts();
             },
