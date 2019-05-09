@@ -19,3 +19,7 @@ catalog:
     vat_info_incl: inkl. %rate% MWSt.
     vat_info_excl: exkl. %rate% MWSt.
     add_to_cart: In den Warenkorb
+
+paging:
+  next: Weiter
+  prev: Zurück

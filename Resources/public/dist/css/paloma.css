@@ -7204,6 +7204,28 @@ body {
 .product-card:hover .product-card__actions {
   display: block; }
 
+.product-card--shadow {
+  height: 300px;
+  opacity: 0.3; }
+
+.product-card--shadow::after {
+  content: " ";
+  display: block;
+  margin: 20px;
+  height: 100%;
+  background: #dbdbdb;
+  animation-name: product-card--shadow-pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite; }
+
+@keyframes product-card--shadow-pulse {
+  0% {
+    background-color: #dbdbdb; }
+  50% {
+    background-color: #b5b5b5; }
+  100% {
+    background-color: #dbdbdb; } }
+
 .product-list__head {
   display: flex;
   border-bottom: 1px solid #dbdbdb;

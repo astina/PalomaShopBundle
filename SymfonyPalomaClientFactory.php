@@ -61,7 +61,7 @@ class SymfonyPalomaClientFactory extends PalomaClientFactory
 
         $this->channel = $this->channelResolver->resolveChannel($request);
 
-        $this->locale = $request->attributes->get('_locale');
+        $this->locale = $request->attributes->get('_locale', 'en'); // TODO default locale by channel
 
         $this->traceId = $request->headers->get(
             'x-paloma-trace-id',

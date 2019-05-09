@@ -31,6 +31,31 @@ class SearchResourceTest extends FunctionalTest
         $this->assertTrue(count($results['filterAggregates']) > 0);
     }
 
+    public function testSearchPostWithEmptyFilters()
+    {
+        $client = static::createClient();
+
+        $client->request(
+            'POST',
+            '/api/search',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            '{ 
+                "query": "test", 
+                "filters": [], 
+                "includeFilterAggregates": true }
+            '
+        );
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        $results = json_decode($client->getResponse()->getContent(), true);
+
+        $this->assertNotNull($results['content']);
+        $this->assertTrue(count($results['filterAggregates']) > 0);
+    }
+
     public function testSearchGet()
     {
         $client = static::createClient();

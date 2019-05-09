@@ -101,16 +101,10 @@ composer require encore
 yarn install
 ```
 
-TODO app.js/app.scss
+TODO
+- yarn add vue vue-loader@^15.0.11 vue-template-compiler --dev
+- Encore.enableVueLoader()
 
-### CSS
-
-The Paloma shop frontend uses Sass for CSS, so this needs to be enabled/installed as well: 
-https://symfony.com/doc/current/frontend/encore/simple-example.html#using-sass-less-stylus
-
-```
-yarn add bulma
-```
 
 That's it!
 

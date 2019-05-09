@@ -107,3 +107,31 @@
 .product-card:hover .product-card__actions {
   display: block;
 }
+
+.product-card--shadow {
+  height: 300px;
+  opacity: 0.3;
+}
+
+.product-card--shadow::after {
+  content: " ";
+  display: block;
+  margin: 20px;
+  height: 100%;
+  background: $grey-lighter;
+  animation-name: product-card--shadow-pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes product-card--shadow-pulse {
+  0% {
+    background-color: $grey-lighter;
+  }
+  50% {
+    background-color: $grey-light;
+  }
+  100% {
+    background-color: $grey-lighter;
+  }
+}

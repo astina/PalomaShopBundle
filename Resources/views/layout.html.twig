@@ -6,11 +6,9 @@
     {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
-{% block javascripts_head %}
-{% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
+    {% include '@PalomaShop/js_routes.html.twig' %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
