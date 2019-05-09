@@ -13,7 +13,7 @@ class CategoryResource
 {
     public function list(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
     {
-        $depth = max(0, (int) $request->get('depth', 0));
+        $depth = max(0, (int)$request->get('depth', 0));
 
         try {
 
@@ -28,11 +28,11 @@ class CategoryResource
 
     public function get(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
     {
-        $categoryCode = (string) $request->get('code');
-        $depth = max(0, (int) $request->get('depth', 0));
+        $categoryCode = (string)$request->get('code');
+        $depth = max(0, (int)$request->get('depth', 0));
 
         if (!$categoryCode) {
-            return new Response('Parameter `code` missing', 400);
+            return new Response('Parameter `code` missing', ['status' => 400]);
         }
 
         try {

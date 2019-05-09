@@ -39,7 +39,7 @@ class CartResource
         $quantity = $params['quantity'] ?? 1;
 
         if (!$sku) {
-            return new Response('Parameter `sku` missing', 400);
+            return new Response('Parameter `sku` missing', ['status' => 400]);
         }
 
         try {
@@ -51,11 +51,11 @@ class CartResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InsufficientStock $e) {
-            return new Response('TODO', 400); // TODO
+            return new Response('TODO', ['status' => 400]); // TODO
         } catch (ProductVariantNotFound $e) {
             return new Response(null, 404);
         } catch (ProductVariantUnavailable $e) {
-            return new Response('TODO', 400); // TODO
+            return new Response('TODO', ['status' => 400]); // TODO
         }
     }
 
@@ -67,7 +67,7 @@ class CartResource
         $quantity = $params['quantity'] ?? 1;
 
         if (!$itemId) {
-            return new Response('Parameter `itemId` missing', 400);
+            return new Response('Parameter `itemId` missing', ['status' => 400]);
         }
 
         try {
@@ -79,9 +79,9 @@ class CartResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InsufficientStock $e) {
-            return new Response('TODO', 400); // TODO
+            return new Response('TODO', ['status' => 400]); // TODO
         } catch (ProductVariantUnavailable $e) {
-            return new Response('TODO', 400); // TODO
+            return new Response('TODO', ['status' => 400]); // TODO
         } catch (CartItemNotFound $e) {
             return new Response(null, 404);
         }
@@ -92,7 +92,7 @@ class CartResource
         $itemId = $request->get('itemId');
 
         if (!$itemId) {
-            return new Response('Parameter `itemId` missing', 400);
+            return new Response('Parameter `itemId` missing', ['status' => 400]);
         }
 
         try {
@@ -108,7 +108,7 @@ class CartResource
 
     public function recommendations(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
     {
-        $size = min(20, max(1, (int) $request->get('size', 5)));
+        $size = min(20, max(1, (int)$request->get('size', 5)));
 
         try {
 
@@ -128,7 +128,7 @@ class CartResource
         $orderNumber = $params['orderNumber'] ?? null;
 
         if (!$orderNumber) {
-            return new Response('Parameter `orderNumber` missing', 400);
+            return new Response('Parameter `orderNumber` missing', ['status' => 400]);
         }
 
         try {

@@ -15,9 +15,9 @@ class OrderResource
 {
     public function list(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
     {
-        $page = max(0, (int) $request->get('page', 0));
-        $size = min(10, (int) $request->get('size', 5));
-        $orderDesc = (bool) $request->get('orderDesc', true);
+        $page = max(0, (int)$request->get('page', 0));
+        $size = min(10, (int)$request->get('size', 5));
+        $orderDesc = (bool)$request->get('orderDesc', true);
 
         try {
 
@@ -28,7 +28,7 @@ class OrderResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidInput $e) {
-            return $serializer->toJsonResponse($e->getValidation(), 400);
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         } catch (NotAuthenticated $e) {
             return new Response('Unauthorized', 401);
         }
@@ -36,10 +36,10 @@ class OrderResource
 
     public function get(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
     {
-        $orderNumber = (string) $request->get('orderNumber');
+        $orderNumber = (string)$request->get('orderNumber');
 
         if (!$orderNumber) {
-            return new Response('Parameter `orderNumber` missing', 400);
+            return new Response('Parameter `orderNumber` missing', ['status' => 400]);
         }
 
         try {
@@ -74,7 +74,7 @@ class OrderResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidInput $e) {
-            return $serializer->toJsonResponse($e->getValidation(), 400);
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         } catch (NotAuthenticated $e) {
             return new Response('Unauthorized', 401);
         }

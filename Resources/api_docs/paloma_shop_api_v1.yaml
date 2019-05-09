@@ -1,0 +1,284 @@
+openapi: "3.0.0"
+
+info:
+  title: Paloma Shop API
+  description: TODO
+  version: "1.0"
+
+tags:
+  - name: catalog
+    description: Browse categories and search products
+
+paths:
+
+  '/categories/list':
+    get:
+      summary: List categories
+      description: Get a list of all 'root' categories (categories without a parent category).
+      tags:
+        - catalog
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - name: depth
+          in: query
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+            maximum: 5
+          required: false
+          description: 'Indicates how many levels of sub-categories should be included in the response.'
+      responses:
+        '200':
+          description: 'An array of categories'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        '400':
+          $ref: '#/components/responses/400InvalidInput'
+        '503':
+          $ref: '#/components/responses/503BackendUnavailable'
+
+  '/categories/get':
+    get:
+      summary: Get a category
+      description: Returns the category for a given category code.
+      tags:
+        - catalog
+      parameters:
+        - name: code
+          in: query
+          schema:
+            type: string
+          required: true
+          description: The category code.
+        - $ref: '#/components/parameters/localeParam'
+        - name: depth
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 5
+          required: false
+          description: 'Indicates how many levels of sub-categories should be included in the response.'
+      responses:
+        '200':
+          description: 'A category'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '400':
+          $ref: '#/components/responses/400InvalidInput'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '503':
+          $ref: '#/components/responses/503BackendUnavailable'
+
+  '/search':
+    parameters:
+      - $ref: '#/components/parameters/localeParam'
+      - $ref: '#/components/parameters/responseFieldsIncludeParam'
+      - $ref: '#/components/parameters/responseFieldsExcludeParam'
+    post:
+      summary: Search products
+      description: Search for products using keywords, filters and/or a category code.
+      tags:
+        - catalog
+      requestBody:
+        description: Search request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: 'Product search results'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPage'
+        '400':
+          $ref: '#/components/responses/400InvalidInput'
+        '503':
+          $ref: '#/components/responses/503BackendUnavailable'
+    get:
+      summary: Search products
+      description: Search for products using keywords and/or category code.
+      tags:
+        - catalog
+      parameters:
+        - name: query
+          in: query
+          schema:
+            type: string
+          required: false
+          description: 'One or several search keywords'
+        - name: category
+          in: query
+          schema:
+            type: string
+          required: false
+          description: 'Filter products by category code.'
+      responses:
+        '200':
+          description: 'Product search results'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPage'
+        '400':
+          $ref: '#/components/responses/400InvalidInput'
+        '503':
+          $ref: '#/components/responses/503BackendUnavailable'
+
+  '/search/suggestions':
+    get:
+      summary: Get search suggestions
+      description: Returns product and category suggestions based on partial search input
+      tags:
+        - catalog
+      parameters:
+        - name: query
+          in: query
+          schema:
+            type: string
+          required: true
+          description: 'One or several search keywords'
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/responseFieldsIncludeParam'
+        - $ref: '#/components/parameters/responseFieldsExcludeParam'
+      responses:
+        '200':
+          description: 'Search suggestions'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestions'
+        '400':
+          $ref: '#/components/responses/400InvalidInput'
+        '503':
+          $ref: '#/components/responses/503BackendUnavailable'
+
+  '/products/get':
+    get:
+      summary: Get a product
+      description: Returns the product for a given item number
+      tags:
+        - catalog
+      parameters:
+        - name: query
+          in: query
+          schema:
+            type: string
+          required: true
+          description: 'Product item number'
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/responseFieldsIncludeParam'
+        - $ref: '#/components/parameters/responseFieldsExcludeParam'
+      responses:
+        '200':
+          description: 'A product'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          $ref: '#/components/responses/400InvalidInput'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '503':
+          $ref: '#/components/responses/503BackendUnavailable'
+
+components:
+
+  schemas:
+
+    Category:
+      type: object
+      properties:
+        code:
+          type: string
+
+    Product:
+      type: object
+      properties:
+        itemNumber:
+          type: string
+
+    ProductPage:
+      type: object
+
+    SearchRequest:
+      type: object
+      properties:
+        query:
+          type: string
+        category:
+          type: string
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchFilter'
+        page:
+          type: integer
+        size:
+          type: integer
+        sort:
+          type: string
+        orderDesc:
+          type: boolean
+          default: false
+
+    SearchFilter:
+      type: object
+
+    SearchSuggestions:
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            type: object
+        products:
+          type: array
+          items:
+            type: object
+
+  parameters:
+
+    responseFieldsIncludeParam:
+      name: _include
+      in: query
+      schema:
+        type: string
+      required: false
+      description: 'Specify which fields from the response object should be returned. TODO more info'
+
+    responseFieldsExcludeParam:
+      name: _exclude
+      in: query
+      schema:
+        type: string
+      required: false
+      description: 'Specify which fields from the response object should be excluded. TODO more info'
+
+    localeParam:
+      name: locale
+      in: query
+      schema:
+        type: string
+      required: true
+      description: "The language of the response data (e.g. 'en' or 'de_CH')."
+
+  responses:
+    400InvalidInput:
+      description: Invalid input parameters
+    404NotFound:
+      description: The requested resource could not be found
+    503BackendUnavailable:
+      description: The Paloma backend is unavailable

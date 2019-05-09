@@ -35,7 +35,7 @@ class UserResource
         } catch (BadCredentials $e) {
             return new Response('Bad credentials', 403);
         } catch (InvalidInput $e) {
-            return $serializer->toJsonResponse($e->getValidation(), 400);
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         } catch (NotAuthenticated $e) {
             return new Response('Unauthorized', 401);
         }
@@ -51,10 +51,11 @@ class UserResource
 
             $emailAddress = $data['emailAddress'];
 
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
 
         if (!$emailAddress) {
-            return new Response('Parameter `emailAddress` missing', 400);
+            return new Response('Parameter `emailAddress` missing', ['status' => 400]);
         }
 
         try {
@@ -75,7 +76,7 @@ class UserResource
         $token = $request->get('token');
 
         if (!$token) {
-            return new Response('Parameter `token` missing', 400);
+            return new Response('Parameter `token` missing', ['status' => 400]);
         }
 
         try {
@@ -103,9 +104,9 @@ class UserResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidConfirmationToken $e) {
-            return new Response('Invalid confirmation token', 400);
+            return new Response('Invalid confirmation token', ['status' => 400]);
         } catch (InvalidInput $e) {
-            return $serializer->toJsonResponse($e->getValidation(), 400);
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         }
     }
 }

@@ -19,9 +19,8 @@
                 if (!this.image) {
                     return;
                 }
-                const source = this.image.sources.find(function (s) {
-                    return s.size === this.size;
-                }.bind(this));
+
+                const source = this.image.sources[this.size];
 
                 return source && source.url;
             },

@@ -7,9 +7,17 @@ use Paloma\ShopBundle\Controller\AbstractPalomaController;
 
 class ProductController extends AbstractPalomaController
 {
-    public function view()
+    public function view(string $productSlug, string $itemNumber)
     {
-        return $this->render('@PalomaShop/catalog/product/view.html.twig', [
+        $product = $this->catalog->getProduct($itemNumber);
+
+        // If slug does not match, redirect to proper URL
+        if ($product->getSlug() !== $productSlug) {
+            return $this->redirectToProduct($product, true);
+        }
+
+        return $this->renderPalomaView('catalog/product/view.html.twig', [
+            'product' => $product,
         ]);
     }
 

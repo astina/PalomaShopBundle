@@ -13,17 +13,25 @@ class ProductResource
 {
     public function get(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
     {
-        $itemNumber = (string) $request->get('itemNumber');
+        $itemNumber = (string)$request->get('itemNumber');
 
         if (!$itemNumber) {
-            return new Response('Parameter `itemNumber` missing', 400);
+            return new Response('Parameter `itemNumber` missing', ['status' => 400]);
         }
 
         try {
 
             $product = $catalog->getProduct($itemNumber);
 
-            return $serializer->toJsonResponse($product);
+            return $serializer->toJsonResponse($product, $request->get('_include', [
+                'itemNumber',
+                'slug',
+                'name',
+                'basePrice',
+                'originalBasePrice',
+                'shortDescription',
+                'firstImage'
+            ]));
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
@@ -34,10 +42,10 @@ class ProductResource
 
     public function similar(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
     {
-        $itemNumber = (string) $request->get('itemNumber');
+        $itemNumber = (string)$request->get('itemNumber');
 
         if (!$itemNumber) {
-            return new Response('Parameter `itemNumber` missing', 400);
+            return new Response('Parameter `itemNumber` missing', ['status' => 400]);
         }
 
         try {
@@ -55,10 +63,10 @@ class ProductResource
 
     public function recommended(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
     {
-        $itemNumber = (string) $request->get('itemNumber');
+        $itemNumber = (string)$request->get('itemNumber');
 
         if (!$itemNumber) {
-            return new Response('Parameter `itemNumber` missing', 400);
+            return new Response('Parameter `itemNumber` missing', ['status' => 400]);
         }
 
         try {

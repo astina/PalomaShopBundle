@@ -1,9 +1,23 @@
 import Vue from 'vue';
 import axios from 'axios';
 
+const events = new Vue();
+
 const routes = window.PALOMA.routes;
 
-const events = new Vue();
+const router = {
+
+    resolve(link, params) {
+
+        let url = routes[link] || link;
+
+        for (const param in params) {
+            url = url.replace('__' + param + '__', params[param]);
+        }
+
+        return url;
+    }
+};
 
 const catalog = {
 
@@ -23,6 +37,8 @@ const catalog = {
 export default {
 
     events: events,
+
+    router: router,
 
     catalog: catalog
 }

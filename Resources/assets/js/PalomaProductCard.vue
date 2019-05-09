@@ -6,7 +6,7 @@
             <div class="product-card__image">
                 <div class="product-card__image-inner">
                     <paloma-image
-                            v-bind:image="product.firstImage"
+                            :image="product.firstImage"
                             size="small"
                     ></paloma-image>
                 </div>
@@ -16,7 +16,7 @@
                 <div v-if="product.attributes.brand" class="product-card__brand">
                     {{ product.attributes.brand.value }}
                 </div>
-                <a href="" class="product-card__title">
+                <a :href="href" class="product-card__title">
                     {{ product.name }}
                 </a>
             </div>
@@ -24,14 +24,14 @@
             <div class="product-card__controls">
                 <div class="product-card__price">
                     <paloma-price
-                            v-bind:price="product.basePrice"
-                            v-bind:original="product.originalBasePrice"
+                            :price="product.basePrice"
+                            :original="product.originalBasePrice"
                     ></paloma-price>
                 </div>
             </div>
 
         </div>
-        <a href="" class="product-card__link"></a>
+        <a :href="href" class="product-card__link"></a>
     </div>
 
 </template>
@@ -47,7 +47,8 @@
 
         props: {
             product: Object,
-            category: Object
+            category: Object,
+            href: String
         }
     }
 </script>

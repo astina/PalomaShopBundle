@@ -23,8 +23,8 @@
 
             <div class="columns is-multiline is-mobile">
                 <div v-for="product in results.content"
-                        class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
-                    <paloma-product-card :product="product" :category="category" />
+                     class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
+                    <paloma-product-card :product="product" :category="category" :href="createHref(product)"/>
                 </div>
             </div>
 
@@ -34,16 +34,6 @@
                         @page-prev="prevPage"
                         @page-next="nextPage"></paloma-pagination>
             </div>
-
-        </div>
-
-        <div v-else>
-
-<!--            <div class="columns is-multiline is-mobile">-->
-<!--                <div v-for="i in 6" class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop">-->
-<!--                    <div class="product-card product-card&#45;&#45;shadow"></div>-->
-<!--                </div>-->
-<!--            </div>-->
 
         </div>
 
@@ -110,6 +100,17 @@
                 this.results = null;
                 this.search.request.page--;
                 this.searchProducts();
+            },
+
+            createHref(product) {
+                return paloma.router.resolve(
+                    this.results._links.category_product.href,
+                    {
+                        categorySlug: this.category.slug,
+                        categoryCode: this.category.code,
+                        itemNumber: product.itemNumber,
+                        productSlug: product.slug
+                    });
             }
         }
     }
