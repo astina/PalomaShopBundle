@@ -1,45 +1,61 @@
 {% if main_categories is defined %}
 
-    <nav class="category-nav">
-        {% for cat in main_categories %}
-            {% if cat.subcategories and cat.subCategories|length > 0 %}
-            <div class="category-nav__item category-nav__item--has-children">
-                <a href="{{ path('paloma_catalog_category', {categoryCode: cat.code, categorySlug: cat.slug}) }}"
-                    class="category-nav__item-link">
-                    {{ cat.name }}
-                    <span class="icon">
-                        <i class="fas fa-angle-down"></i>
-                    </span>
-                </a>
-                <div class="category-nav__dropdown">
-                    <div class="category-nav__sitemap container sitemap">
-                        {% for subcat in cat.subCategories %}
-                            <div class="sitemap__section">
-                                <a href="{{ path('paloma_catalog_category', {categoryCode: subcat.code, categorySlug: subcat.slug}) }}"
-                                   class="sitemap__section-link">
-                                    {{ subcat.name }}
-                                </a>
-                                {% if subcat.subCategories and subcat.subCategories|length > 0 %}
-                                    <div class="sitemap__nav">
-                                        {% for subsubcat in subcat.subCategories %}
-                                            <a href="{{ path('paloma_catalog_category', {categoryCode: subsubcat.code, categorySlug: subsubcat.slug}) }}"
-                                               class="sitemap__nav-item">
-                                                {{ subsubcat.name }}
+    <nav class="category-nav" role="navigation" aria-label="category navigation">
+
+        <div class="category-nav__burger is-hidden-tablet">
+            <a class="category-nav__item" href="">
+                <span class="burger is-pulled-left">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </span>
+            </a>
+        </div>
+
+        <div class="is-hidden-mobile category-nav__menu-wrapper">
+            <div class="category-nav__menu">
+                {% for cat in main_categories %}
+                    {% if cat.subcategories and cat.subCategories|length > 0 %}
+                        <div class="category-nav__item category-nav__item--has-children">
+                            <a href="{{ path('paloma_catalog_category', {categoryCode: cat.code, categorySlug: cat.slug}) }}"
+                               class="category-nav__item-link">
+                                {{ cat.name }}
+                                <span class="icon is-hidden-mobile">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="category-nav__dropdown">
+                                <div class="category-nav__sitemap container sitemap">
+                                    {% for subcat in cat.subCategories %}
+                                        <div class="sitemap__section">
+                                            <a href="{{ path('paloma_catalog_category', {categoryCode: subcat.code, categorySlug: subcat.slug}) }}"
+                                               class="sitemap__section-link">
+                                                {{ subcat.name }}
                                             </a>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
+                                            {% if subcat.subCategories and subcat.subCategories|length > 0 %}
+                                                <div class="sitemap__nav">
+                                                    {% for subsubcat in subcat.subCategories %}
+                                                        <a href="{{ path('paloma_catalog_category', {categoryCode: subsubcat.code, categorySlug: subsubcat.slug}) }}"
+                                                           class="sitemap__nav-item">
+                                                            {{ subsubcat.name }}
+                                                        </a>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
-                        {% endfor %}
-                    </div>
-                </div>
+                        </div>
+                    {% else %}
+                        <a href="{{ path('paloma_catalog_category', {categoryCode: cat.code, categorySlug: cat.slug}) }}"
+                           class="category-nav__item">
+                            {{ cat.name }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
             </div>
-            {% else %}
-                <a href="{{ path('paloma_catalog_category', {categoryCode: cat.code, categorySlug: cat.slug}) }}" class="category-nav__item">
-                    {{ cat.name }}
-                </a>
-            {% endif %}
-        {% endfor %}
+        </div>
     </nav>
 
 {% endif %}

@@ -13,5 +13,8 @@
   "scripts": {
     "build": "node-sass --omit-source-map-url Resources/assets/css/paloma.scss Resources/public/dist/css/paloma.css",
     "watch": "npm run build -- --watch"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
   }
 }

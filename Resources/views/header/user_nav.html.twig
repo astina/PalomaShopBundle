@@ -3,12 +3,14 @@
         <span class="icon">
             <span class="fas fa-shopping-cart"></span>
         </span>
-        Warenkorb
+        <span class="is-hidden-mobile">
+            {{ 'cart.title' | trans }}
+        </span>
     </a>
     <a class="level-item user-nav__item user-nav__item--account">
         <span class="icon">
             <span class="fas fa-user"></span>
         </span>
-        Anmelden
+        {{ 'customer.sign_in' | trans }}
     </a>
 </nav>
