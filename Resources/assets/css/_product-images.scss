@@ -3,6 +3,27 @@
 
 .product-images__image {
   padding: $product-image-padding;
+  cursor: zoom-in;
+}
+
+.product-images__zoom {
+  display: none;
+  position: fixed;
+  background: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+}
+
+.product-images--zoomed  .product-images__zoom {
+  display: block;
+  cursor: zoom-out;
+}
+
+.product-images__zoom .image {
+  margin: 0 auto;
 }
 
 .product-images__thumbs {
@@ -23,4 +44,10 @@
 
 .product-images__thumb:hover {
   opacity: 1;
+}
+
+.product-images--zoomed .product-images__thumbs {
+  z-index: 210;
+  position: fixed;
+  bottom: 50px;
 }

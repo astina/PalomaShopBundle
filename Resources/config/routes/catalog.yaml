@@ -9,27 +9,27 @@ paloma_catalog_search:
   methods: [ GET, POST ]
 
 paloma_catalog_category_product:
-  path: /c/{categorySlug}-{categoryCode}/{productSlug}-{itemNumber}
+  path: /{categorySlug}:{categoryCode}/{productSlug}:{itemNumber}
   requirements:
     categorySlug: '.*'
-    categoryCode: '[^-/]+'
+    categoryCode: '[^:/]+'
     productSlug: '.*'
-    itemNumber: '[^-]+'
+    itemNumber: '[^:]+'
   controller: paloma_shop.controller.catalog_product::viewInCategory
   methods: GET
 
 paloma_catalog_category:
-  path: /c/{categorySlug}-{categoryCode}
+  path: /{categorySlug}:{categoryCode}
   requirements:
     categorySlug: '.*'
-    categoryCode: '[^-]+'
+    categoryCode: '[^:]+'
   controller: paloma_shop.controller.catalog_category::view
   methods: GET
 
 paloma_catalog_product:
-  path: /p/{productSlug}-{itemNumber}
+  path: /p/{productSlug}:{itemNumber}
   requirements:
     productSlug: '.*'
-    itemNumber: '[^-]+'
+    itemNumber: '[^:]+'
   controller: paloma_shop.controller.catalog_product::view
   methods: GET
