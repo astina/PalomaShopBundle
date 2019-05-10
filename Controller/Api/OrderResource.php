@@ -39,7 +39,7 @@ class OrderResource
         $orderNumber = (string)$request->get('orderNumber');
 
         if (!$orderNumber) {
-            return new Response('Parameter `orderNumber` missing', ['status' => 400]);
+            return new Response('Parameter `orderNumber` missing', 400);
         }
 
         try {

@@ -98,7 +98,7 @@ class CustomerResource
         $token = $request->get('token');
 
         if (!$token) {
-            return new Response('Parameter `token` missing', ['status' => 400]);
+            return new Response('Parameter `token` missing', 400);
         }
 
         try {
@@ -110,7 +110,7 @@ class CustomerResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidConfirmationToken $e) {
-            return new Response('Invalid confirmation token', ['status' => 400]);
+            return new Response('Invalid confirmation token', 400);
         }
     }
 
@@ -119,7 +119,7 @@ class CustomerResource
         $emailAddress = $request->get('emailAddress');
 
         if (!$emailAddress) {
-            return new Response('Parameter `emailAddress` missing', ['status' => 400]);
+            return new Response('Parameter `emailAddress` missing', 400);
         }
 
         try {

@@ -99,7 +99,7 @@ class CheckoutResource
         $targetDate = $data['targetDate'] ?? null;
 
         if (!$method) {
-            return new Response('Parameter `method` missing', ['status' => 400]);
+            return new Response('Parameter `method` missing', 400);
         }
 
         try {
@@ -114,7 +114,7 @@ class CheckoutResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidShippingTargetDate $e) {
-            return new Response('Invalid shipping target date', ['status' => 400]);
+            return new Response('Invalid shipping target date', 400);
         } catch (UnknownShippingMethod $e) {
             return new Response('Unknown shipping method', 404);
         }
@@ -140,7 +140,7 @@ class CheckoutResource
         $method = $data['method'] ?? null;
 
         if (!$method) {
-            return new Response('Parameter `method` missing', ['status' => 400]);
+            return new Response('Parameter `method` missing', 400);
         }
 
         try {
@@ -163,7 +163,7 @@ class CheckoutResource
         $code = $data['code'] ?? null;
 
         if (!$code) {
-            return new Response('Parameter `code` missing', ['status' => 400]);
+            return new Response('Parameter `code` missing', 400);
         }
 
         try {
@@ -187,7 +187,7 @@ class CheckoutResource
         $code = $data['code'] ?? null;
 
         if (!$code) {
-            return new Response('Parameter `code` missing', ['status' => 400]);
+            return new Response('Parameter `code` missing', 400);
         }
 
         try {
@@ -214,9 +214,9 @@ class CheckoutResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (NonElectronicPaymentMethod $e) {
-            return new Response('The selected payment method is not electronic', ['status' => 400]);
+            return new Response('The selected payment method is not electronic', 400);
         } catch (OrderNotReadyForPayment $e) {
-            return new Response('Order not ready for payment', ['status' => 400]);
+            return new Response('Order not ready for payment', 400);
         }
     }
 
@@ -231,7 +231,7 @@ class CheckoutResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (OrderNotReadyForPurchase $e) {
-            return new Response('Order not ready for purchase', ['status' => 400]);
+            return new Response('Order not ready for purchase', 400);
         }
     }
 }

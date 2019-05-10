@@ -51,11 +51,11 @@ class CartResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InsufficientStock $e) {
-            return new Response('TODO', ['status' => 400]); // TODO
+            return new Response('TODO', 400); // TODO
         } catch (ProductVariantNotFound $e) {
             return new Response(null, 404);
         } catch (ProductVariantUnavailable $e) {
-            return new Response('TODO', ['status' => 400]); // TODO
+            return new Response('TODO', 400); // TODO
         }
     }
 
@@ -79,9 +79,9 @@ class CartResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InsufficientStock $e) {
-            return new Response('TODO', ['status' => 400]); // TODO
+            return new Response('TODO', 400); // TODO
         } catch (ProductVariantUnavailable $e) {
-            return new Response('TODO', ['status' => 400]); // TODO
+            return new Response('TODO', 400); // TODO
         } catch (CartItemNotFound $e) {
             return new Response(null, 404);
         }

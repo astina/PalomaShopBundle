@@ -32,7 +32,7 @@ class CategoryResource
         $depth = max(0, (int)$request->get('depth', 0));
 
         if (!$categoryCode) {
-            return new Response('Parameter `code` missing', ['status' => 400]);
+            return new Response('Parameter `code` missing', 400);
         }
 
         try {

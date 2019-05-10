@@ -16,7 +16,7 @@ class ProductResource
         $itemNumber = (string)$request->get('itemNumber');
 
         if (!$itemNumber) {
-            return new Response('Parameter `itemNumber` missing', ['status' => 400]);
+            return new Response('Parameter `itemNumber` missing', 400);
         }
 
         try {
@@ -66,7 +66,7 @@ class ProductResource
         $itemNumber = (string)$request->get('itemNumber');
 
         if (!$itemNumber) {
-            return new Response('Parameter `itemNumber` missing', ['status' => 400]);
+            return new Response('Parameter `itemNumber` missing', 400);
         }
 
         try {

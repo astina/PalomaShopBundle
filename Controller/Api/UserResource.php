@@ -55,7 +55,7 @@ class UserResource
         }
 
         if (!$emailAddress) {
-            return new Response('Parameter `emailAddress` missing', ['status' => 400]);
+            return new Response('Parameter `emailAddress` missing', 400);
         }
 
         try {
@@ -76,7 +76,7 @@ class UserResource
         $token = $request->get('token');
 
         if (!$token) {
-            return new Response('Parameter `token` missing', ['status' => 400]);
+            return new Response('Parameter `token` missing', 400);
         }
 
         try {
@@ -104,7 +104,7 @@ class UserResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidConfirmationToken $e) {
-            return new Response('Invalid confirmation token', ['status' => 400]);
+            return new Response('Invalid confirmation token', 400);
         } catch (InvalidInput $e) {
             return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         }
