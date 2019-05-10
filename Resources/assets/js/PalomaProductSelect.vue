@@ -49,6 +49,8 @@
 
             </form>
 
+            <paloma-cart-item-added v-if="cartItem" :cart-item="cartItem"></paloma-cart-item-added>
+
         </div>
 
     </div>
@@ -58,11 +60,15 @@
 
     import paloma from "./paloma";
     import PalomaPrice from "./PalomaPrice";
+    import PalomaCartItemAdded from "./PalomaCartItemAdded";
 
     export default {
         name: "PalomaProductSelect",
 
-        components: {PalomaPrice},
+        components: {
+            PalomaCartItemAdded,
+            PalomaPrice,
+        },
 
         data() {
 
@@ -74,7 +80,8 @@
                 product: product,
                 variant: variant,
                 quantity: 1,
-                loading: false
+                loading: false,
+                cartItem: null,
             }
         },
 
@@ -93,7 +100,13 @@
                 paloma.cart.addItem(
                     this.variant.sku,
                     this.quantity
-                ).then(() => {
+                ).then(item => {
+
+                    this.cartItem = item;
+
+                    window.setTimeout(() => {
+                        this.cartItem = null;
+                    }, 5000);
 
                     // refresh product
                     paloma.catalog.product(this.product.itemNumber)
@@ -104,7 +117,6 @@
                             this.product = product;
                             this.variant = product.variants[0];
                         });
-
                 });
             }
         }

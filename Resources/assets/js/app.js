@@ -10,3 +10,5 @@ Vue.prototype.$trans = function(key, params) {
 require('./paloma-category-nav');
 
 require('./paloma-catalog');
+
+require('./paloma-cart');

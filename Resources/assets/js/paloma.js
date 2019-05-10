@@ -46,6 +46,24 @@ const catalog = {
 
 const cart = {
 
+    get() {
+
+        return axios
+            .get(routes['api_cart'])
+            .then(response => {
+
+                const cart = response.data;
+
+                events.$emit('paloma.cart_loaded', cart);
+
+                return cart;
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e);
+            });
+
+    },
+
     addItem(sku, quantity) {
 
         return axios
@@ -54,7 +72,14 @@ const cart = {
                 quantity: quantity
             })
             .then(response => {
-                return response.data;
+
+                const cart = response.data;
+
+                const item = cart.items.find(i => i.sku === sku);
+
+                events.$emit('paloma.cart_item_added', item, cart);
+
+                return item;
             })
             .catch(e => {
                 // TODO handle 400

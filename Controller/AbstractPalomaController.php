@@ -7,6 +7,8 @@ use Paloma\Shop\Catalog\CategoryInterface;
 use Paloma\Shop\Catalog\CategoryReferenceInterface;
 use Paloma\Shop\Catalog\ProductInterface;
 use Paloma\Shop\Catalog\SearchRequest;
+use Paloma\Shop\Checkout\CheckoutInterface;
+use Paloma\ShopBundle\PalomaSerializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,9 +17,15 @@ abstract class AbstractPalomaController extends AbstractController
 {
     protected $catalog;
 
-    public function __construct(CatalogInterface $catalog)
+    protected $checkout;
+
+    protected $serializer;
+
+    public function __construct(CatalogInterface $catalog, CheckoutInterface $checkout, PalomaSerializer $serializer)
     {
         $this->catalog = $catalog;
+        $this->checkout = $checkout;
+        $this->serializer = $serializer;
     }
 
     protected function search(Request $request, CategoryInterface $category = null)
@@ -99,8 +107,11 @@ abstract class AbstractPalomaController extends AbstractController
 
     protected function layoutParams()
     {
+        $cart = $this->checkout->getCart();
+
         return [
             'main_categories' => $this->mainCategories(),
+            'cart' => $cart,
         ];
     }
 

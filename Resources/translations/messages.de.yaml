@@ -22,6 +22,10 @@ catalog:
 
 cart:
   title: Warenkorb
+  units_count: '%count% Artikel'
+  item_added: 'wurde Ihrem Warenkorb hinzugefügt.'
+  open: Warenkorb öffnen
+  to_checkout: Zur Kasse gehen
 
 customer:
   sign_in: Anmelden

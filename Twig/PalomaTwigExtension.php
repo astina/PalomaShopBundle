@@ -37,26 +37,30 @@ class PalomaTwigExtension extends AbstractExtension
             return $this->productPrice($object);
         }
 
-        return '';
+        return $this->priceStr((string)$object);
     }
 
     protected function productPrice(ProductInterface $product)
     {
         $basePrice = $product->getBasePrice();
+        $originalPrice = $product->getOriginalBasePrice();
 
+        return $this->priceStr($basePrice, $originalPrice);
+    }
+
+    protected function priceStr($basePrice, $originalPrice = null)
+    {
         $spacePos = strpos($basePrice, ' ');
 
         $currency = substr($basePrice, 0, $spacePos);
         $price = substr($basePrice, $spacePos);
-        $originalPrice = $product->getOriginalBasePrice();
 
-        return sprintf('
-             <span class="price">
+        return sprintf('<span class="price">
                 <span class="price__currency">%s</span>
                 <span class="price__amount">%s</span>
                 <span class="price__original">%s</span>
-            </span>
-        ', $currency, $price, $originalPrice);
+            </span>',
+            $currency, $price, $originalPrice);
     }
 
     public function productPath(ProductInterface $product, CategoryReferenceInterface $category = null)
