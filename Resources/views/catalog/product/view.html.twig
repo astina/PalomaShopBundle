@@ -1,5 +1,13 @@
 {% extends '@PalomaShop/layout.html.twig' %}
 
+{% block javascripts %}
+    <script>
+        var PALOMA = PALOMA || {};
+        PALOMA.product = {{ product_json|raw }};
+    </script>
+    {{ parent() }}
+{% endblock %}
+
 {% block main %}
 <div id="paloma-product-view">
 
@@ -40,53 +48,8 @@
                             </div>
                         {% endif %}
 
-                        <div class="product-summary__price">
-                            {{ price(product) }}
-                            <div class="product-summary__price-info">
-                                {% if product.taxIncluded %}
-                                    {{ 'catalog.products.vat_info_incl' | trans({'%rate%': product.taxRate}) }}
-                                {% else %}
-                                    {{ 'catalog.products.vat_info_excl' | trans({'%rate%': product.taxRate}) }}
-                                {% endif %}
-                            </div>
-                        </div>
-
-                        <div class="product-summary__variants">
-
-
-                        </div>
-
-                        <div class="product-summary__cart-form">
-
-                            <form action="">
-                                <div class="field is-grouped">
-
-                                    <div class="control">
-                                        <button class="button is-primary">
-                                            {{ 'catalog.products.add_to_cart' | trans }}
-                                        </button>
-                                    </div>
-
-{#                                    <div class="control">#}
-{#                                        <a class="button is-outlined" title="Merken">#}
-{#                                            <span class="icon">#}
-{#                                                <i class="far fa-star"></i>#}
-{#                                            </span>#}
-{#                                        </a>#}
-{#                                    </div>#}
-
-{#                                    <div class="control">#}
-{#                                        <a class="button is-outlined" title="Share">#}
-{#                                            <span class="icon">#}
-{#                                                <i class="fas fa-share-alt"></i>#}
-{#                                            </span>#}
-{#                                        </a>#}
-{#                                    </div>#}
-
-                                </div>
-
-                            </form>
-
+                        <div id="paloma-product-select">
+                            <paloma-product-select></paloma-product-select>
                         </div>
 
                     </div>

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import PalomaProductList from "./PalomaProductList";
+import PalomaProductSelect from "./PalomaProductSelect";
 
 const productListElem = document.getElementById('paloma-product-list');
 if (productListElem) {
@@ -15,6 +16,13 @@ if (productListElem) {
 
 const productViewElem = document.getElementById('paloma-product-view');
 if (productViewElem) {
+
+    new Vue({
+        el: '#paloma-product-select',
+        components: {
+            PalomaProductSelect
+        }
+    });
 
     new Vue({
 

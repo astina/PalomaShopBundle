@@ -7,8 +7,8 @@
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
     {% include '@PalomaShop/js_routes.html.twig' %}
+    {{ parent() }}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
 

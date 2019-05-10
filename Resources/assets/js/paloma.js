@@ -22,7 +22,6 @@ const router = {
 const catalog = {
 
     searchProducts(searchRequest) {
-
         return axios
             .post(routes['api_search'], searchRequest)
             .then(response => {
@@ -32,6 +31,37 @@ const catalog = {
                 events.$emit('paloma.error', e);
             });
     },
+
+    product(itemNumber) {
+        return axios
+            .get(routes['api_products_get'], {params: {itemNumber: itemNumber}})
+            .then(response => {
+                return response.data;
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e);
+            });
+    }
+};
+
+const cart = {
+
+    addItem(sku, quantity) {
+
+        return axios
+            .post(routes['api_cart_item_add'], {
+                sku: sku,
+                quantity: quantity
+            })
+            .then(response => {
+                return response.data;
+            })
+            .catch(e => {
+                // TODO handle 400
+                events.$emit('paloma.error', e)
+            });
+    }
+
 };
 
 export default {
@@ -40,5 +70,7 @@ export default {
 
     router: router,
 
-    catalog: catalog
+    catalog: catalog,
+
+    cart: cart
 }

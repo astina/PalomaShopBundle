@@ -4,10 +4,11 @@ namespace Paloma\ShopBundle\Controller\Catalog;
 
 use Paloma\Shop\Catalog\ProductInterface;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
+use Paloma\ShopBundle\PalomaSerializer;
 
 class ProductController extends AbstractPalomaController
 {
-    public function view(string $productSlug, string $itemNumber)
+    public function view(string $productSlug, string $itemNumber, PalomaSerializer $serializer)
     {
         $product = $this->catalog->getProduct($itemNumber);
 
@@ -18,11 +19,13 @@ class ProductController extends AbstractPalomaController
 
         return $this->renderPalomaView('catalog/product/view.html.twig', [
             'product' => $product,
+            'product_json' => $serializer->serialize($product),
         ]);
     }
 
     public function viewInCategory(string $categorySlug, string $categoryCode,
-                                   string $productSlug, string $itemNumber)
+                                   string $productSlug, string $itemNumber,
+                                   PalomaSerializer $serializer)
     {
         $product = $this->catalog->getProduct($itemNumber);
 
@@ -41,6 +44,7 @@ class ProductController extends AbstractPalomaController
         return $this->renderPalomaView('catalog/product/view.html.twig', [
             'product' => $product,
             'category' => $category,
+            'product_json' => $serializer->serialize($product),
         ]);
     }
 
