@@ -10,7 +10,7 @@
                     <a class="button is-outlined" @click.prevent="showCart" href="">
                         {{ $trans('cart.open') }}
                     </a>
-                    <a class="button is-primary" href="">
+                    <a class="button is-primary" :href="checkoutUrl">
                         {{ $trans('cart.to_checkout') }}
                     </a>
                 </div>
@@ -29,6 +29,12 @@
 
         props: {
             cartItem: Object,
+        },
+
+        computed: {
+            checkoutUrl() {
+                return paloma.router.resolve('checkout_start');
+            }
         },
 
         methods: {
