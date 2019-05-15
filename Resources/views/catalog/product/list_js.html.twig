@@ -2,7 +2,7 @@
 <script>
     var PALOMA = PALOMA || {};
     PALOMA.search = {{ search_json|raw }};
-    PALOMA.category = {{ category_json|raw }};
+    PALOMA.category = {% if category_json is defined %}{{ category_json|raw }}{% else %}null{% endif %};
 </script>
 
 <div id="paloma-product-list">

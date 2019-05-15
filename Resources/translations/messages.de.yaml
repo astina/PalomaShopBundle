@@ -20,6 +20,8 @@ catalog:
     vat_info_excl: exkl. %rate% MWSt.
     add_to_cart: In den Warenkorb
     out_of_stock: Zur Zeit leider nicht verfügbar.
+  search:
+    title: 'Suche'
 
 cart:
   title: Warenkorb

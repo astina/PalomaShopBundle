@@ -9,7 +9,7 @@ paloma_catalog_search:
   methods: [ GET, POST ]
 
 paloma_catalog_category_product:
-  path: /{categorySlug}:{categoryCode}/{productSlug}:{itemNumber}
+  path: /c/{categorySlug}:{categoryCode}/{productSlug}:{itemNumber}
   requirements:
     categorySlug: '.*'
     categoryCode: '[^:/]+'
@@ -19,7 +19,7 @@ paloma_catalog_category_product:
   methods: GET
 
 paloma_catalog_category:
-  path: /{categorySlug}:{categoryCode}
+  path: /c/{categorySlug}:{categoryCode}
   requirements:
     categorySlug: '.*'
     categoryCode: '[^:]+'

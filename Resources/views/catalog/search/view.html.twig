@@ -2,9 +2,38 @@
 
 {% block main %}
 
-    <div class="container">
+    <section class="section">
+        <div class="container">
 
+            <div class="content">
+                <h1>{{ 'catalog.search.title' | trans({'%query%': search_query }) }}</h1>
+            </div>
 
-    </div>
+            <form method="get">
+
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input class="input is-large" type="search" name="query"
+                               value="{{ search_query }}"
+                               placeholder="{{ 'search.placeholder' | trans }}">
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button is-large">
+                            <span class="icon">
+                                <i class="far fa-search"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            {% include '@PalomaShop/catalog/product/list_js.html.twig' %}
+        </div>
+    </section>
 
 {% endblock %}

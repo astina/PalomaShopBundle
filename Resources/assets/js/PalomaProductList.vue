@@ -133,11 +133,21 @@
             },
 
             createHref(product) {
+
+                if (this.category) {
+                    return paloma.router.resolve(
+                        this.results._links.category_product.href,
+                        {
+                            categorySlug: this.category.slug,
+                            categoryCode: this.category.code,
+                            itemNumber: product.itemNumber,
+                            productSlug: product.slug
+                        });
+                }
+
                 return paloma.router.resolve(
-                    this.results._links.category_product.href,
+                    this.results._links.product.href,
                     {
-                        categorySlug: this.category.slug,
-                        categoryCode: this.category.code,
                         itemNumber: product.itemNumber,
                         productSlug: product.slug
                     });

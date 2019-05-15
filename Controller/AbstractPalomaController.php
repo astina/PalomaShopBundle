@@ -28,11 +28,11 @@ abstract class AbstractPalomaController extends AbstractController
         $this->serializer = $serializer;
     }
 
-    protected function search(Request $request, CategoryInterface $category = null)
+    protected function searchModel(Request $request, CategoryInterface $category = null)
     {
-        $searchRequest = $this->searchRequest($request, $category);
+        // TODO move into component
 
-        $searchResults = $this->catalog->search($searchRequest);
+        $searchRequest = $this->searchRequest($request, $category);
 
         // TODO proper model
         $sort = [
@@ -73,13 +73,8 @@ abstract class AbstractPalomaController extends AbstractController
         }
 
         return [
-            'sort' => $sort,
-            // TODO proper model / get from results
-            'filters' => [
-
-            ],
             'request' => $searchRequest,
-            'results' => $searchResults,
+            'sort' => $sort,
         ];
     }
 
