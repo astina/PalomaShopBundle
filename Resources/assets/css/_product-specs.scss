@@ -17,3 +17,19 @@
   width: 67%;
   font-size: 0.85rem;
 }
+
+@media screen and (max-width: 768px) {
+
+  .product-specs__item {
+    display: block;
+  }
+
+  .product-specs__name {
+    width: 100%;
+  }
+
+  .product-specs__value {
+    width: 100%;
+    font-size: 1rem;
+  }
+}

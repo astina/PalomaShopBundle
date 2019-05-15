@@ -19,6 +19,7 @@ catalog:
     vat_info_incl: inkl. %rate% MWSt.
     vat_info_excl: exkl. %rate% MWSt.
     add_to_cart: In den Warenkorb
+    out_of_stock: Zur Zeit leider nicht verfügbar.
 
 cart:
   title: Warenkorb
@@ -26,6 +27,8 @@ cart:
   item_added: 'wurde Ihrem Warenkorb hinzugefügt.'
   open: Warenkorb öffnen
   to_checkout: Zur Kasse gehen
+  continue_shopping: Weiter einkaufen
+  total: Total
 
 customer:
   sign_in: Anmelden
@@ -33,3 +36,6 @@ customer:
 paging:
   next: Weiter
   prev: Zurück
+
+checkout:
+  title: Kasse

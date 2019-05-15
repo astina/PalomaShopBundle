@@ -12,3 +12,5 @@ require('./paloma-category-nav');
 require('./paloma-catalog');
 
 require('./paloma-cart');
+
+require('./paloma-checkout');

@@ -3,15 +3,19 @@
 
         <a class="cart-mini" @click.prevent="toggleCart" href="">
             <span class="icon">
-                <span class="fas fa-shopping-cart"></span>
+                <span class="far fa-shopping-cart"></span>
             </span>
-            {{ $trans('cart.units_count', {count: cart.unitsCount}) }}
-            <span class="cart-mini__items-price">({{cart.itemsPrice}})</span>
+            <span v-if="cart.empty">
+                {{ $trans('cart.title') }}
+            </span>
+            <span v-else>
+                {{ $trans('cart.units_count', {count: cart.unitsCount}) }}
+                <span class="cart-mini__items-price">({{cart.itemsPrice}})</span>
+            </span>
         </a>
 
         <paloma-cart-overlay
                 :show="showCart"
-                :cart="cart"
                 :last-item="lastItem"></paloma-cart-overlay>
 
     </div>
@@ -52,6 +56,18 @@
                 this.cart = cart;
             });
 
+            paloma.events.$on('paloma.cart_updated', (cart) => {
+                this.cart = cart;
+            });
+
+            paloma.events.$on('paloma.cart_item_update', (itemId, quantity) => {
+                paloma.cart.updateItem(itemId, quantity);
+            });
+
+            paloma.events.$on('paloma.cart_item_remove', (itemId) => {
+                paloma.cart.removeItem(itemId);
+            });
+
             paloma.events.$on('paloma.cart_loaded', (cart) => {
                 this.cart = cart;
             });
@@ -59,6 +75,11 @@
             paloma.events.$on('paloma.cart_show', (item) => {
                 this.lastItem = item;
                 this.showCart = true;
+            });
+
+            paloma.events.$on('paloma.cart_hide', () => {
+                this.lastItem = null;
+                this.showCart = false;
             });
         },
 

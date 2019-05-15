@@ -1,5 +1,7 @@
 {% extends '@PalomaShop/base.html.twig' %}
 
+{% block title %}{{ 'checkout.title' | trans }} &ndash; {{ parent() }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('app') }}
@@ -13,16 +15,8 @@
 
 {% block body %}
 
-    {% block header %}
-        {% include '@PalomaShop/header/header.html.twig' %}
-    {% endblock %}
-
-    <div class="main">
-        {% block main %}{% endblock %}
-    </div>
-
-    {% block footer %}
-        {% include '@PalomaShop/footer/footer.html.twig' %}
-    {% endblock %}
+    <main id="paloma-checkout">
+        <paloma-checkout></paloma-checkout>
+    </main>
 
 {% endblock %}

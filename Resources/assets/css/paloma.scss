@@ -2,6 +2,11 @@
 
 @import "config";
 
+@import "~@fortawesome/fontawesome-pro/scss/fontawesome";
+@import "~@fortawesome/fontawesome-pro/scss/regular";
+@import "~@fortawesome/fontawesome-pro/scss/solid";
+@import "~@fortawesome/fontawesome-pro/scss/light";
+
 @import "../../../node_modules/bulma/bulma";
 
 @import "mixins";
@@ -30,3 +35,4 @@
 @import "cart-item";
 @import "cart-mini";
 @import "cart-item-added";
+@import "columns";

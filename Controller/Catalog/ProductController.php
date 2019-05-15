@@ -3,8 +3,11 @@
 namespace Paloma\ShopBundle\Controller\Catalog;
 
 use Paloma\Shop\Catalog\ProductInterface;
+use Paloma\Shop\Catalog\SearchFilter;
+use Paloma\Shop\Catalog\SearchRequest;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
 use Paloma\ShopBundle\PalomaSerializer;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractPalomaController
 {
@@ -46,6 +49,26 @@ class ProductController extends AbstractPalomaController
             'category' => $category,
             'product_json' => $serializer->serialize($product),
         ]);
+    }
+
+    public function locate(Request $request)
+    {
+        $sku = $request->get('sku');
+
+        $result = $this->catalog->search(new SearchRequest(
+            null,
+            null,
+            [ new SearchFilter('variants.sku', [ $sku ]), ],
+            false,
+            0,
+            1
+        ));
+
+        if ($result->getTotalElements() === 0) {
+            // TODO redirect to search?
+        }
+
+        return $this->redirectToProduct($result->getContent()[0]);
     }
 
     private function isProductInCategory(ProductInterface $product, string $categoryCode)

@@ -1,16 +1,22 @@
 <template>
-    <div class="cart-overlay" :class="{'cart-overlay--active': show}">
+    <div class="cart-overlay" :class="{'cart-overlay--active': show}" @click="closeOverlay">
 
         <div class="cart-wrapper">
             <div v-if="show" class="cart">
 
                 <div v-if="loading">
                     <span class="icon">
-                        <i class="fas fa-spinner fa-spin"></i>
+                        <i class="far fa-spinner fa-spin"></i>
                     </span>
                 </div>
 
                 <div v-else>
+
+                    <a class="cart-wrapper__close" @click.prevent="close" href="">
+                        <span class="icon">
+                            <i class="fal fa-times"></i>
+                        </span>
+                    </a>
 
                     <h2 class="cart__title">{{ $trans('cart.title') }}</h2>
 
@@ -21,12 +27,26 @@
                                           :highlight="lastItem && item.id === lastItem.id"></paloma-cart-item>
                     </div>
 
-                    <div class="buttons">
+                    <div class="cart__total">
+                        <div class="cart__total-title">
+                            {{ $trans('cart.total') }}
+                        </div>
+                        <div class="cart__total-price">
+                            <paloma-price :price="cart.itemsPrice"></paloma-price>
+                        </div>
+                    </div>
 
-                        <a class="button is-primary" href="">
-                            {{ $trans('cart.to_checkout') }}
-                        </a>
-
+                    <div class="cart__buttons">
+                        <div class="cart__button cart__button--checkout">
+                            <a class="button is-primary" :href="checkoutUrl">
+                                {{ $trans('cart.to_checkout') }}
+                            </a>
+                        </div>
+                        <div class="cart__button">
+                            <a class="button is-text" @click.prevent="close" href="">
+                                {{ $trans('cart.continue_shopping') }}
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -41,12 +61,13 @@
 
     import paloma from './paloma';
     import PalomaCartItem from "./PalomaCartItem";
+    import PalomaPrice from "./PalomaPrice";
 
     export default {
 
         name: "PalomaCartOverlay",
 
-        components: {PalomaCartItem},
+        components: {PalomaPrice, PalomaCartItem},
 
         props: {
             show: Boolean,
@@ -60,6 +81,12 @@
             }
         },
 
+        computed: {
+            checkoutUrl() {
+                return paloma.router.resolve('checkout_start');
+            }
+        },
+
         watch: {
             'show': function() {
                 if (this.show) {
@@ -70,10 +97,30 @@
                         this.cart = cart;
                         this.loading = false;
                     });
-
-                } else {
-                    this.lastItem = null;
                 }
+            }
+        },
+
+        mounted() {
+            paloma.events.$on('paloma.cart_updated', (cart) => {
+                this.cart = cart;
+            });
+        },
+
+        methods: {
+
+            close() {
+                paloma.events.$emit('paloma.cart_hide');
+            },
+
+            closeOverlay(event) {
+
+                // Only close on click on overlay shadow
+                if (event.target !== event.currentTarget) {
+                    return;
+                }
+
+                this.close();
             }
         }
     }

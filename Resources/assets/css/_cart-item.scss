@@ -1,5 +1,6 @@
 .cart-item {
   display: flex;
+  padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid $grey-lighter;
   margin-bottom: 10px;
@@ -11,18 +12,40 @@
 
 .cart-item__image {
   width: 64px;
-  margin: 10px 20px 0 10px;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
 .cart-item__product {
   flex: 1;
 }
 
+.cart-item__title {
+  color: $text-strong;
+  margin-bottom: 10px;
+}
+
+.cart-item__title a {
+  color: $text-strong;
+}
+
 .cart-item__price {
   width: 20%;
   margin-left: 20px;
+  text-align: right;
 }
 
-//.cart-item__price .price__original {
-//  display: block;
-//}
+.cart-item__quantity .input {
+  width: 40px;
+  text-align: center;
+}
+
+.cart-item__quantity .button {
+  background: $white-bis;
+}
+
+.cart-item__remove-control .button.is-text {
+  background: transparent;
+  text-decoration: none;
+  margin-left: 10px;
+}

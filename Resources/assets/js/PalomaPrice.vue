@@ -15,23 +15,24 @@
 <script>
     export default {
         name: "PalomaPrice",
+
         props: {
             price: String,
             original: String
         },
 
-        data() {
+        computed: {
 
-            const pos = this.price.indexOf(' ');
-            const currency = this.price.substring(0, pos);
-            const amount = this.price.substring(pos + 1);
+            currency() {
+                const pos = this.price.indexOf(' ');
+                return this.price.substring(0, pos);
+            },
 
-            return {
-                currency: currency,
-                amount: amount,
+            amount() {
+                const pos = this.price.indexOf(' ');
+                return this.price.substring(pos + 1);
             }
         }
-
     }
 </script>
 

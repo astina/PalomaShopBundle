@@ -67,7 +67,7 @@ class CartResource
         $quantity = $params['quantity'] ?? 1;
 
         if (!$itemId) {
-            return new Response('Parameter `itemId` missing', ['status' => 400]);
+            return new Response('Parameter `itemId` missing', 400);
         }
 
         try {

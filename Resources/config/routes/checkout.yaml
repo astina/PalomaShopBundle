@@ -1,0 +1,4 @@
+paloma_checkout_start:
+  path: /
+  controller: paloma_shop.controller.checkout::start
+  methods: GET

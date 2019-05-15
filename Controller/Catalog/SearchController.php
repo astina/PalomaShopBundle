@@ -8,7 +8,6 @@ class SearchController extends AbstractPalomaController
 {
     public function view()
     {
-        return $this->render('@PalomaShop/catalog/search/view.html.twig', [
-        ]);
+        return $this->renderPalomaView('catalog/search/view.html.twig', []);
     }
 }

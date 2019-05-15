@@ -26,6 +26,11 @@ paloma_catalog_category:
   controller: paloma_shop.controller.catalog_category::view
   methods: GET
 
+paloma_catalog_product_locate:
+  path: /p/_locate
+  controller: paloma_shop.controller.catalog_product::locate
+  methods: GET
+
 paloma_catalog_product:
   path: /p/{productSlug}:{itemNumber}
   requirements:
