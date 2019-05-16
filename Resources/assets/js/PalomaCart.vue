@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="cart-mini">
 
-        <a class="cart-mini" @click.prevent="toggleCart" href="">
+        <a class="button" @click.prevent="toggleCart" href="">
             <span class="icon">
                 <span class="far fa-shopping-cart"></span>
             </span>

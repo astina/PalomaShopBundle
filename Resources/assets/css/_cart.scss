@@ -101,11 +101,17 @@
 }
 
 @media (min-width: 700px) {
+
   .cart-wrapper {
     padding: 50px;
   }
+
   .cart-wrapper__close {
     top: 50px;
     right: 50px;
+  }
+
+  .cart__title {
+    margin-bottom: 50px;
   }
 }

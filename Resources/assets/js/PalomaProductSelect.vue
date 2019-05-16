@@ -27,7 +27,12 @@
                         <button class="button is-primary" type="submit"
                                 :class="{'is-loading': loading}"
                                 :disabled="!available || loading">
-                            {{ $trans('catalog.products.add_to_cart') }}
+                            <span class="icon is-small">
+                                <i class="fal fa-shopping-cart"></i>
+                            </span>
+                            <span>
+                                {{ $trans('catalog.products.add_to_cart') }}
+                            </span>
                         </button>
                     </div>
 

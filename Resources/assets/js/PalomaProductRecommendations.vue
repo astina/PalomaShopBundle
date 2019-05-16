@@ -1,7 +1,7 @@
 <template>
     <div class="product-recommendations" v-if="products.length > 0">
 
-        <h3 class="product-recommendations__title">{{ $trans('catalog.products.recommendations') }}</h3>
+        <h3 class="product-recommendations__title">{{ $trans('catalog.products.recommendations.purchased_together') }}</h3>
 
         <div class="columns is-multiline is-mobile">
             <div v-for="product in products"

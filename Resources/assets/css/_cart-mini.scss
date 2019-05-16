@@ -1,5 +1,9 @@
 .cart-mini {
-  color: $text;
+}
+
+.cart-mini > .button {
+  color: $text-strong;
+  border-color: transparent;
 }
 
 .cart-mini__items-price {

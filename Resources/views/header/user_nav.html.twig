@@ -1,11 +1,13 @@
-<nav class="level user-nav">
-    <div class="level-item user-nav__item user-nav__item--cart" id="paloma-cart">
+<nav class="user-nav">
+    <div class="user-nav__item user-nav__item--cart" id="paloma-cart">
         <paloma-cart units-count="{{ cart.unitsCount }}" items-price="{{ cart.itemsPrice }}"></paloma-cart>
     </div>
-    <a class="level-item user-nav__item user-nav__item--account">
-        <span class="icon">
-            <span class="fas fa-user"></span>
-        </span>
-        {{ 'customer.sign_in' | trans }}
-    </a>
+    <div class="user-nav__item user-nav__item--account">
+        <a class="button">
+            <span class="icon is-small">
+                <i class="fal fa-user"></i>
+            </span>
+            <span>{{ 'customer.sign_in' | trans }}</span>
+        </a>
+    </div>
 </nav>
