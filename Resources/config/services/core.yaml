@@ -53,6 +53,11 @@ services:
   paloma_shop.serializer:
     class: Paloma\ShopBundle\PalomaSerializer
 
+  paloma_shop.exception_listener:
+    class: Paloma\ShopBundle\EventListener\PalomaExceptionListener
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception }
+
   paloma_shop.twig_extension:
     class: Paloma\ShopBundle\Twig\PalomaTwigExtension
     tags:
