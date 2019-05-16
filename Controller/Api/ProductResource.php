@@ -4,6 +4,7 @@ namespace Paloma\ShopBundle\Controller\Api;
 
 use Paloma\Shop\Catalog\CatalogInterface;
 use Paloma\Shop\Error\BackendUnavailable;
+use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\ProductNotFound;
 use Paloma\ShopBundle\PalomaSerializer;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,6 +80,30 @@ class ProductResource
             return new Response('Service unavailable', 503);
         } catch (ProductNotFound $e) {
             return new Response(null, 404);
+        }
+    }
+
+    public function purchasedTogether(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
+    {
+        $itemNumber = (string) $request->get('itemNumber');
+        $max = (int) $request->get('max', 6);
+
+        if (!$itemNumber) {
+            return new Response('Parameter `itemNumber` missing', 400);
+        }
+
+        try {
+
+            $products = $catalog->getPurchasedTogether($itemNumber, $max);
+
+            return $serializer->toJsonResponse($products);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        } catch (ProductNotFound $e) {
+            return new Response(null, 404);
+        } catch (InvalidInput $e) {
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         }
     }
 }

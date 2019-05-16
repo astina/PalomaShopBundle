@@ -51,6 +51,17 @@ const catalog = {
             .catch(e => {
                 events.$emit('paloma.error', e);
             });
+    },
+
+    purchasedTogether(itemNumber, max) {
+        return axios
+            .get(routes['api_products_purchased_together'], {params: {itemNumber: itemNumber, max: max}})
+            .then(response => {
+                return response.data;
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e);
+            });
     }
 };
 

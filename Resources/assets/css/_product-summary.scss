@@ -4,6 +4,10 @@
 .product-summary__breadcrumb {
 }
 
+.product-summary__breadcrumb a {
+  color: $text-light;
+}
+
 .product-summary__title {
   font-size: 1.6rem;
   font-weight: $weight-medium;

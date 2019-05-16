@@ -27,6 +27,11 @@ paloma_api_products_recommended:
   controller: paloma_shop.controller.product_resource:recommended
   methods: GET
 
+paloma_api_products_purchased_together:
+  path: /products/purchased_together
+  controller: paloma_shop.controller.product_resource:purchasedTogether
+  methods: GET
+
 # Search
 
 paloma_api_search:

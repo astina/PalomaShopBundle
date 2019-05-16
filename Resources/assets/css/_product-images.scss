@@ -22,7 +22,9 @@
   cursor: zoom-out;
 }
 
-.product-images__zoom .image {
+.product-images__zoom .image img {
+  max-height: 80vh;
+  width: auto;
   margin: 0 auto;
 }
 
@@ -49,5 +51,10 @@
 .product-images--zoomed .product-images__thumbs {
   z-index: 210;
   position: fixed;
-  bottom: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 50px;
+  text-align: center;
+  border-top: 1px solid $grey-lighter;
 }
