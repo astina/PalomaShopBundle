@@ -5,7 +5,7 @@
     <div class="product-images__image"
          @click.prevent="zoomed = true"
          data-image-full="{{ image_current.getSource('full').url }}">
-        <div class="image is-square">
+        <div class="image">
             {% if image_current %}
                 <img src="{{ image_current.getSource('large').url }}" alt="{{ image_current.name }}">
             {% else %}
@@ -15,7 +15,7 @@
     </div>
 
     <div class="product-images__zoom" @click.prevent="zoomed = false">
-        <div class="image is-square">
+        <div class="image">
             <img :src="zoomUrl" />
         </div>
     </div>
@@ -27,7 +27,7 @@
                data-image-full="{{ image.getSource('full').url }}"
                @click="selectImage"
                href="">
-                <div class="image is-square">
+                <div class="image">
                     <img src="{{ image.getSource('small').url }}" alt="{{ image.name }}">
                 </div>
             </a>

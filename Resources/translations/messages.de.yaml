@@ -32,6 +32,7 @@ cart:
   to_checkout: Zur Kasse gehen
   continue_shopping: Weiter einkaufen
   total: Total
+  recommendations: 'Das könnte Ihnen auch gefallen:'
 
 customer:
   sign_in: Anmelden

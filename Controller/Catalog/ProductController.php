@@ -54,18 +54,27 @@ class ProductController extends AbstractPalomaController
     public function locate(Request $request)
     {
         $sku = $request->get('sku');
+        $itemNumber = $request->get('itemNumber');
+
+        $filters = [];
+        if ($sku) {
+            $filters[] = new SearchFilter('variants.sku', [ $sku ]);
+        }
+        if ($itemNumber) {
+            $filters[] = new SearchFilter('itemNumber', [ $itemNumber ]);
+        }
 
         $result = $this->catalog->search(new SearchRequest(
             null,
             null,
-            [ new SearchFilter('variants.sku', [ $sku ]), ],
+            $filters,
             false,
             0,
             1
         ));
 
         if ($result->getTotalElements() === 0) {
-            // TODO redirect to search?
+            return $this->redirectToRoute('paloma_catalog_search', ['query' => trim($sku . ' ' . $itemNumber) ]);
         }
 
         return $this->redirectToProduct($result->getContent()[0]);

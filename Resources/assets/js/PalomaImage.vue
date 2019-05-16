@@ -1,5 +1,5 @@
 <template>
-    <div class="image is-square">
+    <div class="image">
         <img v-if="sourceUrl" v-bind:src="sourceUrl" v-bind:alt="imageTitle"/>
     </div>
 </template>

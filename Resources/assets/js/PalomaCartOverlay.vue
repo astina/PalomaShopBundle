@@ -56,6 +56,9 @@
                 </div>
 
             </div>
+
+            <paloma-cart-recommendations v-if="lastItem"></paloma-cart-recommendations>
+
         </div>
 
     </div>
@@ -66,12 +69,17 @@
     import paloma from './paloma';
     import PalomaCartItem from "./PalomaCartItem";
     import PalomaPrice from "./PalomaPrice";
+    import PalomaCartRecommendations from "./PalomaCartRecommendations";
 
     export default {
 
         name: "PalomaCartOverlay",
 
-        components: {PalomaPrice, PalomaCartItem},
+        components: {
+            PalomaCartRecommendations,
+            PalomaPrice,
+            PalomaCartItem
+        },
 
         props: {
             show: Boolean,

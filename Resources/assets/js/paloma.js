@@ -138,8 +138,21 @@ const cart = {
                 // TODO handle 400
                 events.$emit('paloma.error', e)
             });
-    }
+    },
 
+    getRecommendations(size) {
+
+        return axios
+            .get(routes['api_cart_recommendations'], { params: {
+                size: size
+            }})
+            .then(response => {
+                return response.data;
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e)
+            });
+    }
 };
 
 export default {
