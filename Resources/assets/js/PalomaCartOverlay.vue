@@ -20,6 +20,10 @@
 
                     <h2 class="cart__title">{{ $trans('cart.title') }}</h2>
 
+                    <p v-if="cart.empty" class="cart__empty">
+                        {{ $trans('cart.empty') }}
+                    </p>
+
                     <div class="cart__items">
                         <paloma-cart-item v-for="item in cart.items"
                                           :key="item.id"
@@ -27,7 +31,7 @@
                                           :highlight="lastItem && item.id === lastItem.id"></paloma-cart-item>
                     </div>
 
-                    <div class="cart__total">
+                    <div v-if="!cart.empty" class="cart__total">
                         <div class="cart__total-title">
                             {{ $trans('cart.total') }}
                         </div>
@@ -37,7 +41,7 @@
                     </div>
 
                     <div class="cart__buttons">
-                        <div class="cart__button cart__button--checkout">
+                        <div v-if="!cart.empty" class="cart__button cart__button--checkout">
                             <a class="button is-primary" :href="checkoutUrl">
                                 {{ $trans('cart.to_checkout') }}
                             </a>

@@ -1,5 +1,5 @@
 <template>
-    <div class="cart-item" :class="{'cart-item--highlighted': highlight}">
+    <div class="cart-item" :class="{'cart-item--highlighted': highlight}" v-if="!deleted">
 
         <div class="cart-item__image">
             <paloma-image :image="item.image" size="small"></paloma-image>
@@ -10,6 +10,11 @@
                 <a :href="productLink">
                     {{item.title}}
                 </a>
+                <div v-if="options.length > 0" class="cart-item__options">
+                    <div v-for="option in options" class="cart-item__option">
+                        {{ option.label }}: {{ option.value }}
+                    </div>
+                </div>
             </div>
             <form class="cart-item__quantity">
                 <div class="field has-addons">
@@ -80,13 +85,17 @@
                 quantity: null,
                 availableQuantity: 0,
 
+                options: this._createOptions(),
+
+                deleted: false,
+
                 productLink: paloma.router.resolve('catalog_product_locate', { sku: this.item.sku })
             }
         },
 
         mounted() {
             this.quantity = this.item.quantity;
-            this.availableQuantity = 100; // TODO
+            this.availableQuantity = this.item.productVariant.availability.availableQuantity;
         },
 
         methods: {
@@ -138,11 +147,28 @@
             },
 
             removeItem() {
+
+                this.deleted = true;
+
                 paloma.events.$emit('paloma.cart_item_remove', this.item.id);
             },
 
             emitEvent() {
                 paloma.events.$emit('paloma.cart_item_update', this.item.id, this.quantity);
+            },
+
+            _createOptions() {
+
+                if (!this.item.productVariant || !this.item.productVariant.options) {
+                    return [];
+                }
+
+                const options = [];
+                for (let opt in this.item.productVariant.options) {
+                    options.push(this.item.productVariant.options[opt]);
+                }
+
+                return options;
             }
         }
     }

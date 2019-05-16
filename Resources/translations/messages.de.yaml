@@ -25,6 +25,7 @@ catalog:
 
 cart:
   title: Warenkorb
+  empty: Ihr Warenkorb ist leer
   units_count: '%count% Artikel'
   item_added: 'wurde Ihrem Warenkorb hinzugefügt.'
   open: Warenkorb öffnen

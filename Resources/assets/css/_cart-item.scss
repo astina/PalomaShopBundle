@@ -7,7 +7,7 @@
 }
 
 .cart-item--highlighted {
-  background: $white-bis;
+  background: $highlight;
 }
 
 .cart-item__image {
@@ -23,10 +23,22 @@
 .cart-item__title {
   color: $text-strong;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .cart-item__title a {
   color: $text-strong;
+}
+
+.cart-item__options {
+  display: inline-block;
+}
+
+.cart-item__option {
+  font-size: 0.9rem;
+  color: $text-light;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 .cart-item__price {

@@ -1,0 +1,64 @@
+@import "mixins";
+
+.product-option {
+  margin-bottom: 20px;
+  max-width: 380px;
+}
+
+.product-option__title {
+  font-size: 0.9rem;
+  font-weight: $weight-medium;
+  color: $text-strong;
+  margin-bottom: 5px;
+}
+
+.product-option__value {
+  border: 1px solid $grey-lighter;
+  border-radius: $radius-small;
+  padding: 5px 12px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.product-option__value--variant {
+  @include shadow_bottom();
+  margin-right: 0;
+  display: flex;
+  max-width: 320px;
+  background: $white-bis;
+}
+
+.product-option__value input {
+  display: none;
+}
+
+.product-option__value--variant .product-option__value input {
+  display: initial;
+}
+
+.product-option__value--selected {
+  background: $highlight;
+  border-color: $grey-light;
+}
+
+.product-option__value:hover {
+  border-color: $grey-light;
+}
+
+.product-option__value-control {
+  font-size: 0.9rem;
+}
+
+.product-option__value--selected .product-option__value-control {
+  color: $text-strong;
+}
+
+.product-option__value:hover .product-option__value-control {
+  color: $text-strong;
+}
+
+.product-option__value-control input {
+  margin-right: 10px;
+}

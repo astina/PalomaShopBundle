@@ -48,13 +48,17 @@
   color: $grey-light;
 }
 
+.product-summary__variants {
+  margin-bottom: 40px;
+}
+
 .product-summary__cart-form {
   position: relative;
 }
 
 .product-summary__out-of-stock {
-  margin-top: 20px;
-  margin-bottom: 40px;
   font-size: 0.85rem;
   color: $grey-light;
+  line-height: 36px;
+  margin-left: 10px;
 }

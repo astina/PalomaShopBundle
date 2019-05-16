@@ -6,6 +6,11 @@
   margin-bottom: 30px;
 }
 
+.cart__empty {
+  color: $text-light;
+  font-style: italic;
+}
+
 .cart__items {
   margin-bottom: 50px;
 }
