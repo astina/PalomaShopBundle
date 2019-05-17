@@ -10,7 +10,7 @@
         {% endfor %}
         {% if include_self is not defined or include_self %}
             <li>
-                <a href="{{ category_path(category) }}" aria-current="page">
+                <a href="{{ category_path(category, {include_query_params: true}) }}" aria-current="page">
                     {{ category.name }}
                 </a>
             </li>

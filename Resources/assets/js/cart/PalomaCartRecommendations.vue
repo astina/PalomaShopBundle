@@ -15,8 +15,8 @@
 
 <script>
 
-    import paloma from './paloma';
-    import PalomaProductCard from "./PalomaProductCard";
+    import paloma from '../paloma';
+    import PalomaProductCard from "../catalog/PalomaProductCard";
 
     export default {
         name: "PalomaCartRecommendations",

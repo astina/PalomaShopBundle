@@ -1,5 +1,5 @@
 import Vue from "vue";
-import PalomaCart from "./PalomaCart";
+import PalomaCart from "./cart/PalomaCart";
 
 const cartElem = document.getElementById('paloma-cart');
 if (cartElem) {

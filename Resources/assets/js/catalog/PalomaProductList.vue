@@ -35,15 +35,24 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div v-if="results">
 
+            <div v-if="results.filterAggregates" class="product-list__filters">
+                <paloma-product-filters
+                        :filter-aggregates="results.filterAggregates"
+                        :active-filters="search.request.filters"
+                        @change="applyFilter"
+                        @remove="removeFilterValue"
+                        @clear="clearFilters"></paloma-product-filters>
+            </div>
+
             <div class="columns is-multiline is-mobile">
                 <div v-for="product in results.content"
                      class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
-                    <paloma-product-card :product="product" :category="category" :href="createHref(product)">
-                        </paloma-product-card>
+                    <paloma-product-card :product="product" :category="category" :href="createHref(product)"></paloma-product-card>
                 </div>
             </div>
 
@@ -61,15 +70,17 @@
 
 <script>
 
-    import paloma from "./paloma";
-    import utils from "./utils";
+    import paloma from "../paloma";
+    import utils from "../utils";
     import PalomaProductCard from "./PalomaProductCard";
     import PalomaPagination from "./PalomaPagination";
+    import PalomaProductFilters from "./PalomaProductFilters";
 
     export default {
         name: "PalomaProductList",
 
         components: {
+            PalomaProductFilters,
             PalomaPagination,
             PalomaProductCard
         },
@@ -126,6 +137,47 @@
                 this.searchProducts();
             },
 
+            applyFilter(filter, values) {
+
+                let filters = this.search.request.filters;
+
+                // Remove existing filter
+                const currentFilter = filters.find(f => f.name === filter.name);
+                if (currentFilter) {
+                    filters = utils.removeElem(filters, currentFilter);
+                }
+
+                filters.push({
+                    name: filter.name,
+                    values: values,
+                    // TODO < >
+                });
+
+                this.search.request.filters = filters;
+
+                this.search.request.page = 0;
+
+                this.searchProducts();
+            },
+
+            removeFilterValue(filter, value) {
+
+                filter.values = utils.removeElem(filter.values, value);
+
+                this.search.request.page = 0;
+
+                this.searchProducts();
+            },
+
+            clearFilters() {
+
+                this.search.request.filters = [];
+
+                this.search.request.page = 0;
+
+                this.searchProducts();
+            },
+
             nextPage() {
 
                 if (this.search.request.page === this.results.totalPages - 1) {
@@ -151,31 +203,35 @@
                 if (this.category) {
                     return paloma.router.resolve(
                         this.results._links.category_product.href,
-                        {
+                        Object.assign({
                             categorySlug: this.category.slug,
                             categoryCode: this.category.code,
                             itemNumber: product.itemNumber,
                             productSlug: product.slug
-                        });
+                        }, this._searchParams()));
                 }
 
                 return paloma.router.resolve(
                     this.results._links.product.href,
-                    {
+                    Object.assign({
                         itemNumber: product.itemNumber,
                         productSlug: product.slug
-                    });
+                    }, this._searchParams()));
             },
 
-            _pushHistoryState() {
-
-                const params = {
+            _searchParams() {
+                return {
                     page: this.search.request.page,
                     size: this.search.request.size,
                     sort: this.search.request.sort,
                     orderDesc: this.search.request.orderDesc,
-                    // TODO filters
+                    filters: this.search.request.filters,
                 };
+            },
+
+            _pushHistoryState() {
+
+                const params = this._searchParams();
 
                 const state = utils.clone(this.search.request);
 
@@ -219,8 +275,14 @@
                 if (params.has('orderDesc')) {
                     request.orderDesc = params.get('orderDesc') === 'true';
                 }
-
-                // TODO filters
+                if (params.has('filters')) {
+                    try {
+                        request.filters = JSON.parse(params.get('filters'));
+                    } catch (e) {
+                        console.log(e);
+                        request.filters = [];
+                    }
+                }
 
                 return request;
             },

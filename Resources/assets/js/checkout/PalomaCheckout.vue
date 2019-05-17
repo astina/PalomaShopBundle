@@ -1,5 +1,5 @@
 <template>
-    <p>yo</p>
+    <p>TODO</p>
 </template>
 
 <script>

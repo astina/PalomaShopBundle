@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import PalomaPrice from "./PalomaPrice";
+    import PalomaPrice from "../common/PalomaPrice";
 
     export default {
         name: "PalomaProductOption",

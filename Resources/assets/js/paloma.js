@@ -15,12 +15,17 @@ const router = {
 
         const query = [];
         for (const param in params) {
-            const placeholder = '__' + param + '__';
-            const value = params[param];
-            if (url.indexOf(placeholder) !== -1)  {
-                url = url.replace(placeholder, value);
-            } else {
-                query.push(encodeURIComponent(param) + '=' + encodeURIComponent(value));
+            if (params.hasOwnProperty(param)) {
+                const placeholder = '__' + param + '__';
+                let value = params[param];
+                if (url.indexOf(placeholder) !== -1) {
+                    url = url.replace(placeholder, value);
+                } else {
+                    if (typeof value === 'object') {
+                        value = JSON.stringify(value);
+                    }
+                    query.push(encodeURIComponent(param) + '=' + encodeURIComponent(value));
+                }
             }
         }
 

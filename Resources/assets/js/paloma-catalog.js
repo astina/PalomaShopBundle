@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import PalomaProductList from "./PalomaProductList";
-import PalomaProductSelect from "./PalomaProductSelect";
-import PalomaProductRecommendations from "./PalomaProductRecommendations";
+import PalomaProductList from "./catalog/PalomaProductList";
+import PalomaProductSelect from "./catalog/PalomaProductSelect";
+import PalomaProductRecommendations from "./catalog/PalomaProductRecommendations";
 
 const productListElem = document.getElementById('paloma-product-list');
 if (productListElem) {

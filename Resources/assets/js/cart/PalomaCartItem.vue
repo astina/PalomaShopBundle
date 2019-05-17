@@ -65,9 +65,9 @@
 
 <script>
 
-    import paloma from "./paloma";
-    import PalomaImage from "./PalomaImage";
-    import PalomaPrice from "./PalomaPrice";
+    import paloma from "../paloma";
+    import PalomaImage from "../common/PalomaImage";
+    import PalomaPrice from "../common/PalomaPrice";
 
     export default {
         name: "PalomaCartItem",

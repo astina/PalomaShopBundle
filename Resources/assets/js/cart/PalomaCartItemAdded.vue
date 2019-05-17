@@ -21,7 +21,7 @@
 
 <script>
 
-    import paloma from './paloma';
+    import paloma from '../paloma';
 
     export default {
 

@@ -1,5 +1,5 @@
 import Vue from "vue";
-import PalomaCheckout from "./PalomaCheckout";
+import PalomaCheckout from "./checkout/PalomaCheckout";
 
 const checkoutElem = document.getElementById('paloma-checkout');
 if (checkoutElem) {

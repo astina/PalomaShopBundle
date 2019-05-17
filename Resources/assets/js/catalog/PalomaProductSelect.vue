@@ -27,12 +27,7 @@
                         <button class="button is-primary product-summary__cart-form-button" type="submit"
                                 :class="{'is-loading': loading}"
                                 :disabled="!available || loading">
-                            <span class="icon is-small">
-                                <i class="fal fa-shopping-cart"></i>
-                            </span>
-                            <span>
-                                {{ $trans('catalog.products.add_to_cart') }}
-                            </span>
+                            {{ $trans('catalog.products.add_to_cart') }}
                         </button>
                     </div>
 
@@ -53,9 +48,9 @@
 
 <script>
 
-    import paloma from "./paloma";
-    import PalomaPrice from "./PalomaPrice";
-    import PalomaCartItemAdded from "./PalomaCartItemAdded";
+    import paloma from "../paloma";
+    import PalomaPrice from "../common/PalomaPrice";
+    import PalomaCartItemAdded from "../cart/PalomaCartItemAdded";
     import PalomaProductOption from "./PalomaProductOption";
 
     export default {

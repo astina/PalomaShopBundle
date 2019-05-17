@@ -1,0 +1,34 @@
+.product-filters .field {
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.product-filters__active-title {
+  font-size: $size-7;
+  line-height: 2;
+  margin-right: 20px;
+}
+
+.product-filters__active-filter-value {
+  margin-right: 10px;
+}
+
+.product-filters__active-filter-value .tags {
+  margin-bottom: 0.5rem;
+}
+
+.product-filters__active-filter-value .tag {
+  margin-bottom: 0;
+}
+
+.product-filters__active-filter-clear {
+  font-size: $size-7;
+  line-height: 2;
+  color: $grey;
+}
+
+@media screen and (min-width: 769px) {
+  .product-filters__active {
+    display: flex;
+  }
+}

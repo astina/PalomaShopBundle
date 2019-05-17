@@ -15,6 +15,10 @@ catalog:
       relevance: Relevanz
       price_asc: Preis aufsteigend
       price_desc: Preis absteigend
+    filter:
+      apply: Anwenden
+      active: 'Aktive Filter:'
+      clear: 'alle entfernen'
     item_number: 'Artikel Nr.:'
     vat_info_incl: inkl. %rate% MWSt.
     vat_info_excl: exkl. %rate% MWSt.

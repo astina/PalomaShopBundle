@@ -3,7 +3,7 @@
 
         <a class="button" @click.prevent="toggleCart" href="">
             <span class="icon">
-                <span class="far fa-shopping-cart"></span>
+                <span class="far fa-shopping-bag"></span>
             </span>
             <span v-if="cart.empty">
                 {{ $trans('cart.title') }}
@@ -23,7 +23,7 @@
 
 <script>
 
-    import paloma from './paloma';
+    import paloma from '../paloma';
     import PalomaCartOverlay from "./PalomaCartOverlay";
 
     export default {

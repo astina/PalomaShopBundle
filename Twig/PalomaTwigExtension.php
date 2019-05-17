@@ -81,12 +81,21 @@ class PalomaTwigExtension extends AbstractExtension
         ]);
     }
 
-    public function categoryPath(CategoryReferenceInterface $category)
+    public function categoryPath(CategoryReferenceInterface $category, array $options = [])
     {
-        return $this->generator->generate('paloma_catalog_category', [
+        $includeQueryParams = isset($options['include_query_params']) ? $options['include_query_params'] : false;
+
+        $params = [
             'categorySlug' => $category->getSlug(),
             'categoryCode' => $category->getCode(),
-        ]);
+        ];
+
+        if ($includeQueryParams) {
+            $request = $this->requestStack->getMasterRequest();
+            $params = $params + $request->query->all();
+        }
+
+        return $this->generator->generate('paloma_catalog_category', $params);
     }
 
     /**

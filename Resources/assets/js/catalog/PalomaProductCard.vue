@@ -37,8 +37,8 @@
 </template>
 
 <script>
-    import PalomaImage from "./PalomaImage";
-    import PalomaPrice from "./PalomaPrice";
+    import PalomaImage from "../common/PalomaImage";
+    import PalomaPrice from "../common/PalomaPrice";
 
     export default {
         name: "PalomaProductCard",

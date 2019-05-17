@@ -31,6 +31,7 @@ class SearchResource
                 'brand',
             ],
         ],
+        'filterAggregates',
         'totalElements',
         'totalPages',
         'number',
