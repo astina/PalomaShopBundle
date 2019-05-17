@@ -62,6 +62,7 @@
 <script>
 
     import paloma from "./paloma";
+    import utils from "./utils";
     import PalomaProductCard from "./PalomaProductCard";
     import PalomaPagination from "./PalomaPagination";
 
@@ -75,8 +76,10 @@
 
         data() {
 
-            const search = PALOMA['search'];
+            const search = utils.clone(PALOMA['search']);
             const category = PALOMA['category'] || null;
+
+            search.request = this._applyQueryParams(search.request);
 
             return {
                 search: search,
@@ -86,12 +89,22 @@
         },
 
         mounted() {
-            this.searchProducts();
+            this._searchProducts();
+            this._initHistoryPopStateListener();
+        },
+
+        beforeDestroy() {
+            this._destroyHistoryPopStateListener();
         },
 
         methods: {
 
             searchProducts() {
+                this._pushHistoryState();
+                this._searchProducts();
+            },
+
+            _searchProducts() {
 
                 this.results = null;
 
@@ -152,11 +165,84 @@
                         itemNumber: product.itemNumber,
                         productSlug: product.slug
                     });
+            },
+
+            _pushHistoryState() {
+
+                const params = {
+                    page: this.search.request.page,
+                    size: this.search.request.size,
+                    sort: this.search.request.sort,
+                    orderDesc: this.search.request.orderDesc,
+                    // TODO filters
+                };
+
+                const state = utils.clone(this.search.request);
+
+                history.pushState(state, '', '?' + utils.queryString(params));
+            },
+
+            _initHistoryPopStateListener() {
+
+                window.onpopstate = (event) => {
+
+                    if (event.state) {
+                        this.search.request = event.state;
+                    } else {
+                        const search = utils.clone(PALOMA['search']);
+                        this.search.request = this._applyQueryParams(search.request);
+                    }
+
+                    this._refreshSort();
+
+                    this._searchProducts();
+                }
+            },
+
+            _destroyHistoryPopStateListener() {
+                window.onpopstate = null;
+            },
+
+            _applyQueryParams(request) {
+
+                const params = new URLSearchParams(window.location.search);
+
+                if (params.has('page')) {
+                    request.page = parseInt(params.get('page'));
+                }
+                if (params.has('size')) {
+                    request.size = parseInt(params.get('size'));
+                }
+                if (params.has('sort')) {
+                    request.sort = params.get('sort');
+                }
+                if (params.has('orderDesc')) {
+                    request.orderDesc = params.get('orderDesc') === 'true';
+                }
+
+                // TODO filters
+
+                return request;
+            },
+
+            _refreshSort() {
+                /**
+                 * Set sort.current based on search request
+                 */
+                for (let name in this.search.sort.options) {
+                    if (!this.search.sort.options.hasOwnProperty(name)) {
+                        continue;
+                    }
+                    const sort = this.search.sort.options[name];
+                    if (sort.property === this.search.request.sort
+                        && sort.desc === this.search.request.orderDesc) {
+                        sort.selected = true;
+                        this.search.sort.current = name;
+                    } else {
+                        sort.selected = false;
+                    }
+                }
             }
         }
     }
 </script>
-
-<style scoped>
-
-</style>

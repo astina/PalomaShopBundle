@@ -20,12 +20,12 @@ const router = {
             if (url.indexOf(placeholder) !== -1)  {
                 url = url.replace(placeholder, value);
             } else {
-                query.push(encodeURIComponent(param) + '=' + encodeURIComponent(value) + '&');
+                query.push(encodeURIComponent(param) + '=' + encodeURIComponent(value));
             }
         }
 
         return url
-            + (query.length === 0 ? '' : '?' + query.reduce((p1, p2) => p1 + p2).replace(/&$/, ''));
+            + (query.length === 0 ? '' : '?' + query.join('&'));
     }
 };
 
