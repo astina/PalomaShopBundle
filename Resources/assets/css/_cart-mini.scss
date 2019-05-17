@@ -6,9 +6,13 @@
   border-color: transparent;
 }
 
+.cart-mini > .button:hover {
+  background-color: $white-bis;
+}
+
 .cart-mini__items-price {
   font-weight: $weight-normal;
-  font-size: 0.9rem;
+  font-size: $size-7;
 }
 
 @media screen and (max-width: 768px) {

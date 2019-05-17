@@ -6,7 +6,7 @@
 }
 
 .product-option__title {
-  font-size: 0.9rem;
+  font-size: $size-7;
   font-weight: $weight-medium;
   color: $text-strong;
   margin-bottom: 5px;
@@ -48,7 +48,7 @@
 }
 
 .product-option__value-control {
-  font-size: 0.9rem;
+  font-size: $size-7;
 }
 
 .product-option__value--selected .product-option__value-control {

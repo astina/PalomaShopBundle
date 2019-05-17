@@ -24,7 +24,7 @@
                 <div class="field is-grouped">
 
                     <div class="control">
-                        <button class="button is-primary" type="submit"
+                        <button class="button is-primary product-summary__cart-form-button" type="submit"
                                 :class="{'is-loading': loading}"
                                 :disabled="!available || loading">
                             <span class="icon is-small">
@@ -36,9 +36,9 @@
                         </button>
                     </div>
 
-                    <div v-if="outOfStock"class="product-summary__out-of-stock">
-                        {{ $trans('catalog.products.out_of_stock') }}
-                    </div>
+<!--                    <div v-if="outOfStock"class="product-summary__out-of-stock">-->
+<!--                        {{ $trans('catalog.products.out_of_stock') }}-->
+<!--                    </div>-->
 
                 </div>
 

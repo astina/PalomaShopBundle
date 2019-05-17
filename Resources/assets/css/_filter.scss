@@ -28,13 +28,13 @@
 
 .filter__count {
   color: $grey;
-  font-size: 0.9rem;
+  font-size: $size-7;
 }
 
 .active-filter {
   background: $grey-lighter;
   color: $grey-dark;
-  font-size: 0.85rem;
+  font-size: $size-8;
   padding: 2px 7px;
 }
 
@@ -45,6 +45,6 @@
 
 .active-filter__remove-all {
   color: $grey;
-  font-size: 0.85rem;
+  font-size: $size-8;
   margin-left: 5px;
 }

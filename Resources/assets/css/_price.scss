@@ -3,7 +3,7 @@
 }
 
 .price__currency {
-  font-size: 0.9rem;
+  font-size: $size-7;
 }
 
 .price__amount {
@@ -11,6 +11,6 @@
 }
 
 .price__original {
-  font-size: 0.9rem;
+  font-size: $size-7;
   text-decoration: line-through;
 }

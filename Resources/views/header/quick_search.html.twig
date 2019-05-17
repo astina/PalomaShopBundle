@@ -1,8 +1,16 @@
 <form action="{{ path('paloma_catalog_search') }}" class="quick-search" autocomplete="off">
-    <input class="quick-search__input" type="search" name="query" placeholder="{{ 'search.placeholder' | trans }}">
-    <button class="quick-search__button" type="submit">
-        <span class="icon">
-            <span class="fas fa-search"></span>
-        </span>
-    </button>
+    <div class="field has-addons">
+        <div class="control">
+            <input class="input is-small" type="search" name="query"
+                   value=""
+                   placeholder="{{ 'search.placeholder' | trans }}">
+        </div>
+        <div class="control">
+            <button type="submit" class="button is-small">
+                <span class="icon is-small">
+                    <i class="far fa-search"></i>
+                </span>
+            </button>
+        </div>
+    </div>
 </form>

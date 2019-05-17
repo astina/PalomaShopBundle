@@ -9,7 +9,7 @@
                 <h1>{{ 'catalog.search.title' | trans({'%query%': search_query }) }}</h1>
             </div>
 
-            <form method="get">
+            <form method="get" action="{{ path('paloma_catalog_search') }}">
 
                 <div class="field has-addons">
                     <div class="control is-expanded">

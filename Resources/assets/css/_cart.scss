@@ -19,6 +19,8 @@
   display: flex;
   margin-bottom: 50px;
   color: $text-strong;
+  border-bottom: 1px solid $grey-light;
+  padding-bottom: 10px;
 }
 
 .cart__total-title {

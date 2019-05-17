@@ -19,7 +19,7 @@
 }
 
 .product-summary__annotation {
-  font-size: 0.9rem;
+  font-size: $size-7;
   color: $text-light;
   display: inline-block;
   margin-right: 20px;
@@ -48,7 +48,7 @@
 }
 
 .product-summary__price-info {
-  font-size: 0.85rem;
+  font-size: $size-8;
   color: $grey-light;
 }
 
@@ -60,8 +60,12 @@
   position: relative;
 }
 
+.product-summary__cart-form-button {
+  min-width: 240px;
+}
+
 .product-summary__out-of-stock {
-  font-size: 0.85rem;
+  font-size: $size-8;
   color: $grey-light;
   line-height: 36px;
   margin-left: 10px;
