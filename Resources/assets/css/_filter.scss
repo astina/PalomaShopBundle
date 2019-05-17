@@ -30,7 +30,8 @@
   background: $grey-lighter;
 }
 
-.filter__value--active {
+.filter__value--active,
+.filter__value--active:hover {
   background: $primary;
   color: $white;
 }
@@ -43,18 +44,19 @@
   color: $text-strong;
 }
 
+.filter__value--active:hover .filter__label {
+  color: $white;
+}
+
 .filter__count {
   color: $grey;
   font-size: $size-8;
   text-align: right;
 }
 
-.filter__value--active .filter__count {
-  color: $grey-lighter;
-}
-
+.filter__value--active .filter__count,
 .filter__value--active:hover .filter__count {
-  color: $grey;
+  color: $grey-lighter;
 }
 
 .filter__control {

@@ -56,6 +56,7 @@
         methods: {
 
             apply() {
+                this.dropdownOpen = false;
                 this.$emit('change', this.filter, this.activeValues);
             },
 

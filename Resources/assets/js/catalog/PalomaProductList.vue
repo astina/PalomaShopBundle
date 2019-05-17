@@ -11,16 +11,19 @@
                 </span>
             </h4>
 
-            <div class="product-list__sort sort">
+            <div class="product-list__sort sort"
+                v-click-outside="hideSortDropdown">
                 <span class="sort__label">
                     {{ $trans('catalog.products.sort_by') }}
                 </span>
-                <div class="dropdown is-right is-hoverable">
-                    <div class="dropdown-trigger">
+                <div class="dropdown is-right"
+                     :class="{'is-active': sortDropdownOpen}">
+                    <div class="dropdown-trigger sort__dropdown-trigger" @click="sortDropdownOpen = !sortDropdownOpen">
                         <div class="sort__button" aria-haspopup="true" aria-controls="sort-dropdown-menu">
                             <span>{{ $trans('catalog.products.sort.' + search.sort.current) }}</span>
                             <span class="icon is-small">
-                                <i class="fas fa-angle-down"></i>
+                                <i class="fal fa-angle-down" v-if="!sortDropdownOpen"></i>
+                                <i class="fal fa-angle-up" v-if="sortDropdownOpen"></i>
                             </span>
                         </div>
                     </div>
@@ -96,6 +99,7 @@
                 search: search,
                 category: category,
                 results: null,
+                sortDropdownOpen: false
             }
         },
 
@@ -135,6 +139,10 @@
                 this.search.request.page = 0;
 
                 this.searchProducts();
+            },
+
+            hideSortDropdown() {
+                this.sortDropdownOpen = false;
             },
 
             applyFilter(filter, values) {

@@ -85,12 +85,6 @@
 
         methods: {
             toggleCart() {
-
-                if (this.cart.empty) {
-                    this.showCart = false;
-                    return;
-                }
-
                 this.showCart = !this.showCart;
             }
         }

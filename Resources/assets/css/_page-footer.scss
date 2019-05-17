@@ -5,3 +5,29 @@
   padding-bottom: 50px;
   font-size: $size-7;
 }
+
+.page-footer--default .page-footer__logo {
+  width: 60px;
+  opacity: 0.7
+}
+
+.page-footer--default .page-footer__info {
+  float: right;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .page-footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .page-footer--default .page-footer__info {
+    float: none;
+    margin-top: 0;
+  }
+}

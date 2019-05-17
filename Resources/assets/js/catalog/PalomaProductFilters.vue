@@ -12,7 +12,7 @@
 
         </div>
 
-        <div v-if="activeFilters.length > 0" class="product-filters__active">
+        <div v-if="activeFilterValues.length > 0" class="product-filters__active">
 
             <div class="product-filters__active-title">
                 {{ $trans('catalog.products.filter.active') }}
@@ -20,10 +20,9 @@
 
             <div class="field is-grouped is-grouped-multiline">
 
-                <div v-for="value in activeFilterValues" class="tags has-addons product-filters__active-filter-value"
-                    @click="remove(value)">
+                <div v-for="value in activeFilterValues" class="tags has-addons product-filters__active-filter-value">
                     <span class="tag">{{ value.value }}</span>
-                    <a class="tag is-delete"></a>
+                    <a class="tag is-delete" @click.prevent="remove(value)"></a>
                 </div>
 
                 <a class="product-filters__active-filter-clear" href=""
