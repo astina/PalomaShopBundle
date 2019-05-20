@@ -15,6 +15,11 @@
     </div>
 
     <div class="product-images__zoom" @click.prevent="zoomed = false">
+        <a class="product-images__zoom-close" href="">
+            <span class="icon is-large">
+                <i class="fal fa-times"></i>
+            </span>
+        </a>
         <div class="image">
             <img :src="zoomUrl" />
         </div>

@@ -29,6 +29,7 @@ class SearchResource
             ],
             'attributes' => [
                 'brand',
+                'badge',
             ],
         ],
         'filterAggregates',
