@@ -1,5 +1,3 @@
-require('../css/paloma.scss');
-
 import Vue from 'vue';
 
 // TODO create plugin
