@@ -29,7 +29,7 @@ $red: hsl(358, 100%, 58%);
 
 // Typography
 
-$family-sans-serif: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-sans-serif: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 //$family-sans-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $family-monospace: monospace;
 $render-mode: optimizeLegibility;
@@ -76,7 +76,7 @@ $speed: 86ms;
 // Derived
 
 $primary: $blue;
-$text: $grey;
+$text: $grey-dark;
 $highlight: #DCF2FF;
 
 // Paloma

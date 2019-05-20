@@ -7,7 +7,11 @@
 .category-nav__item {
   display: inline-block;
   padding: 10px 15px 10px 15px;
-  color: $grey;
+  color: $text;
+}
+
+.category-nav__burger .category-nav__item {
+  padding: 0;
 }
 
 .category-nav__item--has-children {
@@ -15,7 +19,7 @@
 
 .category-nav__item--has-children .category-nav__item-link {
   font-weight: bolder;
-  color: $grey;
+  color: $text;
 }
 
 .is-active .category-nav__menu-wrapper {
@@ -70,10 +74,6 @@
   }
 
 }
-
-//.category-nav__item:first-of-type .category-nav__dropdown {
-//  display: block;
-//}
 
 .category-nav__sitemap {
 }

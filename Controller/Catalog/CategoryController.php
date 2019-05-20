@@ -10,7 +10,7 @@ class CategoryController extends AbstractPalomaController
 {
     public function view($categorySlug, $categoryCode, Request $request, PalomaSerializer $serializer)
     {
-        $category = $this->catalog->getCategory($categoryCode);
+        $category = $this->catalog->getCategory($categoryCode, 1);
 
         // Redirect to proper URL if slug differs
         if ($category->getSlug() && $categorySlug !== $category->getSlug()) {

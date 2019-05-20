@@ -26,3 +26,14 @@
   line-height: 1.6;
 }
 
+
+@media screen and (max-width: 768px) {
+
+  .sitemap {
+    padding: 20px 0 0 0;
+  }
+
+  .sitemap__nav {
+    margin-bottom: 30px;
+  }
+}

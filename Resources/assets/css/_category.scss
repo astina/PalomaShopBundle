@@ -1,0 +1,22 @@
+.category {
+
+}
+
+.category__children .field {
+  flex-wrap: wrap;
+}
+
+.category__children .button {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .category__children {
+    overflow-x: auto;
+  }
+
+  .category__children {
+    padding: 0 0 1.5rem 1.5rem;
+  }
+}

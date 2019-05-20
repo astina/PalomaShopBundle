@@ -16,13 +16,22 @@
   flex: 1;
 }
 
+.page-header__user-nav {
+  //margin-top: auto;
+  margin-top: 25px;
+}
+
 .page-header__quick-search {
-  margin-top: auto;
-  margin-bottom: 25px;
+  //margin-top: auto;
+  //margin-bottom: 25px;
 }
 
 .page-header__bottom {
   display: flex;
+}
+
+.page-header__category-nav {
+  flex: 1;
 }
 
 @media screen and (max-width: 768px) {
@@ -42,8 +51,8 @@
   .page-header__user-nav {
     margin-top: 10px;
   }
-}
 
-.page-header__category-nav {
-  flex: 1;
+  .page-header__bottom {
+    padding-bottom: 5px;
+  }
 }

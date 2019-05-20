@@ -3,17 +3,17 @@
 {% block title %}{{ category.title }} &ndash; {{ parent() }}{% endblock %}
 
 {% block meta %}
-    <meta name="description" content="{{ category.metaDescription }}" />
+    <meta name="description" content="{{ category.metaDescription }}"/>
 {% endblock %}
 
 {% block main %}
 
     <section class="section">
         <div class="container">
+
+            {% include '@PalomaShop/catalog/category/breadcrumb.html.twig' with { include_self: false } %}
+
             {% block category_content %}
-
-                {% include '@PalomaShop/catalog/category/breadcrumb.html.twig' with { include_self: false } %}
-
                 <div class="content">
                     <h1>{{ category.name }}</h1>
                     {% if category.description %}
@@ -24,11 +24,26 @@
         </div>
     </section>
 
+    {% if category.subCategories and category.subCategories|length > 0 %}
+        <div class="container">
+            <div class="category__children">
+                <div class="field is-grouped">
+                    {% for subCategory in category.subCategories %}
+                        <div class="control">
+                            <a class="button is-outlined" href="{{ category_path(subCategory) }}">
+                                {{ subCategory.name }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
     <section class="section">
         <div class="container">
             {% block category_products %}
-{#                {% include '@PalomaShop/catalog/product/list.html.twig' %}#}
-                {% include '@PalomaShop/catalog/product/list_js.html.twig' %}
+                {% include '@PalomaShop/catalog/product/list.html.twig' %}
             {% endblock %}
         </div>
     </section>

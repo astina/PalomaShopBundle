@@ -5,7 +5,7 @@
             <span class="icon">
                 <span class="far fa-shopping-bag"></span>
             </span>
-            <span v-if="cart.empty">
+            <span v-if="cart.empty" class="is-hidden-mobile">
                 {{ $trans('cart.title') }}
             </span>
             <span v-else>
