@@ -1,0 +1,52 @@
+locale:
+  en: EN
+  de: DE
+  fr: FR
+
+search:
+  placeholder: Chercher...
+
+catalog:
+  products:
+    title: Articles
+    sort_by: 'Trier par:'
+    sort:
+      position: Position
+      relevance: Pertinence
+      price_asc: Prix croissant
+      price_desc: Prix décroissant
+    filter:
+      apply: Appliquer
+      active: 'Filtres actifs:'
+      clear: 'tout supprimer'
+    item_number: "Numéro d'article:"
+    vat_info_incl: TVA incluse %rate%
+    vat_info_excl: TVA exclusif %rate%
+    add_to_cart: Ajouter au panier
+    out_of_stock: Actuellement non disponible.
+    recommendations:
+      purchased_together: 'Souvent achetés ensemble :'
+
+  search:
+    title: 'Chercher'
+
+cart:
+  title: Panier
+  empty: Votre panier est vide
+  units_count: '%count% articles'
+  item_added: 'a été ajouté à votre panier.'
+  open: Ouvrir le panier
+  to_checkout: Aller à la caisse
+  continue_shopping: Continuer à magasiner
+  total: Total
+  recommendations: 'Ça pourrait te plaire aussi :'
+
+customer:
+  sign_in: Connecter
+
+paging:
+  next: Suivant
+  prev: Retour
+
+checkout:
+  title: Caisse

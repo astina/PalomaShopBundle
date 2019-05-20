@@ -5,3 +5,48 @@ locale:
 
 search:
   placeholder: Search...
+
+catalog:
+  products:
+    title: Products
+    sort_by: 'Sort by:'
+    sort:
+      position: Position
+      relevance: Relevance
+      price_asc: Price (lowest)
+      price_desc: Price (highest)
+    filter:
+      apply: Apply
+      active: 'Active filters:'
+      clear: 'remove all'
+    item_number: 'Article N°:'
+    vat_info_incl: '%rate% VAT included'
+    vat_info_excl: '%rate% VAT excluded'
+    add_to_cart: Add to cart
+    out_of_stock: Currently not available.
+    recommendations:
+      purchased_together: 'Was often bought together with:'
+
+  search:
+    title: 'Search'
+
+cart:
+  title: Shopping Cart
+  empty: Your shopping cart is empty
+  units_count: '%count% articles'
+  item_added: 'has added to your shopping cart.'
+  open: Open shopping cart
+  to_checkout: Go to checkout
+  continue_shopping: Continue shopping
+  total: Total
+  recommendations: 'You might like that, too:'
+
+customer:
+  sign_in: Sign in
+
+paging:
+  next: Next
+  prev: Previous
+
+checkout:
+  title: Checkout

@@ -11,7 +11,7 @@ catalog:
     title: Artikel
     sort_by: 'Sortieren nach:'
     sort:
-      position: Beliebtheit
+      position: Position
       relevance: Relevanz
       price_asc: Preis aufsteigend
       price_desc: Preis absteigend
