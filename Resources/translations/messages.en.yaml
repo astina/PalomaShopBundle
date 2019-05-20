@@ -34,7 +34,7 @@ cart:
   title: Shopping Cart
   empty: Your shopping cart is empty
   units_count: '%count% articles'
-  item_added: 'has added to your shopping cart.'
+  item_added: 'was added to your shopping cart.'
   open: Open shopping cart
   to_checkout: Go to checkout
   continue_shopping: Continue shopping
