@@ -1,7 +1,7 @@
 <template>
     <div class="product-list">
 
-        <div class="product-list__head">
+        <div v-if="showHead" class="product-list__head">
 
             <h4 class="product-list__title">
                 <span v-if="!results"><i class="fas fa-spinner fa-spin"></i></span>
@@ -12,7 +12,8 @@
             </h4>
 
             <div class="product-list__sort sort"
-                v-click-outside="hideSortDropdown">
+                 v-if="search.sort"
+                 v-click-outside="hideSortDropdown">
                 <span class="sort__label">
                     {{ $trans('catalog.products.sort_by') }}
                 </span>
@@ -59,7 +60,7 @@
                 </div>
             </div>
 
-            <div v-if="results.totalPages > 1" class="product-list__pagination">
+            <div v-if="paging && results.totalPages > 1" class="product-list__pagination">
                 <paloma-pagination
                         :page="results"
                         @page-prev="prevPage"
@@ -86,6 +87,17 @@
             PalomaProductFilters,
             PalomaPagination,
             PalomaProductCard
+        },
+
+        props: {
+            showHead: {
+                type: Boolean,
+                default: true
+            },
+            paging: {
+                type: Boolean,
+                default: true
+            },
         },
 
         data() {
@@ -221,10 +233,10 @@
 
                 return paloma.router.resolve(
                     this.results._links.product.href,
-                    Object.assign({
+                    {
                         itemNumber: product.itemNumber,
                         productSlug: product.slug
-                    }, this._searchParams()));
+                    });
             },
 
             _searchParams() {
