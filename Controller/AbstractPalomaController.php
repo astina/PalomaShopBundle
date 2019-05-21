@@ -86,7 +86,7 @@ abstract class AbstractPalomaController extends AbstractController
             [],
             true,
             (int)$request->get('page', 0),
-            (int)$request->get('size', 12),
+            (int)$request->get('size', 24),
             $request->get('sort', $category ? 'position' : 'relevance'),
             $request->get('desc', false)
         );
