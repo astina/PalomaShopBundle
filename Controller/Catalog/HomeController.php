@@ -2,7 +2,6 @@
 
 namespace Paloma\ShopBundle\Controller\Catalog;
 
-use Paloma\Shop\Catalog\SearchFilter;
 use Paloma\Shop\Catalog\SearchRequest;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
 use Paloma\ShopBundle\PalomaSerializer;
@@ -14,13 +13,7 @@ class HomeController extends AbstractPalomaController
         $searchRequest = new SearchRequest(
             null,
             null,
-            [
-                new SearchFilter(
-                    'master.attributes.sales_total.value',
-                    [],
-                    1
-                )
-            ],
+            [],
             false,
             0,
             12,
