@@ -50,3 +50,51 @@ paging:
 
 checkout:
   title: Kasse
+  abort: Zurück zum Shop
+  overview: Übersicht
+  state_auth:
+    name: Anmelden
+    title: Anmelden
+    email_info: |
+      Bitte geben Sie Ihre E-Mail-Adresse ein. Falls Sie bereits Kunde sind, geben Sie bitte die E-Mail-Adresse an,
+      welche Sie bei der letzten Bestellung verwendet haben.
+    login_info: |
+      Bitte melden Sie sich mit Ihrem Passwort an.
+    login: Anmelden
+  state_delivery:
+    name: Lieferung
+    title: Lieferung
+  state_payment:
+    name: Bezahlung
+    title: Bezahlung
+  state_confirm:
+    name: Bestätigung
+    title: Bestätigung
+  next: Weiter
+
+order:
+  items: Artikel
+  items_price: Subtotal
+  shipping_price: 'Versandkosten (%method%)'
+  total_price: Total
+  tax_incl: inkl.
+
+shipping:
+  swisspost_default: Post CH Standard
+  swisspost_priority: Post CH Priority
+
+error:
+  general:
+    message: Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.
+  field:
+    required: Dieses Feld darf nicht leer sein
+  email:
+    required: Bitte geben Sie eine E-Mail-Addresse ein
+    invalid: Diese E-Mail-Adresse ist ungültig
+
+field:
+  email: E-Mail-Adresse
+  password: Passwort
+
+nav:
+  back: Zurück

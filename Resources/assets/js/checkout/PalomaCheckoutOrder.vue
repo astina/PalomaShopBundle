@@ -1,0 +1,100 @@
+<template>
+    <div class="checkout-order">
+
+        <h2 class="checkout-order__title">
+            {{ $trans('checkout.overview') }}
+        </h2>
+
+        <div class="checkout-order__items">
+
+            <h3 class="checkout-order__subtitle">
+                {{ $trans('order.items') }}
+            </h3>
+
+            <paloma-checkout-order-item
+                    v-for="item in order.items"
+                    :key="item.id"
+                    :item="item"></paloma-checkout-order-item>
+
+        </div>
+
+        <paloma-checkout-order-adjustment
+                :title="$trans('order.items_price')"
+                :price="order.itemsPrice"
+                type="subtotal"></paloma-checkout-order-adjustment>
+
+        <paloma-checkout-order-adjustment
+                v-if="order.shippingPrice"
+                :title="shippingTitle"
+                :price="order.shippingPrice"
+                type="shipping"></paloma-checkout-order-adjustment>
+
+        <div v-for="adjustment in order.reductions">
+            <paloma-checkout-order-adjustment
+                    :title="adjustment.description"
+                    :price="adjustment.price"
+                    type="reduction"></paloma-checkout-order-adjustment>
+        </div>
+
+        <div v-for="adjustment in order.surcharges">
+            <paloma-checkout-order-adjustment
+                    :title="adjustment.description"
+                    :price="adjustment.price"
+                    type="surcharge"></paloma-checkout-order-adjustment>
+        </div>
+
+        <div class="checkout-order__total">
+            <div class="checkout-order__total-title">
+                {{ $trans('order.total_price') }}
+            </div>
+            <div class="checkout-order__total-price">
+                <paloma-price :price="order.totalPrice"></paloma-price>
+            </div>
+        </div>
+
+        <div v-for="tax in order.includedTaxes">
+            <paloma-checkout-order-adjustment
+                    :title="$trans('order.tax_incl') + ' ' + tax.description"
+                    :price="tax.price"
+                    type="tax"></paloma-checkout-order-adjustment>
+        </div>
+
+    </div>
+</template>
+
+<script>
+
+    import paloma from '../paloma';
+    import PalomaCheckoutOrderItem from "./PalomaCheckoutOrderItem";
+    import PalomaPrice from "../common/PalomaPrice";
+    import PalomaCheckoutOrderAdjustment from "./PalomaCheckoutOrderAdjustment";
+
+    export default {
+        name: "PalomaCheckoutOrder",
+
+        components: {
+            PalomaCheckoutOrderAdjustment,
+            PalomaPrice,
+            PalomaCheckoutOrderItem
+        },
+
+        data() {
+
+            const order = paloma.checkout.orderDraft();
+
+            return {
+                order: order,
+            }
+        },
+
+        computed: {
+
+            shippingTitle() {
+
+                const shippingMethod = this.$trans('shipping.' + this.order.shipping.shippingMethod);
+
+                return this.$trans('order.shipping_price', {method: shippingMethod});
+            }
+        }
+    }
+</script>

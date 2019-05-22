@@ -50,3 +50,40 @@ paging:
 
 checkout:
   title: Checkout
+  abort: Back to the shop
+  overview: Overview
+  state_auth:
+    name: Register
+    title: Register
+  state_delivery:
+    name: Delivery
+    title: Delivery
+  state_payment:
+    name: Payment
+    title: Payment
+  state_confirm:
+    name: Confirmation
+    title: Confirmation
+  next: Next
+
+order:
+  items: Items
+  items_price: Subtotal
+  shipping_price: Shipping costs (%method%)
+  total_price: Total
+  tax_incl: incl.
+
+shipping:
+  swisspost_default: Post CH Standard
+  swisspost_priority: Post CH Priority
+
+error:
+  general:
+    message: An error has occurred. Please try again.
+
+field:
+  email: Email address
+  password: Password
+
+nav:
+  back: Back

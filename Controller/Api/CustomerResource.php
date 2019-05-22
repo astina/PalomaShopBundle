@@ -11,6 +11,7 @@ use Paloma\Shop\Error\InvalidConfirmationToken;
 use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\NotAuthenticated;
 use Paloma\ShopBundle\PalomaSerializer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,7 +26,7 @@ class CustomerResource
             return $serializer->toJsonResponse($customer);
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse(null, $e->getHttpStatus());
         } catch (NotAuthenticated $e) {
             return new Response('Unauthorized', 401);
         }
@@ -47,7 +48,7 @@ class CustomerResource
             return $serializer->toJsonResponse($customer);
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse(null, $e->getHttpStatus());
         } catch (InvalidInput $e) {
             return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         }
@@ -65,7 +66,7 @@ class CustomerResource
             return $serializer->toJsonResponse($customer);
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse(null, $e->getHttpStatus());
         } catch (InvalidInput $e) {
             return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         } catch (NotAuthenticated $e) {
@@ -85,7 +86,7 @@ class CustomerResource
             return $serializer->toJsonResponse($address);
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse(null, $e->getHttpStatus());
         } catch (InvalidInput $e) {
             return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         } catch (NotAuthenticated $e) {
@@ -105,10 +106,10 @@ class CustomerResource
 
             $customers->confirmEmailAddress($token);
 
-            return new Response(null, '204');
+            return new JsonResponse(null, '204');
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse(null, $e->getHttpStatus());
         } catch (InvalidConfirmationToken $e) {
             return new Response('Invalid confirmation token', 400);
         }
@@ -126,10 +127,24 @@ class CustomerResource
 
             $exists = $customers->existsCustomerByEmailAddress($emailAddress);
 
+            $sessionKey = 'paloma.customer.existsCustomerByEmailAddress.failed_attempts';
+            if ($exists) {
+                $request->getSession()->remove($sessionKey);
+
+            // make crawling for valid email addresses a little slower
+            } else {
+                $failedAttempts = $request->getSession()->get($sessionKey, 0);
+                if ($failedAttempts > 2) {
+                    // Sleep for max 10 seconds
+                    usleep(min(10, $failedAttempts * 0.2) * 1000000);
+                }
+                $request->getSession()->set($sessionKey, $failedAttempts + 1);
+            }
+
             return $serializer->toJsonResponse(['exists' => $exists]);
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse(null, $e->getHttpStatus());
         }
     }
 }

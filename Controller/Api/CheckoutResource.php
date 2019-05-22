@@ -7,6 +7,7 @@ use Paloma\Shop\Checkout\CheckoutInterface;
 use Paloma\Shop\Checkout\PaymentInitParameters;
 use Paloma\Shop\Common\Address;
 use Paloma\Shop\Error\BackendUnavailable;
+use Paloma\Shop\Error\CartIsEmpty;
 use Paloma\Shop\Error\InvalidCouponCode;
 use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\InvalidShippingTargetDate;
@@ -16,11 +17,34 @@ use Paloma\Shop\Error\OrderNotReadyForPurchase;
 use Paloma\Shop\Error\UnknownPaymentMethod;
 use Paloma\Shop\Error\UnknownShippingMethod;
 use Paloma\ShopBundle\PalomaSerializer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckoutResource
 {
+    public function getOrderDraft(CheckoutInterface $checkout, PalomaSerializer $serializer)
+    {
+        try {
+
+            $order = $checkout->getOrderDraft();
+
+            return $serializer->toJsonResponse($order, [
+                'exclude' => [
+                    'customer' => [
+                        'id',
+                        'userId'
+                    ]
+                ]
+            ]);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        } catch (CartIsEmpty $e) {
+            return new JsonResponse(['message' => 'Cart is empty'], 400);
+        }
+    }
+
     public function setAddresses(CheckoutInterface $checkout, PalomaSerializer $serializer, Request $request)
     {
         $data = $serializer->toArray($request->getContent());
@@ -29,7 +53,7 @@ class CheckoutResource
         $shippingAddress = isset($data['shipping']) ? Address::ofData($data['shipping']) : null;
 
         if ($billingAddress === null && $shippingAddress === null) {
-            return new Response('Parameter `billing` or `shipping` required', ['status' => 400]);
+            return new Response('Parameter `billing` or `shipping` required', 400);
         }
 
         if ($billingAddress === null) {
@@ -69,7 +93,7 @@ class CheckoutResource
         $until = $request->get('until');
 
         if (!$method) {
-            return new Response('Parameter `method` missing', ['status' => 400]);
+            return new Response('Parameter `method` missing', 400);
         }
 
         try {

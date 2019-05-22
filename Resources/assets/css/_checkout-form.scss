@@ -1,0 +1,23 @@
+.checkout-form {
+  margin-top: 50px;
+}
+
+.checkout-form .button {
+  min-width: 150px;
+}
+
+.checkout-form__field--invalid {
+
+}
+
+.checkout-form__field .help.is-danger {
+  display: none;
+}
+
+.checkout-form__field--invalid .help.is-danger {
+  display: block;
+}
+
+.checkout-form__buttons {
+  margin-top: 20px;
+}

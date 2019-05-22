@@ -1,7 +1,20 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import axios from 'axios';
 
 const events = new Vue();
+
+Vue.use(Vuex);
+
+axios.interceptors.request.use(config => {
+
+    const csrfToken = document.querySelector('meta[data-csrf-token]');
+    if (csrfToken) {
+        config.headers['x-csrf-token'] = csrfToken.getAttribute('data-csrf-token');
+    }
+
+    return config;
+});
 
 const routes = window.PALOMA.routes;
 
@@ -171,6 +184,90 @@ const cart = {
     }
 };
 
+const checkout = {
+
+    existsCustomerByEmailAddress(emailAddress) {
+
+        return axios
+            .get(routes['api_customer_exists_email'], { params: {
+                    emailAddress: emailAddress
+            }})
+            .then(response => {
+                return response.data
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e)
+            });
+    },
+
+    setEmailAddress(emailAddress) {
+        this.store.commit('setEmailAddress', emailAddress);
+    },
+
+    orderDraft() {
+        return this.store.state.order;
+    },
+
+    refreshOrderDraft() {
+
+        axios
+            .get(routes['api_checkout_order'])
+            .then(response => {
+                this.store.commit('updateOrder', response.data);
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e)
+            });
+    },
+
+    emailAddress() {
+        return this.store.state.emailAddress;
+    },
+
+    // Vuex
+
+    store: new Vuex.Store({
+
+        state: {
+            order: (PALOMA && PALOMA.checkout && PALOMA.checkout.order) || {},
+        },
+
+        mutations: {
+
+            setEmailAddress(state, emailAddress) {
+                state.emailAddress = emailAddress;
+            },
+
+            updateOrder(state, order) {
+                state.order = order;
+            },
+
+            setCustomer(state, customer) {
+            }
+
+        }
+    })
+};
+
+const user = {
+
+    authenticate(username, password) {
+
+        return axios
+            .post(routes['api_user_authenticate'], {
+                username: username,
+                password: password
+            })
+            .then(response => {
+                return response.status >= 200 && response.status < 300;
+            })
+            .catch(e => {
+                return false;
+            });
+    }
+
+};
+
 export default {
 
     events: events,
@@ -179,5 +276,9 @@ export default {
 
     catalog: catalog,
 
-    cart: cart
+    cart: cart,
+
+    checkout: checkout,
+
+    user: user,
 }

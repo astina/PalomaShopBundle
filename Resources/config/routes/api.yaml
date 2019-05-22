@@ -78,6 +78,11 @@ paloma_api_cart_repeat_order:
 
 # Checkout
 
+paloma_api_checkout_order:
+  path: /checkout/order
+  controller: paloma_shop.controller.checkout_resource:getOrderDraft
+  methods: GET
+
 paloma_api_checkout_addresses_update:
   path: /checkout/addresses
   controller: paloma_shop.controller.checkout_resource:setAddresses

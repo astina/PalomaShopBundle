@@ -34,13 +34,8 @@ class PalomaSerializer
             $data = $this->include($data, $options['include']);
         }
 
-        // TODO recursive
         if (isset($options['exclude'])) {
-            foreach (array_keys($data) as $field) {
-                if (in_array($field, $options['exclude'])) {
-                    unset($data[$field]);
-                }
-            }
+            $data = $this->exclude($data, $options['exclude']);
         }
 
         if (isset($options['extend'])) {
@@ -114,6 +109,55 @@ class PalomaSerializer
 
             if (isset($data[$field]) && isset($include[$field])) {
                 $data[$field] = $this->include($data[$field], $include[$field]);
+            }
+        }
+
+        return $data;
+    }
+
+    private function exclude(array $data, array $exclude)
+    {
+        $fields = [];
+        foreach ($exclude as $key => $value) {
+            if (is_numeric($key)) {
+                $fields[] = $value;
+            }
+        }
+
+        $keys = array_keys($data);
+
+        if (count($keys) === 0) {
+            return $data;
+        }
+
+        // Are we dealing with a list?
+        if (!is_string($keys[0])) {
+
+            foreach ($data as &$elem) {
+
+                foreach (array_keys($elem) as $field) {
+
+                    if (in_array($field, $fields)) {
+                        unset($elem[$field]);
+                    }
+
+                    if (isset($elem[$field]) && isset($exclude[$field])) {
+                        $elem[$field] = $this->exclude($elem[$field], $exclude[$field]);
+                    }
+                }
+            }
+
+            return $data;
+        }
+
+        foreach ($keys as $field) {
+
+            if (in_array($field, $fields)) {
+                unset($data[$field]);
+            }
+
+            if (isset($data[$field]) && isset($exclude[$field])) {
+                $data[$field] = $this->exclude($data[$field], $exclude[$field]);
             }
         }
 

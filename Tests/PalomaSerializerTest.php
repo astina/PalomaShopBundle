@@ -48,6 +48,36 @@ class PalomaSerializerTest extends TestCase
         $this->assertArrayHasKey('small', $data['firstImage']['sources']);
     }
 
+    public function testSerializeWithExclude()
+    {
+        $serializer = new Serializer(
+            [
+                new ObjectNormalizer(),
+            ]
+        );
+
+        $palomaSerializer = new PalomaSerializer($serializer);
+
+        $product = $this->createProduct();
+
+        $json = $palomaSerializer->serialize(
+            $product,
+            [
+                'exclude' => [
+                    'description',
+                    'variants' => [
+                        'pricing'
+                    ],
+                ],
+            ]);
+
+        $data = json_decode($json, true);
+
+        $this->assertArrayHasKey('itemNumber', $data);
+        $this->assertArrayNotHasKey('description', $data);
+        $this->assertArrayNotHasKey('pricing', $data['variants'][0]);
+    }
+
     /**
      * @return Product
      */
@@ -104,10 +134,25 @@ class PalomaSerializerTest extends TestCase
                                 ]
                             ]
                         ]
-                    ]
+                    ],
+                    'availability' => [
+                        'available' => true,
+                        'availableFrom' => null,
+                        'availableStock' => 10,
+                    ],
                 ]
             ],
             'master' => [
+                'pricing' => [
+                    'currency' => 'currency',
+                    'grossPriceFormatted' => 'grossPriceFormatted',
+                    'originalGrossPriceFormatted' => 'originalGrossPriceFormatted',
+                    'taxes' => [
+                        'vat' => [
+                            'rateFormatted' => 'rateFormatted'
+                        ]
+                    ]
+                ],
                 'attributes' => [
                     'type' => [
                         'type' => 'type',
@@ -132,6 +177,11 @@ class PalomaSerializerTest extends TestCase
                             ],
                         ]
                     ]
+                ],
+                'availability' => [
+                    'available' => true,
+                    'availableFrom' => null,
+                    'availableStock' => 10,
                 ],
             ],
         ]);

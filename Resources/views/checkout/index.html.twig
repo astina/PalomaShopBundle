@@ -2,6 +2,11 @@
 
 {% block title %}{{ 'checkout.title' | trans }} &ndash; {{ parent() }}{% endblock %}
 
+{% block meta %}
+    {{ parent() }}
+    <meta data-csrf-token="{{ csrf_token('authenticate') }}">
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('app') }}
@@ -14,6 +19,14 @@
 {% endblock %}
 
 {% block body %}
+
+    <script>
+        var PALOMA = PALOMA || {};
+        PALOMA.checkout = {
+            state: '{{ state }}',
+            order: {{ order_json|raw }}
+        }
+    </script>
 
     <main id="paloma-checkout">
         <paloma-checkout></paloma-checkout>

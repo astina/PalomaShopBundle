@@ -5,9 +5,9 @@ namespace Paloma\ShopBundle\Security;
 use Paloma\Shop\Customers\CustomersInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\BadCredentials;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -92,7 +92,7 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($this->isApiAuthRequest($request)) {
-            return new Response(null, 204);
+            return new JsonResponse(null, 204);
         }
 
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
@@ -105,7 +105,7 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         if ($this->isApiAuthRequest($request)) {
-            return new Response('Bad credentials', 403);
+            return new JsonResponse(['message' => 'Bad credentials'], 403);
         }
 
         return parent::onAuthenticationFailure($request, $exception);
