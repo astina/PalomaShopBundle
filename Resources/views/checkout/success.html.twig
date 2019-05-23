@@ -1,0 +1,14 @@
+{% extends '@PalomaShop/base.html.twig' %}
+
+{% block title %}{{ 'checkout.title' | trans }} &ndash; {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>{{ order_number }}</h1>
+
+{% endblock %}

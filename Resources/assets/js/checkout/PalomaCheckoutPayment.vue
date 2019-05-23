@@ -1,12 +1,18 @@
 <template>
     <div class="checkout-payment">
-        <h1 class="checkout__title">Payment</h1>
+        <router-view @address-update="onAddressUpdate"></router-view>
     </div>
 </template>
 
 <script>
     export default {
-        name: "PalomaCheckoutPayment"
+        name: "PalomaCheckoutPayment",
+
+        methods: {
+            onAddressUpdate() {
+                this.$router.push({name: 'state_confirm'});
+            }
+        }
     }
 </script>
 

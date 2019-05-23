@@ -35,4 +35,11 @@ class CheckoutController extends AbstractPalomaController
             'state' => $state,
         ]);
     }
+
+    public function success()
+    {
+        return $this->render('@PalomaShop/checkout/success.html.twig', [
+            'order_number' => 'TODO123',
+        ]);
+    }
 }

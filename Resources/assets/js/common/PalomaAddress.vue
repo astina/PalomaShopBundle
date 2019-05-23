@@ -3,11 +3,10 @@
         <span v-show="address.company" class="address__line address__line--company">
             {{ address.company }}
         </span>
-        <span class="address__line address__line--title">
-            {{ address.title }}
-        </span>
         <span class="address__line address__line--name">
-            {{ address.fullName }}
+            {{ address.title }}
+            {{ address.firstName }}
+            {{ address.lastName }}
         </span>
         <span class="address__line address__line--street">
             {{ address.street }}

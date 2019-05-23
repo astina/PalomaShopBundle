@@ -94,16 +94,11 @@
             PalomaPrice
         },
 
-        data() {
-
-            const order = paloma.checkout.orderDraft();
-
-            return {
-                order: order,
-            }
-        },
-
         computed: {
+
+            order() {
+                return paloma.checkout.orderDraft();
+            },
 
             shippingTitle() {
 

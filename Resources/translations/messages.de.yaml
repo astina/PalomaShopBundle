@@ -68,9 +68,11 @@ checkout:
   state_delivery:
     name: Lieferung
     title: Lieferung
+    shipping_address: Lieferadresse
   state_payment:
     name: Bezahlung
     title: Bezahlung
+    billing_address: Rechnungsadresse
   state_confirm:
     name: Bestätigung
     title: Bestätigung
@@ -91,14 +93,26 @@ error:
   general:
     message: Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.
   field:
-    required: Dieses Feld darf nicht leer sein
+    required: Dieses Feld darf nicht leer sein.
+    too_long: Dieser Wert darf nicht länger als %max% Zeichen lang sein.
   email:
-    required: Bitte geben Sie eine E-Mail-Addresse ein
-    invalid: Diese E-Mail-Adresse ist ungültig
+    required: Bitte geben Sie eine E-Mail-Addresse ein.
+    invalid: Diese E-Mail-Adresse ist ungültig.
 
 field:
   email: E-Mail-Adresse
   password: Passwort
+  address_title: Anrede
+  address_title.mr: Herr
+  address_title.ms: Frau
+  first_name: Vorname
+  last_name: Nachname
+  company: Firma
+  street: Strasse und Hausnummer
+  zip_code: PLZ
+  city: Ort
+  country: Land
+  phone_number: Telefon
 
 nav:
   back: Zurück

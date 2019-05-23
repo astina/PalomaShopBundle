@@ -2,8 +2,27 @@
   margin-top: 50px;
 }
 
+.checkout-form--address .label {
+  font-weight: $weight-light;
+  font-size: $size-7;
+  color: $text-light;
+}
+
 .checkout-form .button {
   min-width: 150px;
+}
+
+.checkout-form .columns {
+  margin-bottom: 0;
+}
+
+.checkout-form .column {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.checkout-form__field.field {
+  margin-bottom: 1.5rem;
 }
 
 .checkout-form__field--invalid {
@@ -20,6 +39,10 @@
 
 .checkout-form__buttons {
   margin-top: 20px;
+}
+
+.checkout-form--delivery .checkout-form__buttons {
+  margin-top: 50px;
 }
 
 .checkout-form__error {

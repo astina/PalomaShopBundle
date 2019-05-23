@@ -88,6 +88,16 @@ paloma_api_checkout_addresses_update:
   controller: paloma_shop.controller.checkout_resource:setAddresses
   methods: POST
 
+paloma_api_checkout_shipping_address_update:
+  path: /checkout/shipping_address
+  controller: paloma_shop.controller.checkout_resource:setShippingAddress
+  methods: POST
+
+paloma_api_checkout_billing_address_update:
+  path: /checkout/billing_address
+  controller: paloma_shop.controller.checkout_resource:setBillingAddress
+  methods: POST
+
 paloma_api_checkout_shipping_methods_list:
   path: /checkout/shipping_methods/list
   controller: paloma_shop.controller.checkout_resource:listShippingMethods

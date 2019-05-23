@@ -204,6 +204,42 @@ const checkout = {
         this.store.commit('setEmailAddress', emailAddress);
     },
 
+    setShippingAddress(address) {
+
+        return axios
+            .post(routes['api_checkout_shipping_address_update'], address)
+            .then(response => {
+                this.store.commit('updateOrder', response.data);
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e)
+            });
+    },
+
+    setBillingAddress(address) {
+
+        return axios
+            .post(routes['api_checkout_billing_address_update'], address)
+            .then(response => {
+                this.store.commit('updateOrder', response.data);
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e)
+            });
+    },
+
+    purchase() {
+
+        return axios
+            .post(routes['api_checkout_purchase'])
+            .then(response => {
+                response.data;
+            })
+            .catch(e => {
+                events.$emit('paloma.error', e)
+            });
+    },
+
     orderDraft() {
         return this.store.state.order;
     },

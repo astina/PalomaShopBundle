@@ -31,9 +31,12 @@
     import PalomaCheckoutAuthLogin from "./PalomaCheckoutAuthLogin";
     import PalomaCheckoutAuthRegister from "./PalomaCheckoutAuthRegister";
     import PalomaCheckoutDelivery from "./PalomaCheckoutDelivery";
+    import PalomaCheckoutDeliveryAddress from "./PalomaCheckoutDeliveryAddress";
+    import PalomaCheckoutDeliveryMethod from "./PalomaCheckoutDeliveryMethod";
     import PalomaCheckoutPayment from "./PalomaCheckoutPayment";
     import PalomaCheckoutConfirm from "./PalomaCheckoutConfirm";
     import PalomaNotifications from "../common/PalomaNotifications";
+    import PalomaCheckoutPaymentAddress from "./PalomaCheckoutPaymentAddress";
 
     const routes = [
         {
@@ -70,7 +73,22 @@
             component: PalomaCheckoutDelivery,
             meta: {
                 step: 2
-            }
+            },
+            redirect: {
+                name: 'state_delivery_address'
+            },
+            children: [
+                {
+                    path: 'address',
+                    name: 'state_delivery_address',
+                    component: PalomaCheckoutDeliveryAddress
+                },
+                {
+                    path: 'method',
+                    name: 'state_delivery_method',
+                    component: PalomaCheckoutDeliveryMethod
+                }
+            ]
         },
         {
             path: '/payment',
@@ -78,7 +96,17 @@
             component: PalomaCheckoutPayment,
             meta: {
                 step: 3
-            }
+            },
+            redirect: {
+                name: 'state_payment_address'
+            },
+            children: [
+                {
+                    path: 'address',
+                    name: 'state_payment_address',
+                    component: PalomaCheckoutPaymentAddress
+                }
+            ]
         },
         {
             path: '/confirm',

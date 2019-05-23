@@ -6,6 +6,7 @@ use DateTime;
 use Paloma\Shop\Checkout\CheckoutInterface;
 use Paloma\Shop\Checkout\PaymentInitParameters;
 use Paloma\Shop\Common\Address;
+use Paloma\Shop\Common\AddressInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\CartIsEmpty;
 use Paloma\Shop\Error\InvalidCouponCode;
@@ -50,13 +51,49 @@ class CheckoutResource
             return new Response('Parameter `billing` or `shipping` required', 400);
         }
 
-        if ($billingAddress === null) {
-            $billingAddress = $shippingAddress;
-        }
+//        if ($billingAddress === null) {
+//            $billingAddress = $shippingAddress;
+//        }
 
         try {
 
             $order = $checkout->setAddresses($billingAddress, $shippingAddress);
+
+            return $serializer->toJsonResponse($order);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        } catch (InvalidInput $e) {
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
+        }
+    }
+
+    public function setShippingAddress(CheckoutInterface $checkout, PalomaSerializer $serializer, Request $request)
+    {
+        /** @var AddressInterface $address */
+        $address = $serializer->deserialize($request->getContent(), Address::class);
+
+        try {
+
+            $order = $checkout->setShippingAddress($address);
+
+            return $serializer->toJsonResponse($order);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        } catch (InvalidInput $e) {
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
+        }
+    }
+
+    public function setBillingAddress(CheckoutInterface $checkout, PalomaSerializer $serializer, Request $request)
+    {
+        /** @var AddressInterface $address */
+        $address = $serializer->deserialize($request->getContent(), Address::class);
+
+        try {
+
+            $order = $checkout->setBillingAddress($address);
 
             return $serializer->toJsonResponse($order);
 

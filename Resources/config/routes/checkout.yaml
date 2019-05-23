@@ -3,10 +3,14 @@ paloma_checkout_start:
   controller: paloma_shop.controller.checkout::start
   methods: GET
 
+paloma_checkout_success:
+  path: /success
+  controller: paloma_shop.controller.checkout::success
+  methods: GET
+
 paloma_checkout_state:
   path: /{state}
   controller: paloma_shop.controller.checkout::state
   methods: GET
   requirements:
     state: '.*'
-
