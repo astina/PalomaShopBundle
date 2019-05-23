@@ -1,6 +1,6 @@
 <?php
 
-namespace Paloma\ShopBundle;
+namespace Paloma\ShopBundle\Serializer;
 
 use Closure;
 use InvalidArgumentException;

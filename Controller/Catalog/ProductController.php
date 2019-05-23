@@ -6,7 +6,7 @@ use Paloma\Shop\Catalog\ProductInterface;
 use Paloma\Shop\Catalog\SearchFilter;
 use Paloma\Shop\Catalog\SearchRequest;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractPalomaController

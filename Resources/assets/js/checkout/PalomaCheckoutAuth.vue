@@ -46,6 +46,7 @@
                 // Order should have been populated with user/customer data
                 paloma.checkout.refreshOrderDraft();
 
+                this.$router.push({name: 'state_delivery'});
             }
         }
     }

@@ -5,7 +5,7 @@ namespace Paloma\ShopBundle\EventListener;
 use Paloma\Shop\Checkout\CheckoutInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\CartIsEmpty;
-use Paloma\Shop\Security\UserProviderInterface;
+use Paloma\Shop\Security\PalomaSecurityInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
@@ -13,24 +13,24 @@ use Symfony\Component\Security\Http\SecurityEvents;
 class PalomaAuthenticationListener implements EventSubscriberInterface
 {
     /**
-     * @var UserProviderInterface
+     * @var PalomaSecurityInterface
      */
-    private $userProvider;
+    private $security;
 
     /**
      * @var CheckoutInterface
      */
     private $checkout;
 
-    public function __construct(UserProviderInterface $userProvider, CheckoutInterface $checkout)
+    public function __construct(PalomaSecurityInterface $security, CheckoutInterface $checkout)
     {
-        $this->userProvider = $userProvider;
+        $this->security = $security;
         $this->checkout = $checkout;
     }
 
     public function onLogin(InteractiveLoginEvent $event)
     {
-        $user = $this->userProvider->getUser();
+        $user = $this->security->getUser();
 
         try {
             $order = $this->checkout->getOrderDraft();
@@ -46,7 +46,7 @@ class PalomaAuthenticationListener implements EventSubscriberInterface
             || $customer->getId() !== $user->getCustomerId()
             || $customer->getUserId() !== $user->getUserId()) {
             try {
-                $this->checkout->setCustomer($this->userProvider->getCustomer(), $user);
+                $this->checkout->setCustomer($this->security->getCustomer(), $user);
             } catch (BackendUnavailable $e) {}
         }
     }

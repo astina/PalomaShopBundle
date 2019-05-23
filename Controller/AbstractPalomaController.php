@@ -8,7 +8,7 @@ use Paloma\Shop\Catalog\CategoryReferenceInterface;
 use Paloma\Shop\Catalog\ProductInterface;
 use Paloma\Shop\Catalog\SearchRequest;
 use Paloma\Shop\Checkout\CheckoutInterface;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -3,7 +3,7 @@
 namespace Paloma\ShopBundle\Controller\Catalog;
 
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Symfony\Component\HttpFoundation\Request;
 
 class SearchController extends AbstractPalomaController

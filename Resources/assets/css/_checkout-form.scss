@@ -21,3 +21,10 @@
 .checkout-form__buttons {
   margin-top: 20px;
 }
+
+.checkout-form__error {
+  color: $red;
+  border: 1px solid $red;
+  padding: 10px;
+  margin-bottom: 50px;
+}

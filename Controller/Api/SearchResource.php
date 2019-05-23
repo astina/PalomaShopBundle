@@ -7,40 +7,14 @@ use Paloma\Shop\Catalog\SearchRequest;
 use Paloma\Shop\Catalog\SearchSuggestions;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\InvalidInput;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\SerializationConstants;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 
 class SearchResource
 {
-    const PRODUCT_PAGE_DEFAULT_INCLUDE = [
-        'content' => [
-            'itemNumber',
-            'slug',
-            'name',
-            'basePrice',
-            'originalBasePrice',
-            'shortDescription',
-            'firstImage' => [
-                'sources' => [
-                    'small',
-                ],
-            ],
-            'attributes' => [
-                'brand',
-                'badge',
-            ],
-        ],
-        'filterAggregates',
-        'totalElements',
-        'totalPages',
-        'number',
-        'first',
-        'last',
-        'sort',
-    ];
-
     public function search(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request, RouterInterface $router)
     {
         if ($request->getMethod() == 'POST') {
@@ -57,7 +31,7 @@ class SearchResource
             $product = $catalog->search($searchRequest);
 
             return $serializer->toJsonResponse($product, [
-                'include' => self::PRODUCT_PAGE_DEFAULT_INCLUDE,
+                'include' => SerializationConstants::DEFAULT_INCLUDE_PRODUCT_PAGE,
                 'extend' => [
                     '$' => [
                         '_links' => function() use ($router) {

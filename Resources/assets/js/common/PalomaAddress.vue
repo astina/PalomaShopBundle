@@ -1,0 +1,30 @@
+<template>
+    <address class="address">
+        <span v-show="address.company" class="address__line address__line--company">
+            {{ address.company }}
+        </span>
+        <span class="address__line address__line--title">
+            {{ address.title }}
+        </span>
+        <span class="address__line address__line--name">
+            {{ address.fullName }}
+        </span>
+        <span class="address__line address__line--street">
+            {{ address.street }}
+        </span>
+        <span class="address__line address__line--zip-city-country">
+            {{ address.country ? address.country + '-' : '' }}{{ address.zipCode }}
+            {{ address.city }}
+        </span>
+    </address>
+</template>
+
+<script>
+    export default {
+        name: "PalomaAddress",
+
+        props: {
+            address: Object
+        }
+    }
+</script>

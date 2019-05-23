@@ -7,6 +7,10 @@
 
         <form @submit.prevent="submit" class="checkout-form" novalidate>
 
+            <p v-show="loginError" class="checkout-form__error">
+                {{ $trans('checkout.state_auth.login_error') }}
+            </p>
+
             <fieldset :disabled="loading">
 
                 <div class="field checkout-form__field"

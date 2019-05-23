@@ -5,6 +5,20 @@
             {{ $trans('checkout.overview') }}
         </h2>
 
+        <div v-if="order.shipping.address" class="checkout-order__address checkout-order__address--shipping">
+            <h3 class="checkout-order__subtitle">
+                {{ $trans('checkout.shipping_address') }}
+            </h3>
+            <paloma-address :address="order.shipping.address"></paloma-address>
+        </div>
+
+        <div v-if="order.billing.address" class="checkout-order__address checkout-order__address--billing">
+            <h3 class="checkout-order__subtitle">
+                {{ $trans('checkout.billing_address') }}
+            </h3>
+            <paloma-address :address="order.billing.address"></paloma-address>
+        </div>
+
         <div class="checkout-order__items">
 
             <h3 class="checkout-order__subtitle">
@@ -66,16 +80,18 @@
 
     import paloma from '../paloma';
     import PalomaCheckoutOrderItem from "./PalomaCheckoutOrderItem";
-    import PalomaPrice from "../common/PalomaPrice";
     import PalomaCheckoutOrderAdjustment from "./PalomaCheckoutOrderAdjustment";
+    import PalomaPrice from "../common/PalomaPrice";
+    import PalomaAddress from "../common/PalomaAddress";
 
     export default {
         name: "PalomaCheckoutOrder",
 
         components: {
             PalomaCheckoutOrderAdjustment,
-            PalomaPrice,
-            PalomaCheckoutOrderItem
+            PalomaCheckoutOrderItem,
+            PalomaAddress,
+            PalomaPrice
         },
 
         data() {

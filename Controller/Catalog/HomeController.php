@@ -4,7 +4,7 @@ namespace Paloma\ShopBundle\Controller\Catalog;
 
 use Paloma\Shop\Catalog\SearchRequest;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
 
 class HomeController extends AbstractPalomaController
 {

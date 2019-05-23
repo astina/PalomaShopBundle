@@ -6,7 +6,7 @@ use Paloma\Shop\Catalog\CatalogInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\ProductNotFound;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

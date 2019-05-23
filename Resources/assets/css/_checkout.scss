@@ -8,7 +8,7 @@
 }
 
 .checkout__order {
-  background: $grey-lighter;
+  background: lighten($grey-lighter, 10);
   padding: 20px 50px;
   display: none; // TODO
 }

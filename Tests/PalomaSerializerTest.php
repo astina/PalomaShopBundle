@@ -3,7 +3,7 @@
 namespace Paloma\ShopBundle\Tests;
 
 use Paloma\Shop\Catalog\Product;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;

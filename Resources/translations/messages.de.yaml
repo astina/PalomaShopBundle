@@ -52,6 +52,8 @@ checkout:
   title: Kasse
   abort: Zurück zum Shop
   overview: Übersicht
+  shipping_address: Lieferadresse
+  billing_address: Rechnungsadresse
   state_auth:
     name: Anmelden
     title: Anmelden
@@ -60,6 +62,8 @@ checkout:
       welche Sie bei der letzten Bestellung verwendet haben.
     login_info: |
       Bitte melden Sie sich mit Ihrem Passwort an.
+    login_error: |
+      Leider konnten Sie nicht angemeldet werden. Bitte prüfen Sie, ob Sie E-Mail-Adresse und Passwort richtig eingegeben haben.
     login: Anmelden
   state_delivery:
     name: Lieferung

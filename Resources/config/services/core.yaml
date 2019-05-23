@@ -42,10 +42,14 @@ services:
     arguments:
       - ~ # injected by bundle extension
 
-  paloma_shop.security.user_provider:
-    class: Paloma\ShopBundle\Security\PalomaUserProvider
+  paloma_shop.security:
+    class: Paloma\ShopBundle\Security\PalomaSecurity
     arguments:
       - '@security.token_storage'
+      - '@paloma_shop.client'
+
+  paloma_shop.security.user_provider:
+    class: Paloma\ShopBundle\Security\PalomaUserProvider
 
   paloma_shop.security.authenticator:
     class: Paloma\ShopBundle\Security\PalomaAuthenticator
@@ -54,7 +58,7 @@ services:
     class: Paloma\ShopBundle\EventListener\PalomaAuthenticationListener
 
   paloma_shop.serializer:
-    class: Paloma\ShopBundle\PalomaSerializer
+    class: Paloma\ShopBundle\Serializer\PalomaSerializer
 
   paloma_shop.exception_listener:
     class: Paloma\ShopBundle\EventListener\PalomaExceptionListener
@@ -98,11 +102,11 @@ services:
   Paloma\Shop\Customers\CustomersClientInterface:
     alias: paloma_shop.client.customers
 
-  Paloma\Shop\Security\UserProviderInterface:
-    alias: paloma_shop.security.user_provider
+  Paloma\Shop\Security\PalomaSecurityInterface:
+    alias: paloma_shop.security
 
   Paloma\Shop\PalomaConfigInterface:
     alias: paloma_shop.config
 
-  Paloma\ShopBundle\PalomaSerializer:
+  Paloma\ShopBundle\Serializer\PalomaSerializer:
     alias: paloma_shop.serializer

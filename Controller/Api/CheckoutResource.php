@@ -16,7 +16,8 @@ use Paloma\Shop\Error\OrderNotReadyForPayment;
 use Paloma\Shop\Error\OrderNotReadyForPurchase;
 use Paloma\Shop\Error\UnknownPaymentMethod;
 use Paloma\Shop\Error\UnknownShippingMethod;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\SerializationConstants;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,14 +30,7 @@ class CheckoutResource
 
             $order = $checkout->getOrderDraft();
 
-            return $serializer->toJsonResponse($order, [
-                'exclude' => [
-                    'customer' => [
-                        'id',
-                        'userId'
-                    ]
-                ]
-            ]);
+            return $serializer->toJsonResponse($order, SerializationConstants::OPTIONS_ORDER_DRAFT);
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);

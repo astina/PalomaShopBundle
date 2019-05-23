@@ -4,17 +4,25 @@
 .checkout-order__title {
   font-size: $size-4;
   margin-bottom: 30px;
-  border-bottom: 1px solid $grey-light;
+  border-bottom: 1px solid $grey-lighter;
 }
 
 .checkout-order__subtitle {
-  font-size: $size-7;
+  font-size: $size-8;
   font-weight: $weight-bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.checkout-order__address {
+  padding-bottom: 20px;
+  border-bottom: 1px solid $grey-lighter;
   margin-bottom: 20px;
 }
 
 .checkout-order__items {
-  border-bottom: 2px solid $grey-light;
+  border-bottom: 2px solid $grey-lighter;
   margin-bottom: 20px;
 }
 
@@ -39,7 +47,7 @@
   margin-top: 15px;
   margin-bottom: 10px;
   padding-top: 20px;
-  border-top: 2px solid $grey-light;
+  border-top: 2px solid $grey-lighter;
 }
 
 .checkout-order__total-title {

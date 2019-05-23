@@ -5,7 +5,7 @@ namespace Paloma\ShopBundle\Controller\Api;
 use Paloma\Shop\Catalog\CatalogInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\CategoryNotFound;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

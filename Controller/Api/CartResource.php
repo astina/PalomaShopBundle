@@ -12,7 +12,7 @@ use Paloma\Shop\Error\NotAuthenticated;
 use Paloma\Shop\Error\OrderNotFound;
 use Paloma\Shop\Error\ProductVariantNotFound;
 use Paloma\Shop\Error\ProductVariantUnavailable;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

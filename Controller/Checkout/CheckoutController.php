@@ -4,14 +4,22 @@ namespace Paloma\ShopBundle\Controller\Checkout;
 
 use Paloma\Shop\Checkout\CheckoutInterface;
 use Paloma\Shop\Error\CartIsEmpty;
+use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
-use Paloma\ShopBundle\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\SerializationConstants;
 
 class CheckoutController extends AbstractPalomaController
 {
-    public function start()
+    public function start(PalomaSecurityInterface $security)
     {
-        return $this->redirectToRoute('paloma_checkout_state', [ 'state' => 'auth' ]);
+        $state = 'auth';
+
+        if ($security->getCustomer()) {
+            $state = 'delivery';
+        }
+
+        return $this->redirectToRoute('paloma_checkout_state', ['state' => $state]);
     }
 
     public function state(string $state, PalomaSerializer $serializer, CheckoutInterface $checkout)
@@ -19,19 +27,11 @@ class CheckoutController extends AbstractPalomaController
         try {
             $order = $checkout->getOrderDraft();
         } catch (CartIsEmpty $e) {
-            // TODO flash message
             return $this->redirectToRoute('paloma_catalog_home');
         }
 
         return $this->render('@PalomaShop/checkout/index.html.twig', [
-            'order_json' => $serializer->serialize($order, [
-                'exclude' => [
-                    'customer' => [
-                        'id',
-                        'userId'
-                    ]
-                ]
-            ]),
+            'order_json' => $serializer->serialize($order, SerializationConstants::OPTIONS_ORDER_DRAFT),
             'state' => $state,
         ]);
     }
