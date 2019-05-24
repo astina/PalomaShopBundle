@@ -2,6 +2,7 @@
 
 namespace Paloma\ShopBundle\EventListener;
 
+use Exception;
 use Paloma\Shop\Checkout\CheckoutInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\CartIsEmpty;
@@ -47,7 +48,7 @@ class PalomaAuthenticationListener implements EventSubscriberInterface
             || $customer->getUserId() !== $user->getUserId()) {
             try {
                 $this->checkout->setCustomer($this->security->getCustomer(), $user);
-            } catch (BackendUnavailable $e) {}
+            } catch (Exception $e) {}
         }
     }
 

@@ -54,6 +54,7 @@ checkout:
   overview: Übersicht
   shipping_address: Lieferadresse
   billing_address: Rechnungsadresse
+  billing_address.same_as_shipping: Entspricht der Lieferadresse
   state_auth:
     name: Anmelden
     title: Anmelden
@@ -73,6 +74,7 @@ checkout:
     name: Lieferung
     title: Lieferung
     shipping_address: Lieferadresse
+    shipping_method: Lieferoptionen
   state_payment:
     name: Bezahlung
     title: Bezahlung
@@ -92,6 +94,10 @@ order:
 shipping:
   swisspost_default: Post CH Standard
   swisspost_priority: Post CH Priority
+  free: gratis
+  info:
+    swisspost_default: Standardlieferung durch die Schweizer Post innerhalb von 2-3 Werktagen.
+    swisspost_priority: Expresslieferung am nächsten Werktag.
 
 error:
   general:

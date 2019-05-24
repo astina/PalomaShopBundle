@@ -4,6 +4,7 @@ namespace Paloma\ShopBundle\Controller\Api;
 
 use DateTime;
 use Paloma\Shop\Checkout\CheckoutInterface;
+use Paloma\Shop\Checkout\GuestCustomer;
 use Paloma\Shop\Checkout\PaymentInitParameters;
 use Paloma\Shop\Common\Address;
 use Paloma\Shop\Common\AddressInterface;
@@ -40,6 +41,29 @@ class CheckoutResource
         }
     }
 
+    public function setGuestCustomer(CheckoutInterface $checkout, PalomaSerializer $serializer, Request $request)
+    {
+        $data = $serializer->toArray($request->getContent());
+        if (!isset($data['locale'])) {
+            $data['locale'] = $request->getLocale();
+        }
+
+        /** @var GuestCustomer $customer */
+        $customer = $serializer->deserialize($serializer->serialize($data), GuestCustomer::class);
+
+        try {
+
+            $order = $checkout->setCustomer($customer);
+
+            return $serializer->toJsonResponse($order);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        } catch (InvalidInput $e) {
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
+        }
+    }
+
     public function setAddresses(CheckoutInterface $checkout, PalomaSerializer $serializer, Request $request)
     {
         $data = $serializer->toArray($request->getContent());
@@ -51,9 +75,9 @@ class CheckoutResource
             return new Response('Parameter `billing` or `shipping` required', 400);
         }
 
-//        if ($billingAddress === null) {
-//            $billingAddress = $shippingAddress;
-//        }
+        if ($billingAddress === null) {
+            $billingAddress = $shippingAddress;
+        }
 
         try {
 

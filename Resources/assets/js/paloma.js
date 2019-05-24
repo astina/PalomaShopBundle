@@ -199,6 +199,16 @@ const checkout = {
         this.store.commit('setEmailAddress', emailAddress);
     },
 
+    setGuestCustomer(customer) {
+
+        return axios
+            .post(routes['api_checkout_customer_set_guest'], customer)
+            .then(response => {
+                this.store.commit('updateOrder', response.data);
+            })
+            .catch(onHttpError);
+    },
+
     setShippingAddress(address) {
 
         return axios
@@ -213,6 +223,29 @@ const checkout = {
 
         return axios
             .post(routes['api_checkout_billing_address_update'], address)
+            .then(response => {
+                this.store.commit('updateOrder', response.data);
+            })
+            .catch(onHttpError);
+    },
+
+    fetchShippingMethods() {
+
+        return axios
+            .get(routes['api_checkout_shipping_methods_list'])
+            .then(response => {
+                return response.data
+            })
+            .catch(onHttpError);
+    },
+
+    setShippingMethod(method, targetDate) {
+
+        return axios
+            .post(routes['api_checkout_shipping_methods_set'], {
+                method: method,
+                targetDate: targetDate
+            })
             .then(response => {
                 this.store.commit('updateOrder', response.data);
             })
@@ -263,11 +296,7 @@ const checkout = {
 
             updateOrder(state, order) {
                 state.order = order;
-            },
-
-            setCustomer(state, customer) {
             }
-
         }
     })
 };

@@ -106,6 +106,9 @@
                                 <input v-model="customer.password" class="input" type="password" id="c__password" required
                                        name="password">
                             </div>
+<!--                            <p v-if="!$v.customer.password.requiredUnless" class="help is-danger">-->
+<!--                                {{ $trans('error.field.required') }}-->
+<!--                            </p>-->
                             <p v-if="!$v.customer.password.minLength" class="help is-danger">
                                 {{ $trans('error.password.too_short', {min: $v.customer.password.$params.minLength.min}) }}
                             </p>
@@ -156,7 +159,7 @@
 
     import paloma from "../paloma";
     import {validationMixin} from 'vuelidate';
-    import {email, maxLength, minLength, required, requiredUnless, sameAs} from 'vuelidate/lib/validators';
+    import {email, maxLength, minLength, required, sameAs} from 'vuelidate/lib/validators';
 
     export default {
         name: "PalomaCheckoutAuthRegister",
@@ -195,7 +198,7 @@
                     maxLength: maxLength(30)
                 },
                 password: {
-                    requiredUnless: requiredUnless(true /* TODO make configurable */ ),
+                    // requiredUnless: requiredUnless(false /* TODO make configurable */ ),
                     minLength: minLength(6)
                 },
                 _password_confirm: {
@@ -232,7 +235,7 @@
                 } else {
 
                     paloma.checkout
-                        .setCustomer(this.customer)
+                        .setGuestCustomer(this.customer)
                         .then(() => {
                             this.$emit('customer-update');
                         })

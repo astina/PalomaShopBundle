@@ -83,6 +83,11 @@ paloma_api_checkout_order:
   controller: paloma_shop.controller.checkout_resource:getOrderDraft
   methods: GET
 
+paloma_api_checkout_customer_set_guest:
+  path: /checkout/customer/set_guest
+  controller: paloma_shop.controller.checkout_resource:setGuestCustomer
+  methods: POST
+
 paloma_api_checkout_addresses_update:
   path: /checkout/addresses
   controller: paloma_shop.controller.checkout_resource:setAddresses

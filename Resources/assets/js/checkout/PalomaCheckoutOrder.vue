@@ -16,7 +16,10 @@
             <h3 class="checkout-order__subtitle">
                 {{ $trans('checkout.billing_address') }}
             </h3>
-            <paloma-address :address="order.billing.address"></paloma-address>
+            <p v-if="order.sameShippingAndBillingAddress" class="checkout-order__address-same">
+                {{ $trans('checkout.billing_address.same_as_shipping') }}
+            </p>
+            <paloma-address v-else :address="order.billing.address"></paloma-address>
         </div>
 
         <div class="checkout-order__items">
@@ -37,6 +40,13 @@
                 :price="order.itemsPrice"
                 type="subtotal"></paloma-checkout-order-adjustment>
 
+        <div v-for="adjustment in order.surcharges">
+            <paloma-checkout-order-adjustment
+                    :title="adjustment.description"
+                    :price="adjustment.price"
+                    type="surcharge"></paloma-checkout-order-adjustment>
+        </div>
+
         <paloma-checkout-order-adjustment
                 v-if="order.shippingPrice"
                 :title="shippingTitle"
@@ -48,13 +58,6 @@
                     :title="adjustment.description"
                     :price="adjustment.price"
                     type="reduction"></paloma-checkout-order-adjustment>
-        </div>
-
-        <div v-for="adjustment in order.surcharges">
-            <paloma-checkout-order-adjustment
-                    :title="adjustment.description"
-                    :price="adjustment.price"
-                    type="surcharge"></paloma-checkout-order-adjustment>
         </div>
 
         <div class="checkout-order__total">

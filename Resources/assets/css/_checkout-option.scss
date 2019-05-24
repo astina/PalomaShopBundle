@@ -1,0 +1,36 @@
+.checkout-option {
+  display: flex;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  cursor: pointer;
+}
+
+.checkout-option__control {
+  padding-right: 10px;
+  color: $text-light;
+}
+
+.checkout-option--active .checkout-option__control {
+  color: $text;
+}
+
+.checkout-option__info {
+  flex: 1;
+}
+
+.checkout-option__title {
+  font-weight: $weight-medium;
+}
+
+.checkout-option__text {
+  font-size: $size-7;
+  color: $text-light;
+}
+
+.checkout-option__price {
+  text-align: right;
+}
+
+.checkout-option__free {
+  font-weight: $weight-medium;
+}

@@ -34,9 +34,10 @@
     import PalomaCheckoutDeliveryAddress from "./PalomaCheckoutDeliveryAddress";
     import PalomaCheckoutDeliveryMethod from "./PalomaCheckoutDeliveryMethod";
     import PalomaCheckoutPayment from "./PalomaCheckoutPayment";
+    import PalomaCheckoutPaymentAddress from "./PalomaCheckoutPaymentAddress";
+    import PalomaCheckoutPaymentMethod from "./PalomaCheckoutPaymentMethod";
     import PalomaCheckoutConfirm from "./PalomaCheckoutConfirm";
     import PalomaNotifications from "../common/PalomaNotifications";
-    import PalomaCheckoutPaymentAddress from "./PalomaCheckoutPaymentAddress";
 
     const routes = [
         {
@@ -120,6 +121,14 @@
                     path: 'address',
                     name: 'state_payment_address',
                     component: PalomaCheckoutPaymentAddress,
+                    meta: {
+                        step: 3
+                    }
+                },
+                {
+                    path: 'method',
+                    name: 'state_payment_method',
+                    component: PalomaCheckoutPaymentMethod,
                     meta: {
                         step: 3
                     }

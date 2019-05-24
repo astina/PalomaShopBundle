@@ -2,13 +2,18 @@
 
 namespace Paloma\ShopBundle\Security;
 
+use GuzzleHttp\Exception\ClientException;
 use Paloma\Shop\Customers\Customer;
 use Paloma\Shop\Customers\CustomerInterface;
 use Paloma\Shop\PalomaClientInterface;
 use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\Shop\Security\UserDetailsInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Security\Http\SecurityEvents;
 
 class PalomaSecurity implements PalomaSecurityInterface
 {
@@ -22,14 +27,29 @@ class PalomaSecurity implements PalomaSecurityInterface
      */
     private $client;
 
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
     private $_cache = [
         'customers' => [],
     ];
 
-    public function __construct(TokenStorageInterface $tokenStorage, PalomaClientInterface $client)
+    public function __construct(TokenStorageInterface $tokenStorage,
+                                PalomaClientInterface $client,
+                                EventDispatcherInterface $eventDispatcher,
+                                RequestStack $requestStack)
     {
         $this->tokenStorage = $tokenStorage;
         $this->client = $client;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->requestStack = $requestStack;
     }
 
     function getUser(): ?UserDetailsInterface
@@ -52,14 +72,19 @@ class PalomaSecurity implements PalomaSecurityInterface
         $user = new PalomaUser($userDetails->getUsername());
         $user->setDetails($userDetails);
 
-        $this->tokenStorage->setToken(new UsernamePasswordToken(
+        $token = new UsernamePasswordToken(
             $user,
             '',
             'paloma',
             $user->getRoles()
-        ));
+        );
+
+        $this->tokenStorage->setToken($token);
 
         unset($this->_cache['customers'][$userDetails->getCustomerId()]);
+
+        $event = new InteractiveLoginEvent($this->requestStack->getMasterRequest(), $token);
+        $this->eventDispatcher->dispatch(SecurityEvents::INTERACTIVE_LOGIN, $event);
     }
 
     function getCustomer(): ?CustomerInterface
@@ -76,7 +101,18 @@ class PalomaSecurity implements PalomaSecurityInterface
             return $this->_cache['customers'][$customerId];
         }
 
-        $data = $this->client->customers()->getCustomer($customerId);
+        try {
+            $data = $this->client->customers()->getCustomer($customerId);
+        } catch (ClientException $e) {
+            if ($e->getResponse()->getStatusCode() === 404) {
+
+                $this->tokenStorage->setToken(null);
+
+                return null;
+            }
+
+            throw $e;
+        }
 
         $customer = new Customer($data);
 
