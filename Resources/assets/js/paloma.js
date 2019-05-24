@@ -16,6 +16,22 @@ axios.interceptors.request.use(config => {
     return config;
 });
 
+function onHttpError(error) {
+
+    if (error.response && error.response.data) {
+
+        if (error.response.status >= 500) {
+            events.$emit('paloma.error', error);
+        }
+
+        return Promise.reject(error.response.data);
+    }
+
+    events.$emit('paloma.error', error);
+
+    throw error;
+}
+
 const routes = window.PALOMA.routes;
 
 const router = {
@@ -55,9 +71,7 @@ const catalog = {
             .then(response => {
                 return response.data;
             })
-            .catch(e => {
-                events.$emit('paloma.error', e);
-            });
+            .catch(onHttpError);
     },
 
     product(itemNumber) {
@@ -66,9 +80,7 @@ const catalog = {
             .then(response => {
                 return response.data;
             })
-            .catch(e => {
-                events.$emit('paloma.error', e);
-            });
+            .catch(onHttpError);
     },
 
     purchasedTogether(itemNumber, max) {
@@ -77,9 +89,7 @@ const catalog = {
             .then(response => {
                 return response.data;
             })
-            .catch(e => {
-                events.$emit('paloma.error', e);
-            });
+            .catch(onHttpError);
     }
 };
 
@@ -97,9 +107,7 @@ const cart = {
 
                 return cart;
             })
-            .catch(e => {
-                events.$emit('paloma.error', e);
-            });
+            .catch(onHttpError);
 
     },
 
@@ -120,10 +128,7 @@ const cart = {
 
                 return item;
             })
-            .catch(e => {
-                // TODO handle 400
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     },
 
     updateItem(itemId, quantity) {
@@ -143,10 +148,7 @@ const cart = {
 
                 return item;
             })
-            .catch(e => {
-                // TODO handle 400
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     },
 
     removeItem(itemId) {
@@ -163,10 +165,7 @@ const cart = {
 
                 return cart;
             })
-            .catch(e => {
-                // TODO handle 400
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     },
 
     getRecommendations(size) {
@@ -178,9 +177,7 @@ const cart = {
             .then(response => {
                 return response.data;
             })
-            .catch(e => {
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     }
 };
 
@@ -195,9 +192,7 @@ const checkout = {
             .then(response => {
                 return response.data
             })
-            .catch(e => {
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     },
 
     setEmailAddress(emailAddress) {
@@ -211,9 +206,7 @@ const checkout = {
             .then(response => {
                 this.store.commit('updateOrder', response.data);
             })
-            .catch(e => {
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     },
 
     setBillingAddress(address) {
@@ -223,9 +216,7 @@ const checkout = {
             .then(response => {
                 this.store.commit('updateOrder', response.data);
             })
-            .catch(e => {
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     },
 
     purchase() {
@@ -235,9 +226,7 @@ const checkout = {
             .then(response => {
                 response.data;
             })
-            .catch(e => {
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     },
 
     orderDraft() {
@@ -251,9 +240,7 @@ const checkout = {
             .then(response => {
                 this.store.commit('updateOrder', response.data);
             })
-            .catch(e => {
-                events.$emit('paloma.error', e)
-            });
+            .catch(onHttpError);
     },
 
     emailAddress() {
@@ -285,6 +272,19 @@ const checkout = {
     })
 };
 
+const customer = {
+
+    register(draft) {
+
+        return axios
+            .post(routes['api_customer_register'], draft)
+            .then(response => {
+                response.data;
+            })
+            .catch(onHttpError);
+    }
+};
+
 const user = {
 
     authenticate(username, password) {
@@ -297,9 +297,7 @@ const user = {
             .then(response => {
                 return response.status >= 200 && response.status < 300;
             })
-            .catch(e => {
-                return false;
-            });
+            .catch(onHttpError);
     }
 
 };
@@ -315,6 +313,8 @@ export default {
     cart: cart,
 
     checkout: checkout,
+
+    customer: customer,
 
     user: user,
 }

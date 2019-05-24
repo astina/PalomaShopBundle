@@ -12,6 +12,11 @@ class SerializationConstants
             ]
         ]
     ];
+    const OPTIONS_CUSTOMER = [
+        'exclude' => [
+            'id',
+        ]
+    ];
 
     const DEFAULT_INCLUDE_PRODUCT_PAGE = [
         'content' => [

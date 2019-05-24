@@ -10,7 +10,9 @@ use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\InvalidConfirmationToken;
 use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\NotAuthenticated;
+use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\SerializationConstants;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +34,7 @@ class CustomerResource
         }
     }
 
-    public function register(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
+    public function register(CustomersInterface $customers, PalomaSerializer $serializer, PalomaSecurityInterface $security, Request $request)
     {
         /** @var CustomerDraft $draft */
         $draft = $serializer->deserialize($request->getContent(), CustomerDraft::class);
@@ -43,9 +45,11 @@ class CustomerResource
 
         try {
 
-            $customer = $customers->registerCustomer($draft);
+            $user = $customers->registerCustomer($draft);
 
-            return $serializer->toJsonResponse($customer);
+            $security->setUser($user);
+
+            return $serializer->toJsonResponse($security->getCustomer(), SerializationConstants::OPTIONS_CUSTOMER);
 
         } catch (BackendUnavailable $e) {
             return new JsonResponse(null, $e->getHttpStatus());

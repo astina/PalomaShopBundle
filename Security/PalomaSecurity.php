@@ -8,6 +8,7 @@ use Paloma\Shop\PalomaClientInterface;
 use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\Shop\Security\UserDetailsInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class PalomaSecurity implements PalomaSecurityInterface
 {
@@ -44,6 +45,21 @@ class PalomaSecurity implements PalomaSecurityInterface
         }
 
         return null;
+    }
+
+    function setUser(UserDetailsInterface $userDetails): void
+    {
+        $user = new PalomaUser($userDetails->getUsername());
+        $user->setDetails($userDetails);
+
+        $this->tokenStorage->setToken(new UsernamePasswordToken(
+            $user,
+            '',
+            'paloma',
+            $user->getRoles()
+        ));
+
+        unset($this->_cache['customers'][$userDetails->getCustomerId()]);
     }
 
     function getCustomer(): ?CustomerInterface

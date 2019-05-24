@@ -5,6 +5,10 @@ paloma_checkout:
   resource: '@PalomaShopBundle/Resources/config/routes/checkout.yaml'
   prefix: /checkout
 
+paloma_customer:
+  resource: '@PalomaShopBundle/Resources/config/routes/customer.yaml'
+  prefix: /customer
+
 paloma_security:
   resource: '@PalomaShopBundle/Resources/config/routes/security.yaml'
   prefix: /security

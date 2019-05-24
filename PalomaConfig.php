@@ -22,11 +22,17 @@ class PalomaConfig implements PalomaConfigInterface
 
     function getRegistrationConfirmationBaseUrl(): string
     {
-        return $this->urlGenerator->generate($this->config['urls']['confirm_registration']);
+        return $this->urlGenerator->generate(
+            $this->config['urls']['confirm_registration'],
+            [],
+            UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
     function getPasswordResetConfirmationBaseUrl(): string
     {
-        return $this->urlGenerator->generate($this->config['urls']['confirm_password_reset']);
+        return $this->urlGenerator->generate(
+            $this->config['urls']['confirm_password_reset'],
+            [],
+            UrlGeneratorInterface::ABSOLUTE_URL);
     }
 }

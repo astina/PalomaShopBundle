@@ -53,17 +53,26 @@
                 {
                     path: 'email',
                     name: 'state_auth_email',
-                    component: PalomaCheckoutAuthEmail
+                    component: PalomaCheckoutAuthEmail,
+                    meta: {
+                        step: 1
+                    }
                 },
                 {
                     path: 'login',
                     name: 'state_auth_login',
-                    component: PalomaCheckoutAuthLogin
+                    component: PalomaCheckoutAuthLogin,
+                    meta: {
+                        step: 1
+                    }
                 },
                 {
-                    path: 'login',
+                    path: 'register',
                     name: 'state_auth_register',
-                    component: PalomaCheckoutAuthRegister
+                    component: PalomaCheckoutAuthRegister,
+                    meta: {
+                        step: 1
+                    }
                 },
             ]
         },
@@ -81,12 +90,18 @@
                 {
                     path: 'address',
                     name: 'state_delivery_address',
-                    component: PalomaCheckoutDeliveryAddress
+                    component: PalomaCheckoutDeliveryAddress,
+                    meta: {
+                        step: 2
+                    }
                 },
                 {
                     path: 'method',
                     name: 'state_delivery_method',
-                    component: PalomaCheckoutDeliveryMethod
+                    component: PalomaCheckoutDeliveryMethod,
+                    meta: {
+                        step: 2
+                    }
                 }
             ]
         },
@@ -104,7 +119,10 @@
                 {
                     path: 'address',
                     name: 'state_payment_address',
-                    component: PalomaCheckoutPaymentAddress
+                    component: PalomaCheckoutPaymentAddress,
+                    meta: {
+                        step: 3
+                    }
                 }
             ]
         },

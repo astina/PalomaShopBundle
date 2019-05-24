@@ -7,7 +7,8 @@
 
         <router-view
                 @email-input="onEmailInput"
-                @login-success="onLoginSuccess"></router-view>
+                @login-success="onLoginSuccess"
+                @customer-update="onCustomerUpdate"></router-view>
 
     </div>
 </template>
@@ -42,6 +43,14 @@
             },
 
             onLoginSuccess() {
+
+                // Order should have been populated with user/customer data
+                paloma.checkout.refreshOrderDraft();
+
+                this.$router.push({name: 'state_delivery'});
+            },
+
+            onCustomerUpdate() {
 
                 // Order should have been populated with user/customer data
                 paloma.checkout.refreshOrderDraft();

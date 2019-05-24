@@ -65,6 +65,10 @@ checkout:
     login_error: |
       Leider konnten Sie nicht angemeldet werden. Bitte prüfen Sie, ob Sie E-Mail-Adresse und Passwort richtig eingegeben haben.
     login: Anmelden
+    register_info: |
+      Herzlich willkommen. Bitte füllen Sie das untenstehende Formular aus.
+    register_password_info: |
+      Wenn Sie ein Passwort angeben, können Sie sich mit diesem beim nächsten Einkauf anmelden.
   state_delivery:
     name: Lieferung
     title: Lieferung
@@ -98,10 +102,16 @@ error:
   email:
     required: Bitte geben Sie eine E-Mail-Addresse ein.
     invalid: Diese E-Mail-Adresse ist ungültig.
+  password:
+    too_short: Das Passwort muss mindestens %min% Zeichen lang sein.
+    differs: Bitte geben Sie zweimal dasselbe Passwort ein.
+  paloma:
+    'A customer with this email address already exists': Diese E-Mail-Adresse wird bereits verwendet.
 
 field:
   email: E-Mail-Adresse
   password: Passwort
+  password_confirm: Passwort bestätigen
   address_title: Anrede
   address_title.mr: Herr
   address_title.ms: Frau
@@ -113,6 +123,9 @@ field:
   city: Ort
   country: Land
   phone_number: Telefon
+  gender: Geschlecht
+  gender.female: weiblich
+  gender.male: männlich
 
 nav:
   back: Zurück

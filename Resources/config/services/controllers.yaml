@@ -67,3 +67,9 @@ services:
   paloma_shop.controller.checkout:
     class: Paloma\ShopBundle\Controller\Checkout\CheckoutController
     tags: ['controller.service_arguments']
+
+  # Customer
+
+  paloma_shop.controller.customer_registration:
+    class: Paloma\ShopBundle\Controller\Customer\RegistrationController
+    tags: ['controller.service_arguments']
