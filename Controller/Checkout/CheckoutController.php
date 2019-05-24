@@ -8,6 +8,7 @@ use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Paloma\ShopBundle\Serializer\SerializationConstants;
+use Symfony\Component\HttpFoundation\Request;
 
 class CheckoutController extends AbstractPalomaController
 {
@@ -36,10 +37,17 @@ class CheckoutController extends AbstractPalomaController
         ]);
     }
 
-    public function success()
+    public function success(Request $request, PalomaSecurityInterface $security)
     {
+        $orderNumber = $request->getSession()->get('paloma-order-number');
+
+        if (!$orderNumber) {
+            return $this->redirectToRoute('paloma_catalog_home');
+        }
+
         return $this->render('@PalomaShop/checkout/success.html.twig', [
-            'order_number' => 'TODO123',
+            'order_number' => $orderNumber,
+            'logged_in' => $security->getUser() !== null,
         ]);
     }
 }

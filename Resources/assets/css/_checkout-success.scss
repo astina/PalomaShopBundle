@@ -1,0 +1,15 @@
+.checkout-success {
+
+}
+
+.checkout-success__logo {
+  margin: 50px auto 100px auto;
+  background: $highlight;
+  color: $primary;
+  max-width: 300px;
+  font-size: $size-1;
+}
+
+.checkout-success .container {
+  text-align: center;
+}

@@ -8,7 +8,10 @@
         <div class="checkout__order">
             <div class="checkout__order-inner">
                 <a class="checkout__abort" :href="abortUrl">
-                    {{ $trans('checkout.abort') }}
+                    <span class="icon">
+                        <i class="fal fa-arrow-left"></i>
+                    </span>
+                    <span class="checkout__abort-label">{{ $trans('checkout.abort') }}</span>
                 </a>
                 <paloma-checkout-order></paloma-checkout-order>
             </div>

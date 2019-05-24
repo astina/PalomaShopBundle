@@ -279,7 +279,7 @@ const checkout = {
         return axios
             .post(routes['api_checkout_purchase'])
             .then(response => {
-                response.data;
+                return response.data;
             })
             .catch(onHttpError);
     },
@@ -290,10 +290,13 @@ const checkout = {
 
     refreshOrderDraft() {
 
-        axios
+        return axios
             .get(routes['api_checkout_order'])
             .then(response => {
+
                 this.store.commit('updateOrder', response.data);
+
+                return response.data;
             })
             .catch(onHttpError);
     },

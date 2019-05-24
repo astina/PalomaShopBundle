@@ -1,6 +1,6 @@
 {% extends '@PalomaShop/base.html.twig' %}
 
-{% block title %}{{ 'checkout.title' | trans }} &ndash; {{ parent() }}{% endblock %}
+{% block title %}{{ 'checkout.success.page_title' | trans }} &ndash; {{ parent() }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -9,6 +9,53 @@
 
 {% block body %}
 
-    <h1>{{ order_number }}</h1>
+    <main class="checkout-success">
+
+        <div class="container">
+
+            {% block logo %}
+                <div class="checkout-success__logo">
+                    Logo
+                </div>
+            {% endblock %}
+
+            {% block content %}
+
+                <section class="content is-large">
+
+                    <h1 class="title">{{ 'checkout.success.title'|trans }}</h1>
+
+                    <p>
+                        {{ 'checkout.success.order_number'|trans({'%order_number%': order_number}) }}
+                    </p>
+
+                    <p class="text-smaller">
+                        {{ 'checkout.success.info_confirmation'|trans }}
+                    </p>
+
+                    <p class="text-smaller">
+                        {{ 'checkout.success.info_support'|trans }}
+                    </p>
+
+                    {% if logged_in %}
+                        <p class="text-smaller">
+                            {{ 'checkout.success.info_status'|trans }}
+                        </p>
+                    {% endif %}
+
+                    <a href="{{ path('paloma_catalog_home') }}" class="button is-primary m-t2">
+                        {{ 'checkout.success.button_home'|trans }}
+                    </a>
+
+                </section>
+
+            {% endblock %}
+
+
+        </div>
+
+
+    </main>
+
 
 {% endblock %}

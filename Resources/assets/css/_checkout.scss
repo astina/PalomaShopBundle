@@ -18,6 +18,9 @@
   margin-bottom: 30px;
   font-size: $size-7;
   color: $text;
+}
+
+.checkout__abort-label {
   text-decoration: underline;
 }
 
@@ -46,6 +49,10 @@
 .checkout__text {
   color: $text-light;
   font-size: $size-7;
+}
+
+.checkout__text--small {
+  font-size: $size-8;
 }
 
 .checkout__section {

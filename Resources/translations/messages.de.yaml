@@ -85,8 +85,26 @@ checkout:
     billing_address: Rechnungsadresse
   state_confirm:
     name: Bestätigung
-    title: Bestätigung
+    title: Bestellung überprüfen
+    info: |
+      Bitte prüfen Sie nochmal Ihre Bestellung. Falls Sie einen Gutschein haben, können Sie diesen nun eingeben.
   next: Weiter
+  coupons:
+    title: Gutscheine & Rabattcodes
+    enter: Code eingeben
+    submit: Einlösen
+  purchase: Bestellung abschicken
+  purchase_and_pay: Bestellung abschicken und weiter zur Bezahlung
+  purchase.info: |
+    Mit dem Abschicken der Bestellung erklären Sie sich mit unseren Datenschutzbestimmungen und AGB einverstanden.
+  success:
+    page_title: Bestellung abgeschickt
+    title: Besten Dank!
+    order_number: 'Ihre Bestellnummer lautet: %order_number%'
+    info_confirmation: Vielen Dank für Ihre Bestellung. Sie werden in Kürze eine Bestellbestätigung per E-Mail erhalten.
+    info_support: Sollten Sie keine Bestätigung erhalten, so melden Sie sich bitte bei unserem Kundendienst.
+    info_status: Sie können den Status Ihrer Bestellung jederzeit in ihrem Kundenkonto unter "Meine Bestellungen" prüfen.
+    button_home: Zur Startseite
 
 order:
   items: Artikel

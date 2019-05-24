@@ -23,6 +23,7 @@ use Paloma\ShopBundle\Serializer\SerializationConstants;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 
 class CheckoutResource
 {
@@ -299,13 +300,26 @@ class CheckoutResource
         }
     }
 
-    public function purchase(CheckoutInterface $checkout, PalomaSerializer $serializer)
+    public function purchase(CheckoutInterface $checkout, PalomaSerializer $serializer, Request $request, RouterInterface $router)
     {
         try {
 
             $purchase = $checkout->purchase();
 
-            return $serializer->toJsonResponse($purchase);
+            $request->getSession()->set('paloma-order-number', $purchase->getOrderNumber());
+
+            return $serializer->toJsonResponse($purchase, [
+                'extend' => [
+                    '$' => [
+                        '_links' => [
+                            'forward' => [
+                                // TODO redirect to payment page for electronic payment
+                                'href' => $router->generate('paloma_checkout_success'),
+                            ],
+                        ],
+                    ],
+                ],
+            ]);
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);

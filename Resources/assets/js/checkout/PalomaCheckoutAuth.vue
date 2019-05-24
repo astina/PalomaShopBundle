@@ -45,17 +45,21 @@
             onLoginSuccess() {
 
                 // Order should have been populated with user/customer data
-                paloma.checkout.refreshOrderDraft();
-
-                this.$router.push({name: 'state_delivery'});
+                paloma.checkout
+                    .refreshOrderDraft()
+                    .then(() => {
+                        this.$router.push({name: 'state_delivery'});
+                    });
             },
 
             onCustomerUpdate() {
 
                 // Order should have been populated with user/customer data
-                paloma.checkout.refreshOrderDraft();
-
-                this.$router.push({name: 'state_delivery'});
+                paloma.checkout
+                    .refreshOrderDraft()
+                    .then(() => {
+                        this.$router.push({name: 'state_delivery'});
+                    });
             }
         }
     }
