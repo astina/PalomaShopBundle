@@ -6,10 +6,12 @@
 @import "~@fortawesome/fontawesome-pro/scss/regular";
 @import "~@fortawesome/fontawesome-pro/scss/solid";
 @import "~@fortawesome/fontawesome-pro/scss/light";
+@import "~@fortawesome/fontawesome-pro/scss/brands";
 
 @import "../../../node_modules/bulma/bulma";
 
 @import "./mixins";
+@import "./utils";
 @import "./layout";
 @import "./page-header";
 @import "./page-footer";
@@ -52,4 +54,5 @@
 @import "./notifications";
 @import "./address";
 @import "./form";
+@import "./creditcards";
 

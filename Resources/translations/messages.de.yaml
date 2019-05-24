@@ -78,6 +78,10 @@ checkout:
   state_payment:
     name: Bezahlung
     title: Bezahlung
+    payment_method: Zahlungsart
+    payment_method_info: |
+      Bitte wählen Sie die gewünschte Zahlungsart.
+      Gutscheine können im nächsten Bestellschritt eingelöst werden.
     billing_address: Rechnungsadresse
   state_confirm:
     name: Bestätigung
@@ -98,6 +102,15 @@ shipping:
   info:
     swisspost_default: Standardlieferung durch die Schweizer Post innerhalb von 2-3 Werktagen.
     swisspost_priority: Expresslieferung am nächsten Werktag.
+
+payment:
+  invoice: Rechnung
+  electronic: Kreditkarte
+  paypal: PayPal
+  postfinance: PostFinance
+  info:
+    invoice: Sie erhalten eine Rechnung mit Einzahlungsschein per Post.
+    electronic: Nach Abschicken der Bestellung werden sie zur Bezahlseite weitergeleitet.
 
 error:
   general:
@@ -132,6 +145,9 @@ field:
   gender: Geschlecht
   gender.female: weiblich
   gender.male: männlich
+
+button:
+  edit: Ändern
 
 nav:
   back: Zurück

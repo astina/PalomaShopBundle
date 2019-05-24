@@ -32,4 +32,11 @@
         <paloma-checkout></paloma-checkout>
     </main>
 
+
+    {% block content %}
+        <div class="is-hidden" id="content--payment-electronic">
+            {% include '@PalomaShop/checkout/content/payment_electronic.html.twig' %}
+        </div>
+    {% endblock %}
+
 {% endblock %}

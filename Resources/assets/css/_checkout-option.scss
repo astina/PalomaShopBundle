@@ -1,7 +1,6 @@
 .checkout-option {
   display: flex;
-  padding-bottom: 10px;
-  padding-top: 20px;
+  margin-bottom: 30px;
   cursor: pointer;
 }
 
@@ -33,4 +32,8 @@
 
 .checkout-option__free {
   font-weight: $weight-medium;
+}
+
+.checkout-option__content {
+
 }

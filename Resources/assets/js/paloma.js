@@ -252,6 +252,28 @@ const checkout = {
             .catch(onHttpError);
     },
 
+    fetchPaymentMethods() {
+
+        return axios
+            .get(routes['api_checkout_payment_methods_list'])
+            .then(response => {
+                return response.data
+            })
+            .catch(onHttpError);
+    },
+
+    setPaymentMethod(method) {
+
+        return axios
+            .post(routes['api_checkout_payment_methods_set'], {
+                method: method,
+            })
+            .then(response => {
+                this.store.commit('updateOrder', response.data);
+            })
+            .catch(onHttpError);
+    },
+
     purchase() {
 
         return axios

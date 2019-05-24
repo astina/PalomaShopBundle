@@ -18,10 +18,10 @@
 
             <div class="checkout-option__control">
                 <span v-if="method.name === selected" class="icon is-large">
-                    <i class="fal fa-check-circle fa-2x"></i>
+                    <i class="far fa-dot-circle fa-2x"></i>
                 </span>
                 <span v-else class="icon is-large">
-                    <i class="fal fa-circle fa-2x"></i>
+                    <i class="far fa-circle fa-2x"></i>
                 </span>
             </div>
 

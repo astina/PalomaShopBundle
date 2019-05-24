@@ -6,10 +6,12 @@
         </div>
 
         <div class="checkout__order">
-            <a class="checkout__abort" :href="abortUrl">
-                {{ $trans('checkout.abort') }}
-            </a>
-            <paloma-checkout-order></paloma-checkout-order>
+            <div class="checkout__order-inner">
+                <a class="checkout__abort" :href="abortUrl">
+                    {{ $trans('checkout.abort') }}
+                </a>
+                <paloma-checkout-order></paloma-checkout-order>
+            </div>
         </div>
 
         <div class="checkout__main">
@@ -114,21 +116,21 @@
                 step: 3
             },
             redirect: {
-                name: 'state_payment_address'
+                name: 'state_payment_method'
             },
             children: [
                 {
-                    path: 'address',
-                    name: 'state_payment_address',
-                    component: PalomaCheckoutPaymentAddress,
+                    path: 'method',
+                    name: 'state_payment_method',
+                    component: PalomaCheckoutPaymentMethod,
                     meta: {
                         step: 3
                     }
                 },
                 {
-                    path: 'method',
-                    name: 'state_payment_method',
-                    component: PalomaCheckoutPaymentMethod,
+                    path: 'address',
+                    name: 'state_payment_address',
+                    component: PalomaCheckoutPaymentAddress,
                     meta: {
                         step: 3
                     }
