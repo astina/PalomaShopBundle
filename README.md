@@ -1,6 +1,10 @@
 Paloma Shop Bundle
 =====
 
+Symfony bundle with web shop frontend for Paloma.
+
+**Note:** this bundle is in development and is not ready for production use.
+
 # Create a new project
 
 See https://symfony.com/doc/current/setup.html
