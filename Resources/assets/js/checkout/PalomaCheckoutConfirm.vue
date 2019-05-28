@@ -9,22 +9,28 @@
             {{ $trans('checkout.state_confirm.info') }}
         </p>
 
-        <section class="checkout__section m-t">
-            <paloma-checkout-coupons></paloma-checkout-coupons>
-        </section>
+        <paloma-spinner :loading="loading"></paloma-spinner>
 
-        <form class="form form--purchase" @submit.prevent="purchase">
-            <div class="field">
-                <div class="control">
-                    <button class="button is-primary" :class="{'is-loading': purchasing}">
-                        {{ $trans('checkout.purchase_and_pay') }}
-                    </button>
+        <div v-if="!loading">
+
+            <section class="checkout__section m-t">
+                <paloma-checkout-coupons></paloma-checkout-coupons>
+            </section>
+
+            <form class="form form--purchase" @submit.prevent="purchase">
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" :class="{'is-loading': purchasing}">
+                            {{ $trans(paymentRequired ? 'checkout.purchase_and_pay' : 'checkout.purchase') }}
+                        </button>
+                    </div>
+                    <p class="checkout__text checkout__text--small m-t">
+                        {{ $trans('checkout.purchase.info') }}
+                    </p>
                 </div>
-                <p class="checkout__text checkout__text--small m-t">
-                    {{ $trans('checkout.purchase.info') }}
-                </p>
-            </div>
-        </form>
+            </form>
+
+        </div>
     </div>
 </template>
 
@@ -32,16 +38,42 @@
 
     import paloma from '../paloma';
     import PalomaCheckoutCoupons from "./PalomaCheckoutCoupons";
+    import PalomaSpinner from "../common/PalomaSpinner";
 
     export default {
         name: "PalomaCheckoutConfirm",
 
-        components: {PalomaCheckoutCoupons},
+        components: {PalomaSpinner, PalomaCheckoutCoupons},
 
         data() {
             return {
-                purchasing: false
+                purchasing: false,
+                loading: false
             }
+        },
+
+        computed: {
+            paymentRequired() {
+
+                const order = paloma.checkout.orderDraft();
+
+                return order.billing.paymentMethod
+                    && order.billing.paymentMethod.requiresPaymentDuringCheckout;
+            }
+        },
+
+        mounted() {
+
+            this.loading = true;
+
+            paloma.checkout
+                .finalize()
+                .then(() => {
+                    this.loading = false;
+                })
+                .catch(() => {
+                    window.location.href = paloma.router.resolve('checkout_start');
+                });
         },
 
         methods: {
@@ -55,7 +87,7 @@
                         window.location.href = result._links.forward.href;
                     })
                     .finally(() => {
-                        this.purchasing = true;
+                        this.purchasing = false;
                     });
             }
         }

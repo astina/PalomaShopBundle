@@ -24,14 +24,14 @@
         var PALOMA = PALOMA || {};
         PALOMA.checkout = {
             state: '{{ state }}',
-            order: {{ order_json|raw }}
+            order: {{ order_json|raw }},
+            errors: {{ errors_json|raw }}
         }
     </script>
 
     <main id="paloma-checkout">
         <paloma-checkout></paloma-checkout>
     </main>
-
 
     {% block content %}
         <div class="is-hidden" id="content--payment-electronic">

@@ -9,6 +9,7 @@ use Paloma\ShopBundle\Controller\AbstractPalomaController;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Paloma\ShopBundle\Serializer\SerializationConstants;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CheckoutController extends AbstractPalomaController
 {
@@ -23,7 +24,7 @@ class CheckoutController extends AbstractPalomaController
         return $this->redirectToRoute('paloma_checkout_state', ['state' => $state]);
     }
 
-    public function state(string $state, PalomaSerializer $serializer, CheckoutInterface $checkout)
+    public function state(string $state, PalomaSerializer $serializer, CheckoutInterface $checkout, Request $request)
     {
         try {
             $order = $checkout->getOrderDraft();
@@ -33,6 +34,7 @@ class CheckoutController extends AbstractPalomaController
 
         return $this->render('@PalomaShop/checkout/index.html.twig', [
             'order_json' => $serializer->serialize($order, SerializationConstants::OPTIONS_ORDER_DRAFT),
+            'errors_json' => $serializer->serialize($this->getFlashMessageErrors($request)),
             'state' => $state,
         ]);
     }
@@ -49,5 +51,13 @@ class CheckoutController extends AbstractPalomaController
             'order_number' => $orderNumber,
             'logged_in' => $security->getUser() !== null,
         ]);
+    }
+
+    private function getFlashMessageErrors(Request $request)
+    {
+        /** @var Session $session */
+        $session = $request->getSession();
+
+        return $session->getFlashBag()->get('paloma.checkout_errors', []);
     }
 }

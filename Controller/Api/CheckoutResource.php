@@ -14,6 +14,7 @@ use Paloma\Shop\Error\InvalidCouponCode;
 use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\InvalidShippingTargetDate;
 use Paloma\Shop\Error\NonElectronicPaymentMethod;
+use Paloma\Shop\Error\OrderNotReadyForFinalization;
 use Paloma\Shop\Error\OrderNotReadyForPayment;
 use Paloma\Shop\Error\OrderNotReadyForPurchase;
 use Paloma\Shop\Error\UnknownPaymentMethod;
@@ -283,6 +284,7 @@ class CheckoutResource
 
     public function initializePayment(CheckoutInterface $checkout, PalomaSerializer $serializer, Request $request)
     {
+        /** @var PaymentInitParameters $params */
         $params = $serializer->deserialize($request->getContent(), PaymentInitParameters::class);
 
         try {
@@ -300,9 +302,41 @@ class CheckoutResource
         }
     }
 
+    public function finalize(CheckoutInterface $checkout, PalomaSerializer $serializer)
+    {
+        try {
+
+            $order = $checkout->finalize();
+
+            return $serializer->toJsonResponse($order);
+
+        } catch (BackendUnavailable $e) {
+            return new Response('Service unavailable', 503);
+        } catch (OrderNotReadyForFinalization $e) {
+            return new Response('Order not ready for finalization', 400);
+        }
+    }
+
     public function purchase(CheckoutInterface $checkout, PalomaSerializer $serializer, Request $request, RouterInterface $router)
     {
         try {
+
+            $order = $checkout->getOrderDraft();
+
+            // Electronic payment? Redirect to payment page
+
+            $paymentMethod = $order->getBilling()->getPaymentMethod();
+            if ($paymentMethod->isRequiresPaymentDuringCheckout()) {
+                return $serializer->toJsonResponse([
+                    '_links' => [
+                        'forward' => [
+                            'href' => $router->generate('paloma_checkout_payment_start'),
+                        ]
+                    ]
+                ]);
+            }
+
+            // For non-electronic payments: purchase directly
 
             $purchase = $checkout->purchase();
 
@@ -313,7 +347,6 @@ class CheckoutResource
                     '$' => [
                         '_links' => [
                             'forward' => [
-                                // TODO redirect to payment page for electronic payment
                                 'href' => $router->generate('paloma_checkout_success'),
                             ],
                         ],
@@ -323,7 +356,7 @@ class CheckoutResource
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
-        } catch (OrderNotReadyForPurchase $e) {
+        } catch (OrderNotReadyForPurchase|CartIsEmpty $e) {
             return new Response('Order not ready for purchase', 400);
         }
     }

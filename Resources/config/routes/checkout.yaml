@@ -8,6 +8,31 @@ paloma_checkout_success:
   controller: paloma_shop.controller.checkout::success
   methods: GET
 
+paloma_checkout_payment_start:
+  path: /payment/start
+  controller: paloma_shop.controller.payment::start
+  methods: GET
+
+paloma_checkout_payment_success:
+  path: /payment/success
+  controller: paloma_shop.controller.payment::success
+  methods: [ GET, POST ]
+
+paloma_checkout_payment_complete:
+  path: /payment/complete
+  controller: paloma_shop.controller.payment::complete
+  methods: GET
+
+paloma_checkout_payment_cancel:
+  path: /payment/cancel
+  controller: paloma_shop.controller.payment::cancel
+  methods: [ GET, POST ]
+
+paloma_checkout_payment_error:
+  path: /payment/error
+  controller: paloma_shop.controller.payment::error
+  methods: [ GET, POST ]
+
 paloma_checkout_state:
   path: /{state}
   controller: paloma_shop.controller.checkout::state

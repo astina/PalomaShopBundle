@@ -305,6 +305,16 @@ const checkout = {
             .catch(onHttpError);
     },
 
+    finalize() {
+
+        return axios
+            .post(routes['api_checkout_finalize'])
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
     purchase() {
 
         return axios

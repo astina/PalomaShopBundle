@@ -143,6 +143,11 @@ paloma_api_checkout_payments_initialize:
   controller: paloma_shop.controller.checkout_resource:initializePayment
   methods: POST
 
+paloma_api_checkout_finalize:
+  path: /checkout/finalize
+  controller: paloma_shop.controller.checkout_resource:finalize
+  methods: POST
+
 paloma_api_checkout_purchase:
   path: /checkout/purchase
   controller: paloma_shop.controller.checkout_resource:purchase

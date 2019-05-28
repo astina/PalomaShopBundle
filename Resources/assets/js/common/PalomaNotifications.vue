@@ -1,6 +1,8 @@
 <template>
     <div v-if="notifications.length > 0" class="notifications">
-        <div v-for="notification in notifications" class="notification is-danger">
+        <div v-for="notification in notifications"
+             :class="{'is-danger': notification.type === 'error'}"
+             class="notification">
             <button @click.prevent="dismiss(notification)" class="delete"></button>
             {{ notification.message }}
         </div>
@@ -15,6 +17,10 @@
     export default {
         name: "PalomaNotifications",
 
+        props: {
+            initial: Array
+        },
+
         data() {
             return {
                 notifications: [],
@@ -26,9 +32,14 @@
 
             paloma.events.$on('paloma.error', () => {
                 this.add(
-                    {message: this.$trans('error.general.message')},
+                    {
+                        message: this.$trans('error.general.message'),
+                        type: 'error',
+                    },
                     {timeout: 5000});
             });
+
+            (this.initial || []).forEach(notification => this.add(notification));
         },
 
         methods: {

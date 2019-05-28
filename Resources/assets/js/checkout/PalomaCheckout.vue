@@ -21,7 +21,7 @@
             <router-view></router-view>
         </div>
 
-        <paloma-notifications></paloma-notifications>
+        <paloma-notifications :initial="errors"></paloma-notifications>
     </div>
 </template>
 
@@ -170,12 +170,13 @@
         data() {
             return {
                 abortUrl: paloma.router.resolve('catalog_home'),
+                errors: PALOMA.checkout.errors.map(message => {
+                    return {
+                        message: message,
+                        type: 'error',
+                    };
+                }),
             }
-        },
-
-        mounted() {
-
-            const order = PALOMA.checkout.order;
         }
     }
 </script>
