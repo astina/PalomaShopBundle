@@ -4,10 +4,15 @@
 
 .checkout-confirm .form--purchase {
   background: $white-bis;
-  padding: 20px;
+  padding: 30px;
 }
 
-.checkout-confirm .control {
+.checkout-confirm .form--purchase .field {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.checkout-confirm .form--purchase .control {
   text-align: center;
 }
 

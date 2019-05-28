@@ -6,9 +6,7 @@
         </h1>
 
         <div v-show="methods === null">
-            <span class="icon">
-                <i class="fal fa-spinner-third fa-spin"></i>
-            </span>
+            <paloma-spinner></paloma-spinner>
         </div>
 
         <div v-for="method in methods"
@@ -61,10 +59,11 @@
 
     import paloma from '../paloma';
     import PalomaPrice from "../common/PalomaPrice";
+    import PalomaSpinner from "../common/PalomaSpinner";
 
     export default {
         name: "PalomaCheckoutDeliveryMethod",
-        components: {PalomaPrice},
+        components: {PalomaSpinner, PalomaPrice},
         data() {
             return {
                 methods: null,

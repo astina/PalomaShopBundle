@@ -12,9 +12,7 @@
             </p>
 
             <div v-show="methods === null">
-                <span class="icon">
-                    <i class="fal fa-spinner-third fa-spin"></i>
-                </span>
+                <paloma-spinner></paloma-spinner>
             </div>
 
             <div v-for="method in methods"
@@ -86,10 +84,11 @@
 
     import paloma from '../paloma';
     import PalomaAddress from "../common/PalomaAddress";
+    import PalomaSpinner from "../common/PalomaSpinner";
 
     export default {
         name: "PalomaCheckoutPaymentMethod",
-        components: {PalomaAddress},
+        components: {PalomaSpinner, PalomaAddress},
         data() {
 
             const order = paloma.checkout.orderDraft();

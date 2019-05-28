@@ -5,16 +5,16 @@
             {{ $trans('checkout.state_auth.login_info') }}
         </p>
 
-        <form @submit.prevent="submit" class="checkout-form" novalidate>
+        <form @submit.prevent="submit" class="form" novalidate>
 
-            <p v-show="loginError" class="checkout-form__error">
+            <p v-show="loginError" class="form__error">
                 {{ $trans('checkout.state_auth.login_error') }}
             </p>
 
             <fieldset :disabled="loading">
 
-                <div class="field checkout-form__field"
-                     :class="{ 'checkout-form__field--invalid': $v.emailInput.$error }">
+                <div class="field form__field"
+                     :class="{ 'form__field--invalid': $v.emailInput.$error }">
 
                     <label class="label">{{ $trans('field.email') }}</label>
 
@@ -36,8 +36,8 @@
 
                 </div>
 
-                <div class="field checkout-form__field"
-                     :class="{ 'checkout-form__field--invalid': $v.passwordInput.$error }">
+                <div class="field form__field"
+                     :class="{ 'form__field--invalid': $v.passwordInput.$error }">
 
                     <label class="label">{{ $trans('field.password') }}</label>
 
@@ -57,7 +57,7 @@
 
                 </div>
 
-                <div class="field is-grouped is-grouped-right checkout-form__buttons">
+                <div class="field is-grouped is-grouped-right form__buttons">
                     <div class="control">
                         <router-link :to="{name: 'state_auth_email'}" class="button is-text">
                             {{ $trans('nav.back') }}
@@ -130,11 +130,11 @@
 
                 paloma.user
                     .authenticate(this.emailInput, this.passwordInput)
-                    .then(success => {
-                        this.loginError = !success;
-                        if (success) {
-                            this.$emit('login-success');
-                        }
+                    .then(() => {
+                        this.$emit('login-success');
+                    })
+                    .catch(() => {
+                        this.loginError = true;
                     })
                     .finally(() => {
                         this.loading = false;

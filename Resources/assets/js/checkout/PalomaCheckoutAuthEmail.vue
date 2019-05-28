@@ -5,17 +5,17 @@
             {{ $trans('checkout.state_auth.email_info') }}
         </p>
 
-        <form @submit.prevent="submit" class="checkout-form" novalidate>
+        <form @submit.prevent="submit" class="form" novalidate>
 
             <fieldset :disabled="loading">
 
-                <div class="field checkout-form__field"
-                     :class="{ 'checkout-form__field--invalid': $v.emailInput.$error }">
+                <div class="field form__field"
+                     :class="{ 'form__field--invalid': $v.emailInput.$error }">
 
                     <label class="label">{{ $trans('field.email') }}</label>
 
                     <div class="control has-icons-left">
-                        <input v-model.trim="$v.emailInput.$model"
+                        <input v-model.trim="emailInput"
                                v-focus
                                :class="{ 'is-danger': $v.emailInput.$error }"
                                class="input" type="email" name="email" required>
@@ -33,7 +33,7 @@
 
                 </div>
 
-                <div class="field is-grouped is-grouped-right checkout-form__buttons">
+                <div class="field is-grouped is-grouped-right form__buttons">
                     <div class="control">
                         <button class="button is-primary"
                                 :class="{'is-loading': loading}"
