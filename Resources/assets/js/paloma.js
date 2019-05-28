@@ -205,6 +205,7 @@ const checkout = {
             .post(routes['api_checkout_customer_set_guest'], customer)
             .then(response => {
                 this.store.commit('updateOrder', response.data);
+                return response.data
             })
             .catch(onHttpError);
     },
@@ -215,6 +216,7 @@ const checkout = {
             .post(routes['api_checkout_shipping_address_update'], address)
             .then(response => {
                 this.store.commit('updateOrder', response.data);
+                return response.data
             })
             .catch(onHttpError);
     },
@@ -225,6 +227,7 @@ const checkout = {
             .post(routes['api_checkout_billing_address_update'], address)
             .then(response => {
                 this.store.commit('updateOrder', response.data);
+                return response.data
             })
             .catch(onHttpError);
     },
@@ -248,6 +251,7 @@ const checkout = {
             })
             .then(response => {
                 this.store.commit('updateOrder', response.data);
+                return response.data
             })
             .catch(onHttpError);
     },
@@ -270,6 +274,33 @@ const checkout = {
             })
             .then(response => {
                 this.store.commit('updateOrder', response.data);
+                return response.data
+            })
+            .catch(onHttpError);
+    },
+
+    addCouponCode(code) {
+
+        return axios
+            .post(routes['api_checkout_coupon_code_add'], {
+                code: code
+            })
+            .then(response => {
+                this.store.commit('updateOrder', response.data);
+                return response.data
+            })
+            .catch(onHttpError);
+    },
+
+    removeCouponCode(code) {
+
+        return axios
+            .post(routes['api_checkout_coupon_code_remove'], {
+                code: code
+            })
+            .then(response => {
+                this.store.commit('updateOrder', response.data);
+                return response.data
             })
             .catch(onHttpError);
     },

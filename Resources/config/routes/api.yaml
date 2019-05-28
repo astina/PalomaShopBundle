@@ -136,7 +136,7 @@ paloma_api_checkout_coupon_code_add:
 paloma_api_checkout_coupon_code_remove:
   path: /checkout/coupon_codes/remove
   controller: paloma_shop.controller.checkout_resource:removeCouponCode
-  methods: DELETE
+  methods: [ POST, DELETE ]
 
 paloma_api_checkout_payments_initialize:
   path: /checkout/payments/initialize

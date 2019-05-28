@@ -9,3 +9,18 @@
 .checkout-coupons .field {
   display: flex;
 }
+
+.checkout-coupons__coupon {
+  margin-top: 10px;
+}
+
+.checkout-coupons__coupon-code {
+  font-weight: $weight-bold;
+  font-size: $size-7;
+}
+
+.checkout-coupons__coupon-remove {
+  display: inline-block;
+  margin-right: 5px;
+  color: $text-light;
+}

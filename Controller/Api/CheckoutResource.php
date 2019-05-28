@@ -255,7 +255,7 @@ class CheckoutResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidCouponCode $e) {
-            return $serializer->toJsonResponse($e, ['status' => 400]);
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         }
 
     }

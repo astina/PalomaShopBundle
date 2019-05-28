@@ -142,6 +142,14 @@ error:
   password:
     too_short: Das Passwort muss mindestens %min% Zeichen lang sein.
     differs: Bitte geben Sie zweimal dasselbe Passwort ein.
+  coupon:
+    not_found: Es wurde kein Gutschein/Rabattcode '%coupon%' gefunden.
+    not_eligible: Der Gutschein/Rabattcode '%coupon%' ist für diese Bestellung nicht anwendbar.
+    not_combinable: Der Gutschein/Rabattcode '%coupon%' kann nicht mit anderen kombiniert werden.
+    expired: Der Gutschein/Rabattcode '%coupon%' ist leider abgelaufen.
+    redemptions_exceeded: Der Gutschein/Rabattcode '%coupon%' wurde bereits eingelöst.
+    service_unavailable: Zur Zeit können leider keine Gutscheine/Rabattcodes eingelöst werden.
+    error: Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.
   paloma:
     'A customer with this email address already exists': Diese E-Mail-Adresse wird bereits verwendet.
 
