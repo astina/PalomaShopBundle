@@ -45,6 +45,7 @@
                 <div class="control">
                     <button class="button is-primary"
                             :class="{'is-loading': loading}"
+                            v-focus
                             type="submit">
                         {{ $trans('checkout.next') }}
                     </button>

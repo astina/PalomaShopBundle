@@ -1,0 +1,7 @@
+<p class="checkout__text checkout__text--small m-t">
+    {{
+        'checkout.purchase.info'
+        | trans({'%url_privacy%': path('paloma_content_privacy'), '%url_gtc%': path('paloma_content_gtc') })
+        | raw
+    }}
+</p>

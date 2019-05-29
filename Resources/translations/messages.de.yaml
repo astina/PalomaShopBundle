@@ -96,7 +96,8 @@ checkout:
   purchase: Bestellung abschicken
   purchase_and_pay: Bestellung abschicken und weiter zur Bezahlung
   purchase.info: |
-    Mit dem Abschicken der Bestellung erklären Sie sich mit unseren Datenschutzbestimmungen und AGB einverstanden.
+    Mit dem Abschicken der Bestellung erklären Sie sich mit unseren <a href="%url_privacy%" target="_blank">Datenschutzbestimmungen</a>
+    und <a href="%url_gtc%" target="_blank">AGB</a> einverstanden.
   success:
     page_title: Bestellung abgeschickt
     title: Besten Dank!

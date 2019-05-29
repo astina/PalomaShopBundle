@@ -9,7 +9,7 @@
                 <label class="label">{{ $trans('field.address_title') }}</label>
                 <div class="control">
                     <label class="radio">
-                        <input v-model="address.title" :value="$trans('field.address_title.ms')" type="radio" name="title">
+                        <input v-model="address.title" :value="$trans('field.address_title.ms')" v-focus type="radio" name="title">
                         {{ $trans('field.address_title.ms') }}
                     </label>
                     <label class="radio">

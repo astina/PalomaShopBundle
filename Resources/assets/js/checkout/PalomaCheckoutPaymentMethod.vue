@@ -32,7 +32,9 @@
                 <div class="checkout-option__info">
                     <h3 class="checkout-option__title">{{ $trans('payment.' + method.name) }}</h3>
                     <p class="checkout-option__text">{{ $trans('payment.info.' + method.name) }}</p>
-                    <div class="checkout-option__content" v-html="paymentMethodContent(method.name)"></div>
+                    <div class="checkout-option__content">
+                        <paloma-content :id="'payment-' + method.name"></paloma-content>
+                    </div>
                 </div>
 
             </div>
@@ -69,6 +71,7 @@
                     <div class="control">
                         <button class="button is-primary"
                                 :class="{'is-loading': loading}"
+                                v-focus
                                 type="submit">
                             {{ $trans('checkout.next') }}
                         </button>
@@ -85,10 +88,11 @@
     import paloma from '../paloma';
     import PalomaAddress from "../common/PalomaAddress";
     import PalomaSpinner from "../common/PalomaSpinner";
+    import PalomaContent from "../common/PalomaContent";
 
     export default {
         name: "PalomaCheckoutPaymentMethod",
-        components: {PalomaSpinner, PalomaAddress},
+        components: {PalomaContent, PalomaSpinner, PalomaAddress},
         data() {
 
             const order = paloma.checkout.orderDraft();
@@ -130,17 +134,6 @@
                     .finally(() => {
                         this.loading = false;
                     });
-            },
-
-            paymentMethodContent(name) {
-
-                const elem = document.getElementById('content--payment-' + name);
-
-                if (!elem) {
-                    return '';
-                }
-
-                return elem.innerHTML;
             }
         }
     }

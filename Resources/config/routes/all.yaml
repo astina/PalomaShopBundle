@@ -1,6 +1,9 @@
 paloma_catalog:
   resource: '@PalomaShopBundle/Resources/config/routes/catalog.yaml'
 
+paloma_content:
+  resource: '@PalomaShopBundle/Resources/config/routes/content.yaml'
+
 paloma_checkout:
   resource: '@PalomaShopBundle/Resources/config/routes/checkout.yaml'
   prefix: /checkout
