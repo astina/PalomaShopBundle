@@ -3,8 +3,10 @@
 namespace Paloma\ShopBundle\Security;
 
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use Paloma\Shop\Customers\Customer;
 use Paloma\Shop\Customers\CustomerInterface;
+use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\PalomaClientInterface;
 use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\Shop\Security\UserDetailsInterface;
@@ -103,6 +105,8 @@ class PalomaSecurity implements PalomaSecurityInterface
 
         try {
             $data = $this->client->customers()->getCustomer($customerId);
+        } catch (ServerException $e) {
+            throw BackendUnavailable::ofException($e);
         } catch (ClientException $e) {
             if ($e->getResponse()->getStatusCode() === 404) {
 
@@ -111,7 +115,7 @@ class PalomaSecurity implements PalomaSecurityInterface
                 return null;
             }
 
-            throw $e;
+            throw BackendUnavailable::ofException($e);
         }
 
         $customer = new Customer($data);
