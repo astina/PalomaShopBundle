@@ -6,6 +6,7 @@
         </h1>
 
         <paloma-address-form :address="address"
+                             :model="addressModel"
                              :loading="loading"
                              @submit="submit"
                              @cancel="back"
@@ -46,6 +47,7 @@
 
             return {
                 address: address,
+                addressModel: order._validation.billing.address,
                 loading: false,
             }
         },

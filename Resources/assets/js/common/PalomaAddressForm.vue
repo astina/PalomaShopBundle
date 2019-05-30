@@ -5,19 +5,15 @@
         <fieldset :disabled="loading">
 
             <div class="field form__field form__field--required"
-                 :class="{ 'form__field--invalid': $v.address.title.$error }">
+                 :class="{ 'form__field--invalid': $v.address.titleCode.$error }">
                 <label class="label">{{ $trans('field.address_title') }}</label>
                 <div class="control">
-                    <label class="radio">
-                        <input v-model="address.title" :value="$trans('field.address_title.ms')" v-focus type="radio" name="title">
-                        {{ $trans('field.address_title.ms') }}
-                    </label>
-                    <label class="radio">
-                        <input v-model="address.title" :value="$trans('field.address_title.mr')" type="radio" name="title">
-                        {{ $trans('field.address_title.mr') }}
+                    <label v-for="option in model.titleCode.options" class="radio">
+                        <input v-model="address.titleCode" :value="option.value" v-focus type="radio" name="title">
+                        {{ option.label }}
                     </label>
                 </div>
-                <p v-if="!$v.address.title.required" class="help is-danger">
+                <p v-if="!$v.address.titleCode.required" class="help is-danger">
                     {{ $trans('error.field.required') }}
                 </p>
             </div>
@@ -121,7 +117,9 @@
                         <div class="control">
                             <div class="select is-fullwidth">
                                 <select v-model="address.country" id="address__country" required name="country">
-                                    <option>CH</option>
+                                    <option v-for="option in model.country.options" :value="option.value">
+                                        {{ option.label }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -179,6 +177,7 @@
 
         props: {
             address: Object,
+            model: Object,
             submitLabel: String,
             cancelLabel: String,
             loading: {
@@ -189,7 +188,7 @@
 
         validations: {
             address: {
-                title: {
+                titleCode: {
                     required
                 },
                 firstName: {
