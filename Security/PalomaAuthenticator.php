@@ -5,6 +5,9 @@ namespace Paloma\ShopBundle\Security;
 use Paloma\Shop\Customers\CustomersInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\BadCredentials;
+use Paloma\Shop\Security\PalomaSecurityInterface;
+use Paloma\ShopBundle\Serializer\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\SerializationConstants;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,13 +38,21 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
 
     private $customers;
 
+    private $security;
+
+    private $serializer;
+
     public function __construct(UrlGeneratorInterface $urlGenerator,
                                 CsrfTokenManagerInterface $csrfTokenManager,
-                                CustomersInterface $customers)
+                                CustomersInterface $customers,
+                                PalomaSecurityInterface $security,
+                                PalomaSerializer $serializer)
     {
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->customers = $customers;
+        $this->security = $security;
+        $this->serializer = $serializer;
     }
 
     public function supports(Request $request)
@@ -92,7 +103,10 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($this->isApiAuthRequest($request)) {
-            return new JsonResponse(null, 204);
+
+            $user = $this->security->getUser();
+
+            return $this->serializer->toJsonResponse($user, SerializationConstants::OPTIONS_USER);
         }
 
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {

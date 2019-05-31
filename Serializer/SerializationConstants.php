@@ -12,9 +12,19 @@ class SerializationConstants
             ]
         ]
     ];
+
     const OPTIONS_CUSTOMER = [
         'exclude' => [
             'id',
+        ]
+    ];
+    const OPTIONS_USER = [
+        'exclude' => [
+            'userId',
+            'customerId',
+            'customer' => [
+                'id',
+            ],
         ]
     ];
 

@@ -35,6 +35,21 @@
             }
         },
 
+        mounted() {
+
+            if (this.$route.name !== 'state_auth') {
+                return;
+            }
+
+            const user = paloma.user.get();
+
+            if (user) {
+                this.$router.push({'name': 'state_auth_user'});
+            } else {
+                this.$router.push({'name': 'state_auth_email'});
+            }
+        },
+
         methods: {
 
             onEmailInput(emailAddress, userExists) {

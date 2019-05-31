@@ -54,8 +54,11 @@ services:
   paloma_shop.security.authenticator:
     class: Paloma\ShopBundle\Security\PalomaAuthenticator
 
-  paloma_shop.authentication_listener:
-    class: Paloma\ShopBundle\EventListener\PalomaAuthenticationListener
+  paloma_shop.security.authentication_listener:
+    class: Paloma\ShopBundle\Security\PalomaAuthenticationListener
+
+  paloma_shop.security.logout_success_handler:
+    class: Paloma\ShopBundle\Security\PalomaLogoutSuccessHandler
 
   paloma_shop.serializer:
     class: Paloma\ShopBundle\Serializer\PalomaSerializer

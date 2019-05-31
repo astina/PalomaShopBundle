@@ -16,6 +16,8 @@ axios.interceptors.request.use(config => {
     return config;
 });
 
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 function onHttpError(error) {
 
     if (error.response && error.response.data) {
@@ -380,7 +382,15 @@ const customer = {
     }
 };
 
+const security = {
+    user: PALOMA && PALOMA.user
+};
+
 const user = {
+
+    get() {
+      return security.user;
+    },
 
     authenticate(username, password) {
 
@@ -390,11 +400,29 @@ const user = {
                 password: password
             })
             .then(response => {
-                return response.status >= 200 && response.status < 300;
+
+                const success = response.status >= 200 && response.status < 300;
+
+                if (success) {
+                    security.user = response.data;
+                } else {
+                    security.user = null;
+                }
+
+                return success;
+            })
+            .catch(onHttpError);
+    },
+
+    logout() {
+
+        return axios
+            .post(routes['security_logout'])
+            .then(() => {
+                security.user = null;
             })
             .catch(onHttpError);
     }
-
 };
 
 export default {

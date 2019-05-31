@@ -33,6 +33,7 @@
     import PalomaCheckoutHeader from "./PalomaCheckoutHeader";
     import PalomaCheckoutAuth from "./PalomaCheckoutAuth";
     import PalomaCheckoutAuthEmail from "./PalomaCheckoutAuthEmail";
+    import PalomaCheckoutAuthUser from "./PalomaCheckoutAuthUser";
     import PalomaCheckoutAuthLogin from "./PalomaCheckoutAuthLogin";
     import PalomaCheckoutAuthRegister from "./PalomaCheckoutAuthRegister";
     import PalomaCheckoutDelivery from "./PalomaCheckoutDelivery";
@@ -52,14 +53,19 @@
             meta: {
                 step: 1
             },
-            redirect: {
-                name: 'state_auth_email'
-            },
             children: [
                 {
                     path: 'email',
                     name: 'state_auth_email',
                     component: PalomaCheckoutAuthEmail,
+                    meta: {
+                        step: 1
+                    }
+                },
+                {
+                    path: 'user',
+                    name: 'state_auth_user',
+                    component: PalomaCheckoutAuthUser,
                     meta: {
                         step: 1
                     }

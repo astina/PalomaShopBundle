@@ -1,6 +1,6 @@
 <?php
 
-namespace Paloma\ShopBundle\EventListener;
+namespace Paloma\ShopBundle\Security;
 
 use Exception;
 use Paloma\Shop\Checkout\CheckoutInterface;

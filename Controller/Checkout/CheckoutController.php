@@ -24,7 +24,7 @@ class CheckoutController extends AbstractPalomaController
         return $this->redirectToRoute('paloma_checkout_state', ['state' => $state]);
     }
 
-    public function state(string $state, PalomaSerializer $serializer, CheckoutInterface $checkout, Request $request)
+    public function state(string $state, PalomaSerializer $serializer, CheckoutInterface $checkout, PalomaSecurityInterface $security, Request $request)
     {
         try {
             $order = $checkout->getOrderDraft();
@@ -32,8 +32,11 @@ class CheckoutController extends AbstractPalomaController
             return $this->redirectToRoute('paloma_catalog_home');
         }
 
+        $user = $security->getUser();
+
         return $this->render('@PalomaShop/checkout/index.html.twig', [
             'order_json' => $serializer->serialize($order, SerializationConstants::OPTIONS_ORDER_DRAFT),
+            'user_json' => $serializer->serialize($user, SerializationConstants::OPTIONS_USER),
             'errors_json' => $serializer->serialize($this->getFlashMessageErrors($request)),
             'state' => $state,
         ]);

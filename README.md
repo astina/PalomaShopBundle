@@ -84,6 +84,8 @@ security:
 
       logout:
         path: paloma_security_logout
+        success_handler: 'paloma_shop.security.logout_success_handler'
+        invalidate_session: false
 
       remember_me:
         secret: '%kernel.secret%'

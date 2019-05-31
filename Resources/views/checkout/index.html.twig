@@ -25,8 +25,10 @@
         PALOMA.checkout = {
             state: '{{ state }}',
             order: {{ order_json|raw }},
+            user: {{ user_json|raw }},
             errors: {{ errors_json|raw }}
-        }
+        };
+        PALOMA.user = {{ user_json|raw }};
     </script>
 
     <main id="paloma-checkout">

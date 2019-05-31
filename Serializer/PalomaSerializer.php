@@ -30,15 +30,15 @@ class PalomaSerializer
             $data = $this->serializer->normalize($object);
         }
 
-        if (isset($options['include'])) {
+        if ($object && isset($options['include'])) {
             $data = $this->include($data, $options['include']);
         }
 
-        if (isset($options['exclude'])) {
+        if ($object && isset($options['exclude'])) {
             $data = $this->exclude($data, $options['exclude']);
         }
 
-        if (isset($options['extend'])) {
+        if ($object && isset($options['extend'])) {
             $data = $this->extend($data, $options['extend']);
         }
 
