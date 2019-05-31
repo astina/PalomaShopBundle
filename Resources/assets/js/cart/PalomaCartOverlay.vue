@@ -88,8 +88,8 @@
 
         data() {
             return {
-                cart: null,
-                loading: false,
+                cart: {},
+                loading: this.show,
             }
         },
 
@@ -101,19 +101,14 @@
 
         watch: {
             'show': function() {
-                if (this.show) {
-
-                    this.loading = true;
-
-                    paloma.cart.get().then(cart => {
-                        this.cart = cart;
-                        this.loading = false;
-                    });
-                }
+                this.show && this._loadCart();
             }
         },
 
         mounted() {
+
+            this.show && this._loadCart();
+
             paloma.events.$on('paloma.cart_updated', (cart) => {
                 this.cart = cart;
             });
@@ -133,6 +128,16 @@
                 }
 
                 this.close();
+            },
+
+            _loadCart() {
+
+                this.loading = true;
+
+                paloma.cart.get().then(cart => {
+                    this.cart = cart;
+                    this.loading = false;
+                });
             }
         }
     }

@@ -9,7 +9,7 @@
                 <label class="label">{{ $trans('field.address_title') }}</label>
                 <div class="control">
                     <label v-for="option in model.titleCode.options" class="radio">
-                        <input v-model="address.titleCode" :value="option.value" v-focus type="radio" name="title">
+                        <input v-model="address.titleCode" :value="option.value" type="radio" name="title">
                         {{ option.label }}
                     </label>
                 </div>
@@ -24,7 +24,7 @@
                          :class="{ 'form__field--invalid': $v.address.firstName.$error }">
                         <label class="label" for="address__first_name">{{ $trans('field.first_name') }}</label>
                         <div class="control">
-                            <input v-model="address.firstName" class="input" type="text" id="address__first_name" required name="first_name">
+                            <input v-model="address.firstName" v-focus class="input" type="text" id="address__first_name" required name="first_name">
                         </div>
                         <p v-if="!$v.address.firstName.required" class="help is-danger">
                             {{ $trans('error.field.required') }}

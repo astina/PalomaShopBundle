@@ -38,9 +38,9 @@ const routes = window.PALOMA.routes;
 
 const router = {
 
-    resolve(link, params) {
+    resolve(link, params, anchor) {
 
-        params = params ||{};
+        params = params || {};
 
         let url = routes[link] || link;
 
@@ -61,7 +61,8 @@ const router = {
         }
 
         return url
-            + (query.length === 0 ? '' : '?' + query.join('&'));
+            + (query.length === 0 ? '' : '?' + query.join('&'))
+            + (anchor ? '#' + anchor : '');
     }
 };
 

@@ -23,11 +23,30 @@
 }
 
 .checkout-order__subtitle {
+  margin-bottom: 10px;
+}
+
+.checkout-order__subtitle h3 {
   font-size: $size-8;
   font-weight: $weight-bold;
-  margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
+  display: inline-block;
+}
+
+.checkout-order__subtitle a {
+  color: $text-light;
+  font-size: $size-8;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.checkout-order__subtitle a:before {
+  content: '(';
+}
+
+.checkout-order__subtitle a:after {
+  content: ')';
 }
 
 .checkout-order__address {

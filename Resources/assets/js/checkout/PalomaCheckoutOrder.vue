@@ -17,16 +17,18 @@
         <div class="checkout-order__content">
 
             <div v-if="order.shipping.address" class="checkout-order__address checkout-order__address--shipping">
-                <h3 class="checkout-order__subtitle">
-                    {{ $trans('checkout.shipping_address') }}
-                </h3>
+                <div class="checkout-order__subtitle">
+                    <h3>{{ $trans('checkout.shipping_address') }}</h3>
+                    <router-link :to="{name: 'state_delivery_address'}" href="">{{ $trans('button.edit') }}</router-link>
+                </div>
                 <paloma-address :address="order.shipping.address"></paloma-address>
             </div>
 
             <div v-if="order.billing.address" class="checkout-order__address checkout-order__address--billing">
-                <h3 class="checkout-order__subtitle">
-                    {{ $trans('checkout.billing_address') }}
-                </h3>
+                <div class="checkout-order__subtitle">
+                    <h3>{{ $trans('checkout.billing_address') }}</h3>
+                    <router-link :to="{name: 'state_payment_address'}" href="">{{ $trans('button.edit') }}</router-link>
+                </div>
                 <p v-if="order.sameShippingAndBillingAddress" class="checkout-order__address-same">
                     {{ $trans('checkout.billing_address.same_as_shipping') }}
                 </p>
@@ -35,9 +37,10 @@
 
             <div class="checkout-order__items">
 
-                <h3 class="checkout-order__subtitle">
-                    {{ $trans('order.items') }}
-                </h3>
+                <div class="checkout-order__subtitle">
+                    <h3>{{ $trans('order.items') }}</h3>
+                    <a :href="cartUrl">{{ $trans('button.edit') }}</a>
+                </div>
 
                 <paloma-checkout-order-item
                         v-for="item in order.items"
@@ -112,6 +115,7 @@
 
         data() {
             return {
+                cartUrl: paloma.router.resolve('catalog_home', null, 'cart'),
                 expanded: false,
             }
         },

@@ -45,7 +45,7 @@
                     unitsCount: unitsCount,
                     itemsPrice: this.itemsPrice,
                 },
-                showCart: false,
+                showCart: window.location.hash === '#cart',
                 lastItem: null,
             }
         },
