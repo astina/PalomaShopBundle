@@ -16,7 +16,9 @@
 
 .category-nav__burger-label {
   font-size: $size-8;
-  line-height: 1.7rem;
+  float: left;
+  display: inline-block;
+  line-height: 30px;
 }
 
 .category-nav__item--has-children {
@@ -54,7 +56,6 @@
     background: $white;
     width: 300px;
     max-width: 80vw;
-    height: 100%;
   }
 }
 
