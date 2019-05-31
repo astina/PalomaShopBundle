@@ -7,6 +7,8 @@ search:
   placeholder: Suchen...
 
 catalog:
+  categories:
+    show_products: Alle anzeigen
   products:
     title: Artikel
     sort_by: 'Sortieren nach:'

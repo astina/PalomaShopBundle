@@ -15,8 +15,22 @@
   font-size: $size-7;
 }
 
+.cart-mini__indicator {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
-  .cart-mini__items-price {
-    display: none;
+
+  .cart-mini__indicator {
+    display: block;
+    background: $primary;
+    color: $white;
+    border-radius: 7px;
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
   }
 }

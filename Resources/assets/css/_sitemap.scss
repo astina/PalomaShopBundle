@@ -26,6 +26,9 @@
   line-height: 1.6;
 }
 
+.sitemap__nav-item--show-products {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
 
@@ -35,5 +38,24 @@
 
   .sitemap__nav {
     margin-bottom: 30px;
+  }
+
+  .sitemap__section {
+    display: block;
+  }
+
+  .sitemap__nav {
+    display: none;
+  }
+
+  .sitemap__section--active .sitemap__nav {
+    display: block;
+  }
+
+  .sitemap__nav-item--show-products {
+    display: block;
+    text-decoration: underline;
+    font-size: $size-8;
+    margin-bottom: 5px;
   }
 }

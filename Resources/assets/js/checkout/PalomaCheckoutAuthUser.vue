@@ -7,9 +7,9 @@
 
         <p>
             <a @click.prevent="logout" class="button is-small">
-                    <span class="icon">
-                        <i class="fal fa-sign-out"></i>
-                    </span>
+                <span class="icon">
+                    <i class="fal fa-sign-out"></i>
+                </span>
                 <span>{{ $trans('button.logout') }}</span>
             </a>
         </p>

@@ -14,6 +14,11 @@
   padding: 0;
 }
 
+.category-nav__burger-label {
+  font-size: $size-8;
+  line-height: 1.7rem;
+}
+
 .category-nav__item--has-children {
 }
 
@@ -47,7 +52,9 @@
   .category-nav__menu {
     z-index: 110;
     background: $white;
-    width: 80vw;
+    width: 300px;
+    max-width: 80vw;
+    height: 100%;
   }
 }
 
@@ -74,7 +81,4 @@
     display: block;
   }
 
-}
-
-.category-nav__sitemap {
 }

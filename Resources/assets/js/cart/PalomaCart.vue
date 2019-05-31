@@ -3,15 +3,18 @@
 
         <a class="button" @click.prevent="toggleCart" href="">
             <span class="icon">
-                <span class="far fa-shopping-bag"></span>
+                <span class="fal fa-shopping-bag"></span>
             </span>
             <span v-if="cart.empty" class="is-hidden-mobile">
                 {{ $trans('cart.title') }}
             </span>
-            <span v-else>
+            <span v-else class="is-hidden-mobile">
                 {{ $trans('cart.units_count', {count: cart.unitsCount}) }}
-                <span class="cart-mini__items-price">({{cart.itemsPrice}})</span>
+                ({{cart.itemsPrice}})
             </span>
+            <div v-if="!cart.empty" class="cart-mini__indicator">
+                {{ cart.unitsCount }}
+            </div>
         </a>
 
         <paloma-cart-overlay

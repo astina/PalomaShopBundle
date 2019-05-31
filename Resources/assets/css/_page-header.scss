@@ -17,8 +17,9 @@
 }
 
 .page-header__user-nav {
-  //margin-top: auto;
-  margin-top: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: -15px;
 }
 
 .page-header__quick-search {
@@ -39,9 +40,10 @@
     position: fixed;
     width: 100%;
     top: 0;
+    padding-top: 10px;
     background: white;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-    z-index: 100;
+    z-index: 30;
   }
 
   body.is-scrolled {
@@ -50,6 +52,11 @@
 
   .page-header__user-nav {
     margin-top: 10px;
+    margin-right: 0;
+  }
+
+  .page-header__quick-search {
+    margin-right: 10px;
   }
 
   .page-header__bottom {

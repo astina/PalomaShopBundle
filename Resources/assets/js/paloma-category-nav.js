@@ -15,6 +15,17 @@ import jQuery from "jquery";
         }
     });
 
+    $categoryNav.find('.sitemap__section--has-children > .sitemap__section-link').click((e) => {
+
+        // only relevant for > mobile
+        if ($(window).width() > 768) {
+            return;
+        }
+
+        e.preventDefault();
+        $(e.currentTarget).parent().toggleClass('sitemap__section--active');
+    });
+
     $(window).on('scroll', () => {
         const scrolled = $(window).scrollTop() > 80;
         if (scrolled) {
