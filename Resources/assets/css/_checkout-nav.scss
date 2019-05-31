@@ -1,15 +1,16 @@
 .checkout-nav {
   display: flex;
+  justify-content: space-between;
 }
 
 .checkout-nav__item {
-  margin-right: 15px;
-  padding-right: 60px;
+  flex: 1;
   position: relative;
+  text-align: center;
 }
 
-.checkout-nav__item:last-of-type {
-  margin-right: 0;
+.checkout-nav__item:first-of-type {
+  margin-left: -7%;
 }
 
 .checkout-nav__item--disabled {
@@ -19,9 +20,9 @@
 .checkout-nav__item:after {
   content: ' ';
   position: absolute;
-  right: 0;
+  width: 30%;
+  right: -15%;
   top: 13px;
-  width: 50px;
   height: 2px;
   background: $grey-lighter;
 }
@@ -69,4 +70,33 @@
 .checkout-nav__item--active .checkout-nav__item-text,
 .checkout-nav__item--complete .checkout-nav__item-text {
   color: $primary;
+}
+
+@media screen and (max-width: 768px) {
+
+  .checkout-nav__item {
+    padding-right: 0;
+  }
+
+  .checkout-nav__item:first-of-type {
+    margin-left: 0;
+  }
+
+  .checkout-nav__item:after {
+    right: -15px;
+    width: 20px;
+  }
+
+  .checkout-nav__item-text {
+    max-width: 20vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: $size-9;
+  }
+}
+
+@media (min-width: 1020px) {
+  .checkout-nav {
+    max-width: 500px;
+  }
 }

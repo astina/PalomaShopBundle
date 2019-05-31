@@ -6,6 +6,14 @@
   font-size: $size-7;
 }
 
+.page-footer a {
+  color: $grey-light;
+}
+
+.page-footer a:hover {
+  color: $grey-lighter;
+}
+
 .page-footer--default .page-footer__logo {
   width: 60px;
   opacity: 0.7
@@ -19,6 +27,18 @@
   margin-top: 10px;
 }
 
+.page-footer--checkout {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 10;
+}
+
+.page-footer--checkout .page-footer__logo {
+  float: right;
+  width: 60px;
+  opacity: 0.7
+}
+
 @media screen and (max-width: 768px) {
 
   .page-footer {
@@ -29,5 +49,13 @@
   .page-footer--default .page-footer__info {
     float: none;
     margin-top: 0;
+  }
+
+  .page-footer--checkout .page-footer__logo {
+    float: none;
+  }
+
+  .page-footer--checkout .column {
+    text-align: center;
   }
 }

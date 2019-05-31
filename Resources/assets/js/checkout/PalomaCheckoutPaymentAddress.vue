@@ -1,10 +1,6 @@
 <template>
     <div>
 
-        <h1 class="checkout__title">
-            {{ $trans('checkout.state_payment.billing_address') }}
-        </h1>
-
         <paloma-address-form :address="address"
                              :model="addressModel"
                              :loading="loading"

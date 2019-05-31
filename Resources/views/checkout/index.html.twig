@@ -31,8 +31,11 @@
         PALOMA.user = {{ user_json|raw }};
     </script>
 
-    <main id="paloma-checkout">
+    <main id="paloma-checkout" class="checkout-wrapper">
         <paloma-checkout></paloma-checkout>
+        {% block footer %}
+            {% include '@PalomaShop/checkout/footer.html.twig' %}
+        {% endblock %}
     </main>
 
     {% block content %}

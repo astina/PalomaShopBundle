@@ -1,10 +1,6 @@
 <template>
     <div class="checkout-auth">
 
-        <h1 class="checkout__title">
-            {{ $trans('checkout.state_auth.title') }}
-        </h1>
-
         <paloma-spinner :loading="loading"/>
 
         <router-view

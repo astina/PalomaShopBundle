@@ -1,16 +1,8 @@
-.form {
-  margin-top: 50px;
-}
-
 .form--address .label,
 .form--customer .label {
   font-weight: $weight-normal;
   font-size: $size-7;
   //color: $text-light;
-}
-
-.form .button {
-  min-width: 150px;
 }
 
 .form .columns {
@@ -48,6 +40,10 @@
   margin-top: 20px;
 }
 
+.form .button {
+  min-width: 100px;
+}
+
 .form--delivery .form__buttons {
   margin-top: 50px;
 }
@@ -57,13 +53,56 @@
 }
 
 .form__error {
-  color: $red;
+  color: $white;
   border: 1px solid $red;
-  padding: 10px;
-  margin-bottom: 50px;
+  padding: 10px 20px;
+  margin: 0 -10px 50px -10px;
+  background: #cd3c32;
 }
 
 .form__info {
   color: $text-light;
   font-size: $size-7;
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+
+  //.form {
+  //  padding-bottom: 60px; // because of fixed buttons
+  //}
+  //
+  //.form__buttons {
+  //  z-index: 20;
+  //  margin-top: 0;
+  //  position: fixed;
+  //  bottom: 0;
+  //  left: 0;
+  //  right: 0;
+  //  background: $white-bis;
+  //  padding: 30px 10px; // bottom padding should prevent safari menu bar from appearing
+  //  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  //  border-top: 1px solid $grey-lighter;
+  //}
+
+  .form__buttons.field.is-grouped.is-grouped-right {
+    //justify-content: center;
+  }
+
+  .form__error {
+    padding: 10px;
+    font-size: $size-7;
+    margin-bottom: 20px;
+  }
+}
+
+// > mobile
+@media (min-width: 769px) {
+
+  .form {
+  }
+
+  .form .button {
+    min-width: 150px;
+  }
 }

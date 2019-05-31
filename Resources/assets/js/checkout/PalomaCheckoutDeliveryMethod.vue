@@ -1,10 +1,6 @@
 <template>
     <div>
 
-        <h1 class="checkout__title">
-            {{ $trans('checkout.state_delivery.shipping_method') }}
-        </h1>
-
         <div v-show="methods === null">
             <paloma-spinner></paloma-spinner>
         </div>

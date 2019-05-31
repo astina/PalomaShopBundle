@@ -1,5 +1,5 @@
 .checkout-success {
-
+  padding-bottom: 30px;
 }
 
 .checkout-success__logo {
@@ -12,4 +12,12 @@
 
 .checkout-success .container {
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+
+  .checkout-success__logo {
+    margin: 20px auto;
+  }
+
 }

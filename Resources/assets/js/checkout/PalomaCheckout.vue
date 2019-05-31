@@ -5,7 +5,8 @@
             <paloma-checkout-header></paloma-checkout-header>
         </div>
 
-        <div class="checkout__order">
+        <div class="checkout__order"
+             :class="{'checkout__order--expanded': orderContentExpanded, 'checkout__order--hidden-mobile': !showOrderMobile}">
             <div class="checkout__order-inner">
                 <a class="checkout__abort" :href="abortUrl">
                     <span class="icon">
@@ -13,7 +14,7 @@
                     </span>
                     <span class="checkout__abort-label">{{ $trans('checkout.abort') }}</span>
                 </a>
-                <paloma-checkout-order></paloma-checkout-order>
+                <paloma-checkout-order @toggle-content="onToggleOrderContent"></paloma-checkout-order>
             </div>
         </div>
 
@@ -59,7 +60,7 @@
                     name: 'state_auth_email',
                     component: PalomaCheckoutAuthEmail,
                     meta: {
-                        step: 1
+                        step: 1,
                     }
                 },
                 {
@@ -182,6 +183,19 @@
                         type: 'error',
                     };
                 }),
+                orderContentExpanded: false // only relevant on mobile
+            }
+        },
+
+        computed: {
+            showOrderMobile() {
+                return this.$route.name.indexOf('state_auth') === -1;
+            }
+        },
+
+        methods: {
+            onToggleOrderContent(expanded) {
+                this.orderContentExpanded = expanded;
             }
         }
     }

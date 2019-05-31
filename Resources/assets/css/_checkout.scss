@@ -1,5 +1,11 @@
+.checkout-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .checkout {
-  height: 100vh;
+  flex: 1;
   position: relative;
 }
 
@@ -9,12 +15,11 @@
 
 .checkout__order {
   background: lighten($grey-lighter, 10);
-  padding: 20px 50px;
-  display: none; // TODO
+  padding: 10px;
 }
 
 .checkout__abort {
-  display: inline-block;
+  display: none;
   margin-bottom: 30px;
   font-size: $size-7;
   color: $text;
@@ -25,14 +30,12 @@
 }
 
 .checkout__main {
-  padding-left: 10px;
-  padding-top: 20px;
-  padding-right: 50px;
+  padding: 20px 10px;
 }
 
 .checkout__title {
   font-size: $size-4;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .checkout__subtitle {
@@ -63,6 +66,32 @@
   margin-bottom: 50px;
 }
 
+@media screen and (max-width: 768px) {
+
+  .checkout__main {
+    padding-top: 0;
+  }
+
+  .checkout__title {
+    font-size: $size-5;
+    margin-bottom: 20px;
+  }
+
+  .checkout__info {
+  }
+
+  .checkout__order {
+    margin-bottom: 20px;
+  }
+
+  .checkout__order--expanded {
+    @include shadow_bottom();
+    margin-bottom: 20px;
+    border-bottom: 1px solid $grey-lighter;
+  }
+
+}
+
 @media (min-width: 1020px) {
 
   .checkout__header {
@@ -80,7 +109,12 @@
     right: 0;
     bottom: 0;
     height: 100vh;
+    padding: 20px 50px;
     overflow-y: auto;
+  }
+
+  .checkout__abort {
+    display: inline-block;
   }
 
   .checkout__order-inner {
@@ -89,9 +123,11 @@
 
   .checkout__main {
     max-width: 800px;
+    padding-top: 0;
     padding-left: 20px;
+    padding-right: 50px;
+    margin-right: 45%;
     margin-left: auto;
     width: 55%;
-    margin-right: 45%;
   }
 }

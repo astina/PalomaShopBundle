@@ -57,7 +57,6 @@ checkout:
   billing_address.same_as_shipping: Entspricht der Lieferadresse
   state_auth:
     name: Anmelden
-    title: Anmelden
     user_info: Sie sind angemeldet als '%username%'.
     email_info: |
       Bitte geben Sie Ihre E-Mail-Adresse ein. Falls Sie bereits Kunde sind, geben Sie bitte die E-Mail-Adresse an,
@@ -71,24 +70,36 @@ checkout:
       Herzlich willkommen. Bitte füllen Sie das untenstehende Formular aus.
     register_password_info: |
       Wenn Sie ein Passwort angeben, können Sie sich mit diesem beim nächsten Einkauf anmelden.
+  state_auth_user:
+    title: Anmelden
+  state_auth_email:
+    title: Anmelden
+  state_auth_register:
+    title: Anmelden
+  state_auth_login:
+    title: Anmelden
   state_delivery:
     name: Lieferung
     title: Lieferung
-    shipping_address: Lieferadresse
-    shipping_method: Lieferoptionen
+  state_delivery_address:
+    title: Lieferadresse
+  state_delivery_method:
+    title: Lieferoptionen
   state_payment:
     name: Bezahlung
     title: Bezahlung
-    payment_method: Zahlungsart
-    payment_method_info: |
+  state_payment_method:
+    title: Zahlungsart
+    info: |
       Bitte wählen Sie die gewünschte Zahlungsart.
       Gutscheine können im nächsten Bestellschritt eingelöst werden.
-    billing_address: Rechnungsadresse
+  state_payment_address:
+    title: Rechnungsadresse
   state_confirm:
     name: Bestätigung
     title: Bestellung überprüfen
     info: |
-      Bitte prüfen Sie nochmal Ihre Bestellung. Falls Sie einen Gutschein haben, können Sie diesen nun eingeben.
+      Bitte prüfen Sie nochmal Ihre Bestellung. Falls Sie einen Gutschein haben, können Sie diesen unten eingeben.
   next: Weiter
   coupons:
     title: Gutscheine & Rabattcodes

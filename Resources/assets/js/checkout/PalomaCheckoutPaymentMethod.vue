@@ -3,14 +3,6 @@
 
         <section class="checkout__section">
 
-            <h1 class="checkout__title">
-                {{ $trans('checkout.state_payment.payment_method') }}
-            </h1>
-
-            <p class="checkout__info">
-                {{ $trans('checkout.state_payment.payment_method_info') }}
-            </p>
-
             <div v-show="methods === null">
                 <paloma-spinner></paloma-spinner>
             </div>
@@ -44,7 +36,7 @@
         <section v-if="order.billing.address" class="checkout__section">
 
             <h2 class="checkout__subtitle">
-                {{ $trans('checkout.state_payment.billing_address') }}
+                {{ $trans('checkout.state_payment_method.title') }}
             </h2>
 
             <div class="m-b">

@@ -54,3 +54,11 @@
   color: $text-light;
   white-space: nowrap;
 }
+
+@media screen and (max-width: 768px) {
+
+  .checkout-order-item__unit {
+    white-space: normal;
+  }
+
+}

@@ -1,14 +1,6 @@
 <template>
     <div class="checkout-confirm">
 
-        <h1 class="checkout__title">
-            {{ $trans('checkout.state_confirm.title') }}
-        </h1>
-
-        <p class="checkout__info">
-            {{ $trans('checkout.state_confirm.info') }}
-        </p>
-
         <paloma-spinner :loading="loading"></paloma-spinner>
 
         <div v-if="!loading">
@@ -20,7 +12,7 @@
             <form class="form form--purchase" @submit.prevent="purchase">
                 <div class="field">
                     <div class="control">
-                        <button class="button is-primary" :class="{'is-loading': purchasing}" v-focus>
+                        <button class="button is-primary" :class="{'is-loading': purchasing}">
                             {{ $trans(paymentRequired ? 'checkout.purchase_and_pay' : 'checkout.purchase') }}
                         </button>
                     </div>

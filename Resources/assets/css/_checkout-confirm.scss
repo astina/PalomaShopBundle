@@ -4,18 +4,41 @@
 
 .checkout-confirm .form--purchase {
   background: $white-bis;
-  padding: 30px;
-}
-
-.checkout-confirm .form--purchase .field {
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .checkout-confirm .form--purchase .control {
   text-align: center;
 }
 
+.checkout-confirm .form--purchase .button.is-primary {
+  white-space: normal;
+  height: auto;
+}
+
 .checkout-confirm .checkout__text {
   text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .checkout-confirm .form--purchase {
+    padding: 20px 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: -20px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+
+  .checkout-confirm .form--purchase {
+    padding: 30px;
+  }
+
+  .checkout-confirm .form--purchase .field {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
 }

@@ -1,10 +1,25 @@
 .checkout-order {
 }
 
-.checkout-order__title {
-  font-size: $size-4;
+.checkout-order__header {
   margin-bottom: 30px;
   border-bottom: 1px solid $grey-lighter;
+}
+
+.checkout-order__header-total {
+  display: none;
+}
+
+.checkout-order__header-total .price__amount {
+  font-weight: $weight-bold;
+}
+
+.checkout-order__header-total .icon {
+  color: $text;
+}
+
+.checkout-order__title {
+  font-size: $size-4;
 }
 
 .checkout-order__subtitle {
@@ -71,4 +86,42 @@
 .checkout-order__adjustment--tax {
   font-size: $size-7;
   color: $text-light;
+}
+
+@media screen and (max-width: 1019px) {
+
+  .checkout__order--hidden-mobile {
+    display: none;
+  }
+
+  .checkout-order__header {
+    margin-bottom: 0;
+    border: 0;
+    display: flex;
+    cursor: pointer;
+  }
+
+  .checkout-order--expanded .checkout-order__header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid $grey-lighter;
+    margin-bottom: 20px;
+  }
+
+  .checkout-order__header-total {
+    display: inline-block;
+  }
+
+  .checkout-order__title {
+    font-size: $size-6;
+    flex: 1;
+  }
+
+  .checkout-order__content {
+    display: none;
+  }
+
+  .checkout-order--expanded .checkout-order__content {
+    display: block;
+  }
+
 }
