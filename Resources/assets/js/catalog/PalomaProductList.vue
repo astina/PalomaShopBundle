@@ -220,12 +220,14 @@
 
             createHref(product) {
 
-                if (this.category) {
+                const category = this.category || product.mainCategory;
+
+                if (category) {
                     return paloma.router.resolve(
                         this.results._links.category_product.href,
                         Object.assign({
-                            categorySlug: this.category.slug,
-                            categoryCode: this.category.code,
+                            categorySlug: category.slug,
+                            categoryCode: category.code,
                             itemNumber: product.itemNumber,
                             productSlug: product.slug
                         }, this._searchParams()));

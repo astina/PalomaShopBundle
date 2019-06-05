@@ -80,5 +80,6 @@ $highlight: #DCF2FF !default;
 
 $availability-available: darken($green, 5%)  !default;
 
-$product-image-padding: 0  !default; //10% !default;
+$product-image-padding: 10% !default;
+$product-zoom-image-padding: 5% !default;
 $product-card-image-padding: 5%  !default;

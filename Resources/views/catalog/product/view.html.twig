@@ -65,15 +65,13 @@
 
             <div class="columns">
                 <div class="column">
-
-                    {% include '@PalomaShop/catalog/product/specs.html.twig' %}
-
-                </div>
-                <div class="column">
-
                     {% include '@PalomaShop/catalog/product/description.html.twig' %}
-
                 </div>
+                {% if product.attributes|length > 0 %}
+                    <div class="column">
+                        {% include '@PalomaShop/catalog/product/specs.html.twig' %}
+                    </div>
+                {% endif %}
             </div>
 
         </div>

@@ -45,6 +45,11 @@ class SerializationConstants
                 'brand',
                 'badge',
             ],
+            'mainCategory' => [
+                'name',
+                'slug',
+                'code',
+            ]
         ],
         'filterAggregates',
         'totalElements',

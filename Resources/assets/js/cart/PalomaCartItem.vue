@@ -15,6 +15,11 @@
                         {{ option.label }}: {{ option.value }}
                     </div>
                 </div>
+                <div v-else-if="item.productVariant && item.productVariant.name !== item.itemNumber" class="cart-item__options">
+                    <div class="cart-item__option">
+                        {{ item.productVariant.name }}
+                    </div>
+                </div>
             </div>
             <form class="cart-item__quantity">
                 <div class="field has-addons">

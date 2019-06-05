@@ -16,6 +16,9 @@
                 <div v-if="product.attributes.brand" class="product-card__brand">
                     {{ product.attributes.brand.value }}
                 </div>
+                <div v-else-if="productCategory" class="product-card__brand">
+                    {{ productCategory.name }}
+                </div>
                 <a :href="href" class="product-card__title">
                     {{ product.name }}
                 </a>
@@ -49,6 +52,15 @@
             product: Object,
             category: Object,
             href: String
+        },
+
+        data() {
+
+            const productCategory = this.category || this.product.mainCategory;
+
+            return {
+                productCategory: productCategory
+            }
         }
     }
 </script>

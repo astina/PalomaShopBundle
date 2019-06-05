@@ -1,7 +1,7 @@
 <template>
     <div class="product-option" :class="{'is-hidden': values.length < 2}">
 
-        <h3 class="product-option__title">{{ option.label }}</h3>
+        <h3 v-if="option.option !== '_variant'" class="product-option__title">{{ option.label }}</h3>
 
         <div v-for="value in values" :key="value.value" class="product-option__value"
             :class="{'product-option__value--selected': value.value === selected, 'product-option__value--variant': value.variant}"

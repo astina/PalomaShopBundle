@@ -13,6 +13,11 @@
                         {{ option.label }}: {{ option.value }}
                     </div>
                 </div>
+                <div v-else-if="item.productVariant && item.productVariant.name !== item.itemNumber" class="checkout-order-item__options">
+                    <div class="checkout-order-item__option">
+                        {{ item.productVariant.name }}
+                    </div>
+                </div>
             </div>
         </div>
 
