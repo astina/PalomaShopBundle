@@ -8,7 +8,9 @@ use Paloma\Shop\Catalog\CategoryReferenceInterface;
 use Paloma\Shop\Catalog\ProductInterface;
 use Paloma\Shop\Catalog\SearchRequest;
 use Paloma\Shop\Checkout\CheckoutInterface;
+use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
+use Paloma\ShopBundle\Serializer\SerializationConstants;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,12 +21,15 @@ abstract class AbstractPalomaController extends AbstractController
 
     protected $checkout;
 
+    protected $security;
+
     protected $serializer;
 
-    public function __construct(CatalogInterface $catalog, CheckoutInterface $checkout, PalomaSerializer $serializer)
+    public function __construct(CatalogInterface $catalog, CheckoutInterface $checkout, PalomaSecurityInterface $security, PalomaSerializer $serializer)
     {
         $this->catalog = $catalog;
         $this->checkout = $checkout;
+        $this->security = $security;
         $this->serializer = $serializer;
     }
 
@@ -104,9 +109,13 @@ abstract class AbstractPalomaController extends AbstractController
     {
         $cart = $this->checkout->getCart();
 
+        $user = $this->security->getUser();
+
         return [
             'main_categories' => $this->mainCategories(),
             'cart' => $cart,
+            'user' => $user,
+            'user_json' => $this->serializer->serialize($user, SerializationConstants::OPTIONS_USER),
         ];
     }
 

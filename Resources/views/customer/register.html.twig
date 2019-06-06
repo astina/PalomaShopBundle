@@ -1,0 +1,23 @@
+{% extends '@PalomaShop/layout.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block main %}
+
+    <section class="section">
+        <div class="container">
+
+            <div id="paloma-customer-register">
+                <paloma-customer-registration></paloma-customer-registration>
+            </div>
+
+        </div>
+    </section>
+
+    {% block content %}
+        <div class="is-hidden" id="content--register-info">
+            {% include '@PalomaShop/content/customer_register_info.html.twig' %}
+        </div>
+    {% endblock %}
+
+{% endblock %}

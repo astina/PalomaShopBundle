@@ -23,7 +23,7 @@
 }
 
 .page-header__quick-search {
-  padding-bottom: 12px;
+  padding-bottom: 8px;
 }
 
 .page-header__bottom {
@@ -39,6 +39,7 @@
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0;
     padding-top: 10px;
     background: white;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
@@ -55,10 +56,19 @@
   }
 
   .page-header__quick-search {
-    margin-right: 10px;
+    padding-bottom: 0;
   }
 
   .page-header__bottom {
     padding-bottom: 5px;
   }
+}
+
+@media screen and (max-width: 1087px) {
+
+  .page-header__container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
 }

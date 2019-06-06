@@ -38,3 +38,15 @@
 .user-login__password-reset {
   color: $text-light;
 }
+
+@media screen and (max-width: 768px) {
+
+  .user-login.modal-card {
+    max-height: none;
+    height: 100vh;
+  }
+
+  .user-login .modal-card-body {
+    padding: 10px;
+  }
+}

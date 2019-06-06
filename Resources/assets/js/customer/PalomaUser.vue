@@ -46,7 +46,7 @@
                     </div>
                     <hr class="dropdown-divider">
                     <div class="dropdown-item">
-                        <a class="user-dropdown__register" href="">
+                        <a class="user-dropdown__register" :href="registerUrl">
                             {{ $trans('customer.new_customer') }}
                         </a>
                     </div>
@@ -79,6 +79,7 @@
             return {
                 user: user,
                 logoutUrl: paloma.router.resolve('security_logout'),
+                registerUrl: paloma.router.resolve('customer_register'),
                 showDropdown: false,
                 showLoginModal: false,
             }
@@ -106,7 +107,7 @@
 
             onLoginSuccess() {
                 this.closeDropdown();
-                window.location.reload(); // TODO redirect to account overview?
+                window.location.href = this.accountView();
             },
 
             closeDropdown() {

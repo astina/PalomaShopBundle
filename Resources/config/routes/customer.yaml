@@ -1,3 +1,13 @@
+paloma_customer_register:
+  path: /register/
+  controller: paloma_shop.controller.customer_registration::view
+  methods: GET
+
+paloma_customer_register_success:
+  path: /register/success
+  controller: paloma_shop.controller.customer_registration::success
+  methods: GET
+
 paloma_customer_register_confirm:
   path: /register/confirm
   controller: paloma_shop.controller.customer_registration::confirm

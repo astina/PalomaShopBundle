@@ -1,0 +1,51 @@
+{% extends '@PalomaShop/layout.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block main %}
+
+    <section class="section">
+        <div class="container">
+
+            <div class="user-register">
+
+                {% block content %}
+
+                    <div class="content">
+
+                        <h1>{{ 'customer.register.success.title' | trans }}</h1>
+
+                        <p>{{ 'customer.register.success.info' | trans }}</p>
+
+                    </div>
+
+                {% endblock %}
+
+
+                {% block buttons %}
+
+                    <div class="buttons m-t2">
+
+                        <a class="button is-link" href="{{ path('paloma_customer_account') }}">
+                                <span class="icon">
+                                    <i class="fal fa-user"></i>
+                                </span>
+                            <span>{{ 'customer.register.success.goto_account' | trans }}</span>
+                        </a>
+
+                        <a class="button is-text" href="{{ path('paloma_catalog_home') }}">
+                                <span class="icon">
+                                    <i class="fal fa-home"></i>
+                                </span>
+                            <span>{{ 'customer.register.success.goto_home' | trans }}</span>
+                        </a>
+
+                    </div>
+                {% endblock %}
+
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

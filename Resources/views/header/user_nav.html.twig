@@ -6,11 +6,13 @@
         </div>
     {% endif %}
 
-    <script>
-        var PALOMA = PALOMA || {};
-        PALOMA.user = {{ paloma.userJson|raw }};
-    </script>
-    <div class="user-nav__item user-nav__item--account" id="paloma-user">
-        <paloma-user></paloma-user>
-    </div>
+    {% if user_json is defined %}
+        <script>
+            var PALOMA = PALOMA || {};
+            PALOMA.user = {{ user_json|raw }};
+        </script>
+        <div class="user-nav__item user-nav__item--account" id="paloma-user">
+            <paloma-user></paloma-user>
+        </div>
+    {% endif %}
 </nav>

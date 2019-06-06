@@ -22,13 +22,13 @@ class PalomaShopExtension extends Extension
         $def->replaceArgument(0, $config);
 
         $def = $container->getDefinition('paloma_shop.twig_helper');
-        $def->replaceArgument(3, $config);
+        $def->replaceArgument(1, $config);
 
         $def = $container->getDefinition('paloma_shop.channel_resolver');
         $def->replaceArgument(0, $config['channels']);
 
         $def = $container->getDefinition('paloma_shop.client_factory');
-        $def->replaceArgument(3, $config['client']);
+        $def->replaceArgument(1, $config['client']);
 
         // TODO only load controllers if needed (if default UI is used)
         $loader->load('services/controllers.yaml');

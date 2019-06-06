@@ -19,13 +19,17 @@ services:
   paloma_shop.client_factory:
     class: Paloma\ShopBundle\SymfonyPalomaClientFactory
     arguments:
-      - '@paloma_shop.channel_resolver'
-      - '@paloma_shop.config'
       - '@session'
       - [] # injected by bundle extension
       - '@?paloma_shop.paloma_profiler'
+
+  paloma_shop.context_listener:
+    class: Paloma\ShopBundle\EventListener\PalomaContextListener
+    arguments:
+      - '@paloma_shop.channel_resolver'
+      - '@paloma_shop.client_factory'
     tags:
-      - { name: kernel.event_listener, event: kernel.request, priority: 15 } # before symfony security listeners
+      - { name: kernel.event_listener, event: kernel.request, priority: 31 } # before symfony security listeners, after router + session listener
 
   paloma_shop.client:
     class: Paloma\Shop\PalomaClient
@@ -77,8 +81,6 @@ services:
     class: Paloma\ShopBundle\Twig\PalomaTwigHelper
     arguments:
       - '@request_stack'
-      - '@paloma_shop.security'
-      - '@paloma_shop.serializer'
       - [] # injected by bundle extension
 
   # Aliases

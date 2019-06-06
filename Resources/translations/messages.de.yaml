@@ -67,6 +67,22 @@ customer:
     overview: Kontoübersicht
     orders: Meine Bestellungen
     addresses: Meine Adressen
+  register:
+    title: Als Kunde registrieren
+    info: todo
+    submit: Jetzt registrieren
+    success:
+      title: Herzlich willkommen!
+      info: |
+        Sie sind nun angemeldet. Wir haben Ihnen ausserdem eine E-Mail geschickt mit einem Link, mit welchem Sie
+        Ihre E-Mail-Adresse bestätigen können.
+      goto_account: Zu meiner Kontoübersicht
+      goto_home: Zur Startseite
+    confirm:
+      title: Vielen Dank!
+      info: Ihre E-Mail-Adresse wurde nun bestätigt.
+      error: Ein Fehler ist aufgetreten
+      error_info: Dieser Bestätigungslink wurde entweder schon benutzt oder ist abgelaufen.
 
 paging:
   next: Weiter
