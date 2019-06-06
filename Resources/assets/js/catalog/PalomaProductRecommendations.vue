@@ -23,12 +23,12 @@
 
         components: {PalomaProductCard},
 
+        props: {
+            product: Object
+        },
+
         data() {
-
-            const product = PALOMA['product'];
-
             return {
-                product: product,
                 products: []
             }
         },

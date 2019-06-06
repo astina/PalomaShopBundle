@@ -1,13 +1,5 @@
 {% extends '@PalomaShop/layout.html.twig' %}
 
-{% block javascripts %}
-    <script>
-        var PALOMA = PALOMA || {};
-        PALOMA.product = {{ product_json|raw }};
-    </script>
-    {{ parent() }}
-{% endblock %}
-
 {% block main %}
 <div id="paloma-product-view">
 
@@ -49,7 +41,7 @@
                         {% endif %}
 
                         <div id="paloma-product-select">
-                            <paloma-product-select></paloma-product-select>
+                            <paloma-product-select :product="{{ product_json }}"></paloma-product-select>
                         </div>
 
                     </div>
@@ -80,7 +72,7 @@
     <section class="section">
         <div class="container" id="paloma-product-recommendations">
 
-            <paloma-product-recommendations></paloma-product-recommendations>
+            <paloma-product-recommendations :product="{{ product_json }}"></paloma-product-recommendations>
 
         </div>
     </section>

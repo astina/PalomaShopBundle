@@ -39,13 +39,8 @@
                     <h3 class="title">Top Seller</h3>
                 </div>
 
-                <script>
-                    var PALOMA = PALOMA || {};
-                    PALOMA.search = {{ top_sellers_search_json|raw }};
-                </script>
-
                 <div id="paloma-product-list">
-                    <paloma-product-list :show-head="false" :paging="false"></paloma-product-list>
+                    <paloma-product-list :show-head="false" :paging="false" :search="{{ top_sellers_search_json }}"></paloma-product-list>
                 </div>
 
             </div>

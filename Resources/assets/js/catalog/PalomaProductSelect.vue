@@ -62,9 +62,13 @@
             PalomaPrice,
         },
 
+        props: {
+            product: Object
+        },
+
         data() {
 
-            const product = PALOMA['product'];
+            const product = this.product;
 
             const variant = product.variants[0];
 
@@ -72,7 +76,6 @@
             this._refreshOptions(options, product, variant);
 
             return {
-                product: product,
                 variant: variant,
                 options: options,
                 quantity: 1,

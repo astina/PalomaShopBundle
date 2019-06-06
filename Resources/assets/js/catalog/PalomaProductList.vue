@@ -90,6 +90,14 @@
         },
 
         props: {
+            search: {
+                type: Object,
+                required: true
+            },
+            category: {
+                type: Object,
+                required: false
+            },
             showHead: {
                 type: Boolean,
                 default: true
@@ -102,14 +110,9 @@
 
         data() {
 
-            const search = utils.clone(PALOMA['search']);
-            const category = PALOMA['category'] || null;
-
-            search.request = this._applyQueryParams(search.request);
+            this.search.request = this._applyQueryParams(this.search.request);
 
             return {
-                search: search,
-                category: category,
                 results: null,
                 sortDropdownOpen: false
             }

@@ -72,12 +72,13 @@
 
         components: {PalomaUserLoginModal},
 
+        props: {
+            user: Object
+        },
+
         data() {
 
-            const user = (PALOMA && PALOMA.user) || null;
-
             return {
-                user: user,
                 logoutUrl: paloma.router.resolve('security_logout'),
                 registerUrl: paloma.router.resolve('customer_register'),
                 showDropdown: false,
