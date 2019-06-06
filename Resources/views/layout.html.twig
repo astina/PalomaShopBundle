@@ -11,6 +11,11 @@
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
+{% block meta %}
+    {{ parent() }}
+    <meta data-csrf-token="{{ csrf_token('authenticate') }}">
+{% endblock %}
+
 {% block body %}
 
     {% block header %}

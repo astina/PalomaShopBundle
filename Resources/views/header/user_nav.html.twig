@@ -1,13 +1,16 @@
 <nav class="user-nav">
-    <div class="user-nav__item user-nav__item--cart" id="paloma-cart">
-        <paloma-cart units-count="{{ cart.unitsCount }}" items-price="{{ cart.itemsPrice }}"></paloma-cart>
-    </div>
-    <div class="user-nav__item user-nav__item--account">
-        <a class="button is-white">
-            <span class="icon">
-                <i class="fal fa-user"></i>
-            </span>
-            <span class="is-hidden-mobile">{{ 'customer.sign_in' | trans }}</span>
-        </a>
+
+    {% if cart is defined %}
+        <div class="user-nav__item user-nav__item--cart" id="paloma-cart">
+            <paloma-cart units-count="{{ cart.unitsCount }}" items-price="{{ cart.itemsPrice }}"></paloma-cart>
+        </div>
+    {% endif %}
+
+    <script>
+        var PALOMA = PALOMA || {};
+        PALOMA.user = {{ paloma.userJson|raw }};
+    </script>
+    <div class="user-nav__item user-nav__item--account" id="paloma-user">
+        <paloma-user></paloma-user>
     </div>
 </nav>

@@ -7,12 +7,6 @@ if (checkoutElem) {
 
     Vue.use(VueRouter);
 
-    Vue.directive('focus', {
-        inserted: function (el) {
-            el.focus()
-        }
-    });
-
     const checkout = new Vue({
         components: {
             PalomaCheckout

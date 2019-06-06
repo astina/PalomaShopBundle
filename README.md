@@ -93,8 +93,8 @@ security:
         path: /
       
   access_control:
-  
-    # ...
+    # Note: if you use locale prefixes for routes, this path needs to be something like '^/.+/customer/account'.
+    - { path: '^/customer/account', roles: ROLE_CUSTOMER }
 ```
 
 ## Web Shop Frontend

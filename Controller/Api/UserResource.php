@@ -13,9 +13,12 @@ use Paloma\Shop\Error\BadCredentials;
 use Paloma\Shop\Error\InvalidConfirmationToken;
 use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\NotAuthenticated;
+use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 
 class UserResource
 {
@@ -62,12 +65,12 @@ class UserResource
 
             $customers->startPasswordReset($emailAddress);
 
-            return new Response(null, 204);
+            return new JsonResponse(null, 204);
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (InvalidInput $e) {
-            return new Response(null, 204);
+            return new JsonResponse(null, 204);
         }
     }
 
@@ -90,16 +93,24 @@ class UserResource
         }
     }
 
-    public function completePasswordReset(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
+    public function completePasswordReset(CustomersInterface $customers, PalomaSerializer $serializer, PalomaSecurityInterface $security, RouterInterface $router, Request $request)
     {
         /** @var PasswordResetInterface $reset */
         $reset = $serializer->deserialize($request->getContent(), PasswordReset::class);
 
         try {
 
-            $customers->updatePasswordWithResetToken($reset);
+            $user = $customers->updatePasswordWithResetToken($reset);
 
-            return new Response(null, 204);
+            $security->setUser($user);
+
+            return new JsonResponse([
+                '_links' => [
+                    'forward' => [
+                        'href' => $router->generate('paloma_customer_account'),
+                    ],
+                ],
+            ], 200);
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);

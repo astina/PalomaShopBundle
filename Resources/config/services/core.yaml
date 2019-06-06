@@ -77,6 +77,8 @@ services:
     class: Paloma\ShopBundle\Twig\PalomaTwigHelper
     arguments:
       - '@request_stack'
+      - '@paloma_shop.security'
+      - '@paloma_shop.serializer'
       - [] # injected by bundle extension
 
   # Aliases

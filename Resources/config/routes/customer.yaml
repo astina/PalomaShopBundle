@@ -3,3 +3,14 @@ paloma_customer_register_confirm:
   controller: paloma_shop.controller.customer_registration::confirm
   methods: GET
 
+paloma_customer_account:
+  path: /account/
+  controller: paloma_shop.controller.customer_account::view
+  methods: GET
+
+paloma_customer_account_section:
+  path: /account/{section}
+  controller: paloma_shop.controller.customer_account::view
+  methods: GET
+  requirements:
+    section: '.*'

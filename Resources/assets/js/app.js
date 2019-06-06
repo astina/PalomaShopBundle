@@ -21,10 +21,18 @@ Vue.directive('click-outside', {
     },
 });
 
+Vue.directive('focus', {
+    inserted: function (el) {
+        el.focus();
+    }
+});
+
 require('./paloma-category-nav');
 
 require('./paloma-catalog');
 
 require('./paloma-cart');
+
+require('./paloma-user');
 
 require('./paloma-checkout');

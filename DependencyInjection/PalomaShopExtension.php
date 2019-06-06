@@ -22,7 +22,7 @@ class PalomaShopExtension extends Extension
         $def->replaceArgument(0, $config);
 
         $def = $container->getDefinition('paloma_shop.twig_helper');
-        $def->replaceArgument(1, $config);
+        $def->replaceArgument(3, $config);
 
         $def = $container->getDefinition('paloma_shop.channel_resolver');
         $def->replaceArgument(0, $config['channels']);

@@ -45,6 +45,28 @@ cart:
 
 customer:
   sign_in: Anmelden
+  sign_in.info: 'Bitte melden Sie sich mit Ihrer E-Mail-Adresse und Ihrem Passwort an.'
+  logout: Abmelden
+  reset_password: Passwort vergessen?
+  reset_password.info: |
+    Geben Sie die E-Mail-Adresse ein, mit welcher Sie sich angemeldet haben. Sie erhalten dann einen Link per E-Mail
+    zum Zurücksetzen Ihres Passworts.
+  reset_password.cancel: Zurück
+  reset_password.error: Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.
+  reset_password.success: Bitte prüfen Sie Ihre Mailbox. Wir haben eine E-Mail an '%email%' geschickt.
+  reset_password.back_to_login: Zurück zur Anmeldung
+  change_password: Passwort ändern
+  change_password.info: Bitte geben Sie Ihr neues Passwort ein.
+  change_password.token_invalid: Ungültiger Link
+  change_password.token_invalid.info: Der Link zum Zurücksetzen Ihres Passworts wurde entweder schon benutzt oder ist abgelaufen.
+  existing_customer: Sie sind bereits Kunde?
+  new_customer: Neuer Kunde? Jetzt registrieren.
+  login_error: |
+    Leider konnten Sie nicht angemeldet werden. Bitte prüfen Sie, ob Sie E-Mail-Adresse und Passwort richtig eingegeben haben.
+  account:
+    overview: Kontoübersicht
+    orders: Meine Bestellungen
+    addresses: Meine Adressen
 
 paging:
   next: Weiter
@@ -65,8 +87,6 @@ checkout:
       welche Sie bei der letzten Bestellung verwendet haben.
     login_info: |
       Bitte melden Sie sich mit Ihrem Passwort an.
-    login_error: |
-      Leider konnten Sie nicht angemeldet werden. Bitte prüfen Sie, ob Sie E-Mail-Adresse und Passwort richtig eingegeben haben.
     login: Anmelden
     register_info: |
       Herzlich willkommen. Bitte füllen Sie das untenstehende Formular aus.
@@ -174,6 +194,7 @@ error:
 field:
   email: E-Mail-Adresse
   password: Passwort
+  password_new: Neues Passwort
   password_confirm: Passwort bestätigen
   address_title: Anrede
   address_title.mr: Herr
@@ -193,6 +214,7 @@ field:
 button:
   edit: Ändern
   logout: Abmelden
+  send: Abschicken
 
 nav:
   back: Zurück

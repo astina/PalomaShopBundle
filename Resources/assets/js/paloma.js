@@ -377,7 +377,7 @@ const customer = {
         return axios
             .post(routes['api_customer_register'], draft)
             .then(response => {
-                response.data;
+                return response.data;
             })
             .catch(onHttpError);
     }
@@ -421,6 +421,28 @@ const user = {
             .post(routes['security_logout'])
             .then(() => {
                 security.user = null;
+            })
+            .catch(onHttpError);
+    },
+
+    startPasswordReset(emailAddress) {
+
+        return axios
+            .post(routes['api_user_password_reset_start'], {
+                emailAddress: emailAddress
+            })
+            .catch(onHttpError);
+    },
+
+    completePasswordReset(token, password) {
+
+        return axios
+            .post(routes['api_user_password_reset_complete'], {
+                token: token,
+                newPassword: password
+            })
+            .then(response => {
+                return response.data;
             })
             .catch(onHttpError);
     }

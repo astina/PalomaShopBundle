@@ -1,8 +1,9 @@
 <template>
+
     <div>
 
-        <p class="checkout__info">
-            {{ $trans('checkout.state_auth.login_info') }}
+        <p class="user-login__info">
+            {{ $trans('customer.sign_in.info') }}
         </p>
 
         <form @submit.prevent="submit" class="form" novalidate>
@@ -19,12 +20,13 @@
                     <label class="label">{{ $trans('field.email') }}</label>
 
                     <div class="control has-icons-left">
-                        <input v-model.trim="$v.emailInput.$model"
+                        <input v-model.trim="emailInput"
+                               v-focus
                                :class="{ 'is-danger': $v.emailInput.$error }"
                                class="input" type="email" name="email" required>
                         <span class="icon is-small is-left">
-                          <i class="fal fa-envelope"></i>
-                        </span>
+                              <i class="fal fa-envelope"></i>
+                            </span>
                     </div>
 
                     <p v-if="!$v.emailInput.required" class="help is-danger">
@@ -43,12 +45,11 @@
 
                     <div class="control has-icons-left">
                         <input v-model.trim="$v.passwordInput.$model"
-                               v-focus
                                :class="{ 'is-danger': $v.passwordInput.$error }"
                                class="input" type="password" name="password" required>
                         <span class="icon is-small is-left">
-                          <i class="fal fa-key"></i>
-                        </span>
+                              <i class="fal fa-key"></i>
+                            </span>
                     </div>
 
                     <p v-if="!$v.passwordInput.required" class="help is-danger">
@@ -57,17 +58,17 @@
 
                 </div>
 
-                <div class="field is-grouped is-grouped-right form__buttons">
+                <div class="field is-grouped is-grouped-centered form__buttons">
                     <div class="control">
-                        <router-link :to="{name: 'state_auth_email'}" class="button is-text">
-                            {{ $trans('nav.back') }}
-                        </router-link>
+                        <a @click.prevent="startPasswordReset" class="button is-text user-login__password-reset" href="">
+                            {{ $trans('customer.reset_password') }}
+                        </a>
                     </div>
                     <div class="control">
                         <button class="button is-primary"
                                 :class="{'is-loading': loading}"
                                 type="submit">
-                            {{ $trans('checkout.state_auth.login') }}
+                            {{ $trans('customer.sign_in') }}
                         </button>
                     </div>
                 </div>
@@ -75,7 +76,6 @@
             </fieldset>
 
         </form>
-
     </div>
 </template>
 
@@ -86,27 +86,9 @@
     import {email, required} from 'vuelidate/lib/validators'
 
     export default {
-        name: "PalomaCheckoutAuthLogin",
+        name: "PalomaUserLoginForm",
 
         mixins: [validationMixin],
-
-        data() {
-
-            const emailAddress = paloma.checkout.emailAddress();
-
-            return {
-                emailInput: emailAddress,
-                passwordInput: null,
-                loading: false,
-                loginError: false
-            }
-        },
-
-        mounted() {
-          if (!paloma.checkout.emailAddress()) {
-              this.$router.push({name: 'state_auth_email'});
-          }
-        },
 
         validations: {
             emailInput: {
@@ -118,7 +100,18 @@
             }
         },
 
+        data() {
+
+            return {
+                emailInput: null,
+                passwordInput: null,
+                loading: false,
+                loginError: false
+            }
+        },
+
         methods: {
+
             submit() {
 
                 this.$v.$touch();
@@ -131,15 +124,17 @@
                 paloma.user
                     .authenticate(this.emailInput, this.passwordInput)
                     .then(() => {
+                        this.loginError = false;
                         this.$emit('login-success');
                     })
                     .catch(() => {
                         this.loginError = true;
-                    })
-                    .finally(() => {
                         this.loading = false;
                     });
+            },
 
+            startPasswordReset() {
+                this.$emit('start-password-reset');
             }
         }
     }

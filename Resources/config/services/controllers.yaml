@@ -77,3 +77,7 @@ services:
   paloma_shop.controller.customer_registration:
     class: Paloma\ShopBundle\Controller\Customer\RegistrationController
     tags: ['controller.service_arguments']
+
+  paloma_shop.controller.customer_account:
+    class: Paloma\ShopBundle\Controller\Customer\AccountController
+    tags: ['controller.service_arguments']
