@@ -2,20 +2,28 @@
   position: fixed;
   max-width: 500px;
   z-index: 100;
-}
-
-.notifications--bottom-left {
-  left: 20px;
-  bottom: 20px;
-  right: 20px;
-}
-
-.notifications--top-center {
-  top: 30px;
-  right: calc(50% - 250px);
-  width: 500px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
 }
 
 .notifications .notification {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (min-width: 769px) {
+
+  .notifications--bottom-left {
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .notifications--top-center {
+    top: 30px;
+    left: auto;
+    right: calc(50% - 250px);
+    width: 500px;
+  }
+
 }
