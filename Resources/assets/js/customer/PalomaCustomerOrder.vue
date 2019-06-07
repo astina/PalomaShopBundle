@@ -182,8 +182,8 @@
             const shippingMethod = this.$trans('shipping.' + this.order.shipping.shippingMethod.name);
             const shippingTitle = this.$trans('order.shipping_price', {method: shippingMethod});
 
-            const shippingTargetDate = this.order.shippingMethod.targetDate
-                && moment(this.order.shippingMethod.targetDate).format('DD.MM.YYYY');
+            const shippingTargetDate = this.order.shipping.shippingMethod.targetDate
+                && moment(this.order.shipping.shippingMethod.targetDate).format('DD.MM.YYYY');
 
             return {
                 orderDate: orderDate,
