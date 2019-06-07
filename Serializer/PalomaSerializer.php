@@ -82,7 +82,7 @@ class PalomaSerializer
         }
 
         // Are we dealing with a list?
-        if (!is_string($keys[0])) {
+        if ($keys[0] === 0) {
 
             foreach ($data as &$elem) {
 

@@ -28,9 +28,9 @@ class SearchResource
 
         try {
 
-            $product = $catalog->search($searchRequest);
+            $results = $catalog->search($searchRequest);
 
-            return $serializer->toJsonResponse($product, [
+            return $serializer->toJsonResponse($results, [
                 'include' => SerializationConstants::DEFAULT_INCLUDE_PRODUCT_PAGE,
                 'extend' => [
                     '$' => [

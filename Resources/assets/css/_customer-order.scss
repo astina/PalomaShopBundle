@@ -118,6 +118,10 @@
   background: $white;
 }
 
+.customer-order__item-tile .customer-order__item-image .image {
+  overflow: hidden;
+}
+
 .customer-order__adjustment {
   display: flex;
   font-size: $size-7;

@@ -42,8 +42,12 @@ class SerializationConstants
                 ],
             ],
             'attributes' => [
-                'brand',
-                'badge',
+                'brand' => [
+                    'value',
+                ],
+                'badge' => [
+                    'value',
+                ],
             ],
             'mainCategory' => [
                 'name',

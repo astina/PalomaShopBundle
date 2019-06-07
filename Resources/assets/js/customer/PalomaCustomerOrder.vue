@@ -106,12 +106,12 @@
                         {{ $trans('shipping.' + order.shipping.shippingMethod.name) }}
                     </p>
 
-                    <div v-if="order.shipping.shippingMethod.targetDate" class="m-t">
+                    <div v-if="shippingTargetDate" class="m-t">
                         <p class="customer-order__subtitle">
                             {{ $trans('customer.order.shipping.targetDate') }}
                         </p>
                         <p>
-                            {{ order.shipping.shippingMethod.targetDate }}
+                            {{ shippingTargetDate}}
                         </p>
                     </div>
 
@@ -182,9 +182,13 @@
             const shippingMethod = this.$trans('shipping.' + this.order.shipping.shippingMethod.name);
             const shippingTitle = this.$trans('order.shipping_price', {method: shippingMethod});
 
+            const shippingTargetDate = this.order.shippingMethod.targetDate
+                && moment(this.order.shippingMethod.targetDate).format('DD.MM.YYYY');
+
             return {
                 orderDate: orderDate,
                 shippingTitle: shippingTitle,
+                shippingTargetDate: shippingTargetDate
             }
         },
 

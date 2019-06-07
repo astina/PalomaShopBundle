@@ -37,6 +37,7 @@
 
 .product-card__image-inner {
   position: absolute;
+  overflow: hidden;
   top: $product-card-image-padding;
   bottom: $product-card-image-padding;
   left: $product-card-image-padding;
@@ -81,6 +82,7 @@
   z-index: 3;
   height: 50px;
   text-overflow: ellipsis;
+  overflow: hidden;
   display: inline-block;
 }
 
