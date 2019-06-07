@@ -119,7 +119,7 @@
 
                             this.loading = false;
 
-                            this.product = product;
+                            Object.assign(this.product, product);
                             this.variant = product.variants.find(v => v.sku === item.sku);
                             this._refreshOptions(this.options, this.product, this.variant);
                         });

@@ -98,6 +98,31 @@ class CustomerResource
         }
     }
 
+    public function updateEmailAddress(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
+    {
+        $data = $serializer->toArray($request->getContent());
+
+        $emailAddress = $data['emailAddress'];
+
+        if (!$emailAddress) {
+            return new Response('Parameter `emailAddress` missing', 400);
+        }
+
+        try {
+
+            $customer = $customers->updateEmailAddress($emailAddress);
+
+            return $serializer->toJsonResponse($customer);
+
+        } catch (BackendUnavailable $e) {
+            return new JsonResponse(null, $e->getHttpStatus());
+        } catch (InvalidInput $e) {
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        }
+    }
+
     public function confirmEmailAddress(CustomersInterface $customers, Request $request)
     {
         $token = $request->get('token');

@@ -101,7 +101,7 @@
 
                         <div class="field form__field"
                              :class="{ 'form__field--invalid': $v.customer.password.$error }">
-                            <label class="label" for="c__email">{{ $trans('field.password') }}</label>
+                            <label class="label" for="c__password">{{ $trans('field.password') }}</label>
                             <div class="control">
                                 <input v-model="customer.password" class="input" type="password" id="c__password" required
                                        name="password">
@@ -119,7 +119,7 @@
 
                         <div class="field form__field"
                              :class="{ 'form__field--invalid': $v.customer._password_confirm.$error }">
-                            <label class="label" for="c__email">{{ $trans('field.password_confirm') }}</label>
+                            <label class="label" for="c__password_confirm">{{ $trans('field.password_confirm') }}</label>
                             <div class="control">
                                 <input v-model="customer._password_confirm" class="input" type="password" id="c__password_confirm" required
                                        name="password_confirm">

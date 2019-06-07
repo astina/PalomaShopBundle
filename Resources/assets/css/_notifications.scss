@@ -1,9 +1,19 @@
 .notifications {
   position: fixed;
   max-width: 500px;
+  z-index: 100;
+}
+
+.notifications--bottom-left {
   left: 20px;
   bottom: 20px;
   right: 20px;
+}
+
+.notifications--top-center {
+  top: 30px;
+  right: calc(50% - 250px);
+  width: 500px;
 }
 
 .notifications .notification {

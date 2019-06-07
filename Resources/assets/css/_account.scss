@@ -1,0 +1,58 @@
+.account .content h2,
+.account .content h3 {
+  font-weight: $weight-light;
+}
+
+.account__nav {
+  margin: 1rem;
+}
+
+.account__section-title {
+  margin-bottom: 1rem;
+}
+
+.account__section-title h3 {
+  display: inline-block;
+  font-size: $size-5;
+  font-weight: $weight-normal;
+  margin-right: 0.5rem;
+}
+
+.account__addresses {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.account__addresses .address {
+  margin-bottom: 0.5rem;
+}
+
+.account .form--address {
+  max-width: 600px;
+}
+
+.account .form--email,
+.account .form--password {
+  max-width: 400px;
+}
+
+.account__orders {
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 769px) {
+
+  .account {
+    display: flex;
+  }
+
+  .account__nav {
+    padding-top: 3rem;
+    margin: 0;
+  }
+
+  .account__main {
+    flex: 1;
+    padding-left: 3rem;
+  }
+}

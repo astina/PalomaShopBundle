@@ -27,6 +27,7 @@
 .category-nav__item--has-children .category-nav__item-link {
   font-weight: bolder;
   color: $text;
+  cursor: pointer;
 }
 
 .is-active .category-nav__menu-wrapper {

@@ -8,8 +8,8 @@ use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\NotAuthenticated;
 use Paloma\Shop\Error\OrderNotFound;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class OrderResource
 {
@@ -26,11 +26,11 @@ class OrderResource
             return $serializer->toJsonResponse($orders);
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse('Service unavailable', 503);
         } catch (InvalidInput $e) {
             return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         } catch (NotAuthenticated $e) {
-            return new Response('Unauthorized', 401);
+            return new JsonResponse('Unauthorized', 401);
         }
     }
 
@@ -39,7 +39,7 @@ class OrderResource
         $orderNumber = (string)$request->get('orderNumber');
 
         if (!$orderNumber) {
-            return new Response('Parameter `orderNumber` missing', 400);
+            return new JsonResponse('Parameter `orderNumber` missing', 400);
         }
 
         try {
@@ -49,11 +49,11 @@ class OrderResource
             return $serializer->toJsonResponse($order);
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse('Service unavailable', 503);
         } catch (NotAuthenticated $e) {
-            return new Response('Unauthorized', 401);
+            return new JsonResponse('Unauthorized', 401);
         } catch (OrderNotFound $e) {
-            return new Response('Order not found', 404);
+            return new JsonResponse('Order not found', 404);
         }
     }
 
@@ -64,7 +64,7 @@ class OrderResource
             $orders = $customers->getOrders(0, 1, true);
 
             if (count($orders->getContent()) === 0) {
-                return new Response(null, 204);
+                return new JsonResponse(null, 204);
             }
 
             $order = $orders->getContent()[0];
@@ -72,11 +72,11 @@ class OrderResource
             return $serializer->toJsonResponse($order);
 
         } catch (BackendUnavailable $e) {
-            return new Response('Service unavailable', 503);
+            return new JsonResponse('Service unavailable', 503);
         } catch (InvalidInput $e) {
             return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
         } catch (NotAuthenticated $e) {
-            return new Response('Unauthorized', 401);
+            return new JsonResponse('Unauthorized', 401);
         }
     }
 }

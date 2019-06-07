@@ -60,6 +60,12 @@
   background: #cd3c32;
 }
 
+.modal-card-body .form__error {
+  border: 0;
+  padding: 10px 70px;
+  margin: 0 -70px 50px -70px;
+}
+
 .form__info {
   color: $text-light;
   font-size: $size-7;
@@ -93,6 +99,10 @@
     padding: 10px;
     font-size: $size-7;
     margin-bottom: 20px;
+  }
+
+  .modal-card-body .form__error {
+    margin: 0 -10px 50px -10px;
   }
 }
 

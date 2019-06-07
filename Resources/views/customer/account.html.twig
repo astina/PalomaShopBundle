@@ -4,14 +4,18 @@
 
 {% block main %}
 
-    <section class="section">
-        <div class="container">
+    <div class="container">
 
-            <div id="paloma-account">
-                <paloma-account></paloma-account>
-            </div>
-
+        <div id="paloma-account">
+            <paloma-account></paloma-account>
         </div>
-    </section>
+
+    </div>
+
+    {% block content %}
+        <div class="is-hidden" id="content--account-overview">
+            {% include '@PalomaShop/content/customer_account_overview.html.twig' %}
+        </div>
+    {% endblock %}
 
 {% endblock %}

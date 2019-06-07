@@ -7,8 +7,8 @@ search:
   placeholder: Suchen...
 
 catalog:
-  categories:
-    show_products: Alle anzeigen
+  categories: Kategorien
+  categories.show_products: Alle anzeigen
   products:
     title: Artikel
     sort_by: 'Sortieren nach:'
@@ -64,9 +64,51 @@ customer:
   login_error: |
     Leider konnten Sie nicht angemeldet werden. Bitte prüfen Sie, ob Sie E-Mail-Adresse und Passwort richtig eingegeben haben.
   account:
-    overview: Kontoübersicht
+    my_account: Mein Konto
+    overview: Übersicht
+    overview_info: |
+      Willkommen in Ihrem Kundenkonto. Hier können Sie Ihre Bestellungen verfolgen und Ihre Kundendaten verwalten.
+    last_order: Letzte Bestellung
+    no_orders: Bisher keine Bestellungen vorhanden.
     orders: Meine Bestellungen
     addresses: Meine Adressen
+    no_addresses: Keine Adressen vorhanden.
+    address_saved: Adresse erfolgreich gespeichert
+    user: Benutzerdaten
+    email_address: E-Mail-Adresse ändern
+    email_saved: E-Mail-Addresse erfolgreich gespeichert
+    password: Passwort ändern
+    password_saved: Passwort erfolgreich geändert
+    password_error: Das Passwort konnte nicht geändert werden. Bitte prüfen Sie, ob Sie das aktuelle Passwort richtig eingegeben haben.
+    address:
+      contact: Kontaktadresse
+      shipping: Lieferadresse
+      billing: Rechnungsadresse
+  order:
+    title: Bestellung %order_number% vom %order_date%
+    order_total: Total
+    view_details: Bestellung anzeigen
+    shipping:
+      title: Lieferung
+      method: Lieferart
+      targetDate: Lieferdatum
+    billing:
+      title: Bezahlung
+      method: Bezahlart
+    status: Status
+    status_payment_pending: Zahlung ausstehend
+    status_purchased: In Bearbeitung
+    status_processed: In Bearbeitung
+    status_assembly: Wird geliefert
+    status_shipped: Wird geliefert
+    status_delivered: Zugestellt
+    status_canceled: Storniert
+    status_returned: Retourniert
+    status_returned_partial: Teilweise retourniert
+    status_refunded: Rückerstattet
+    status_unknown: Unbekannt
+    status_draft: Entwurf
+
   register:
     title: Als Kunde registrieren
     info: todo
@@ -210,6 +252,7 @@ error:
 field:
   email: E-Mail-Adresse
   password: Passwort
+  password_current: Aktuelles Passwort
   password_new: Neues Passwort
   password_confirm: Passwort bestätigen
   address_title: Anrede
@@ -229,8 +272,14 @@ field:
 
 button:
   edit: Ändern
+  save: Speichern
   logout: Abmelden
   send: Abschicken
 
 nav:
   back: Zurück
+  back_to_overview: Zurück zur Übersicht
+  show: anzeigen
+  show_all: alle anzeigen
+  show_more: mehr anzeigen
+  edit: ändern

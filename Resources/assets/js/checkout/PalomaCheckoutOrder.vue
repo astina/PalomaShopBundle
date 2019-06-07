@@ -135,7 +135,7 @@
 
             shippingTitle() {
 
-                const shippingMethod = this.$trans('shipping.' + this.order.shipping.shippingMethod);
+                const shippingMethod = this.$trans('shipping.' + this.order.shipping.shippingMethod.name);
 
                 return this.$trans('order.shipping_price', {method: shippingMethod});
             }

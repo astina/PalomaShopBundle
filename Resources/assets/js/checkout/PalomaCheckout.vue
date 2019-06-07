@@ -28,8 +28,9 @@
 
 <script>
 
-    import VueRouter from 'vue-router';
     import paloma from '../paloma';
+    import Vue from 'vue';
+    import VueRouter from 'vue-router';
     import PalomaCheckoutOrder from './PalomaCheckoutOrder';
     import PalomaCheckoutHeader from "./PalomaCheckoutHeader";
     import PalomaCheckoutAuth from "./PalomaCheckoutAuth";
@@ -45,6 +46,8 @@
     import PalomaCheckoutPaymentMethod from "./PalomaCheckoutPaymentMethod";
     import PalomaCheckoutConfirm from "./PalomaCheckoutConfirm";
     import PalomaNotifications from "../common/PalomaNotifications";
+
+    Vue.use(VueRouter);
 
     const routes = [
         {

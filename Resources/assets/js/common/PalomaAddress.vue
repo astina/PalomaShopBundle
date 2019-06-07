@@ -15,6 +15,9 @@
             {{ address.country ? address.country + '-' : '' }}{{ address.zipCode }}
             {{ address.city }}
         </span>
+        <span class="address__line address__line--phone">
+            {{ address.phoneNumber }}
+        </span>
     </address>
 </template>
 

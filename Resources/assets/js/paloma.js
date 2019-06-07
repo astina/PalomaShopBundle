@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import utils from './utils';
 
 const events = new Vue();
 
@@ -24,6 +25,14 @@ function onHttpError(error) {
 
         if (error.response.status >= 500) {
             events.$emit('paloma.error', error);
+        }
+
+        if (error.response.status === 401) {
+            events.$emit('paloma.access.unauthorized', error);
+        }
+
+        if (error.response.status === 403) {
+            events.$emit('paloma.access.forbidden', error);
         }
 
         return Promise.reject(error.response.data);
@@ -380,6 +389,75 @@ const customer = {
                 return response.data;
             })
             .catch(onHttpError);
+    },
+
+    get() {
+
+        return axios
+            .get(routes['api_customer_get'])
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
+    updateEmailAddress(emailAddress) {
+
+        return axios
+            .post(routes['api_customer_update_email'], {emailAddress: emailAddress})
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
+    updateAddress(type, address) {
+
+        const update = utils.clone(address);
+        update.addressType = type;
+
+        return axios
+            .post(routes['api_customer_address_update'], update)
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
+    listOrders(page, size, orderDesc) {
+
+        return axios
+            .get(routes['api_orders_list'], { params: {
+                page: page || 0,
+                size: size || 5,
+                orderDesc: orderDesc || true
+            }})
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
+    getOrder(orderNumber) {
+
+        return axios
+            .get(routes['api_orders_get'], { params: {
+                orderNumber: orderNumber
+            }})
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
+    getLastOrder() {
+
+        return axios
+            .get(routes['api_orders_latest'])
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
     }
 };
 
@@ -421,6 +499,16 @@ const user = {
             .post(routes['security_logout'])
             .then(() => {
                 security.user = null;
+            })
+            .catch(onHttpError);
+    },
+
+    updatePassword(currentPassword, newPassword) {
+
+        return axios
+            .post(routes['api_user_password_update'], {
+                currentPassword: currentPassword,
+                newPassword: newPassword
             })
             .catch(onHttpError);
     },

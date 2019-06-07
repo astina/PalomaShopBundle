@@ -13,18 +13,35 @@
             </a>
         </div>
 
+        {% if main_categories|length > 5 %}
+            {# hide categories in sub menu #}
+            {% set name = ('catalog.categories'|trans) %}
+            {% set categories = [{ code: null, slug: null, name: name, subCategories: main_categories }] %}
+        {% else %}
+            {% set categories = main_categories %}
+        {% endif %}
+
         <div class="is-hidden-mobile category-nav__menu-wrapper">
             <div class="category-nav__menu">
-                {% for cat in main_categories %}
-                    {% if cat.subcategories and cat.subCategories|length > 0 %}
+                {% for cat in categories %}
+                    {% if cat.subCategories and cat.subCategories|length > 0 %}
                         <div class="category-nav__item category-nav__item--has-children">
-                            <a href="{{ path('paloma_catalog_category', {categoryCode: cat.code, categorySlug: cat.slug}) }}"
-                               class="category-nav__item-link">
-                                {{ cat.name }}
-                                <span class="icon is-hidden-mobile">
-                                    <i class="far fa-angle-down"></i>
+                            {% if cat.code %}
+                                <a href="{{ path('paloma_catalog_category', {categoryCode: cat.code, categorySlug: cat.slug}) }}"
+                                   class="category-nav__item-link">
+                                    {{ cat.name }}
+                                    <span class="icon is-hidden-mobile">
+                                        <i class="far fa-angle-down"></i>
+                                    </span>
+                                </a>
+                            {% else %}
+                                <span class="category-nav__item-link">
+                                    {{ cat.name }}
+                                    <span class="icon is-hidden-mobile">
+                                        <i class="far fa-angle-down"></i>
+                                    </span>
                                 </span>
-                            </a>
+                            {% endif %}
                             <div class="category-nav__dropdown">
                                 <div class="category-nav__sitemap container sitemap">
                                     {% for subcat in cat.subCategories %}
@@ -36,7 +53,7 @@
                                             {% if subcat.subCategories and subcat.subCategories|length > 0 %}
                                                 <div class="sitemap__nav">
                                                     <a href="{{ path('paloma_catalog_category', {categoryCode: subcat.code, categorySlug: subcat.slug}) }}"
-                                                        class="sitemap__nav-item sitemap__nav-item--show-products">
+                                                       class="sitemap__nav-item sitemap__nav-item--show-products">
                                                         {{ 'catalog.categories.show_products' | trans }}
                                                     </a>
                                                     {% for subsubcat in subcat.subCategories %}

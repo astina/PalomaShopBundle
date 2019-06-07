@@ -1,5 +1,5 @@
 <template>
-    <div class="image">
+    <div class="image" :class="cssClass">
         <img v-if="sourceUrl" v-bind:src="sourceUrl" v-bind:alt="imageTitle"/>
     </div>
 </template>
@@ -9,8 +9,25 @@
         name: 'PalomaImage',
 
         props: {
-            image: Object,
-            size: String
+            image: {
+                type: Object,
+                required: true
+            },
+            size: {
+                type: String,
+                default: 'large',
+                required: false
+            },
+            dimension: {
+                type: String,
+                required: false
+            }
+        },
+
+        data() {
+          return {
+              cssClass: (this.dimension ? 'is-' + this.dimension : null)
+          }
         },
 
         computed: {

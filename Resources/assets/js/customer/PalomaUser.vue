@@ -14,7 +14,7 @@
             <div class="dropdown-menu user-dropdown">
                 <div v-if="user" class="dropdown-content">
                     <a class="dropdown-item" :href="accountView()">
-                        {{ $trans('customer.account.overview') }}
+                        {{ $trans('customer.account.my_account') }}
                     </a>
                     <a class="dropdown-item" :href="accountView('orders')">
                         {{ $trans('customer.account.orders') }}

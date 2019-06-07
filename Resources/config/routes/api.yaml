@@ -175,6 +175,11 @@ paloma_api_customer_address_update:
   controller: paloma_shop.controller.customer_resource:updateAddress
   methods: POST
 
+paloma_api_customer_update_email:
+  path: /customer/email/update
+  controller: paloma_shop.controller.customer_resource:updateEmailAddress
+  methods: POST
+
 paloma_api_customer_confirm_email:
   path: /customer/confirm/email
   controller: paloma_shop.controller.customer_resource:confirmEmailAddress

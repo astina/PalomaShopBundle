@@ -36,3 +36,5 @@ require('./paloma-cart');
 require('./paloma-user');
 
 require('./paloma-checkout');
+
+require('./paloma-account');
