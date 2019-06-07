@@ -322,6 +322,7 @@ const checkout = {
         return axios
             .post(routes['api_checkout_finalize'])
             .then(response => {
+                this.store.commit('updateOrder', response.data);
                 return response.data;
             })
             .catch(onHttpError);

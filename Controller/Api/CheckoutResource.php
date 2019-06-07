@@ -325,8 +325,7 @@ class CheckoutResource
 
             // Electronic payment? Redirect to payment page
 
-            $paymentMethod = $order->getBilling()->getPaymentMethod();
-            if ($paymentMethod->isRequiresPaymentDuringCheckout()) {
+            if ($order->isRequiresPaymentDuringCheckout()) {
                 return $serializer->toJsonResponse([
                     '_links' => [
                         'forward' => [

@@ -48,8 +48,7 @@
 
                 const order = paloma.checkout.orderDraft();
 
-                return order.billing.paymentMethod
-                    && order.billing.paymentMethod.requiresPaymentDuringCheckout;
+                return order.requiresPaymentDuringCheckout;
             }
         },
 

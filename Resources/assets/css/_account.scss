@@ -18,6 +18,10 @@
   margin-right: 0.5rem;
 }
 
+.account__section-title a {
+  color: $text-light;
+}
+
 .account__addresses {
   display: flex;
   flex-wrap: wrap;
