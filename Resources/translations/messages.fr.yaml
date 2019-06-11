@@ -7,6 +7,8 @@ search:
   placeholder: Chercher...
 
 catalog:
+  categories: Catégories
+  categories.show_products: Tous les produits
   products:
     title: Articles
     sort_by: 'Trier par:'
@@ -43,6 +45,86 @@ cart:
 
 customer:
   sign_in: Connecter
+  sign_in.info: 'Veuillez vous connecter avec votre adresse e-mail et votre mot de passe.'
+  logout: Déconnexion
+  reset_password: Oublié votre mot de passe ?
+  reset_password.info: |
+    Entrez ici l'adresse e-mail avec laquelle vous vous êtes inscrit.
+    Vous recevrez alors un courriel avec un lien pour réinitialiser votre mot de passe.
+  reset_password.cancel: Retour
+  reset_password.error: Une erreur s'est produite. Veuillez réessayer.
+  reset_password.success: Veuillez vérifier votre boîte aux lettres. Nous avons envoyé un email à '%email%'.
+  reset_password.back_to_login: Retour à l'inscription
+  change_password: Modifier le mot de passe
+  change_password.info: Veuillez entrer votre nouveau mot de passe.
+  change_password.token_invalid: Lien invalide
+  change_password.token_invalid.info: Le lien pour réinitialiser votre mot de passe a déjà été utilisé ou a expiré.
+  existing_customer: Vous êtes déjà client ?
+  new_customer: Nouveau client ? Inscrivez-vous maintenant.
+  login_error: |
+    Malheureusement, vous ne pouvez pas vous connecter. Veuillez vérifier si vous avez saisi correctement votre adresse e-mail et votre mot de passe.
+  account:
+    my_account: Mon compte
+    overview: Aperçu
+    overview_info: |
+      Bienvenue sur votre compte client. Ici, vous pouvez suivre vos commandes et gérer vos données clients.
+    last_order: Dernière commande
+    no_orders: Aucune commande disponible pour le moment.
+    orders: Mes commandes
+    addresses: Mes adresses
+    no_addresses: Aucune adresse disponible.
+    address_saved: Adresse enregistrée avec succès
+    user: Données des utilisateurs
+    email_address: Changer l'adresse e-mail
+    email_saved: Adresse e-mail enregistrée avec succès
+    password: Modifier le mot de passe
+    password_saved: Mot de passe modifié avec succès
+    password_error: Le mot de passe n'a pas pu être modifié. Veuillez vérifier si vous avez entré correctement le mot de passe actuel.
+    address:
+      contact: Adresse de contact
+      shipping: Adresse de livraison
+      billing: Adresse de facturation
+  order:
+    title: Commande %order_number% à partir du %order_date%
+    order_total: Total
+    view_details: Voir la commande
+    shipping:
+      title: Accouchement
+      method: Type de livraison
+      targetDate: Date de livraison
+    billing:
+      title: Paiement
+      method: Mode de paiement
+    status: Statut
+    status_payment_pending: Paiement en suspens
+    status_purchased: En cours
+    status_processed: En cours
+    status_assembly: En cours
+    status_shipped: En route
+    status_delivered: Livré
+    status_canceled: Annulée
+    status_returned: Retournée
+    status_returned_partial: Partiellement retournée
+    status_refunded: Remboursé
+    status_unknown: Inconnu
+    status_draft: Erôlement
+
+  register:
+    title: S'inscrire comme client
+    info: todo
+    submit: Inscrivez-vous maintenant
+    success:
+      title: Bienvenue!
+      info: |
+        Vous êtes maintenant connecté. Nous vous avons également envoyé un e-mail avec un
+        lien pour confirmer votre adresse e-mail.
+      goto_account: Accéder à l'aperçu de mon compte
+      goto_home: Aller à la page d'accueil
+    confirm:
+      title: Merci beaucoup!
+      info: Votre adresse e-mail a maintenant été confirmée.
+      error: Une erreur s'est produite
+      error_info: Ce lien de confirmation a déjà été utilisé ou a expiré.
 
 paging:
   next: Suivant
@@ -50,3 +132,154 @@ paging:
 
 checkout:
   title: Caisse
+  abort: Retour à la boutique
+  overview: Aperçu
+  shipping_address: Adresse de livraison
+  billing_address: Adresse de livraison
+  billing_address.same_as_shipping: Même que l'adresse de livraison
+  state_auth:
+    name: Connecter
+    user_info: Vous êtes connecté en tant que '%username%'.
+    email_info: |
+      Veuillez entrer votre adresse e-mail. Si vous êtes déjà client, veuillez entrer l'adresse e-mail que
+      vous avez utilisée lors de votre dernière commande.
+    login_info: |
+      Veuillez vous connecter avec votre mot de passe.
+    login: Connecter
+    register_info: |
+      Bienvenue! Veuillez remplir le formulaire ci-dessous.
+    register_password_info: |
+      Si vous entrez un mot de passe, vous pouvez l'utiliser pour vous connecter à votre prochain achat.
+  state_auth_user:
+    title: Connecter
+  state_auth_email:
+    title: Connecter
+  state_auth_register:
+    title: Connecter
+  state_auth_login:
+    title: Connecter
+  state_delivery:
+    name: Accouchement
+    title: Accouchement
+  state_delivery_address:
+    title: Adresse de livraison
+  state_delivery_method:
+    title: Options de livraison
+  state_payment:
+    name: Paiement
+    title: Paiement
+  state_payment_method:
+    title: Type de paiement
+    info: |
+      Veuillez sélectionner le mode de paiement désiré.
+      Les bons peuvent être utilisés à l'étape suivante de la commande.
+  state_payment_address:
+    title: Adresse de facturation
+  state_confirm:
+    name: Confirmation
+    title: Vérifiez votre commande
+    info: |
+      Veuillez vérifier à nouveau votre commande. Si vous avez un bon d'achat, vous pouvez le saisir ci-dessous.
+  next: Avant
+  coupons:
+    title: Chèques et codes de réduction
+    enter: Entrez le code
+    submit: Encaissement
+  purchase: Envoyer la commande
+  purchase_and_pay: Envoyer la commande et procéder au paiement
+  purchase.info: |
+    En soumettant votre commande, vous acceptez nos <a href="%url_privacy%" target="_blank">règles de protection des données</a> et nos
+    <a href="%url_gtc%" target="_blank">conditions générales de vente</a>.
+  success:
+    page_title: Commande envoyée
+    title: Merci beaucoup!
+    order_number: 'Votre numéro de commande est : %order_number%%'
+    info_confirmation: Merci beaucoup pour votre commande. Vous recevrez prochainement une confirmation de commande par e-mail.
+    info_support: Si vous ne recevez pas de confirmation, veuillez contacter notre service clientèle.
+    info_status: Vous pouvez à tout moment consulter l'état de votre commande dans votre compte client sous "Mes commandes".
+    button_home: Aller à la page d'accueil
+
+order:
+  items: Articles
+  items_price: Sous-total
+  shipping_price: 'Frais d'expédition (%method%)'
+  total_price: Total
+  tax_incl: incl.
+
+shipping:
+  swisspost_default: Post CH Standard
+  swisspost_priority: Post CH Priority
+  free: gratuit
+  info:
+    swisspost_default: Livraison standard par La Poste Suisse sous 2-3 jours ouvrables.
+    swisspost_priority: Livraison express le jour ouvrable suivant.
+
+payment:
+  invoice: Facture
+  electronic: Carte de crédit
+  paypal: PayPal
+  postfinance: PostFinance
+  info:
+    invoice: Vous recevrez une facture avec bulletin de versement par la poste.
+    electronic: Après avoir passé la commande, vous serez redirigé vers la page de paiement.
+
+error:
+  general:
+    message: Une erreur s'est produite. Veuillez réessayer.
+  field:
+    required: Ce champ ne doit pas être vide.
+    too_long: Cette valeur ne doit pas dépasser %max% caractères.
+  email:
+    required: Veuillez entrer une adresse e-mail.
+    invalid: Cette adresse e-mail n'est pas valide.
+  password:
+    too_short: Le mot de passe doit comporter au moins %min% caractères.
+    differs: Veuillez entrer deux fois le même mot de passe.
+  coupon:
+    not_found: Aucun coupon/code de réduction'%coupon%' trouvé.
+    not_eligible: Le coupon/code de réduction'%coupon%' n'est pas applicable à cette commande.
+    not_combinable: Le code promotionnel'%coupon%' n'est pas cumulable avec d'autres codes.
+    expired: Le code promotionnel'%coupon%' a malheureusement expiré.
+    redemptions_exceeded: Le coupon/code de réduction'%coupon%' a déjà été utilisé.
+    service_unavailable: Malheureusement, aucun bon ou code de réduction ne peut être utilisé pour le moment.
+    error: Une erreur s'est produite. Veuillez réessayer.
+  paloma:
+    'A customer with this email address already exists': Cette adresse e-mail est déjà utilisée.
+  payment:
+    error:
+      general: Échec de paiement
+
+field:
+  email: Adresse e-mail
+  password: Mot de passe
+  password_current: Mot de passe actuel
+  password_new: Nouveau mot de passe
+  password_confirm: Confirmer le mot de passe
+  address_title: Salutation
+  address_title.mr: M
+  address_title.ms: Mme
+  first_name: Prénom
+  last_name: Nom de famille
+  company: Entreprise
+  street: Rue et numéro de rue
+  zip_code: Code postal
+  city: Cité
+  country: Pays
+  phone_number: Téléphone
+  gender: Sexe
+  gender.female: féminin
+  gender.male: masculin
+
+button:
+  edit: Changer
+  save: Sauver
+  logout: Déconnexionner
+  send: Envoyer
+
+nav:
+  back: Retour
+  back_to_overview: Retour à l'aperçu
+  show: afficher
+  show_all: tout afficher
+  show_more: montrer plus
+  edit: changer

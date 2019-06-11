@@ -7,6 +7,8 @@ search:
   placeholder: Search...
 
 catalog:
+  categories: Categories
+  categories.show_products: Show all
   products:
     title: Products
     sort_by: 'Sort by:'
@@ -43,6 +45,85 @@ cart:
 
 customer:
   sign_in: Sign in
+  sign_in.info: 'Please log in with your e-mail address and password.'
+  logout: Log out
+  reset_password: Forgot your password?
+  reset_password.info: |
+    Enter the email address by which you're registered here.
+    You will then receive an email with a link to reset your password.
+  reset_password.cancel: Back
+  reset_password.error: An error has occurred. Please try again.
+  reset_password.success: Please check your mailbox. We have sent an email to '%email%'.
+  reset_password.back_to_login: Back to sign in
+  change_password: Change password
+  change_password.info: Please enter your new password.
+  change_password.token_invalid: Invalid link
+  change_password.token_invalid.info: The link to reset your password has either already been used or has expired.
+  existing_customer: Are you already a customer?
+  new_customer: New customer? Register now.
+  login_error: |
+    Unfortunately you could not be logged in. Please check whether you have entered your e-mail address and password correctly.
+  account:
+    my_account: My account
+    overview: Overview
+    overview_info: |
+      Welcome to your customer account. Here you can track your orders and manage your customer data.
+    last_order: Last order
+    no_orders: No orders available yet.
+    orders: My orders
+    addresses: My addresses
+    no_addresses: No addresses available.
+    address_saved: Address saved successfully
+    user: User data
+    email_address: Change email address
+    email_saved: E-mail address successfully saved
+    password: Change password
+    password_saved: Password successfully changed
+    password_error: The password could not be changed. Please check whether you have entered the current password correctly.
+    address:
+      contact: Contact address
+      shipping: Delivery address
+      billing: Billing address
+  order:
+    title: Order %order_number% from %order_date%
+    order_total: Total
+    view_details: View order
+    shipping:
+      title: Delivery
+      method: Delivery type
+      targetDate: Delivery date
+    billing:
+      title: Payment
+      method: Payment type
+    status: Status
+    status_payment_pending: Payment outstanding
+    status_purchased: In process
+    status_processed: In process
+    status_assembly: In process
+    status_shipped: On the way
+    status_delivered: Delivered
+    status_canceled: Canceled
+    status_returned: Returned
+    status_returned_partial: Partially returned
+    status_refunded: Refunded
+    status_unknown: Unknown
+    status_draft: Draft
+
+  register:
+    title: Register as customer
+    info: todo
+    submit: Register now
+    success:
+      title: Welcome!
+      info: |
+        You are now logged in. We have also sent you an email with a link to confirm your email address.
+      goto_account: To my account overview
+      goto_home: Go to home page
+    confirm:
+      title: Thank you!
+      info: Your e-mail address has now been confirmed.
+      error: An error has occurred
+      error_info: This confirmation link has either already been used or has expired.
 
 paging:
   next: Next
@@ -50,6 +131,157 @@ paging:
 
 checkout:
   title: Checkout
+  abort: Back to the shop
+  overview: Overview
+  shipping_address: Delivery address
+  billing_address: Billing address
+  billing_address.same_as_shipping: Same as the delivery address
+  state_auth:
+    name: Sign in
+    user_info: You are logged in as '%username%'.
+    email_info: |
+      Please enter your e-mail address. If you are already a customer, please enter the email address you used
+      when you last placed your order.
+    login_info: |
+      Please sign in with your password.
+    login: Sign in
+    register_info: |
+      Welcome! Please fill out the form below.
+    register_password_info: |
+      If you enter a password, you can use it to log in for your next purchase.
+  state_auth_user:
+    title: Sign in
+  state_auth_email:
+    title: Sign in
+  state_auth_register:
+    title: Sign in
+  state_auth_login:
+    title: Sign in
+  state_delivery:
+    name: Delivery
+    title: Delivery
+  state_delivery_address:
+    title: Delivery address
+  state_delivery_method:
+    title: Delivery options
+  state_payment:
+    name: Payment
+    title: Payment
+  state_payment_method:
+    title: Payment type
+    info: |
+      Please select the desired payment method.
+      Vouchers can be redeemed in the next order step.
+  state_payment_address:
+    title: Billing address
+  state_confirm:
+    name: Confirmation
+    title: Check your order
+    info: |
+      Please check your order again. If you have a voucher, you can enter it below.
+  next: Next
+  coupons:
+    title: Vouchers & discount codes
+    enter: Enter code
+    submit: Submit
+  purchase: Submit your order
+  purchase_and_pay: Submit order and proceed to payment
+  purchase.info: |
+    By submitting your order you agree to our <a href="%url_privacy%" target="_blank">data protection regulations</a>
+    and <a href="%url_gtc%" target="_blank">general terms and conditions</a>.
+  success:
+    page_title: Order submitted
+    title: Thank you!
+    order_number: 'Your order number is: %order_number%'
+    info_confirmation: Thank you very much for your order. You will shortly receive an order confirmation by e-mail.
+    info_support: If you do not receive a confirmation, please contact our customer service.
+    info_status: You can check the status of your order at any time in your customer account under "My orders".
+    button_home: Go to home page
+
+order:
+  items: Items
+  items_price: Subtotal
+  shipping_price: Shipping costs (%method%)
+  total_price: Total
+  tax_incl: incl.
+
+shipping:
+  swisspost_default: Post CH Standard
+  swisspost_priority: Post CH Priority
+  free: free
+  info:
+    swisspost_default: Standard delivery by Swiss Post within 2-3 working days.
+    swisspost_priority: Express delivery on the next working day.
+
+payment:
+  invoice: Invoice
+  electronic: Credit card
+  paypal: PayPal
+  postfinance: PostFinance
+  info:
+    invoice: You will receive an invoice with payment slip by post.
+    electronic: After submitting the order you will be forwarded to the payment page.
+
+error:
+  general:
+    message: An error has occurred. Please try again.
+  field:
+    required: This field must not be empty.
+    too_long: This value must not be longer than %max% characters.
+  email:
+    required: Please enter an e-mail address.
+    invalid: This email address is invalid.
+  password:
+    too_short: The password must be at least %min% characters long.
+    differs: Please enter the same password twice.
+  coupon:
+    not_found: No coupon/discount code '%coupon%' found.
+    not_eligible: The coupon/discount code '%coupon%' is not applicable to this order.
+    not_combinable: The voucher/discount code '%coupon%' cannot be combined with other codes.
+    expired: The voucher/discount code '%coupon%' has unfortunately expired.
+    redemptions_exceeded: The coupon/discount code '%coupon%' has already been redeemed.
+    service_unavailable: Unfortunately, no vouchers or discount codes can be redeemed at the moment.
+    error: An error has occurred. Please try again.
+  paloma:
+    'A customer with this email address already exists': This e-mail address is already in use.
+  payment:
+    error:
+      general: Payment failed
+
+field:
+  email: Email address
+  password: Password
+  password_current: Current password
+  password_new: New Password
+  password_confirm: Confirm password
+  address_title: Title
+  address_title.mr: Mr.
+  address_title.ms: Ms.
+  first_name: First name
+  last_name: Last name
+  company: Company
+  street: Street and house number
+  zip_code: ZIP code
+  city: City
+  country: Country
+  phone_number: Phone number
+  gender: Gender
+  gender.female: female
+  gender.male: male
+
+button:
+  edit: Change
+  save: Save
+  logout: Log out
+  send: Send
+
+nav:
+  back: Back
+  back_to_overview: Back to overview
+  show: show
+  show_all: show all
+  show_more: show more
+  edit: change
   abort: Back to the shop
   overview: Overview
   state_auth:
@@ -65,25 +297,3 @@ checkout:
     name: Confirmation
     title: Confirmation
   next: Next
-
-order:
-  items: Items
-  items_price: Subtotal
-  shipping_price: Shipping costs (%method%)
-  total_price: Total
-  tax_incl: incl.
-
-shipping:
-  swisspost_default: Post CH Standard
-  swisspost_priority: Post CH Priority
-
-error:
-  general:
-    message: An error has occurred. Please try again.
-
-field:
-  email: Email address
-  password: Password
-
-nav:
-  back: Back

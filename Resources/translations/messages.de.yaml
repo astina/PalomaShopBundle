@@ -99,7 +99,7 @@ customer:
     status_payment_pending: Zahlung ausstehend
     status_purchased: In Bearbeitung
     status_processed: In Bearbeitung
-    status_assembly: Wird geliefert
+    status_assembly: In Bearbeitung
     status_shipped: Wird geliefert
     status_delivered: Zugestellt
     status_canceled: Storniert
