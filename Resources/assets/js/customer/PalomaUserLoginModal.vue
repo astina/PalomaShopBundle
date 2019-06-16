@@ -27,7 +27,7 @@
 
             </section>
             <div class="modal-card-foot">
-                <a class="button is-text" href="">
+                <a class="button is-text" :href="registerUrl">
                     {{ $trans('customer.new_customer') }}
                 </a>
             </div>
@@ -38,6 +38,7 @@
 
 <script>
 
+    import paloma from '../paloma';
     import PalomaUserLoginForm from "./PalomaUserLoginForm";
     import PalomaUserPasswordReset from "./PalomaUserPasswordReset";
 
@@ -51,6 +52,7 @@
 
             return {
                 view: 'login',
+                registerUrl: paloma.router.resolve('customer_register'),
             }
         },
 
