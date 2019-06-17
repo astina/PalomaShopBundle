@@ -25,7 +25,7 @@
             },
 
             onAddressUpdate() {
-                this.$router.push({name: 'state_confirm'});
+                this.$router.push({name: 'state_payment'});
             }
         }
     }

@@ -6,7 +6,7 @@
                              :loading="loading"
                              @submit="submit"
                              @cancel="back"
-                             submit-label="checkout.next"
+                             submit-label="button.save"
                              cancel-label="nav.back"></paloma-address-form>
 
 
