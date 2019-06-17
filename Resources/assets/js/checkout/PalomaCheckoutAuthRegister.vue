@@ -172,7 +172,9 @@
 
             return {
                 customer: {
-                    emailAddress: emailAddress
+                    emailAddress: emailAddress,
+                    password: null,
+                    _password_confirm: null
                 },
                 errors: [],
                 loading: false
@@ -209,6 +211,10 @@
 
         methods: {
             submit() {
+
+                if (this.customer.password === '') {
+                    this.customer.password = null;
+                }
 
                 this.$v.$touch();
                 if (this.$v.$invalid) {
