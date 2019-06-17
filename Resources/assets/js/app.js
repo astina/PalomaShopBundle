@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import numeral from 'numeral';
 
 // TODO create plugin
 Vue.prototype.$trans = function(key, params) {
@@ -25,6 +26,18 @@ Vue.directive('focus', {
     inserted: function (el) {
         el.focus();
     }
+});
+
+numeral.register('locale', 'de', {
+  delimiters: {
+      thousands: '\'',
+      decimal: '.'
+  }
+});
+numeral.locale('de'); // TODO proper localization //document.querySelector('html').getAttribute('lang'));
+
+Vue.filter('formatNumber', function (value) {
+    return numeral(value).format('0,0');
 });
 
 require('./paloma-category-nav');

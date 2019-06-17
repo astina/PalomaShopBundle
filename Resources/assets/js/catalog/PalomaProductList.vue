@@ -6,7 +6,7 @@
             <h4 class="product-list__title">
                 <span v-if="!results"><i class="fas fa-spinner fa-spin"></i></span>
                 <span v-if="results">
-                    {{ results.totalElements }}
+                    {{ results.totalElements | formatNumber }}
                     {{ $trans('catalog.products.title') }}
                 </span>
             </h4>
@@ -142,6 +142,9 @@
                     .searchProducts(this.search.request)
                     .then(results => {
                         this.results = results;
+                    })
+                    .catch(() => {
+                        // TODO show error
                     });
             },
 
