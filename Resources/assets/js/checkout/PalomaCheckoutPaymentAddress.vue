@@ -41,6 +41,10 @@
                 address.company = order.customer.company;
             }
 
+            if (!address.titleCode && order.customer && order.customer.gender) {
+                address.titleCode = paloma.customer.titleCodeForGender(order.customer.gender);
+            }
+
             return {
                 address: address,
                 addressModel: order._validation.billing.address,

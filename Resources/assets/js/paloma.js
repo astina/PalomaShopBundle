@@ -459,6 +459,18 @@ const customer = {
                 return response.data;
             })
             .catch(onHttpError);
+    },
+
+    titleCodeForGender(gender) {
+
+        switch (gender) {
+            case 'male':
+                return 'mr';
+            case 'female':
+                return 'ms';
+        }
+
+        return null;
     }
 };
 
