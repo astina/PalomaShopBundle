@@ -28,4 +28,9 @@ class PalomaTwigHelper
     {
         return $this->config['channels'][$this->getChannel()]['locales'];
     }
+
+    public function getSupportEmailAddress()
+    {
+        return $this->config['channels'][$this->getChannel()]['support_mail'];
+    }
 }

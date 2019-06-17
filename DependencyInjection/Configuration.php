@@ -34,6 +34,7 @@ class Configuration implements ConfigurationInterface
                             ->arrayNode('locales')
                                 ->scalarPrototype()->defaultValue(['de', 'en'])->end()
                             ->end()
+                            ->scalarNode('support_mail')->defaultValue('support@astina.ch')->end()
                         ->end()
                     ->end()
                 ->end()

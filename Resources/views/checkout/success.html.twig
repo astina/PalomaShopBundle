@@ -34,28 +34,37 @@
                     </p>
 
                     <p class="text-smaller">
-                        {{ 'checkout.success.info_support'|trans }}
+                        {{ 'checkout.success.info_support'|trans({'%mail_support%': paloma.supportEmailAddress})|raw }}
                     </p>
 
                     {% if logged_in %}
                         <p class="text-smaller">
-                            {{ 'checkout.success.info_status'|trans }}
+                            {{ 'checkout.success.info_status'|trans({'%url_account%': path('paloma_customer_account')})|raw }}
                         </p>
                     {% endif %}
 
-                    <a href="{{ path('paloma_catalog_home') }}" class="button is-primary m-t2">
-                        {{ 'checkout.success.button_home'|trans }}
-                    </a>
+                    {% block buttons %}
+                        <div>
+                            <a href="{{ path('paloma_catalog_home') }}" class="button is-primary m-t2">
+                                {{ 'checkout.success.button_home'|trans }}
+                            </a>
+                        </div>
+
+                        {% if logged_in %}
+                            <div>
+                                <a href="{{ path('paloma_customer_account') }}" class="button m-t2">
+                                    {{ 'checkout.success.button_account'|trans }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
 
                 </section>
 
             {% endblock %}
 
-
         </div>
 
-
     </main>
-
 
 {% endblock %}
