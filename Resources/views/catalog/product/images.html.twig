@@ -1,42 +1,45 @@
+{% set image_current = product.firstImage %}
+{% if image_current %}
 
-<div class="product-images" id="paloma-product-images" :class="{'product-images--zoomed': zoomed}">
+    <div class="product-images" id="paloma-product-images" :class="{'product-images--zoomed': zoomed}">
 
-    {% set image_current = product.firstImage %}
-    <div class="product-images__image"
-         @click.prevent="zoomed = true"
-         data-image-full="{{ image_current.getSource('full').url }}">
-        <div class="image">
-            {% if image_current %}
-                <img src="{{ image_current.getSource('large').url }}" alt="{{ image_current.name }}">
-            {% else %}
-                {# TODO placeholder image #}
-            {% endif %}
+        <div class="product-images__image"
+             @click.prevent="zoomed = true"
+             data-image-full="{{ image_current.getSource('full').url }}">
+            <div class="image">
+                {% if image_current %}
+                    <img src="{{ image_current.getSource('large').url }}" alt="{{ image_current.name }}">
+                {% else %}
+                    {# TODO placeholder image #}
+                {% endif %}
+            </div>
         </div>
-    </div>
 
-    <div class="product-images__zoom" @click.prevent="zoomed = false">
-        <a class="product-images__zoom-close" href="">
-            <span class="icon is-large">
-                <i class="fal fa-times"></i>
-            </span>
-        </a>
-        <div class="image product-images__zoom-image">
-            <img :src="zoomUrl" />
-        </div>
-    </div>
-
-    <div class="product-images__thumbs">
-        {% for image in product.images %}
-            <a class="product-images__thumb{% if image.name == image_current.name %} product-images__thumb--active{% endif %}"
-               data-image-large="{{ image.getSource('large').url }}"
-               data-image-full="{{ image.getSource('full').url }}"
-               @click="selectImage"
-               href="">
-                <div class="image">
-                    <img src="{{ image.getSource('small').url }}" alt="{{ image.name }}">
-                </div>
+        <div class="product-images__zoom" @click.prevent="zoomed = false">
+            <a class="product-images__zoom-close" href="">
+                <span class="icon is-large">
+                    <i class="fal fa-times"></i>
+                </span>
             </a>
-        {% endfor %}
+            <div class="image product-images__zoom-image">
+                <img :src="zoomUrl" />
+            </div>
+        </div>
+
+        <div class="product-images__thumbs">
+            {% for image in product.images %}
+                <a class="product-images__thumb{% if image.name == image_current.name %} product-images__thumb--active{% endif %}"
+                   data-image-large="{{ image.getSource('large').url }}"
+                   data-image-full="{{ image.getSource('full').url }}"
+                   @click="selectImage"
+                   href="">
+                    <div class="image">
+                        <img src="{{ image.getSource('small').url }}" alt="{{ image.name }}">
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
     </div>
 
-</div>
+{% endif %}
