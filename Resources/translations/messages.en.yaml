@@ -208,10 +208,12 @@ order:
 shipping:
   swisspost_default: Post CH Standard
   swisspost_priority: Post CH Priority
+  download: Digital Download
   free: free
   info:
     swisspost_default: Standard delivery by Swiss Post within 2-3 working days.
     swisspost_priority: Express delivery on the next working day.
+    download: You will receive a download link by e-mail.
 
 payment:
   invoice: Invoice
