@@ -4,16 +4,18 @@ import PalomaProductSelect from "./catalog/PalomaProductSelect";
 import PalomaProductRecommendations from "./catalog/PalomaProductRecommendations";
 import PalomaProductImages from "./catalog/PalomaProductImages";
 
-const productListElem = document.getElementById('paloma-product-list');
-if (productListElem) {
+const productListElements = document.getElementsByClassName('paloma-product-list');
+if (productListElements) {
 
-    const productList = new Vue({
-        components: {
-            PalomaProductList
-        }
+    productListElements.forEach(elem => {
+        const productList = new Vue({
+            components: {
+                PalomaProductList
+            }
+        });
+
+        productList.$mount(elem);
     });
-
-    productList.$mount(productListElem);
 }
 
 const productViewElem = document.getElementById('paloma-product-view');
