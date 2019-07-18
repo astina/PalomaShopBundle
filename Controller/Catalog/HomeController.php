@@ -4,11 +4,17 @@ namespace Paloma\ShopBundle\Controller\Catalog;
 
 use Paloma\Shop\Catalog\SearchRequest;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
-use Paloma\ShopBundle\Serializer\PalomaSerializer;
 
 class HomeController extends AbstractPalomaController
 {
-    public function view(PalomaSerializer $serializer)
+    public function view()
+    {
+        return $this->renderPalomaView(
+            'catalog/home/view.html.twig',
+            $this->homeParams());
+    }
+
+    protected function homeParams()
     {
         $searchRequest = new SearchRequest(
             null,
@@ -25,8 +31,8 @@ class HomeController extends AbstractPalomaController
             'request' => $searchRequest,
         ];
 
-        return $this->renderPalomaView('catalog/home/view.html.twig', [
-            'top_sellers_search_json' => $serializer->serialize($searchModel),
-        ]);
+        return [
+            'top_sellers_search_json' => $this->serializer->serialize($searchModel),
+        ];
     }
 }
