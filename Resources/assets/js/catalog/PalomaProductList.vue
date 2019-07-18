@@ -44,7 +44,7 @@
 
         <div v-if="results">
 
-            <div v-if="results.filterAggregates" class="product-list__filters">
+            <div v-if="results.filterAggregates && results.filterAggregates.length > 0" class="product-list__filters">
                 <paloma-product-filters
                         :filter-aggregates="results.filterAggregates"
                         :active-filters="search.request.filters"
