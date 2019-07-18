@@ -1,18 +1,23 @@
 <div class="service-nav is-hidden-mobile">
 
+    {% block nav_pages %}
 {#    <nav class="service-nav__pages">#}
 {#        <a href="#" class="service-nav__page">Kontakt</a>#}
 {#        <a href="#" class="service-nav__page">Impressum</a>#}
 {#        <a href="#" class="service-nav__page">AGB</a>#}
 {#    </nav>#}
+    {% endblock %}
 
-    <nav class="service-nav__locales locales">
-        {# TODO show drop down if there are lots of locales #}
-        {% for locale in paloma.locales %}
-            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale})) }}"
-               class="locales__item{% if locale == app.request.locale %} locales__item--active{% endif %}">
-                {{ ('locale.' ~ locale) | trans }}
-            </a>
-        {% endfor %}
-    </nav>
+    {% set locales = paloma.locales %}
+    {% if locales|length > 1 %}
+        <nav class="service-nav__locales locales">
+            {# TODO show drop down if there are lots of locales #}
+            {% for locale in locales %}
+                <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale})) }}"
+                   class="locales__item{% if locale == app.request.locale %} locales__item--active{% endif %}">
+                    {{ ('locale.' ~ locale) | trans }}
+                </a>
+            {% endfor %}
+        </nav>
+    {% endif %}
 </div>
