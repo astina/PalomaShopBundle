@@ -39,6 +39,11 @@
                         <span class="badge badge--red">{{ product.reductionPercent}}</span>
                     </div>
                 </div>
+<!--                <div class="product-card__availability">-->
+<!--                    <div class="availability availability&#45;&#45;green">-->
+<!--                        <span class="availability__indicator"></span>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
 
         </div>

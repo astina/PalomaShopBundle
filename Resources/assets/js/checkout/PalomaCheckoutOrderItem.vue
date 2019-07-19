@@ -2,7 +2,7 @@
     <div class="checkout-order-item">
 
         <div class="checkout-order-item__image">
-            <paloma-image :image="item.image" size="small"></paloma-image>
+            <paloma-image v-if="item.image" :image="item.image" size="small"></paloma-image>
         </div>
 
         <div class="checkout-order-item__product">

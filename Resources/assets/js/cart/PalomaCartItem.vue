@@ -2,7 +2,7 @@
     <div class="cart-item" :class="{'cart-item--highlighted': highlight}" v-if="!deleted">
 
         <div class="cart-item__image">
-            <paloma-image :image="item.image" size="small"></paloma-image>
+            <paloma-image v-if="item.image" :image="item.image" size="small"></paloma-image>
         </div>
 
         <div class="cart-item__product">
