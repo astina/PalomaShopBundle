@@ -24,6 +24,7 @@
 .checkout-option__text {
   font-size: $size-7;
   color: $text-light;
+  white-space: pre-wrap;
 }
 
 .checkout-option__price {
