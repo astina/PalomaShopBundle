@@ -9,7 +9,7 @@
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </span>
-                <span class="category-nav__burger-label">Menu</span>
+                <span class="category-nav__burger-label">{{ 'nav.menu' | trans }}</span>
             </a>
         </div>
 
@@ -25,7 +25,7 @@
             <div class="category-nav__menu">
                 {% for cat in categories %}
                     {% if cat.subCategories and cat.subCategories|length > 0 %}
-                        <div class="category-nav__item category-nav__item--has-children">
+                        <div class="category-nav__item category-nav__item--has-children category-nav__item--category-{{ cat.code }}">
                             {% if cat.code %}
                                 <a href="{{ path('paloma_catalog_category', {categoryCode: cat.code, categorySlug: cat.slug}) }}"
                                    class="category-nav__item-link">
@@ -45,7 +45,7 @@
                             <div class="category-nav__dropdown">
                                 <div class="category-nav__sitemap container sitemap">
                                     {% for subcat in cat.subCategories %}
-                                        <div class="sitemap__section{% if subcat.subCategories|length > 0 %} sitemap__section--has-children{% endif %}">
+                                        <div class="sitemap__section{% if subcat.subCategories|length > 0 %} sitemap__section--has-children{% endif %} sitemap__section--category-{{ subcat.code }}">
                                             <a href="{{ path('paloma_catalog_category', {categoryCode: subcat.code, categorySlug: subcat.slug}) }}"
                                                class="sitemap__section-link">
                                                 {{ subcat.name }}
@@ -58,7 +58,7 @@
                                                     </a>
                                                     {% for subsubcat in subcat.subCategories %}
                                                         <a href="{{ path('paloma_catalog_category', {categoryCode: subsubcat.code, categorySlug: subsubcat.slug}) }}"
-                                                           class="sitemap__nav-item">
+                                                           class="sitemap__nav-item sitemap__nav-item--category-{{ subsubcat.code }}">
                                                             {{ subsubcat.name }}
                                                         </a>
                                                     {% endfor %}
@@ -71,7 +71,7 @@
                         </div>
                     {% else %}
                         <a href="{{ path('paloma_catalog_category', {categoryCode: cat.code, categorySlug: cat.slug}) }}"
-                           class="category-nav__item">
+                           class="category-nav__item category-nav__item--category-{{ cat.code }}">
                             {{ cat.name }}
                         </a>
                     {% endif %}
