@@ -4,8 +4,11 @@
 
         <fieldset :disabled="loading">
 
-            <div class="field form__field form__field--required"
-                 :class="{ 'form__field--invalid': $v.address.titleCode.$error }">
+            <div class="field form__field"
+                 :class="{
+                        'form__field--invalid': $v.address.titleCode.$error,
+                        'form__field--required': $v.address.titleCode.$params.required
+                     }">
                 <label class="label">{{ $trans('field.address_title') }}</label>
                 <div class="control">
                     <label v-for="option in model.titleCode.options" class="radio">
@@ -20,8 +23,11 @@
 
             <div class="columns">
                 <div class="column">
-                    <div class="field form__field form__field--required"
-                         :class="{ 'form__field--invalid': $v.address.firstName.$error }">
+                    <div class="field form__field"
+                         :class="{
+                                'form__field--invalid': $v.address.firstName.$error,
+                                'form__field--required': $v.address.firstName.$params.required
+                            }">
                         <label class="label" for="address__first_name">{{ $trans('field.first_name') }}</label>
                         <div class="control">
                             <input v-model="address.firstName" v-focus class="input" type="text" id="address__first_name" required name="first_name">
@@ -35,8 +41,11 @@
                     </div>
                 </div>
                 <div class="column">
-                    <div class="field form__field form__field--required"
-                         :class="{ 'form__field--invalid': $v.address.lastName.$error }">
+                    <div class="field form__field"
+                         :class="{
+                                'form__field--invalid': $v.address.lastName.$error,
+                                'form__field--required': $v.address.lastName.$params.required
+                            }">
                         <label class="label" for="address__last_name">{{ $trans('field.last_name') }}</label>
                         <div class="control">
                             <input v-model="address.lastName" class="input" type="text" id="address__last_name" required name="last_name">
@@ -52,7 +61,10 @@
             </div>
 
             <div class="field form__field"
-                 :class="{ 'form__field--invalid': $v.address.company.$error }">
+                 :class="{
+                        'form__field--invalid': $v.address.company.$error,
+                        'form__field--required': $v.address.company.$params.required
+                    }">
                 <label class="label" for="address__company">{{ $trans('field.company') }}</label>
                 <div class="control">
                     <input v-model="address.company" class="input" type="text" id="address__company" name="company">
@@ -62,8 +74,11 @@
                 </p>
             </div>
 
-            <div class="field form__field form__field--required"
-                 :class="{ 'form__field--invalid': $v.address.street.$error }">
+            <div class="field form__field"
+                 :class="{
+                        'form__field--invalid': $v.address.street.$error,
+                        'form__field--required': $v.address.street.$params.required
+                     }">
                 <label class="label" for="address__street">{{ $trans('field.street') }}</label>
                 <div class="control">
                     <input v-model="address.street" class="input" type="text" id="address__street" required name="street">
@@ -78,8 +93,11 @@
 
             <div class="columns">
                 <div class="column">
-                    <div class="field form__field form__field--required"
-                         :class="{ 'form__field--invalid': $v.address.zipCode.$error }">
+                    <div class="field form__field"
+                         :class="{
+                                'form__field--invalid': $v.address.zipCode.$error,
+                                'form__field--required': $v.address.zipCode.$params.required
+                             }">
                         <label class="label" for="address__zip_code">{{ $trans('field.zip_code') }}</label>
                         <div class="control">
                             <input v-model="address.zipCode" class="input" type="text" id="address__zip_code" required name="zip_code">
@@ -93,8 +111,11 @@
                     </div>
                 </div>
                 <div class="column">
-                    <div class="field form__field form__field--required"
-                         :class="{ 'form__field--invalid': $v.address.city.$error }">
+                    <div class="field form__field"
+                         :class="{
+                                'form__field--invalid': $v.address.city.$error,
+                                'form__field--required': $v.address.city.$params.required
+                             }">
                         <label class="label" for="address__city">{{ $trans('field.city') }}</label>
                         <div class="control">
                             <input v-model="address.city" class="input" type="text" id="address__city" required name="city">
@@ -111,8 +132,11 @@
 
             <div class="columns">
                 <div class="column">
-                    <div class="field form__field form__field--required"
-                         :class="{ 'form__field--invalid': $v.address.country.$error }">
+                    <div class="field form__field"
+                         :class="{
+                                'form__field--invalid': $v.address.country.$error,
+                                'form__field--required': $v.address.country.$params.required
+                            }">
                         <label class="label" for="address__country">{{ $trans('field.country') }}</label>
                         <div class="control">
                             <div class="select is-fullwidth">
@@ -130,11 +154,17 @@
                 </div>
                 <div class="column">
                     <div class="field form__field"
-                         :class="{ 'form__field--invalid': $v.address.phoneNumber.$error }">
+                         :class="{
+                                'form__field--invalid': $v.address.phoneNumber.$error,
+                                'form__field--required': $v.address.phoneNumber.$params.required
+                            }">
                         <label class="label" for="address__phone_number">{{ $trans('field.phone_number') }}</label>
                         <div class="control">
                             <input v-model="address.phoneNumber" class="input" type="text" id="address__phone_number" name="phone_number">
                         </div>
+                        <p v-if="!$v.address.phoneNumber.required" class="help is-danger">
+                            {{ $trans('error.field.required') }}
+                        </p>
                         <p v-if="!$v.address.phoneNumber.maxLength" class="help is-danger">
                             {{ $trans('error.field.too_long', {max: $v.address.phoneNumber.$params.maxLength.max}) }}
                         </p>
@@ -186,10 +216,11 @@
             }
         },
 
-        validations: {
-            address: {
+        validations() {
+
+            const validations = {
                 titleCode: {
-                    required
+                    required: required
                 },
                 firstName: {
                     required,
@@ -221,6 +252,26 @@
                 phoneNumber: {
                     maxLength: maxLength(30)
                 },
+            };
+
+            for (let prop in validations) {
+
+                if (this.model.hasOwnProperty(prop) && validations.hasOwnProperty(prop)) {
+
+                    const current = validations[prop];
+                    const overwrite = this.model[prop];
+
+                    if (overwrite.hasOwnProperty('required')) {
+                        current.required = overwrite.required ? required  : null;
+                    }
+                    if (overwrite.hasOwnProperty('maxLength')) {
+                        current.maxLength = maxLength(overwrite.maxLength);
+                    }
+                }
+            }
+
+            return {
+                address: validations
             }
         },
 
