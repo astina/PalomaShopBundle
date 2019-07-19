@@ -78,8 +78,12 @@ $highlight: #DCF2FF !default;
 
 // Paloma
 
-$availability-available: darken($green, 5%)  !default;
+$availability-available: darken($green, 5%) !default;
 
-$product-image-padding: 10% !default;
-$product-zoom-image-padding: 5% !default;
-$product-card-image-padding: 5%  !default;
+// height / width (examples: 1:1 => 100%, 3:2 => 66%, 4:3 => 75%)
+// this assumes that all product images have the same aspect ratio
+$product-image-ratio: 100% !default;
+
+$product-image-padding: 0% !default;
+$product-zoom-image-padding: 0% !default;
+$product-card-image-padding: 0% !default;

@@ -29,19 +29,10 @@
   width: 100%;
 }
 
-.product-card__image::after {
-  content: '';
-  display: block;
-  margin-top: 100%;
-}
-
 .product-card__image-inner {
-  position: absolute;
-  overflow: hidden;
-  top: $product-card-image-padding;
-  bottom: $product-card-image-padding;
-  left: $product-card-image-padding;
-  right: $product-card-image-padding;
+  width: 100%;
+  height: 0;
+  padding-bottom: $product-image-ratio;
 }
 
 .product-card__meta {
