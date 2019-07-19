@@ -35,6 +35,7 @@ class SerializationConstants
             'name',
             'basePrice',
             'originalBasePrice',
+            'reductionPercent',
             'shortDescription',
             'firstImage' => [
                 'sources' => [

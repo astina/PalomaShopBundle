@@ -33,6 +33,14 @@
                 </div>
             </div>
 
+            <div class="product-card__meta">
+                <div class="product-card__badges">
+                    <div v-if="product.reductionPercent" class="product-card__badge">
+                        <span class="badge badge--red">{{ product.reductionPercent}}</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <a :href="href" class="product-card__link"></a>
     </div>
