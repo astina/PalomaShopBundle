@@ -35,9 +35,7 @@
                         </div>
 
                         {% if product.shortDescription %}
-                            <div class="product-summary__description">
-                                {{ product.shortDescription | raw }}
-                            </div>
+                            <div class="product-summary__description">{{ product.shortDescription | raw }}</div>
                         {% endif %}
 
                         <div id="paloma-product-select">
