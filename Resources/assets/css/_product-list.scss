@@ -26,3 +26,10 @@
   margin-top: 10px;
   margin-bottom: 50px;
 }
+
+.product-list__column {
+  //@extend .is-half-mobile;
+  @extend .is-full-mobile;
+  @extend .is-one-third-tablet;
+  @extend .is-one-quarter-desktop;
+}

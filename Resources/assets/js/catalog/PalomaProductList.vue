@@ -55,7 +55,7 @@
 
             <div class="columns is-multiline is-mobile">
                 <div v-for="product in results.content"
-                     class="column is-half-mobile is-one-third-tablet is-one-quarter-desktop">
+                     class="column product-list__column">
                     <paloma-product-card :product="product" :category="category" :href="createHref(product)"></paloma-product-card>
                 </div>
             </div>
