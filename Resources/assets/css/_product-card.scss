@@ -3,8 +3,12 @@
 .product-card {
   position: relative;
   border-bottom: 1px solid $grey-lighter;
-  padding-bottom: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 1rem;
+  height: 100%;
+}
+
+.product-card__inner {
+  height: 100%;
 }
 
 .product-card__link {
@@ -84,10 +88,6 @@
 .product-card__price {
   width: 70%;
 }
-
-//.product-card__price .price__amount {
-//  color: $text-strong;
-//}
 
 .product-card__actions {
   width: 30%;
