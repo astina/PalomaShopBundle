@@ -70,12 +70,12 @@ customer:
       Welcome to your customer account. Here you can track your orders and manage your customer data.
     last_order: Last order
     no_orders: No orders available yet.
-    orders: My orders
-    addresses: My addresses
+    order_list: My orders
+    address_list: My addresses
     no_addresses: No addresses available.
     address_saved: Address saved successfully
     user: User data
-    email_address: Change email address
+    email: Change email address
     email_saved: E-mail address successfully saved
     password: Change password
     password_saved: Password successfully changed

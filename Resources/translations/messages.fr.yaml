@@ -70,12 +70,12 @@ customer:
       Bienvenue sur votre compte client. Ici, vous pouvez suivre vos commandes et gérer vos données clients.
     last_order: Dernière commande
     no_orders: Aucune commande disponible pour le moment.
-    orders: Mes commandes
-    addresses: Mes adresses
+    order_list: Mes commandes
+    address_list: Mes adresses
     no_addresses: Aucune adresse disponible.
     address_saved: Adresse enregistrée avec succès
     user: Données des utilisateurs
-    email_address: Changer l'adresse e-mail
+    email: Changer l'adresse e-mail
     email_saved: Adresse e-mail enregistrée avec succès
     password: Modifier le mot de passe
     password_saved: Mot de passe modifié avec succès

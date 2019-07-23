@@ -5,19 +5,9 @@
             {{ $trans('customer.account.my_account' )}}
         </p>
         <ul class="menu-list">
-            <li>
-                <router-link :to="{name: 'overview'}" active-class="is-active">
-                    {{ $trans('customer.account.overview' )}}
-                </router-link>
-            </li>
-            <li>
-                <router-link :to="{name: 'order_list'}" active-class="is-active">
-                    {{ $trans('customer.account.orders' )}}
-                </router-link>
-            </li>
-            <li>
-                <router-link :to="{name: 'address_list'}" active-class="is-active">
-                    {{ $trans('customer.account.addresses' )}}
+            <li v-for="route in customer">
+                <router-link :to="{name: route.name}" active-class="is-active">
+                    {{ $trans('customer.account.' + route.name)}}
                 </router-link>
             </li>
         </ul>
@@ -25,14 +15,9 @@
             {{ $trans('customer.account.user' )}}
         </p>
         <ul class="menu-list">
-            <li>
-                <router-link :to="{name: 'email'}" active-class="is-active">
-                    {{ $trans('customer.account.email_address' )}}
-                </router-link>
-            </li>
-            <li>
-                <router-link :to="{name: 'password'}" active-class="is-active">
-                    {{ $trans('customer.account.password' )}}
+            <li v-for="route in user">
+                <router-link :to="{name: route.name}" active-class="is-active">
+                    {{ $trans('customer.account.' + route.name)}}
                 </router-link>
             </li>
         </ul>
@@ -41,7 +26,34 @@
 </template>
 
 <script>
+
+    function routesForGroup(routes, group) {
+
+        const groupRoutes = routes.filter(route => {
+            return route.meta && route.meta.group && route.meta.group === group;
+        });
+
+        groupRoutes.sort((r1, r2) => r1.meta.order - r2.meta.order);
+
+        return groupRoutes;
+    }
+
     export default {
-        name: "PalomaAccountNav"
+        name: 'PalomaAccountNav',
+
+        props: {
+            routes: Array
+        },
+
+        data() {
+
+            const customer = routesForGroup(this.routes, 'customer');
+            const user = routesForGroup(this.routes, 'user');
+
+            return {
+                customer: customer,
+                user: user
+            }
+        }
     }
 </script>

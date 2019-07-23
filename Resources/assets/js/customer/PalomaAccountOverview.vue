@@ -32,7 +32,7 @@
         <section class="section p-b0">
 
             <div class="account__section-title">
-                <h3>{{ $trans('customer.account.addresses') }}</h3>
+                <h3>{{ $trans('customer.account.address_list') }}</h3>
                 <router-link v-if="!customer.loading && !customer.no_addresses" :to="{name: 'address_list'}">
                     {{ $trans('nav.show') }}
                 </router-link>

@@ -3,7 +3,7 @@
 
         <div class="content">
             <h1>
-                {{ $trans('customer.account.addresses') }}
+                {{ $trans('customer.account.address_list') }}
             </h1>
         </div>
 

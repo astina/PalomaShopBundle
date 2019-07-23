@@ -17,10 +17,10 @@
                         {{ $trans('customer.account.my_account') }}
                     </a>
                     <a class="dropdown-item" :href="accountView('orders')">
-                        {{ $trans('customer.account.orders') }}
+                        {{ $trans('customer.account.order_list') }}
                     </a>
                     <a class="dropdown-item" :href="accountView('addresses')">
-                        {{ $trans('customer.account.addresses') }}
+                        {{ $trans('customer.account.address_list') }}
                     </a>
                     <hr class="dropdown-divider">
                     <div class="dropdown-item">

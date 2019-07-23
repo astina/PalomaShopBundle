@@ -4,7 +4,7 @@
         <paloma-notifications position="top-center"></paloma-notifications>
 
         <div class="account__nav">
-            <paloma-account-nav></paloma-account-nav>
+            <paloma-account-nav :routes="routes"></paloma-account-nav>
         </div>
 
         <div class="account__main">
@@ -17,6 +17,7 @@
 <script>
 
     import paloma from '../paloma';
+    import config from '../paloma-config';
     import Vue from 'vue';
     import VueRouter from 'vue-router';
     import PalomaAccountNav from "./PalomaAccountNav";
@@ -39,12 +40,20 @@
         {
             path: '/overview',
             name: 'overview',
-            component: PalomaAccountOverview
+            component: PalomaAccountOverview,
+            meta: {
+                order: 0,
+                group: 'customer',
+            }
         },
         {
             path: '/orders',
             name: 'order_list',
             component: PalomaAccountOrderList,
+            meta: {
+                order: 10,
+                group: 'customer',
+            }
         },
         {
             path: '/orders/:order_number',
@@ -54,7 +63,11 @@
         {
             path: '/addresses',
             name: 'address_list',
-            component: PalomaAccountAddressList
+            component: PalomaAccountAddressList,
+            meta: {
+                order: 20,
+                group: 'customer',
+            }
         },
         {
             path: '/addresses/:type',
@@ -64,14 +77,24 @@
         {
             path: '/email',
             name: 'email',
-            component: PalomaAccountEmail
+            component: PalomaAccountEmail,
+            meta: {
+                order: 0,
+                group: 'user',
+            }
         },
         {
             path: '/password',
             name: 'password',
-            component: PalomaAccountPassword
+            component: PalomaAccountPassword,
+            meta: {
+                order: 10,
+                group: 'user',
+            }
         },
     ];
+
+    config.customAccountRoutes.forEach(customRoute => routes.push(customRoute));
 
     const router = new VueRouter({
         base: paloma.router.resolve('customer_account'),
@@ -80,7 +103,7 @@
     });
 
     export default {
-        name: "PalomaAccount",
+        name: 'PalomaAccount',
 
         components: {PalomaNotifications, PalomaAccountNav},
 
@@ -95,7 +118,12 @@
             paloma.events.$on('paloma.access.forbidden', () => {
                 // TODO
             });
+        },
 
+        data() {
+            return {
+                routes: routes
+            }
         }
     }
 

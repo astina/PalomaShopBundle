@@ -3,7 +3,7 @@
     <section class="section">
 
         <div class="content">
-            <h1>{{ $trans('customer.account.orders') }}</h1>
+            <h1>{{ $trans('customer.account.order_list') }}</h1>
         </div>
 
         <paloma-spinner v-if="orders.length === 0" :loading="loading"></paloma-spinner>

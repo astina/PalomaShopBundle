@@ -2,7 +2,7 @@
     <section class="section">
 
         <div class="content">
-            <h1>{{ $trans('customer.account.email_address') }}</h1>
+            <h1>{{ $trans('customer.account.email') }}</h1>
         </div>
 
         <form @submit.prevent="submit" class="form form--email" novalidate>
