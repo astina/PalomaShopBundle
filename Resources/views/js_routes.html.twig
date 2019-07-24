@@ -53,7 +53,8 @@
 
         'customer_register': '{{ path('paloma_customer_register') }}',
         'customer_register_success': '{{ path('paloma_customer_register_success') }}',
-        'customer_account': '{{ path('paloma_customer_account') }}'
+        'customer_account': '{{ path('paloma_customer_account') }}',
+        'customer_order_invoice_pdf': '{{ path('paloma_customer_order_invoice_pdf', {'orderNumber': '__orderNumber__'}) }}'
 
     };
 </script>

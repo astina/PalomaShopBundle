@@ -32,7 +32,7 @@ services:
       - { name: kernel.event_listener, event: kernel.request, priority: 31 } # before symfony security listeners, after router + session listener
 
   paloma_shop.client:
-    class: Paloma\Shop\PalomaClient
+    class: Paloma\Shop\PalomaClientInterface
     factory: 'paloma_shop.client_factory:create'
 
   paloma_shop.config:
@@ -99,15 +99,6 @@ services:
 
   Paloma\Shop\PalomaClientInterface:
     alias: paloma_shop.client
-
-  Paloma\Shop\Catalog\CatalogClientInterface:
-    alias: paloma_shop.client.catalog
-
-  Paloma\Shop\Checkout\CheckoutClientInterface:
-    alias: paloma_shop.client.checkout
-
-  Paloma\Shop\Customers\CustomersClientInterface:
-    alias: paloma_shop.client.customers
 
   Paloma\Shop\Security\PalomaSecurityInterface:
     alias: paloma_shop.security

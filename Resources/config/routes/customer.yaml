@@ -24,3 +24,8 @@ paloma_customer_account_section:
   methods: GET
   requirements:
     section: '.*'
+
+paloma_customer_order_invoice_pdf:
+  path: '/orders/{orderNumber}/invoice.pdf'
+  controller: paloma_shop.controller.customer_order::invoicePdf
+  methods: GET

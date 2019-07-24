@@ -88,6 +88,7 @@ customer:
     title: Commande %order_number% à partir du %order_date%
     order_total: Total
     view_details: Voir la commande
+    download_invoice_pdf: Télécharger la facture (PDF)
     shipping:
       title: Accouchement
       method: Type de livraison

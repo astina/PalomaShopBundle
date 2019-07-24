@@ -19,6 +19,19 @@
             </a>
         </div>
 
+        <div v-if="invoicePdfDownloadUrl" class="customer-order__actions">
+
+            <div class="buttons">
+                <a class="button is-small" :href="invoicePdfDownloadUrl" target="_blank">
+                    <span class="icon">
+                        <i class="fal fa-file-invoice"></i>
+                    </span>
+                    <span>{{ $trans('customer.order.download_invoice_pdf') }}</span>
+                </a>
+            </div>
+
+        </div>
+
         <div class="customer-order__section">
 
             <div class="customer-order__items">
@@ -160,6 +173,8 @@
 <script>
 
     import moment from 'moment';
+    import config from '../paloma-config';
+    import paloma from '../paloma';
     import PalomaCustomerOrderItem from "./PalomaCustomerOrderItem";
     import PalomaCustomerOrderAdjustment from "./PalomaCustomerOrderAdjustment";
     import PalomaPrice from "../common/PalomaPrice";
@@ -185,10 +200,15 @@
             const shippingTargetDate = this.order.shipping.shippingMethod.targetDate
                 && moment(this.order.shipping.shippingMethod.targetDate).format('DD.MM.YYYY');
 
+            const invoicePdfDownloadUrl = config.orderInvoicePdfDownloadAvailable
+                ? paloma.router.resolve('customer_order_invoice_pdf', {orderNumber: this.order.orderNumber})
+                : null;
+
             return {
                 orderDate: orderDate,
                 shippingTitle: shippingTitle,
-                shippingTargetDate: shippingTargetDate
+                shippingTargetDate: shippingTargetDate,
+                invoicePdfDownloadUrl: invoicePdfDownloadUrl
             }
         },
 

@@ -88,6 +88,7 @@ customer:
     title: Bestellung %order_number% vom %order_date%
     order_total: Total
     view_details: Bestellung anzeigen
+    download_invoice_pdf: Rechnung als PDF herunterladen
     shipping:
       title: Lieferung
       method: Lieferart

@@ -88,6 +88,7 @@ customer:
     title: Order %order_number% from %order_date%
     order_total: Total
     view_details: View order
+    download_invoice_pdf: Download invoice as PDF
     shipping:
       title: Delivery
       method: Delivery type

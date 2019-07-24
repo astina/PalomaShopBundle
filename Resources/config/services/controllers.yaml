@@ -81,3 +81,7 @@ services:
   paloma_shop.controller.customer_account:
     class: Paloma\ShopBundle\Controller\Customer\AccountController
     tags: ['controller.service_arguments']
+
+  paloma_shop.controller.customer_order:
+    class: Paloma\ShopBundle\Controller\Customer\OrderController
+    tags: ['controller.service_arguments']
