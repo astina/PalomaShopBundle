@@ -200,7 +200,7 @@
             const shippingTargetDate = this.order.shipping.shippingMethod.targetDate
                 && moment(this.order.shipping.shippingMethod.targetDate).format('DD.MM.YYYY');
 
-            const invoicePdfDownloadUrl = config.orderInvoicePdfDownloadAvailable
+            const invoicePdfDownloadUrl = config.account.orderInvoicePdfDownloadAvailable
                 ? paloma.router.resolve('customer_order_invoice_pdf', {orderNumber: this.order.orderNumber})
                 : null;
 

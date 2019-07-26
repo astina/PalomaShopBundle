@@ -92,7 +92,7 @@
                     </div>
                 </div>
 
-                <p class="form__info">
+                <p v-if="guestsAllowed" class="form__info">
                     {{ $trans('checkout.state_auth.register_password_info') }}
                 </p>
 
@@ -103,12 +103,13 @@
                              :class="{ 'form__field--invalid': $v.customer.password.$error }">
                             <label class="label" for="c__email">{{ $trans('field.password') }}</label>
                             <div class="control">
-                                <input v-model="customer.password" class="input" type="password" id="c__password" required
+                                <input v-model="customer.password" class="input" type="password" id="c__password"
+                                       required
                                        name="password">
                             </div>
-<!--                            <p v-if="!$v.customer.password.requiredUnless" class="help is-danger">-->
-<!--                                {{ $trans('error.field.required') }}-->
-<!--                            </p>-->
+                            <p v-if="!$v.customer.password.required" class="help is-danger">
+                                {{ $trans('error.field.required') }}
+                            </p>
                             <p v-if="!$v.customer.password.minLength" class="help is-danger">
                                 {{ $trans('error.password.too_short', {min: $v.customer.password.$params.minLength.min}) }}
                             </p>
@@ -122,7 +123,8 @@
                              :class="{ 'form__field--invalid': $v.customer._password_confirm.$error }">
                             <label class="label" for="c__email">{{ $trans('field.password_confirm') }}</label>
                             <div class="control">
-                                <input v-model="customer._password_confirm" class="input" type="password" id="c__password_confirm" required
+                                <input v-model="customer._password_confirm" class="input" type="password"
+                                       id="c__password_confirm" required
                                        name="password_confirm">
                             </div>
                             <p v-if="!$v.customer._password_confirm.confirmPassword" class="help is-danger">
@@ -157,9 +159,10 @@
 
 <script>
 
-    import paloma from "../paloma";
+    import paloma from '../paloma';
+    import config from '../paloma-config';
     import {validationMixin} from 'vuelidate';
-    import {email, maxLength, minLength, required, sameAs} from 'vuelidate/lib/validators';
+    import {email, maxLength, minLength, required, requiredIf, sameAs} from 'vuelidate/lib/validators';
 
     export default {
         name: "PalomaCheckoutAuthRegister",
@@ -177,7 +180,8 @@
                     _password_confirm: null
                 },
                 errors: [],
-                loading: false
+                loading: false,
+                guestsAllowed: config.checkout.allowGuests,
             }
         },
 
@@ -200,7 +204,9 @@
                     maxLength: maxLength(30)
                 },
                 password: {
-                    // requiredUnless: requiredUnless(false /* TODO make configurable */ ),
+                    required: requiredIf(() => {
+                        return !config.checkout.allowGuests;
+                    }),
                     minLength: minLength(6)
                 },
                 _password_confirm: {

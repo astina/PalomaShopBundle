@@ -94,7 +94,7 @@
         },
     ];
 
-    config.customAccountRoutes.forEach(customRoute => routes.push(customRoute));
+    config.account.customRoutes.forEach(customRoute => routes.push(customRoute));
 
     const router = new VueRouter({
         base: paloma.router.resolve('customer_account'),
