@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div v-if="options.length > 1" class="product-summary__variants">
+        <div v-if="options.length > 0" class="product-summary__variants">
             <paloma-product-option v-for="option in options"
                                    :key="option.option"
                                    :option="option"

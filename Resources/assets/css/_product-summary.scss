@@ -16,7 +16,7 @@
 }
 
 .product-summary__annotations {
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
 }
 
 .product-summary__annotation {
@@ -28,12 +28,12 @@
 
 .product-summary__description {
   font-size: 0.95rem;
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
   white-space: pre-wrap;
 }
 
 .product-summary__price {
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
 }
 
 .product-summary__price .price__currency {
@@ -55,7 +55,6 @@
 }
 
 .product-summary__variants {
-  margin-bottom: 40px;
 }
 
 .product-summary__cart-form {
@@ -71,18 +70,4 @@
   color: $grey-light;
   line-height: 36px;
   margin-left: 10px;
-}
-
-
-@media screen and (max-width: 768px) {
-
-  .product-summary__breadcrumb:not(:last-child) {
-    margin-bottom: .5rem;
-  }
-
-  .product-summary__annotations,
-  .product-summary__description,
-  .product-summary__price {
-    margin-bottom: 20px;
-  }
 }

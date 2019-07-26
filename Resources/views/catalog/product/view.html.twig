@@ -1,62 +1,79 @@
 {% extends '@PalomaShop/layout.html.twig' %}
 
 {% block main %}
-    <div class="container">
+<div id="paloma-product-view">
 
-        <div id="paloma-product-view" class="product-layout">
+    <section class="section">
+        <div class="container">
 
-            <div class="product-layout__summary">
+            <div class="columns">
+                <div class="column">
 
-                <div class="product-summary">
+                    {% include '@PalomaShop/catalog/product/images.html.twig' %}
 
-                    {% if category is defined %}
-                        {% include '@PalomaShop/catalog/category/breadcrumb.html.twig' %}
-                    {% endif %}
+                </div>
+                <div class="column">
 
-                    <h1 class="product-summary__title">
-                        {{ product.name }}
-                    </h1>
+                    <div class="product-summary">
 
-                    <div class="product-summary__annotations">
-                        {% if product.getAttribute('brand') %}
-                            <span class="product-summary__annotation">{{ product.getAttribute('brand').value }}</span>
+                        {% if category is defined %}
+                            {% include '@PalomaShop/catalog/category/breadcrumb.html.twig' %}
                         {% endif %}
-                        <span class="product-summary__annotation">
-                            {{ 'catalog.products.item_number' | trans }}
-                            {{ product.itemNumber }}
-                        </span>
+
+                        <h1 class="product-summary__title">
+                            {{ product.name }}
+                        </h1>
+
+                        <div class="product-summary__annotations">
+                            {% if product.getAttribute('brand') %}
+                            <span class="product-summary__annotation">{{ product.getAttribute('brand').value }}</span>
+                            {% endif %}
+                            <span class="product-summary__annotation">
+                                {{ 'catalog.products.item_number' | trans }}
+                                {{ product.itemNumber }}
+                            </span>
+                        </div>
+
+                        {% if product.shortDescription %}
+                            <div class="product-summary__description">{{ product.shortDescription | raw }}</div>
+                        {% endif %}
+
+                        <div id="paloma-product-select">
+                            <paloma-product-select :product="{{ product_json }}"></paloma-product-select>
+                        </div>
+
                     </div>
 
-                    {% if product.shortDescription %}
-                        <div class="product-summary__description">{{ product.shortDescription | raw }}</div>
-                    {% endif %}
-
                 </div>
-
-            </div>
-
-            <div class="product-layout__images">
-                {% include '@PalomaShop/catalog/product/images.html.twig' %}
-            </div>
-
-            <div id="paloma-product-select" class="product-layout__select">
-                <paloma-product-select :product="{{ product_json }}"></paloma-product-select>
-            </div>
-
-            {% if product.attributes|length > 0 %}
-                <div class="product-layout__specs">
-                    {% include '@PalomaShop/catalog/product/specs.html.twig' %}
-                </div>
-            {% endif %}
-
-            <div class="product-layout__description">
-                {% include '@PalomaShop/catalog/product/description.html.twig' %}
             </div>
         </div>
 
-        <div id="paloma-product-recommendations">
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <div class="columns">
+                <div class="column">
+                    {% include '@PalomaShop/catalog/product/description.html.twig' %}
+                </div>
+                {% if product.attributes|length > 0 %}
+                    <div class="column">
+                        {% include '@PalomaShop/catalog/product/specs.html.twig' %}
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" id="paloma-product-recommendations">
+
             <paloma-product-recommendations :product="{{ product_json }}"></paloma-product-recommendations>
-        </div>
 
-    </div>
+        </div>
+    </section>
+
+</div>
 {% endblock %}

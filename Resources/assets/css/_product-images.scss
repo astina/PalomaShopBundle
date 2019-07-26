@@ -2,8 +2,10 @@
 }
 
 .product-images__image {
-  padding: $product-image-padding;
   cursor: zoom-in;
+  width: 100%;
+  height: 0;
+  padding-bottom: $product-image-ratio;
 }
 
 .product-images__zoom {
