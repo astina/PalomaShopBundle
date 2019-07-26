@@ -27,7 +27,10 @@ import jQuery from "jquery";
     });
 
     $(window).on('scroll', () => {
-        const scrolled = $(window).scrollTop() > 80;
+
+        const logoHeight = $('.page-header__brand-logo').height();
+        const scrolled = $(window).scrollTop() > logoHeight;
+
         if (scrolled) {
             $('body').addClass('is-scrolled');
         } else {

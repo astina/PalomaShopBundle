@@ -1,5 +1,5 @@
 .service-nav {
-  margin-top: 10px;
+  padding-top: 20px;
   display: flex;
   justify-content: flex-end;
 }
@@ -17,4 +17,34 @@
 .service-nav__locales {
   margin-left: 70px;
   font-size: $size-7;
+}
+
+@media screen and (max-width: 768px) {
+
+  .category-nav.is-active .service-nav {
+    display: block;
+  }
+
+  .category-nav .service-nav__page {
+    margin-left: 15px;
+    padding-bottom: 10px;
+  }
+
+  .category-nav .service-nav__locales {
+    margin-left: 10px;
+    padding-bottom: 10px;
+  }
+
+  .service-nav {
+    justify-content: normal;
+  }
+
+  .service-nav__page {
+    display: block;
+  }
+
+  .service-nav__locales {
+    margin-left: 0;
+  }
+
 }

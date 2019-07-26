@@ -5,13 +5,6 @@
             <span class="icon">
                 <span class="fal fa-shopping-bag"></span>
             </span>
-            <span v-if="cart.empty" class="is-hidden-mobile">
-                {{ $trans('cart.title') }}
-            </span>
-            <span v-else class="is-hidden-mobile">
-                {{ $trans('cart.units_count', {count: cart.unitsCount}) }}
-                ({{cart.itemsPrice}})
-            </span>
             <div v-if="!cart.empty" class="cart-mini__indicator">
                 {{ cart.unitsCount }}
             </div>

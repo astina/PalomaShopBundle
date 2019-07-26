@@ -1,5 +1,9 @@
 <nav class="user-nav">
 
+    <div class="user-nav__item user-nav__item--search" id="paloma-search">
+        <paloma-search></paloma-search>
+    </div>
+
     {% if cart is defined %}
         <div class="user-nav__item user-nav__item--cart" id="paloma-cart">
             <paloma-cart units-count="{{ cart.unitsCount }}" items-price="{{ cart.itemsPrice }}"></paloma-cart>

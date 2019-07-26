@@ -6,9 +6,6 @@
                     <span class="icon">
                         <i class="fal fa-user"></i>
                     </span>
-                    <span class="is-hidden-mobile">
-                        {{ name ? name : $trans('customer.sign_in') }}
-                    </span>
                 </a>
             </div>
             <div class="dropdown-menu user-dropdown">

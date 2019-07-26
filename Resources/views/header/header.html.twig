@@ -2,30 +2,29 @@
 
     <div class="container page-header__container">
 
-        <div class="page-header__service-nav">
-            {% include '@PalomaShop/header/service_nav.html.twig' %}
-        </div>
-
-        <div class="page-header__center">
-
-            <div class="page-header__brand-logo">
+        <div class="page-header__brand-logo">
+            {% block brand_logo %}
                 {% include '@PalomaShop/header/brand_logo.html.twig' %}
-            </div>
-
-            <div class="page-header__user-nav">
-                {% include '@PalomaShop/header/user_nav.html.twig' %}
-            </div>
-
+            {% endblock %}
         </div>
 
-        <div class="page-header__bottom">
-            <div class="page-header__category-nav">
-                {% include '@PalomaShop/header/category_nav.html.twig' %}
-            </div>
+        <div class="page-header__service-nav">
+            {% block service_nav %}
+                {# hidden on mobile per default #}
+                {% include '@PalomaShop/header/service_nav.html.twig' %}
+            {% endblock %}
+        </div>
 
-            <div class="page-header__quick-search">
-                {% include '@PalomaShop/header/quick_search.html.twig' %}
-            </div>
+        <div class="page-header__category-nav">
+            {% block category_nav %}
+                {% include '@PalomaShop/header/category_nav.html.twig' %}
+            {% endblock %}
+        </div>
+
+        <div class="page-header__user-nav">
+            {% block user_nav %}
+                {% include '@PalomaShop/header/user_nav.html.twig' %}
+            {% endblock %}
         </div>
 
     </div>

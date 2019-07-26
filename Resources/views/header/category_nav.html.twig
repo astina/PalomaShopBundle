@@ -76,6 +76,10 @@
                         </a>
                     {% endif %}
                 {% endfor %}
+
+                {# only visible on mobile per default#}
+                {% include '@PalomaShop/header/service_nav.html.twig' %}
+
             </div>
         </div>
     </nav>

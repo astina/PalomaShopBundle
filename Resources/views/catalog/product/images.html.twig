@@ -26,19 +26,21 @@
             </div>
         </div>
 
-        <div class="product-images__thumbs">
-            {% for image in product.images %}
-                <a class="product-images__thumb{% if image.name == image_current.name %} product-images__thumb--active{% endif %}"
-                   data-image-large="{{ image.getSource('large').url }}"
-                   data-image-full="{{ image.getSource('full').url }}"
-                   @click="selectImage"
-                   href="">
-                    <div class="image">
-                        <img src="{{ image.getSource('small').url }}" alt="{{ image.name }}">
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
+        {% if product.images|length > 1 %}
+            <div class="product-images__thumbs">
+                {% for image in product.images %}
+                    <a class="product-images__thumb{% if image.name == image_current.name %} product-images__thumb--active{% endif %}"
+                       data-image-large="{{ image.getSource('large').url }}"
+                       data-image-full="{{ image.getSource('full').url }}"
+                       @click="selectImage"
+                       href="">
+                        <div class="image">
+                            <img src="{{ image.getSource('small').url }}" alt="{{ image.name }}">
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
 
     </div>
 

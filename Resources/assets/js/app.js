@@ -44,6 +44,8 @@ require('./paloma-category-nav');
 
 require('./paloma-catalog');
 
+require('./paloma-search');
+
 require('./paloma-cart');
 
 require('./paloma-user');

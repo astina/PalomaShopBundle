@@ -2,6 +2,7 @@
 }
 
 .cart-mini > .button {
+  width: 36px;
   color: $text-strong;
   border-color: transparent;
 }
@@ -16,21 +17,14 @@
 }
 
 .cart-mini__indicator {
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
-
-  .cart-mini__indicator {
-    display: block;
-    background: $primary;
-    color: $white;
-    border-radius: 7px;
-    width: 14px;
-    height: 14px;
-    font-size: 9px;
-    position: absolute;
-    top: 16px;
-    right: 16px;
-  }
+  display: block;
+  background: $primary;
+  color: $white;
+  border-radius: 7px;
+  width: 14px;
+  height: 14px;
+  font-size: 9px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
