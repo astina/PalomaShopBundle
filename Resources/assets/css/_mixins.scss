@@ -1,3 +1,8 @@
 @mixin shadow_bottom() {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+@mixin overlay_background() {
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color .5s ease;
+}

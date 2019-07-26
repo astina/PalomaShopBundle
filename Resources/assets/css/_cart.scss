@@ -73,12 +73,12 @@
 }
 
 .cart-overlay {
+  @include overlay_background();
   position: fixed;
   width: 100vw;
   top: 0;
   left: 0;
   bottom: 0;
-  background: rgba(55, 48, 48, 0.5);
 }
 
 .cart-wrapper {

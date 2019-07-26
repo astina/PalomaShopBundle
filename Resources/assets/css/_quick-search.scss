@@ -1,3 +1,34 @@
 .quick-search {
+}
 
+.quick-search__form-wrapper {
+  display: none;
+}
+
+.quick-search__form-wrapper--active {
+  @include overlay_background();
+  display: block;
+  position: absolute;
+  top: 115px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+}
+
+.quick-search__form {
+  background-color: white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media screen and (max-width: 768px) {
+
+  .quick-search__form-wrapper--active {
+    top: 85px;
+  }
+
+  .quick-search__form {
+    padding: 1.5rem;
+  }
 }
