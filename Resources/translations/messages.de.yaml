@@ -11,6 +11,7 @@ catalog:
   categories.show_products: Alle anzeigen
   products:
     title: Artikel
+    description: Beschreibung
     sort_by: 'Sortieren nach:'
     sort:
       position: Position

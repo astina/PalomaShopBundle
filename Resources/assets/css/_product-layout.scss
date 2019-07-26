@@ -1,0 +1,35 @@
+.product-layout {
+}
+
+.product-layout__images {
+  float: left;;
+  width: 50%;
+}
+
+.product-layout__summary {
+  float: right;
+  width: 50%;
+}
+
+.product-layout__select {
+  float: right;
+}
+
+.product-layout__specs {
+  order: 3;
+}
+
+.product-layout__description {
+  clear: both;
+}
+
+.product-layout__select {
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+
+  .product-layout {
+    padding: 1.5rem;
+  }
+}
