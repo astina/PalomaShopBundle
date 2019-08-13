@@ -29,7 +29,7 @@
             <div v-for="item in order.items" class="customer-order__item-tile">
 
                 <div class="customer-order__item-image">
-                    <paloma-image :image="item.image" size="small" dimension="64x64"></paloma-image>
+                    <paloma-image v-if="item.image" :image="item.image" size="small" dimension="64x64"></paloma-image>
                 </div>
 
             </div>

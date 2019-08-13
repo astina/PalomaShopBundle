@@ -2,7 +2,7 @@
     <div class="customer-order-item">
 
         <div class="customer-order-item__image">
-            <paloma-image :image="item.image" size="small"></paloma-image>
+            <paloma-image v-if="item.image" :image="item.image" size="small"></paloma-image>
         </div>
 
         <div class="customer-order-item__product">
