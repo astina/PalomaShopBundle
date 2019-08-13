@@ -3,7 +3,9 @@
 {% block title %}{{ category.title }} &ndash; {{ parent() }}{% endblock %}
 
 {% block meta %}
+    {{ parent() }}
     <meta name="description" content="{{ category.metaDescription }}"/>
+    <link rel="canonical" href="{{ category_url(category) }}">
 {% endblock %}
 
 {% block main %}

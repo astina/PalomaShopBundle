@@ -1,5 +1,10 @@
 {% extends '@PalomaShop/layout.html.twig' %}
 
+{% block meta %}
+    {{ parent() }}
+    <link rel="canonical" href="{{ product_url(product) }}">
+{% endblock %}
+
 {% block main %}
 <div id="paloma-product-view">
 

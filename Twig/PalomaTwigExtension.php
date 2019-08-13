@@ -26,7 +26,9 @@ class PalomaTwigExtension extends AbstractExtension
         return [
             new TwigFunction('price', [$this, 'price'], ['is_safe' => ['html']]),
             new TwigFunction('product_path', [$this, 'productPath']),
+            new TwigFunction('product_url', [$this, 'productUrl']),
             new TwigFunction('category_path', [$this, 'categoryPath']),
+            new TwigFunction('category_url', [$this, 'categoryUrl']),
             new TwigFunction('current_path', [$this, 'currentPath']),
         ];
     }
@@ -65,6 +67,16 @@ class PalomaTwigExtension extends AbstractExtension
 
     public function productPath(ProductInterface $product, CategoryReferenceInterface $category = null)
     {
+        return $this->generateProductRoute($product, $category, UrlGeneratorInterface::ABSOLUTE_PATH);
+    }
+
+    public function productUrl(ProductInterface $product, CategoryReferenceInterface $category = null)
+    {
+        return $this->generateProductRoute($product, $category, UrlGeneratorInterface::ABSOLUTE_URL);
+    }
+
+    private function generateProductRoute(ProductInterface $product, CategoryReferenceInterface $category = null, $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    {
         if ($category) {
 
             return $this->generator->generate('paloma_catalog_category_product', [
@@ -72,16 +84,26 @@ class PalomaTwigExtension extends AbstractExtension
                 'categoryCode' => $category->getCode(),
                 'productSlug' => $product->getSlug(),
                 'itemNumber' => $product->getItemNumber(),
-            ]);
+            ], $referenceType);
         }
 
         return $this->generator->generate('paloma_catalog_product', [
             'productSlug' => $product->getSlug(),
             'itemNumber' => $product->getItemNumber(),
-        ]);
+        ], $referenceType);
     }
 
     public function categoryPath(CategoryReferenceInterface $category, array $options = [])
+    {
+        return $this->generateCategoryRoute($category, $options, UrlGeneratorInterface::ABSOLUTE_PATH);
+    }
+
+    public function categoryUrl(CategoryReferenceInterface $category, array $options = [])
+    {
+        return $this->generateCategoryRoute($category, $options, UrlGeneratorInterface::ABSOLUTE_URL);
+    }
+
+    private function generateCategoryRoute(CategoryReferenceInterface $category, array $options = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
     {
         $includeQueryParams = isset($options['include_query_params']) ? $options['include_query_params'] : false;
 
@@ -95,7 +117,7 @@ class PalomaTwigExtension extends AbstractExtension
             $params = $params + $request->query->all();
         }
 
-        return $this->generator->generate('paloma_catalog_category', $params);
+        return $this->generator->generate('paloma_catalog_category', $params, $referenceType);
     }
 
     /**
