@@ -12,7 +12,9 @@
             <form class="form form--purchase" @submit.prevent="purchase">
                 <div class="field">
                     <div class="control">
-                        <button class="button is-primary" :class="{'is-loading': purchasing}">
+                        <button class="button is-primary"
+                                :class="{'is-loading': purchasing || redirecting}"
+                                :disabled="purchasing || redirecting">
                             {{ $trans(paymentRequired ? 'checkout.purchase_and_pay' : 'checkout.purchase') }}
                         </button>
                     </div>
@@ -39,6 +41,7 @@
         data() {
             return {
                 purchasing: false,
+                redirecting: false,
                 loading: false
             }
         },
@@ -74,6 +77,7 @@
                 paloma.checkout
                     .purchase()
                     .then(result => {
+                        this.redirecting = true;
                         window.location.href = result._links.forward.href;
                     })
                     .finally(() => {
