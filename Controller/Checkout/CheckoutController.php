@@ -50,8 +50,12 @@ class CheckoutController extends AbstractPalomaController
             return $this->redirectToRoute('paloma_catalog_home');
         }
 
+        $customer = $security->getCustomer();
+        $customerNumber = $customer->getCustomerNumber();
+
         return $this->render('@PalomaShop/checkout/success.html.twig', [
             'order_number' => $orderNumber,
+            'customer_number' => $customerNumber,
             'logged_in' => $security->getUser() !== null,
         ]);
     }
