@@ -1,5 +1,7 @@
 .user-nav {
   height: 36px; // fixed height to prevent jumping on load
+  display: flex;
+  justify-content: flex-end;
 }
 
 .user-nav__item {
