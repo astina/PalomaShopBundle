@@ -99,7 +99,7 @@ customer:
     status: Status
     status_payment_pending: Payment outstanding
     status_purchased: In process
-    status_processed: In process
+    status_processed: Processed
     status_assembly: In process
     status_shipped: On the way
     status_delivered: Delivered

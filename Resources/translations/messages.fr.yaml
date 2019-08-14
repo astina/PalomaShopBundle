@@ -99,7 +99,7 @@ customer:
     status: Statut
     status_payment_pending: Paiement en suspens
     status_purchased: En cours
-    status_processed: En cours
+    status_processed: Traité
     status_assembly: En cours
     status_shipped: En route
     status_delivered: Livré

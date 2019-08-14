@@ -26,11 +26,11 @@
   color: $grey;
 }
 
-.customer-order__status--purchased .customer-order__status-value,
-.customer-order__status--processed .customer-order__status-value {
+.customer-order__status--purchased .customer-order__status-value {
   color: $info;
 }
 
+.customer-order__status--processed .customer-order__status-value,
 .customer-order__status--returned_partial .customer-order__status-value,
 .customer-order__status--shipped .customer-order__status-value,
 .customer-order__status--delivered .customer-order__status-value {
