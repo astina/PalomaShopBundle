@@ -7,6 +7,10 @@
 
         <form @submit.prevent="submit" class="form form--email" novalidate>
 
+            <p v-for="error in errors" class="form__error">
+                {{ $trans('error.paloma.' + error.message) }}
+            </p>
+
             <fieldset :disabled="loading">
 
                 <div class="field form__field"
@@ -64,6 +68,7 @@
         data() {
             return {
                 emailInput: '',
+                errors: [],
                 loading: false
             }
         },
@@ -94,6 +99,9 @@
                     .updateEmailAddress(this.emailInput)
                     .then(() => {
                         paloma.events.$emit('paloma.success', 'customer.account.email_saved');
+                    })
+                    .catch(e => {
+                        this.errors = e.errors;
                     })
                     .finally(() => {
                         this.loading = false;
