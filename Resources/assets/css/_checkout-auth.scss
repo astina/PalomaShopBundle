@@ -1,3 +1,11 @@
 .checkout-auth {
 
 }
+
+.checkout-auth .reset-password-link {
+  font-size: $size-7;
+  font-weight: $weight-normal;
+  color: $text-light;
+  display: inline-block;
+  float: right;
+}

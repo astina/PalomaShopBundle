@@ -159,6 +159,8 @@ checkout:
     title: Anmelden
   state_auth_login:
     title: Anmelden
+  state_auth_password_reset:
+    title: Passwort vergessen?
   state_delivery:
     name: Lieferung
     title: Lieferung

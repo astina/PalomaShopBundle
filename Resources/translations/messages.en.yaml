@@ -158,6 +158,8 @@ checkout:
     title: Sign in
   state_auth_login:
     title: Sign in
+  state_auth_password_reset:
+    title: Forgot your password?
   state_delivery:
     name: Delivery
     title: Delivery

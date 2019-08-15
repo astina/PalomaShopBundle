@@ -37,6 +37,7 @@
     import PalomaCheckoutAuthEmail from "./PalomaCheckoutAuthEmail";
     import PalomaCheckoutAuthUser from "./PalomaCheckoutAuthUser";
     import PalomaCheckoutAuthLogin from "./PalomaCheckoutAuthLogin";
+    import PalomaCheckoutAuthPasswordReset from "./PalomaCheckoutAuthPasswordReset";
     import PalomaCheckoutAuthRegister from "./PalomaCheckoutAuthRegister";
     import PalomaCheckoutDelivery from "./PalomaCheckoutDelivery";
     import PalomaCheckoutDeliveryAddress from "./PalomaCheckoutDeliveryAddress";
@@ -78,6 +79,14 @@
                     path: 'login',
                     name: 'state_auth_login',
                     component: PalomaCheckoutAuthLogin,
+                    meta: {
+                        step: 1
+                    }
+                },
+                {
+                    path: 'reset-password',
+                    name: 'state_auth_password_reset',
+                    component: PalomaCheckoutAuthPasswordReset,
                     meta: {
                         step: 1
                     }

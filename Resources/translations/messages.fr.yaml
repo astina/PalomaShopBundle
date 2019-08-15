@@ -159,6 +159,8 @@ checkout:
     title: Connecter
   state_auth_login:
     title: Connecter
+  state_auth_password_reset:
+    title: Oublié votre mot de passe ?
   state_delivery:
     name: Accouchement
     title: Accouchement

@@ -16,12 +16,12 @@
                 <div class="field form__field"
                      :class="{ 'form__field--invalid': $v.emailInput.$error }">
 
-                    <label class="label">{{ $trans('field.email') }}</label>
+                    <label class="label" for="username">{{ $trans('field.email') }}</label>
 
                     <div class="control has-icons-left">
                         <input v-model.trim="$v.emailInput.$model"
                                :class="{ 'is-danger': $v.emailInput.$error }"
-                               class="input" type="email" name="email" required>
+                               class="input" type="email" name="email" id="username" required>
                         <span class="icon is-small is-left">
                           <i class="fal fa-envelope"></i>
                         </span>
@@ -39,13 +39,18 @@
                 <div class="field form__field"
                      :class="{ 'form__field--invalid': $v.passwordInput.$error }">
 
-                    <label class="label">{{ $trans('field.password') }}</label>
+                    <div class="label">
+                        <label for="password">{{ $trans('field.password') }}</label>
+                        <router-link :to="{name: 'state_auth_password_reset'}" class="reset-password-link">
+                            {{ $trans('customer.reset_password') }}
+                        </router-link>
+                    </div>
 
                     <div class="control has-icons-left">
                         <input v-model.trim="$v.passwordInput.$model"
                                v-focus
                                :class="{ 'is-danger': $v.passwordInput.$error }"
-                               class="input" type="password" name="password" required>
+                               class="input" type="password" name="password" id="password" required>
                         <span class="icon is-small is-left">
                           <i class="fal fa-key"></i>
                         </span>
@@ -139,7 +144,6 @@
                     .finally(() => {
                         this.loading = false;
                     });
-
             }
         }
     }
