@@ -4,6 +4,8 @@
     "type": "library",
     "require": {
         "ext-json": "*",
+        "ext-dom": "*",
+        "ext-simplexml": "*",
         "paloma/shop-client": "^3.0@dev",
         "symfony/serializer": "^4.2",
         "symfony/property-access": "^4.2",

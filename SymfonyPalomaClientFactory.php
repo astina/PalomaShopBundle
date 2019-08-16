@@ -20,6 +20,7 @@ class SymfonyPalomaClientFactory extends PalomaClientFactory
     {
         $options['session'] = $session;
         $options['profiler'] = $profiler;
+        $options['trace_id'] = null;
 
         parent::__construct($options);
     }

@@ -83,6 +83,20 @@ services:
       - '@request_stack'
       - [] # injected by bundle extension
 
+  paloma_shop.google_sitemap_generator:
+    class: Paloma\ShopBundle\Sitemap\GoogleSitemapGenerator
+    arguments:
+      - '@paloma_shop.client_factory'
+      - '@router'
+      - '@logger'
+
+  paloma_shop.command.generate_sitemap:
+    class: Paloma\ShopBundle\Sitemap\GenerateSitemapCommand
+    arguments:
+      - '@paloma_shop.google_sitemap_generator'
+    tags:
+      - { name: console.command }
+
   # Aliases
 
   Paloma\Shop\Paloma:
