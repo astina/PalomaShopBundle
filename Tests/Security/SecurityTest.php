@@ -2,7 +2,7 @@
 
 namespace Paloma\ShopBundle\Tests;
 
-use Paloma\Shop\Security\UserProviderInterface;
+use Paloma\Shop\Security\PalomaSecurityInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class SecurityTest extends FunctionalTest
@@ -30,10 +30,10 @@ class SecurityTest extends FunctionalTest
         $this->assertNotNull($cookies->get('MOCKSESSID'));
         $this->assertNotNull($cookies->get('REMEMBERME'));
 
-        /** @var UserProviderInterface $userProvider */
-        $userProvider = static::$container->get('paloma_shop.security.user_provider');
+        /** @var PalomaSecurityInterface $palomaSecurity */
+        $palomaSecurity = static::$container->get('paloma_shop.security');
 
-        $user = $userProvider->getUser();
+        $user = $palomaSecurity->getUser();
 
         $this->assertNotNull($user);
         $this->assertEquals('test@astina.io', $user->getUsername());
@@ -62,12 +62,12 @@ class SecurityTest extends FunctionalTest
              }'
         );
 
-        $this->assertEquals(204, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        /** @var UserProviderInterface $userProvider */
-        $userProvider = static::$container->get('paloma_shop.security.user_provider');
+        /** @var PalomaSecurityInterface $palomaSecurity */
+        $palomaSecurity = static::$container->get('paloma_shop.security');
 
-        $user = $userProvider->getUser();
+        $user = $palomaSecurity->getUser();
 
         $this->assertNotNull($user);
         $this->assertEquals('test@astina.io', $user->getUsername());
@@ -98,10 +98,10 @@ class SecurityTest extends FunctionalTest
 
         $this->assertEquals(403, $client->getResponse()->getStatusCode());
 
-        /** @var UserProviderInterface $userProvider */
-        $userProvider = static::$container->get('paloma_shop.security.user_provider');
+        /** @var PalomaSecurityInterface $palomaSecurity */
+        $palomaSecurity = static::$container->get('paloma_shop.security');
 
-        $user = $userProvider->getUser();
+        $user = $palomaSecurity->getUser();
 
         $this->assertNull($user);
     }

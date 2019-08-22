@@ -1,7 +1,7 @@
 paloma_shop:
 
   client:
-    base_url: 'https://local.paloma.one/api'
+    base_url: 'https://demo.paloma.one/api'
     api_key: test
 
   channels:

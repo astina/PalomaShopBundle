@@ -55,7 +55,7 @@ class CheckoutResourceTest extends FunctionalTest
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/checkout/shipping_methods/options?method=default');
+        $client->request('GET', '/api/checkout/shipping_methods/options?method=swisspost_default');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
@@ -74,10 +74,10 @@ class CheckoutResourceTest extends FunctionalTest
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
-            '{ "method": "unknown" }'
+            '{ "method": "swisspost_default" }'
         );
 
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testListPaymentMethods()
@@ -103,10 +103,10 @@ class CheckoutResourceTest extends FunctionalTest
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
-            '{ "method": "unknown" }'
+            '{ "method": "invoice" }'
         );
 
-        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testInitializePayment()

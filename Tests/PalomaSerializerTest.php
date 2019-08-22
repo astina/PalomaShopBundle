@@ -36,7 +36,7 @@ class PalomaSerializerTest extends TestCase
                         'sources' => [
                             'small',
                         ],
-                    ],
+                    ]
                 ],
             ]);
 
@@ -184,6 +184,8 @@ class PalomaSerializerTest extends TestCase
                     'availableStock' => 10,
                 ],
             ],
+            'created' => '2019-07-18T14:54:40.036+0000',
+            'modified' => '2019-07-18T14:54:40.036+0000',
         ]);
     }
 }
