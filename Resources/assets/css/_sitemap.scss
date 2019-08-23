@@ -59,3 +59,11 @@
     margin-bottom: 5px;
   }
 }
+
+// > mobile < desktop
+@media screen and (min-width: 769px) and (max-width: 1087px)  {
+  .sitemap {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
