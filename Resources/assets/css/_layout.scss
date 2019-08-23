@@ -1,7 +1,18 @@
+html {
+  // IE 11
+  display: flex;
+  flex-direction: column;
+  // --
+}
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  // IE 11
+  flex-grow: 1;
+  flex-basis: 100%;
+  // --
 }
 
 .main {
