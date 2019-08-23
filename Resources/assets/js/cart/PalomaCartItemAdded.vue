@@ -1,6 +1,6 @@
 <template>
     <div class="cart-item-added">
-        <div class="message is-success">
+        <div class="message">
             <div class="message-body">
                 <p>
                     <span class="cart-item-added__product">{{cartItem.title}}</span>
