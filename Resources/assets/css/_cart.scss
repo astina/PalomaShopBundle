@@ -58,7 +58,13 @@
 /* Overlay */
 
 .cart-overlay {
+  @include overlay_background();
   display: none;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .cart-overlay--active {
@@ -68,20 +74,6 @@
 
 .cart-wrapper {
   background: white;
-  padding: 20px;
-  border-bottom: 2px solid #ccc;
-}
-
-.cart-overlay {
-  @include overlay_background();
-  position: fixed;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  bottom: 0;
-}
-
-.cart-wrapper {
   position: absolute;
   right: -800px;
   width: 800px;
