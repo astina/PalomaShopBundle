@@ -14,6 +14,8 @@
 
 .locales__item:before {
   content: ' | ';
+  color: $grey-lighter;
+  font-weight: $weight-normal;
   display: inline-block;
 }
 
