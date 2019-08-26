@@ -60,6 +60,8 @@ services:
 
   paloma_shop.security.authentication_listener:
     class: Paloma\ShopBundle\Security\PalomaAuthenticationListener
+    tags:
+      - { name: kernel.event_subscriber }
 
   paloma_shop.security.logout_success_handler:
     class: Paloma\ShopBundle\Security\PalomaLogoutSuccessHandler

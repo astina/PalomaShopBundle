@@ -86,7 +86,7 @@ class PalomaSecurity implements PalomaSecurityInterface
         unset($this->_cache['customers'][$userDetails->getCustomerId()]);
 
         $event = new InteractiveLoginEvent($this->requestStack->getMasterRequest(), $token);
-        $this->eventDispatcher->dispatch($event);
+        $this->eventDispatcher->dispatch($event, SecurityEvents::INTERACTIVE_LOGIN);
     }
 
     function getCustomer(): ?CustomerInterface
