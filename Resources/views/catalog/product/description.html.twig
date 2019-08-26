@@ -1,9 +1,11 @@
 {% if product.description %}
-    <div class="content">
+    <div class="product-content">
 
-        <h3 class="title is-5">Beschreibung</h3>
+        <h3 class="product-content__title">{{ 'catalog.products.description' | trans }}</h3>
 
-        {{ product.description | raw }}
+        <div class="product-content__body">
+            {{ product.description | raw }}
+        </div>
 
     </div>
 {% endif %}

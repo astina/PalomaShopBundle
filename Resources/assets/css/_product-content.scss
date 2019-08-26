@@ -1,0 +1,12 @@
+.product-content {
+  @extend .content;
+}
+
+.product-content__title {
+  @extend .title;
+  @extend .is-5;
+}
+
+.product-content__body {
+
+}

@@ -26,6 +26,7 @@ catalog:
     vat_info_excl: '%rate% VAT excluded'
     add_to_cart: Add to cart
     out_of_stock: Currently not available.
+    description: Description
     recommendations:
       purchased_together: 'Was often bought together with:'
 

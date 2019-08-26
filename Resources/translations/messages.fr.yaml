@@ -26,6 +26,7 @@ catalog:
     vat_info_excl: TVA exclusif %rate%
     add_to_cart: Ajouter au panier
     out_of_stock: Actuellement non disponible.
+    description: Description
     recommendations:
       purchased_together: 'Souvent achetés ensemble :'
 

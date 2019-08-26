@@ -26,6 +26,7 @@ catalog:
     vat_info_excl: exkl. %rate% MWSt.
     add_to_cart: In den Warenkorb
     out_of_stock: Zur Zeit leider nicht verfügbar.
+    description: Beschreibung
     recommendations:
       purchased_together: 'Wurde oft zusammen gekauft:'
 

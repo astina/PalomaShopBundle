@@ -21,14 +21,19 @@
 
                     <div class="product-summary">
 
+                        {% block breadrcrumb %}
                         {% if category is defined %}
                             {% include '@PalomaShop/catalog/category/breadcrumb.html.twig' %}
                         {% endif %}
+                        {% endblock %}
 
+                        {% block product_title %}
                         <h1 class="product-summary__title">
                             {{ product.name }}
                         </h1>
+                        {% endblock %}
 
+                        {% block product_annotations %}
                         <div class="product-summary__annotations">
                             {% if product.getAttribute('brand') %}
                             <span class="product-summary__annotation">{{ product.getAttribute('brand').value }}</span>
@@ -37,11 +42,14 @@
                                 {{ 'catalog.products.item_number' | trans }}
                                 {{ product.itemNumber }}
                             </span>
-                        </div>
+                            </div>
+                        {% endblock %}
 
+                        {% block product_short_description %}
                         {% if product.shortDescription %}
                             <div class="product-summary__description">{{ product.shortDescription | raw }}</div>
                         {% endif %}
+                        {% endblock %}
 
                         <div id="paloma-product-select">
                             <paloma-product-select :product="{{ product_json }}"></paloma-product-select>
@@ -55,6 +63,7 @@
 
     </section>
 
+    {% block product_content %}
     <section class="section">
         <div class="container">
 
@@ -71,14 +80,17 @@
 
         </div>
     </section>
+    {% endblock %}
 
-    <section class="section">
-        <div class="container" id="paloma-product-recommendations">
+    {% block product_recommendations %}
+        <section class="section">
+            <div class="container" id="paloma-product-recommendations">
 
-            <paloma-product-recommendations :product="{{ product_json }}"></paloma-product-recommendations>
+                <paloma-product-recommendations :product="{{ product_json }}"></paloma-product-recommendations>
 
-        </div>
-    </section>
+            </div>
+        </section>
+    {% endblock %}
 
 </div>
 {% endblock %}
