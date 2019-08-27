@@ -56,20 +56,25 @@
         },
 
         mounted() {
-
-            this.loading = true;
-
-            paloma.checkout
-                .finalize()
-                .then(() => {
-                    this.loading = false;
-                })
-                .catch(() => {
-                    window.location.href = paloma.router.resolve('checkout_start');
-                });
+            this.finalize();
         },
 
         methods: {
+
+            finalize() {
+
+                this.loading = true;
+
+                return paloma.checkout
+                    .finalize()
+                    .then(() => {
+                        this.loading = false;
+                    })
+                    .catch(() => {
+                        window.location.href = paloma.router.resolve('checkout_start');
+                    });
+            },
+
             purchase() {
 
                 this.purchasing = true;
@@ -79,6 +84,10 @@
                     .then(result => {
                         this.redirecting = true;
                         window.location.href = result._links.forward.href;
+                    })
+                    .catch(() => {
+                        // Cart was probably modified since page was loaded
+                        this.finalize();
                     })
                     .finally(() => {
                         this.purchasing = false;
