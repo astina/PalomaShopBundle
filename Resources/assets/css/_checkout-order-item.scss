@@ -57,8 +57,20 @@
 
 @media screen and (max-width: 768px) {
 
+  .checkout-order-item {
+    flex-wrap: wrap;
+  }
+
   .checkout-order-item__unit {
     white-space: normal;
+  }
+
+  .checkout-order-item__product {
+    width: calc(100% - 85px);
+  }
+
+  .checkout-order-item__image {
+    margin-top: 5px;
   }
 
 }
