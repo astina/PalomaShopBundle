@@ -15,7 +15,14 @@ const config =  {
         /**
          * If true, users are allowed to make purchases as guest (not logged in)
          */
-        allowGuests: true
+        allowGuests: true,
+    },
+
+    customer: {
+
+        requireGender: false,
+
+        requireDateOfBirth: false,
     }
 
 };

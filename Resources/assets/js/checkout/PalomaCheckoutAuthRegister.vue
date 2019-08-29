@@ -55,7 +55,7 @@
                              :class="{ 'form__field--invalid': $v.customer.emailAddress.$error }">
                             <label class="label" for="c__email">{{ $trans('field.email') }}</label>
                             <div class="control">
-                                <input v-model="customer.emailAddress" class="input" type="text" id="c__email" required
+                                <input v-model="customer.emailAddress" class="input" type="email" id="c__email" required
                                        name="email">
                             </div>
                             <p v-if="!$v.customer.emailAddress.required" class="help is-danger">
@@ -68,9 +68,39 @@
 
                     </div>
                     <div class="column">
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column">
 
                         <div class="field form__field"
-                             :class="{ 'form__field--invalid': $v.customer.gender.$error }">
+                             :class="{
+                                    'form__field--invalid': $v.customer.dateOfBirth.$error,
+                                    'form__field--required': $v.customer.dateOfBirth.$params.required.prop()
+                                }">
+                            <label class="label" for="c__date_of_birth">{{ $trans('field.date_of_birth') }}</label>
+                            <div class="control">
+                                <input v-model="customer.dateOfBirth" class="input" type="text" id="c__date_of_birth"
+                                       :placeholder="$trans('field.date_of_birth.placeholder')"
+                                       name="date_of_birth">
+                            </div>
+                            <p v-if="!$v.customer.dateOfBirth.required" class="help is-danger">
+                                {{ $trans('error.field.required') }}
+                            </p>
+                            <p v-if="!$v.customer.dateOfBirth.isValidDate" class="help is-danger">
+                                {{ $trans('error.date_of_birth.invalid') }}
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="column">
+
+                        <div class="field form__field"
+                             :class="{
+                                    'form__field--invalid': $v.customer.gender.$error,
+                                    'form__field--required': $v.customer.gender.$params.required.prop()
+                                  }">
                             <label class="label">{{ $trans('field.gender') }}</label>
                             <div class="control">
                                 <label class="radio">
@@ -101,10 +131,9 @@
 
                         <div class="field form__field"
                              :class="{ 'form__field--invalid': $v.customer.password.$error }">
-                            <label class="label" for="c__email">{{ $trans('field.password') }}</label>
+                            <label class="label" for="c__password">{{ $trans('field.password') }}</label>
                             <div class="control">
                                 <input v-model="customer.password" class="input" type="password" id="c__password"
-                                       required
                                        name="password">
                             </div>
                             <p v-if="!$v.customer.password.required" class="help is-danger">
@@ -121,7 +150,7 @@
                         <div class="field form__field"
                              v-show="customer.password"
                              :class="{ 'form__field--invalid': $v.customer._password_confirm.$error }">
-                            <label class="label" for="c__email">{{ $trans('field.password_confirm') }}</label>
+                            <label class="label" for="c__password_confirm">{{ $trans('field.password_confirm') }}</label>
                             <div class="control">
                                 <input v-model="customer._password_confirm" class="input" type="password"
                                        id="c__password_confirm" required
@@ -161,8 +190,11 @@
 
     import paloma from '../paloma';
     import config from '../paloma-config';
+    import utils from '../utils';
     import {validationMixin} from 'vuelidate';
     import {email, maxLength, minLength, required, requiredIf, sameAs} from 'vuelidate/lib/validators';
+
+    const isValidDate = utils.validators.isValidDate;
 
     export default {
         name: "PalomaCheckoutAuthRegister",
@@ -199,7 +231,17 @@
                     required,
                     email
                 },
-                gender: {},
+                gender: {
+                    required: requiredIf(() => {
+                        return config.customer.requireGender;
+                    }),
+                },
+                dateOfBirth: {
+                    required: requiredIf(() => {
+                        return config.customer.requireDateOfBirth;
+                    }),
+                    isValidDate
+                },
                 phoneNumber: {
                     maxLength: maxLength(30)
                 },

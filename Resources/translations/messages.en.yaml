@@ -234,12 +234,15 @@ error:
   field:
     required: This field must not be empty.
     too_long: This value must not be longer than %max% characters.
+    invalid: This value is not valid.
   email:
     required: Please enter an e-mail address.
     invalid: This email address is invalid.
   password:
     too_short: The password must be at least %min% characters long.
     differs: Please enter the same password twice.
+  date_of_birth:
+    invalid: Invalid date
   coupon:
     not_found: No coupon/discount code '%coupon%' found.
     not_eligible: The coupon/discount code '%coupon%' is not applicable to this order.
@@ -274,6 +277,8 @@ field:
   gender: Gender
   gender.female: female
   gender.male: male
+  date_of_birth: Date of birth
+  date_of_birth.placeholder: 'DD.MM.YYYY'
 
 button:
   edit: Change

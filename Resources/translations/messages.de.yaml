@@ -236,12 +236,15 @@ error:
   field:
     required: Dieses Feld darf nicht leer sein.
     too_long: Dieser Wert darf nicht länger als %max% Zeichen lang sein.
+    invalid: Dieser Wert ist ungültig.
   email:
     required: Bitte geben Sie eine E-Mail-Addresse ein.
     invalid: Diese E-Mail-Adresse ist ungültig.
   password:
     too_short: Das Passwort muss mindestens %min% Zeichen lang sein.
     differs: Bitte geben Sie zweimal dasselbe Passwort ein.
+  date_of_birth:
+    invalid: Ungültiges Geburtsdatum
   coupon:
     not_found: Es wurde kein Gutschein/Rabattcode '%coupon%' gefunden.
     not_eligible: Der Gutschein/Rabattcode '%coupon%' ist für diese Bestellung nicht anwendbar.
@@ -276,6 +279,8 @@ field:
   gender: Geschlecht
   gender.female: weiblich
   gender.male: männlich
+  date_of_birth: Geburtsdatum
+  date_of_birth.placeholder: 'DD.MM.JJJJ'
 
 button:
   edit: Ändern

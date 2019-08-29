@@ -72,6 +72,33 @@
 
                     </div>
                     <div class="column">
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column">
+
+                        <div class="field form__field"
+                             :class="{
+                                    'form__field--invalid': $v.customer.dateOfBirth.$error,
+                                    'form__field--required': $v.customer.dateOfBirth.$params.required.prop()
+                                }">
+                            <label class="label" for="c__date_of_birth">{{ $trans('field.date_of_birth') }}</label>
+                            <div class="control">
+                                <input v-model="customer.dateOfBirth" class="input" type="text" id="c__date_of_birth"
+                                       :placeholder="$trans('field.date_of_birth.placeholder')"
+                                       name="date_of_birth">
+                            </div>
+                            <p v-if="!$v.customer.dateOfBirth.required" class="help is-danger">
+                                {{ $trans('error.field.required') }}
+                            </p>
+                            <p v-if="!$v.customer.dateOfBirth.isValidDate" class="help is-danger">
+                                {{ $trans('error.date_of_birth.invalid') }}
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="column">
 
                         <div class="field form__field"
                              :class="{ 'form__field--invalid': $v.customer.gender.$error }">
@@ -152,9 +179,13 @@
 <script>
 
     import paloma from "../paloma";
+    import config from '../paloma-config';
+    import utils from '../utils';
     import {validationMixin} from 'vuelidate';
-    import {email, maxLength, minLength, required, sameAs} from 'vuelidate/lib/validators';
+    import {email, maxLength, minLength, required, requiredIf, sameAs} from 'vuelidate/lib/validators';
     import PalomaContent from "../common/PalomaContent";
+
+    const isValidDate = utils.validators.isValidDate;
 
     export default {
         name: "PalomaCustomerRegistration",
@@ -184,7 +215,17 @@
                     required,
                     email
                 },
-                gender: {},
+                gender: {
+                    required: requiredIf(() => {
+                        return config.customer.requireGender;
+                    }),
+                },
+                dateOfBirth: {
+                    required: requiredIf(() => {
+                        return config.customer.requireDateOfBirth;
+                    }),
+                    isValidDate
+                },
                 phoneNumber: {
                     maxLength: maxLength(30)
                 },
