@@ -48,6 +48,7 @@ class SerializationConstants
                 ],
                 'badge' => [
                     'value',
+                    'values',
                 ],
             ],
             'mainCategory' => [

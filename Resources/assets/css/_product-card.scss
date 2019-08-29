@@ -56,6 +56,10 @@
   display: block;
 }
 
+.product-card__badge--reduction .badge {
+  @extend .badge--red;
+}
+
 .product-card__availability {
   position: absolute;
   top: 0;

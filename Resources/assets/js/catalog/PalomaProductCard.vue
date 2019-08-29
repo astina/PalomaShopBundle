@@ -35,8 +35,8 @@
 
             <div class="product-card__meta">
                 <div class="product-card__badges">
-                    <div v-if="product.reductionPercent" class="product-card__badge">
-                        <span class="badge badge--red">{{ product.reductionPercent}}</span>
+                    <div v-for="badge in badges" class="product-card__badge" :class="'product-card__badge--' + badge.code">
+                        <span class="badge">{{ badge.value }}</span>
                     </div>
                 </div>
 <!--                <div class="product-card__availability">-->
@@ -71,8 +71,33 @@
 
             const productCategory = this.category || this.product.mainCategory;
 
+            const badges = this.createBadges();
+
             return {
-                productCategory: productCategory
+                productCategory: productCategory,
+                badges: badges
+            }
+        },
+
+        methods: {
+            createBadges() {
+
+                const badges = [];
+
+                if (this.product.reductionPercent) {
+                    badges.push({
+                        value: this.product.reductionPercent,
+                        code: 'reduction'
+                    });
+                }
+
+                if (this.product.attributes.badge && this.product.attributes.badge.values) {
+                    this.product.attributes.badge.values.forEach((badge) => {
+                        badges.push(badge);
+                    });
+                }
+
+                return badges;
             }
         }
     }
