@@ -1,0 +1,12 @@
+{% set locales = paloma.locales %}
+{% if locales|length > 1 %}
+    <nav class="service-nav__locales locales">
+        {# TODO show drop down if there are lots of locales #}
+        {% for locale in locales %}
+            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale})) }}"
+               class="locales__item{% if locale == app.request.locale %} locales__item--active{% endif %}">
+                {{ ('locale.' ~ locale) | trans }}
+            </a>
+        {% endfor %}
+    </nav>
+{% endif %}

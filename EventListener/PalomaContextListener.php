@@ -7,6 +7,7 @@ use Paloma\ShopBundle\SymfonyPalomaClientFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Tries to determine the current channel and locale based on the request.
@@ -17,10 +18,15 @@ class PalomaContextListener
 
     private $clientFactory;
 
-    public function __construct(ChannelResolverInterface $channelResolver, SymfonyPalomaClientFactory $clientFactory)
+    private $router;
+
+    public function __construct(ChannelResolverInterface $channelResolver,
+                                SymfonyPalomaClientFactory $clientFactory,
+                                RouterInterface $router)
     {
         $this->channelResolver = $channelResolver;
         $this->clientFactory = $clientFactory;
+        $this->router = $router;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
@@ -47,6 +53,9 @@ class PalomaContextListener
         );
 
         $request->attributes->set('paloma.channel', $channel);
+
+        $this->router->getContext()->setParameter('paloma_channel', $channel);
+        $this->router->getContext()->setParameter('paloma_locale', $locale);
     }
 
     private function createTraceId(Request $request): string
