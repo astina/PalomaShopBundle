@@ -2,7 +2,7 @@
     <section class="section">
 
         <div class="content">
-            <h1>{{ $trans('customer.account.email') }}</h1>
+            <paloma-content id="account-email"></paloma-content>
         </div>
 
         <form @submit.prevent="submit" class="form form--email" novalidate>
@@ -57,11 +57,15 @@
 <script>
 
     import paloma from '../paloma';
+    import PalomaContent from "../common/PalomaContent";
     import {validationMixin} from 'vuelidate'
     import {email, required} from 'vuelidate/lib/validators'
 
     export default {
         name: "PalomaAccountEmail",
+
+        components: {PalomaContent},
+
 
         mixins: [validationMixin],
 
