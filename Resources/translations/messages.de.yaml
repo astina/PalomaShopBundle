@@ -228,7 +228,7 @@ payment:
   postfinance: PostFinance
   info:
     invoice: Sie erhalten eine Rechnung mit Einzahlungsschein per Post.
-    electronic: Nach Abschicken der Bestellung werden sie zur Bezahlseite weitergeleitet.
+    electronic: Nach Abschicken der Bestellung werden Sie zur Bezahlseite weitergeleitet.
 
 error:
   general:
