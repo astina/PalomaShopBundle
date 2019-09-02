@@ -51,7 +51,7 @@ class CheckoutController extends AbstractPalomaController
         }
 
         $customer = $security->getCustomer();
-        $customerNumber = $customer->getCustomerNumber();
+        $customerNumber = $customer ?? $customer->getCustomerNumber();
 
         return $this->render('@PalomaShop/checkout/success.html.twig', [
             'order_number' => $orderNumber,
