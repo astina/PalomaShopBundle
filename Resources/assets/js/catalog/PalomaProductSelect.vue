@@ -31,9 +31,9 @@
                         </button>
                     </div>
 
-<!--                    <div v-if="outOfStock"class="product-summary__out-of-stock">-->
-<!--                        {{ $trans('catalog.products.out_of_stock') }}-->
-<!--                    </div>-->
+                    <!--                    <div v-if="outOfStock"class="product-summary__out-of-stock">-->
+                    <!--                        {{ $trans('catalog.products.out_of_stock') }}-->
+                    <!--                    </div>-->
 
                 </div>
 
@@ -123,6 +123,9 @@
                             this.variant = product.variants.find(v => v.sku === item.sku);
                             this._refreshOptions(this.options, this.product, this.variant);
                         });
+
+                }).catch(() => {
+                    this.loading = false;
                 });
             },
 
@@ -188,7 +191,7 @@
     function intersect(a, b) {
         var t;
         if (b.length > a.length) t = b, b = a, a = t; // indexOf to loop over shorter
-        return a.filter(function (e) {
+        return a.filter(function(e) {
             return b.indexOf(e) > -1;
         });
     }
