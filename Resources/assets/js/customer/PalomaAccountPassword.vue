@@ -17,7 +17,8 @@
                      :class="{ 'form__field--invalid': $v.password_current.$error }">
                     <label class="label" for="p__password_current">{{ $trans('field.password_current') }}</label>
                     <div class="control">
-                        <input v-model="password_current" class="input" type="password" id="p__password_current" required
+                        <input v-model="password_current" class="input" type="password" id="p__password_current"
+                               required
                                name="password">
                     </div>
                     <p v-if="!$v.password_current.required" class="help is-danger">
@@ -44,7 +45,8 @@
                      :class="{ 'form__field--invalid': $v.password_confirm.$error }">
                     <label class="label" for="p__password_confirm">{{ $trans('field.password_confirm') }}</label>
                     <div class="control">
-                        <input v-model="password_confirm" class="input" type="password" id="p__password_confirm" required
+                        <input v-model="password_confirm" class="input" type="password" id="p__password_confirm"
+                               required
                                name="password_confirm">
                     </div>
                     <p v-if="!$v.password_confirm.confirmPassword" class="help is-danger">
@@ -72,11 +74,14 @@
 <script>
 
     import paloma from "../paloma";
+    import PalomaContent from "../common/PalomaContent";
     import {validationMixin} from 'vuelidate';
     import {minLength, required, sameAs} from 'vuelidate/lib/validators';
 
     export default {
         name: "PalomaAccountPassword",
+
+        comments: {PalomaContent},
 
         mixins: [validationMixin],
 
