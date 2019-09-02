@@ -81,7 +81,7 @@
     export default {
         name: "PalomaAccountPassword",
 
-        comments: {PalomaContent},
+        components: {PalomaContent},
 
         mixins: [validationMixin],
 
