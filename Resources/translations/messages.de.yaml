@@ -79,6 +79,7 @@ customer:
     email: E-Mail-Adresse ändern
     email_saved: E-Mail-Addresse erfolgreich gespeichert
     password: Passwort ändern
+    password_info: ''
     password_saved: Passwort erfolgreich geändert
     password_error: Das Passwort konnte nicht geändert werden. Bitte prüfen Sie, ob Sie das aktuelle Passwort richtig eingegeben haben.
     address:

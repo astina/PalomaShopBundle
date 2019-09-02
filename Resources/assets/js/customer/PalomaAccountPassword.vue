@@ -2,7 +2,7 @@
     <section class="section">
 
         <div class="content">
-            <h1>{{ $trans('customer.account.password') }}</h1>
+            <paloma-content id="account-password"></paloma-content>
         </div>
 
         <form @submit.prevent="submit" class="form form--password" novalidate>
