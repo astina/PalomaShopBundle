@@ -204,6 +204,12 @@ checkout:
     info_status: Sie können den Status Ihrer Bestellung jederzeit in ihrem <a href="%url_account%">Kundenkonto</a> unter "Meine Bestellungen" prüfen.
     button_home: Zur Startseite
     button_account: Zu meinem Kundenkonto
+  order_modifications:
+    info: 'Ihre Bestellung wurde angepasst:'
+    currency_changed: 'Die Währung wurde von %currency_before% nach %currency_after% geändert'
+    item_removed: Es wurden Artikel entfernt
+    item_price_changed: Es wurden Preise geändert
+    shipping_target_date_removed: Das Lieferdatum wurde zurückgesetzt
 
 order:
   items: Artikel

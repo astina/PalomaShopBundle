@@ -202,6 +202,12 @@ checkout:
     info_support: Si vous ne recevez pas de confirmation, veuillez contacter notre service clientèle.
     info_status: Vous pouvez à tout moment consulter l'état de votre commande dans votre compte client sous "Mes commandes".
     button_home: Aller à la page d'accueil
+  order_modifications:
+    info: 'Votre commande a été ajustée :'
+    currency_changed: 'La devise a été changée de %currency_before% en %currency_after'
+    item_removed: Certains articles ont été supprimés
+    item_price_changed: Certains prix ont été modifiés
+    shipping_target_date_removed: La date de livraison a été supprimée
 
 order:
   items: Articles

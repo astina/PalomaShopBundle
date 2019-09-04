@@ -16,6 +16,10 @@
 
         <div class="checkout-order__content">
 
+            <paloma-checkout-order-modifications
+                    v-if="order.modifications.length > 0"
+                    :order="order"></paloma-checkout-order-modifications>
+
             <div v-if="order.shipping.address" class="checkout-order__address checkout-order__address--shipping">
                 <div class="checkout-order__subtitle">
                     <h3>{{ $trans('checkout.shipping_address') }}</h3>
@@ -100,6 +104,7 @@
     import paloma from '../paloma';
     import PalomaCheckoutOrderItem from "./PalomaCheckoutOrderItem";
     import PalomaCheckoutOrderAdjustment from "./PalomaCheckoutOrderAdjustment";
+    import PalomaCheckoutOrderModifications from "./PalomaCheckoutOrderModifications";
     import PalomaPrice from "../common/PalomaPrice";
     import PalomaAddress from "../common/PalomaAddress";
 
@@ -107,6 +112,7 @@
         name: "PalomaCheckoutOrder",
 
         components: {
+            PalomaCheckoutOrderModifications,
             PalomaCheckoutOrderAdjustment,
             PalomaCheckoutOrderItem,
             PalomaAddress,
@@ -122,7 +128,11 @@
 
         watch: {
             '$route'() {
-                this.expanded = this.$route.name === 'state_confirm';
+
+                // expand on 'confirm' state or if order has modifications
+                this.expanded = this.$route.name === 'state_confirm'
+                    || (this.order.modifications && this.order.modifications.length > 0);
+
                 this.$emit('toggle-content', this.expanded);
             }
         },
