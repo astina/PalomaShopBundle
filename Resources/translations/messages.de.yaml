@@ -22,8 +22,8 @@ catalog:
       active: 'Aktive Filter:'
       clear: 'alle entfernen'
     item_number: 'Artikel Nr.:'
-    vat_info_incl: inkl. %rate% MWSt.
-    vat_info_excl: exkl. %rate% MWSt.
+    vat_info_incl: inkl. %rate% MwSt.
+    vat_info_excl: exkl. %rate% MwSt.
     add_to_cart: In den Warenkorb
     out_of_stock: Zur Zeit leider nicht verfügbar.
     description: Beschreibung
