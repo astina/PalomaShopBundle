@@ -260,8 +260,7 @@ error:
   paloma:
     'A customer with this email address already exists': This e-mail address is already in use.
   payment:
-    error:
-      general: Payment failed
+    general: Payment failed
 
 field:
   email: Email address
