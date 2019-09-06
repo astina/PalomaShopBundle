@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import PalomaProductList from "./catalog/PalomaProductList";
+import PalomaProductSummary from "./catalog/PalomaProductSummary";
 import PalomaProductSelect from "./catalog/PalomaProductSelect";
 import PalomaProductRecommendations from "./catalog/PalomaProductRecommendations";
 import PalomaProductImages from "./catalog/PalomaProductImages";
@@ -20,6 +21,10 @@ if (productListElements) {
 
 const productViewElem = document.getElementById('paloma-product-view');
 if (productViewElem) {
+
+    // mount before PalomaProductSelect because of its mounted() event.
+    const productSummary = new Vue(PalomaProductSummary);
+    productSummary.$mount('#paloma-product-summary');
 
     new Vue({
         el: '#paloma-product-select',

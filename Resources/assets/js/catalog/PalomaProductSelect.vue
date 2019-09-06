@@ -84,6 +84,10 @@
             }
         },
 
+        mounted() {
+            this.publishVariantSelection();
+        },
+
         computed: {
 
             available() {
@@ -96,6 +100,10 @@
         },
 
         methods: {
+
+            publishVariantSelection() {
+                paloma.events.$emit('paloma.variant_selected', this.variant, this.product);
+            },
 
             addToCart() {
 
@@ -149,7 +157,10 @@
 
                 const sku = variants[0];
                 this.variant = this.product.variants.find(v => v.sku === sku);
+
                 this._refreshOptions(this.options, this.product, this.variant);
+
+                this.publishVariantSelection();
             },
 
             _refreshOptions(options, product, variant) {

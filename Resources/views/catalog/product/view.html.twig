@@ -21,7 +21,7 @@
                 </div>
                 <div class="column">
 
-                    <div class="product-summary">
+                    <div class="product-summary" id="paloma-product-summary">
 
                         {% block breadrcrumb %}
                         {% if category is defined %}
@@ -41,10 +41,10 @@
                             <span class="product-summary__annotation">{{ product.getAttribute('brand').value }}</span>
                             {% endif %}
                             <span class="product-summary__annotation">
-                                {{ 'catalog.products.item_number' | trans }}
-                                {{ product.itemNumber }}
+                                {{ 'catalog.products.article_number' | trans }}
+                                <span data-variant-prop="sku">{{ product.itemNumber }}</span>
                             </span>
-                            </div>
+                        </div>
                         {% endblock %}
 
                         {% block product_short_description %}
@@ -53,10 +53,10 @@
                         {% endif %}
                         {% endblock %}
 
-                        <div id="paloma-product-select">
-                            <paloma-product-select :product="{{ product_json }}"></paloma-product-select>
-                        </div>
+                    </div>
 
+                    <div id="paloma-product-select">
+                        <paloma-product-select :product="{{ product_json }}"></paloma-product-select>
                     </div>
 
                 </div>

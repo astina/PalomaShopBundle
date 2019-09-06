@@ -21,7 +21,7 @@ catalog:
       apply: Appliquer
       active: 'Filtres actifs:'
       clear: 'tout supprimer'
-    item_number: "Numéro d'article:"
+    article_number: "Numéro d'article:"
     vat_info_incl: TVA incluse %rate%
     vat_info_excl: TVA exclusif %rate%
     add_to_cart: Ajouter au panier

@@ -21,7 +21,7 @@ catalog:
       apply: Anwenden
       active: 'Aktive Filter:'
       clear: 'alle entfernen'
-    item_number: 'Artikel Nr.:'
+    article_number: 'Artikel Nr.:'
     vat_info_incl: inkl. %rate% MwSt.
     vat_info_excl: exkl. %rate% MwSt.
     add_to_cart: In den Warenkorb

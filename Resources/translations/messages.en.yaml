@@ -21,7 +21,7 @@ catalog:
       apply: Apply
       active: 'Active filters:'
       clear: 'remove all'
-    item_number: 'Article N°:'
+    article_number: 'Article N°:'
     vat_info_incl: '%rate% VAT included'
     vat_info_excl: '%rate% VAT excluded'
     add_to_cart: Add to cart
