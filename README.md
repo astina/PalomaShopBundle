@@ -107,18 +107,50 @@ composer require encore
 yarn install
 ```
 
-TODO
-- yarn add vue vue-loader@^15.0.11 vue-template-compiler --dev
-- Encore.enableVueLoader()
-
-
 That's it!
 
+# Development
 
-# Localization
+Run the development PHP server by running:
 
-TODO JMSI18nRoutingBundle
+```
+bin/console server:start
+```
+
+Run Yarn to build front end resources for development:
+
+```
+yarn run dev
+```
+
+or 
+
+```
+yarn run watch
+```
 
 # Customizing the front end
 
-TODO
+#### Twig templates
+
+Overwrite templates from the `PalomaShopBundle` by putting template files in `templates/bundles/PalomaShopBundle/`.
+
+To use the bundled error page templates, create Twig templates and like described here: 
+https://symfony.com/doc/current/controller/error_pages.html#overriding-the-default-error-templates
+
+For 404 errors:
+```
+{# templates/TwigBundle/Exception/error404.html.twig #}
+{% extends '@PalomaShop/error/error404.html.twig' %}
+```
+
+For all other errors:
+```
+{# templates/TwigBundle/Exception/error.html.twig #}
+{% extends '@PalomaShop/error/error.html.twig' %}
+```
+
+#### CSS
+
+Set SCSS variables and/or overload CSS classes in `assets/css/app.scss`.
+See `vendor/paloma/shop-bundle/Resources/assets/css/_config.scss` for available variables.

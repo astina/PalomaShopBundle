@@ -262,6 +262,15 @@ error:
     'A customer with this email address already exists': Cette adresse e-mail est déjà utilisée.
   payment:
     general: Échec de paiement
+  pages:
+    general:
+      title: Une erreur s'est produite
+      message: |
+        Une erreur s'est produite. Veuillez réessayer.
+    404:
+      title: Page non trouvée
+      message: |
+        Malheureusement, ce contenu n'est plus sur cette page.
 
 field:
   email: Adresse e-mail
