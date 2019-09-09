@@ -7,7 +7,7 @@
                 <div class="product-card__image-inner">
                     <paloma-image
                             :image="product.firstImage"
-                            size="small"
+                            size="medium"
                     ></paloma-image>
                 </div>
             </div>
