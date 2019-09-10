@@ -40,6 +40,7 @@ class SerializationConstants
             'firstImage' => [
                 'sources' => [
                     'small',
+                    'medium',
                 ],
             ],
             'attributes' => [
