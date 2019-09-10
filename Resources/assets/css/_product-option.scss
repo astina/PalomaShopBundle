@@ -47,6 +47,10 @@
   border-color: $grey-light;
 }
 
+.product-option__value--disabled {
+  opacity: 0.7;
+}
+
 .product-option__value-control {
   flex: 1;
   font-size: $size-7;
