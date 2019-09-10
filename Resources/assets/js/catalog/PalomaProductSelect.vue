@@ -31,9 +31,9 @@
                         </button>
                     </div>
 
-                    <!--                    <div v-if="outOfStock"class="product-summary__out-of-stock">-->
-                    <!--                        {{ $trans('catalog.products.out_of_stock') }}-->
-                    <!--                    </div>-->
+                    <div v-if="outOfStock"class="product-summary__out-of-stock">
+                        {{ $trans('catalog.products.out_of_stock') }}
+                    </div>
 
                 </div>
 
