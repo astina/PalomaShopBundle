@@ -71,3 +71,14 @@
   line-height: 36px;
   margin-left: 10px;
 }
+
+@media screen and (max-width: 768px) {
+
+  .product-summary__cart-form .field.is-grouped {
+    display: block;
+  }
+
+  .product-summary__out-of-stock {
+    margin-left: 0;
+  }
+}
