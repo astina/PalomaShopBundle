@@ -13,7 +13,10 @@
         mounted() {
             this.imageEl = document.querySelector('.product-images__image');
             this.thumbsEl = document.querySelector('.product-images__thumbs');
-            this.zoomUrl = this.imageEl.getAttribute('data-image-full');
+
+            if (this.imageEl) {
+                this.zoomUrl = this.imageEl.getAttribute('data-image-full');
+            }
         },
 
         methods: {
