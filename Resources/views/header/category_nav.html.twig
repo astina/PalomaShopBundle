@@ -1,28 +1,29 @@
-{% if main_categories is defined %}
+<nav class="category-nav" role="navigation" aria-label="category navigation">
 
-    <nav class="category-nav" role="navigation" aria-label="category navigation">
-
-        <div class="category-nav__burger is-hidden-tablet">
-            <a class="category-nav__item" href="">
-                <span class="burger is-pulled-left">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </span>
-                <span class="category-nav__burger-label">{{ 'nav.menu' | trans }}</span>
-            </a>
-        </div>
-
-        {% if main_categories|length > 5 %}
-            {# hide categories in sub menu #}
-            {% set name = ('catalog.categories'|trans) %}
-            {% set categories = [{ code: null, slug: null, name: name, subCategories: main_categories }] %}
-        {% else %}
-            {% set categories = main_categories %}
-        {% endif %}
+    <div class="category-nav__burger is-hidden-tablet">
+        <a class="category-nav__item" href="">
+            <span class="burger is-pulled-left">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </span>
+            <span class="category-nav__burger-label">{{ 'nav.menu' | trans }}</span>
+        </a>
+    </div>
 
         <div class="is-hidden-mobile category-nav__menu-wrapper">
             <div class="category-nav__menu">
+            {% block category_nav_before %}
+            {% endblock %}
+            {% if main_categories is defined %}
+                {% if main_categories|length > 5 %}
+                    {# hide categories in sub menu #}
+                    {% set name = ('catalog.categories'|trans) %}
+                    {% set categories = [{ code: null, slug: null, name: name, subCategories: main_categories }] %}
+                {% else %}
+                    {% set categories = main_categories %}
+                {% endif %}
+
                 {% for cat in categories %}
                     {% if cat.subCategories and cat.subCategories|length > 0 %}
                         <div class="category-nav__item category-nav__item--has-children category-nav__item--category-{{ cat.code }}">
@@ -77,11 +78,13 @@
                     {% endif %}
                 {% endfor %}
 
-                {# only visible on mobile per default#}
-                {% include '@PalomaShop/header/service_nav.html.twig' %}
+            {% endif %}
 
-            </div>
+            {% block category_nav_after %}
+            {% endblock %}
+
+            {# only visible on mobile per default#}
+            {% include '@PalomaShop/header/service_nav.html.twig' %}
         </div>
-    </nav>
-
-{% endif %}
+    </div>
+</nav>
