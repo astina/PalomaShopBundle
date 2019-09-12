@@ -231,9 +231,14 @@ payment:
   electronic: Carte de crédit
   paypal: PayPal
   postfinance: PostFinance
+  twint: Twint
   info:
     invoice: Vous recevrez une facture avec bulletin de versement par la poste.
     electronic: Après avoir passé la commande, vous serez redirigé vers la page de paiement.
+    creditcard: Après avoir passé la commande, vous serez redirigé vers la page de paiement.
+    paypal: Après avoir passé la commande, vous serez redirigé vers PayPal.
+    postfinance: Après avoir passé la commande, vous serez redirigé vers PostFinance.
+    twint: Après avoir passé la commande, vous serez redirigé vers Twint.
 
 error:
   general:

@@ -77,8 +77,10 @@ customer:
     address_saved: Address saved successfully
     user: User data
     email: Change email address
+    email_info: ''
     email_saved: E-mail address successfully saved
     password: Change password
+    password_info: ''
     password_saved: Password successfully changed
     password_error: The password could not be changed. Please check whether you have entered the current password correctly.
     address:
@@ -230,9 +232,14 @@ payment:
   electronic: Credit card
   paypal: PayPal
   postfinance: PostFinance
+  twint: Twint
   info:
     invoice: You will receive an invoice with payment slip by post.
     electronic: After submitting the order you will be forwarded to the payment page.
+    creditcard: After submitting the order you will be forwarded to the payment page.
+    paypal: After submitting the order you will be forwarded to PayPal.
+    postfinance: After submitting the order you will be forwarded to PostFinance.
+    twint: After submitting the order you will be forwarded to Twint.
 
 error:
   general:

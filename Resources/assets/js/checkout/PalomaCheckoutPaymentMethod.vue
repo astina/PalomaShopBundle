@@ -36,7 +36,7 @@
         <section v-if="order.billing.address" class="checkout__section">
 
             <h2 class="checkout__subtitle">
-                {{ $trans('checkout.state_payment_method.title') }}
+                {{ $trans('checkout.state_payment_address.title') }}
             </h2>
 
             <div class="m-b">

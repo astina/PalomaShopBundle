@@ -77,6 +77,7 @@ customer:
     address_saved: Adresse erfolgreich gespeichert
     user: Benutzerdaten
     email: E-Mail-Adresse ändern
+    email_info: ''
     email_saved: E-Mail-Addresse erfolgreich gespeichert
     password: Passwort ändern
     password_info: ''
@@ -231,11 +232,17 @@ shipping:
 payment:
   invoice: Rechnung
   electronic: Kreditkarte
+  creditcard: Kreditkarte
   paypal: PayPal
   postfinance: PostFinance
+  twint: Twint
   info:
     invoice: Sie erhalten eine Rechnung mit Einzahlungsschein per Post.
     electronic: Nach Abschicken der Bestellung werden Sie zur Bezahlseite weitergeleitet.
+    creditcard: Nach Abschicken der Bestellung werden Sie zur Bezahlseite weitergeleitet.
+    paypal: Nach Abschicken der Bestellung werden Sie zu PayPal weitergeleitet.
+    postfinance: Nach Abschicken der Bestellung werden Sie zu PostFinance weitergeleitet.
+    twint: Nach Abschicken der Bestellung werden Sie zu Twint weitergeleitet.
 
 error:
   general:
