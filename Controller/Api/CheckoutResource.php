@@ -8,6 +8,7 @@ use Paloma\Shop\Checkout\GuestCustomer;
 use Paloma\Shop\Checkout\PaymentInitParameters;
 use Paloma\Shop\Common\Address;
 use Paloma\Shop\Common\AddressInterface;
+use Paloma\Shop\Customers\CustomersInterface;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\CartIsEmpty;
 use Paloma\Shop\Error\InvalidCouponCode;
@@ -21,6 +22,7 @@ use Paloma\Shop\Error\UnknownPaymentMethod;
 use Paloma\Shop\Error\UnknownShippingMethod;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Paloma\ShopBundle\Serializer\SerializationConstants;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -302,8 +304,18 @@ class CheckoutResource
         }
     }
 
-    public function finalize(CheckoutInterface $checkout, PalomaSerializer $serializer)
+    public function finalize(CheckoutInterface $checkout, CustomersInterface $customers, PalomaSerializer $serializer, LoggerInterface $log)
     {
+        try {
+
+            // make sure the right customer is set on the order
+            $customer = $customers->getCustomer();
+            $checkout->setCustomer($customer);
+
+        } catch (\Exception $e) {
+            $log->error('Failed to update order customer', ['exception' => $e]);
+        }
+
         try {
 
             $order = $checkout->finalize();
