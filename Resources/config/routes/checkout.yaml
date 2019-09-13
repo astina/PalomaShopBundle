@@ -31,7 +31,13 @@ paloma_checkout_payment_cancel:
 paloma_checkout_payment_error:
   path: /payment/error
   controller: paloma_shop.controller.payment::error
-  methods: [ GET, POST ]
+  methods: [ GET ]
+
+# Separate POST route to prevent loss of session
+paloma_checkout_payment_error_post:
+  path: /payment/error
+  controller: paloma_shop.controller.payment::errorPost
+  methods: [ POST ]
 
 paloma_checkout_state:
   path: /{state}

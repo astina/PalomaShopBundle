@@ -8,6 +8,7 @@ use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\ShopBundle\Controller\AbstractPalomaController;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Paloma\ShopBundle\Serializer\SerializationConstants;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -24,11 +25,12 @@ class CheckoutController extends AbstractPalomaController
         return $this->redirectToRoute('paloma_checkout_state', ['state' => $state]);
     }
 
-    public function state(string $state, PalomaSerializer $serializer, CheckoutInterface $checkout, PalomaSecurityInterface $security, Request $request)
+    public function state(string $state, PalomaSerializer $serializer, CheckoutInterface $checkout, PalomaSecurityInterface $security, Request $request, LoggerInterface $log)
     {
         try {
             $order = $checkout->getOrderDraft();
         } catch (CartIsEmpty $e) {
+            $log->info("Caught " . get_class($e) . " in checkout state: " . $state);
             return $this->redirectToRoute('paloma_catalog_home');
         }
 

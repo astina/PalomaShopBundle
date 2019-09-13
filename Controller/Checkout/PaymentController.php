@@ -121,4 +121,13 @@ class PaymentController extends AbstractPalomaController
 
         return $this->redirectToRoute('paloma_checkout_state', ['state' => 'confirm']);
     }
+
+    public function errorPost(Request $request, LoggerInterface $log)
+    {
+        $log->info('Received payment error (POST): ' . $request);
+
+        $params = $request->request->all() + $request->query->all();
+
+        return $this->redirectToRoute('paloma_checkout_payment_error', $params);
+    }
 }
