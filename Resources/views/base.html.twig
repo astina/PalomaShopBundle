@@ -7,7 +7,7 @@
     <title>{% block title %}Paloma Web Shop{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
-<body class="channel--{{ paloma.channel }}">
+<body class="channel--{{ paloma.channel }} {% block body_class -%}{%- endblock %}">
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>
