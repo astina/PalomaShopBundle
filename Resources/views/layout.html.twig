@@ -22,7 +22,7 @@
         {% include '@PalomaShop/header/header.html.twig' %}
     {% endblock %}
 
-    <div class="main">
+    <div class="main{% block main_class %}{% endblock %}">
         {% block main %}{% endblock %}
     </div>
 

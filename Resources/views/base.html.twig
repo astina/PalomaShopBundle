@@ -6,8 +6,10 @@
     {% block meta %}{% endblock %}
     <title>{% block title %}Paloma Web Shop{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
+    {% block javascripts_head %}{% endblock %}
 </head>
-<body class="channel--{{ paloma.channel }} {% block body_class -%}{%- endblock %}">
+<body class="channel--{{ paloma.channel }}{% block body_class %}{% endblock -%}"{% block body_attrs %}{% endblock -%}>
+{% block body_head %}{% endblock %}
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>
