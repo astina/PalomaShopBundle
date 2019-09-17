@@ -110,6 +110,8 @@ customer:
     status_refunded: Remboursé
     status_unknown: Inconnu
     status_draft: Erôlement
+    item:
+      sku: "Numéro d'article"
 
   register:
     title: S'inscrire comme client

@@ -7,7 +7,12 @@
 
         <div class="customer-order-item__product">
             <div class="customer-order-item__title">
-                {{item.title}}
+                <span class="customer-order-item__name">{{item.title}}</span>
+                <span class="customer-order-item__sku">
+                    {{ $trans('customer.order.item.sku') }}
+                    {{item.sku}}
+                    <span v-if="item.code && item.code !== item.sku" class="customer-order-item__code">({{item.code}})</span>
+                </span>
                 <div v-if="options.length > 0" class="customer-order-item__options">
                     <div v-for="option in options" class="customer-order-item__option">
                         {{ option.label }}: {{ option.value }}

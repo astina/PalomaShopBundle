@@ -112,6 +112,8 @@ customer:
     status_refunded: Rückerstattet
     status_unknown: Unbekannt
     status_draft: Entwurf
+    item:
+      sku: Artikel Nr.
 
   register:
     title: Als Kunde registrieren

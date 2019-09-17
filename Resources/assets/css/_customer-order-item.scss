@@ -29,6 +29,12 @@
   color: $text-strong;
 }
 
+.customer-order-item__sku {
+  display: block;
+  font-size: $size-7;
+  color: $text-light;
+}
+
 .customer-order-item__options {
   display: block;
 }
