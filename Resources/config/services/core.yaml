@@ -41,6 +41,11 @@ services:
       - ~ # injected by bundle extension
       - '@router'
 
+  paloma_shop.pricing_context_provider:
+    class: Paloma\Shop\Common\PricingContextProvider
+    arguments:
+      - '@paloma_shop.security'
+
   paloma_shop.channel_resolver:
     class: Paloma\ShopBundle\DefaultChannelResolver
     arguments:
@@ -115,6 +120,9 @@ services:
 
   Paloma\Shop\PalomaClientInterface:
     alias: paloma_shop.client
+
+  Paloma\Shop\Common\PricingContextProviderInterface:
+    alias: paloma_shop.pricing_context_provider
 
   Paloma\Shop\Security\PalomaSecurityInterface:
     alias: paloma_shop.security
