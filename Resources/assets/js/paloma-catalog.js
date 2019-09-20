@@ -23,8 +23,12 @@ const productViewElem = document.getElementById('paloma-product-view');
 if (productViewElem) {
 
     // mount before PalomaProductSelect because of its mounted() event.
+
     const productSummary = new Vue(PalomaProductSummary);
     productSummary.$mount('#paloma-product-summary');
+
+    const productImages = new Vue(PalomaProductImages);
+    productImages.$mount('#paloma-product-images');
 
     new Vue({
         el: '#paloma-product-select',
@@ -39,7 +43,4 @@ if (productViewElem) {
             PalomaProductRecommendations
         }
     });
-
-    const productImages = new Vue(PalomaProductImages);
-    productImages.$mount('#paloma-product-images');
 }

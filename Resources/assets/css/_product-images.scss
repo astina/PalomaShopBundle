@@ -42,9 +42,14 @@
   opacity: 0.8;
 }
 
+.product-images__thumb--hidden {
+  display: none;
+}
+
 .product-images__thumb--active {
   border: 1px solid $primary;
   opacity: 1;
+  display: inline-block;
 }
 
 .product-images__thumb:hover {

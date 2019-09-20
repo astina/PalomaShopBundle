@@ -1,14 +1,14 @@
-{% set image_current = product.firstImage %}
-{% if image_current %}
+{% set image_first = product.firstImage %}
+{% if image_first %}
 
     <div class="product-images" id="paloma-product-images" :class="{'product-images--zoomed': zoomed}">
 
         <div class="product-images__image"
              @click.prevent="zoomed = true"
-             data-image-full="{{ image_current.getSource('full').url }}">
+             data-image-full="{{ image_first.getSource('full').url }}">
             <div class="image">
-                {% if image_current %}
-                    <img src="{{ image_current.getSource('large').url }}" alt="{{ image_current.name }}">
+                {% if image_first %}
+                    <img src="{{ image_first.getSource('large').url }}" alt="{{ image_first.name }}">
                 {% else %}
                     {# TODO placeholder image #}
                 {% endif %}
@@ -22,16 +22,19 @@
                 </span>
             </a>
             <div class="image product-images__zoom-image">
-                <img :src="zoomUrl" />
+                <img :src="zoomUrl"/>
             </div>
         </div>
 
-        {% if product.images|length > 1 %}
+        {% set images = product.allImages %}
+        {% if images|length > 1 %}
             <div class="product-images__thumbs">
-                {% for image in product.images %}
-                    <a class="product-images__thumb{% if image.name == image_current.name %} product-images__thumb--active{% endif %}"
+                {% for image in images %}
+                    <a class="product-images__thumb{% if image.scope == 'variant' %} product-images__thumb--hidden{% endif %}{% if image.name == image_first.name %} product-images__thumb--active{% endif %}"
                        data-image-large="{{ image.getSource('large').url }}"
                        data-image-full="{{ image.getSource('full').url }}"
+                       data-image-scope="{{ image.scope }}"
+                       data-image-sku="{{ image.variantSku }}"
                        @click="selectImage"
                        href="">
                         <div class="image">
