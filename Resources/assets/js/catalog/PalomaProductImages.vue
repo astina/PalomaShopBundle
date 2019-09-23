@@ -36,7 +36,7 @@
 
             selectThumb(thumb) {
                 const activeThumb = this.thumbsEl.querySelector('.product-images__thumb--active');
-                activeThumb.classList.remove('product-images__thumb--active');
+                activeThumb && activeThumb.classList.remove('product-images__thumb--active');
 
                 thumb.classList.add('product-images__thumb--active');
 
@@ -54,6 +54,7 @@
                 this.thumbsEl.querySelectorAll('[data-image-scope="variant"]')
                     .forEach(elem => {
                         elem.classList.add('product-images__thumb--hidden');
+                        elem.classList.remove('product-images__thumb--active');
                     });
 
                 const variantImages = this.thumbsEl.querySelectorAll('[data-image-sku="' + sku + '"]');
@@ -62,6 +63,9 @@
 
                 if (variantImages.length > 0) {
                     this.selectThumb(variantImages.item(0));
+                } else {
+                    const productImages = this.thumbsEl.querySelectorAll('[data-image-scope="product"]');
+                    productImages && productImages.length > 0 && this.selectThumb(productImages.item(0));
                 }
             }
         }
