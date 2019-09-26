@@ -140,13 +140,13 @@ https://symfony.com/doc/current/controller/error_pages.html#overriding-the-defau
 
 For 404 errors:
 ```
-{# templates/TwigBundle/Exception/error404.html.twig #}
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
 {% extends '@PalomaShop/error/error404.html.twig' %}
 ```
 
 For all other errors:
 ```
-{# templates/TwigBundle/Exception/error.html.twig #}
+{# templates/bundles/TwigBundle/Exception/error.html.twig #}
 {% extends '@PalomaShop/error/error.html.twig' %}
 ```
 
