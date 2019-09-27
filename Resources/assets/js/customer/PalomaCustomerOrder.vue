@@ -72,6 +72,13 @@
                         type="reduction"></paloma-customer-order-adjustment>
             </div>
 
+            <div v-for="adjustment in order.taxes">
+                <paloma-customer-order-adjustment
+                        :title="adjustment.description"
+                        :price="adjustment.price"
+                        type="tax"></paloma-customer-order-adjustment>
+            </div>
+
             <div class="checkout-order__total">
                 <div class="checkout-order__total-title">
                     {{ $trans('order.total_price') }}
