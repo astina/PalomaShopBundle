@@ -72,10 +72,19 @@
                         type="reduction"></paloma-customer-order-adjustment>
             </div>
 
-            <div v-for="adjustment in order.taxes">
+            <div class="checkout-order__total checkout-order__total--net">
+                <div class="checkout-order__total-title">
+                    {{ $trans('order.net_total_price') }}
+                </div>
+                <div class="checkout-order__total-price">
+                    <paloma-price :price="order.netTotalPrice"></paloma-price>
+                </div>
+            </div>
+
+            <div v-for="tax in order.includedTaxes">
                 <paloma-customer-order-adjustment
-                        :title="adjustment.description"
-                        :price="adjustment.price"
+                        :title="tax.description"
+                        :price="tax.price"
                         type="tax"></paloma-customer-order-adjustment>
             </div>
 
@@ -86,13 +95,6 @@
                 <div class="checkout-order__total-price">
                     <paloma-price :price="order.totalPrice"></paloma-price>
                 </div>
-            </div>
-
-            <div v-for="tax in order.includedTaxes">
-                <paloma-customer-order-adjustment
-                        :title="$trans('order.tax_incl') + ' ' + tax.description"
-                        :price="tax.price"
-                        type="tax"></paloma-customer-order-adjustment>
             </div>
 
         </div>

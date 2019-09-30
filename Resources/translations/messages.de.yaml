@@ -218,8 +218,8 @@ order:
   items: Artikel
   items_price: Subtotal
   shipping_price: 'Versandkosten (%method%)'
+  net_total_price: Total netto
   total_price: Total
-  tax_incl: inkl.
 
 shipping:
   swisspost_default: Post CH Standard

@@ -88,6 +88,12 @@
   border-top: 2px solid $grey-lighter;
 }
 
+.checkout-order__total--net {
+  border-top-width: 1px;
+  padding-top: 15px;
+  font-size: $size-7;
+}
+
 .checkout-order__total-title {
   flex-grow: 1;
   text-transform: uppercase;
@@ -100,6 +106,10 @@
 
 .checkout-order__total-price .price__currency {
   font-size: $size-6;
+}
+
+.checkout-order__total--net .checkout-order__total-price .price__currency {
+  font-size: $size-7;
 }
 
 .checkout-order__adjustment--tax {
