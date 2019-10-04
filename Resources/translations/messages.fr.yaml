@@ -219,11 +219,15 @@ order:
   tax_incl: incl.
 
 shipping:
+  default: Livraison normale
+  priority: Livraison express
   swisspost_default: Post CH Standard
   swisspost_priority: Post CH Priority
   download: Téléchargement
   free: gratuit
   info:
+    default: Livraison standard sous 2-3 jours ouvrables.
+    priority: Livraison express le jour ouvrable suivant.
     swisspost_default: Livraison standard par La Poste Suisse sous 2-3 jours ouvrables.
     swisspost_priority: Livraison express le jour ouvrable suivant.
     download: Vous recevrez un lien de téléchargement par e-mail.
