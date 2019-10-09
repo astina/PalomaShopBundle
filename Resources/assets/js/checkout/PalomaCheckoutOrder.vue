@@ -1,7 +1,7 @@
 <template>
     <div class="checkout-order" :class="{'checkout-order--expanded': expanded}">
 
-        <div class="checkout-order__header" @click.prevent="toggleContent" >
+        <div class="checkout-order__header" @click.prevent="toggleContent">
             <h2 class="checkout-order__title">
                 {{ $trans('checkout.overview') }}
             </h2>
@@ -23,7 +23,8 @@
             <div v-if="order.shipping.address" class="checkout-order__address checkout-order__address--shipping">
                 <div class="checkout-order__subtitle">
                     <h3>{{ $trans('checkout.shipping_address') }}</h3>
-                    <router-link :to="{name: 'state_delivery_address'}" href="">{{ $trans('button.edit') }}</router-link>
+                    <router-link :to="{name: 'state_delivery_address'}" href="">{{ $trans('button.edit') }}
+                    </router-link>
                 </div>
                 <paloma-address :address="order.shipping.address"></paloma-address>
             </div>
@@ -49,59 +50,87 @@
                 <paloma-checkout-order-item
                         v-for="item in order.items"
                         :key="item.id"
-                        :item="item"></paloma-checkout-order-item>
+                        :item="item"
+                        :price-display="priceDisplay"></paloma-checkout-order-item>
 
             </div>
 
             <paloma-checkout-order-adjustment
                     :title="$trans('order.items_price')"
-                    :price="order.itemsPrice"
+                    :price="priceDisplay === 'net' ? order.netItemsPrice : order.itemsPrice"
                     type="subtotal"></paloma-checkout-order-adjustment>
 
             <div v-for="adjustment in order.surcharges">
                 <paloma-checkout-order-adjustment
                         :title="adjustment.description"
-                        :price="adjustment.price"
+                        :price="adjustmentPrice(adjustment)"
                         type="surcharge"></paloma-checkout-order-adjustment>
             </div>
 
             <paloma-checkout-order-adjustment
                     v-if="order.shippingPrice"
                     :title="shippingTitle"
-                    :price="order.shippingPrice"
+                    :price="priceDisplay === 'net' ? order.netShippingPrice : order.shippingPrice"
                     type="shipping"></paloma-checkout-order-adjustment>
 
             <div v-for="adjustment in order.reductions">
                 <paloma-checkout-order-adjustment
                         :title="adjustment.description"
-                        :price="adjustment.price"
+                        :price="adjustmentPrice(adjustment)"
                         type="reduction"></paloma-checkout-order-adjustment>
             </div>
 
-            <div class="checkout-order__total checkout-order__total--net">
-                <div class="checkout-order__total-title">
-                    {{ $trans('order.net_total_price') }}
+            <!-- net total, taxes, gross total -->
+            <div v-if="priceDisplay === 'net'">
+
+                <div class="checkout-order__total checkout-order__total--net">
+                    <div class="checkout-order__total-title">
+                        {{ $trans('order.net_total_price') }}
+                    </div>
+                    <div class="checkout-order__total-price">
+                        <paloma-price :price="order.netTotalPrice"></paloma-price>
+                    </div>
                 </div>
-                <div class="checkout-order__total-price">
-                    <paloma-price :price="order.netTotalPrice"></paloma-price>
+
+                <div v-for="tax in order.includedTaxes">
+                    <paloma-checkout-order-adjustment
+                            :title="tax.description"
+                            :price="tax.price"
+                            type="tax"></paloma-checkout-order-adjustment>
                 </div>
+
+                <div class="checkout-order__total">
+                    <div class="checkout-order__total-title">
+                        {{ $trans('order.total_price') }}
+                    </div>
+                    <div class="checkout-order__total-price">
+                        <paloma-price :price="order.totalPrice"></paloma-price>
+                    </div>
+                </div>
+
             </div>
 
-            <div v-for="tax in order.includedTaxes">
-                <paloma-checkout-order-adjustment
-                        :title="tax.description"
-                        :price="tax.price"
-                        type="tax"></paloma-checkout-order-adjustment>
+            <!-- gross total, taxes -->
+            <div v-else>
+
+                <div class="checkout-order__total">
+                    <div class="checkout-order__total-title">
+                        {{ $trans('order.total_price') }}
+                    </div>
+                    <div class="checkout-order__total-price">
+                        <paloma-price :price="order.totalPrice"></paloma-price>
+                    </div>
+                </div>
+
+                <div v-for="tax in order.includedTaxes">
+                    <paloma-checkout-order-adjustment
+                            :title="tax.description"
+                            :price="tax.price"
+                            type="tax"></paloma-checkout-order-adjustment>
+                </div>
+
             </div>
 
-            <div class="checkout-order__total">
-                <div class="checkout-order__total-title">
-                    {{ $trans('order.total_price') }}
-                </div>
-                <div class="checkout-order__total-price">
-                    <paloma-price :price="order.totalPrice"></paloma-price>
-                </div>
-            </div>
 
         </div>
 
@@ -152,6 +181,20 @@
                 return paloma.checkout.orderDraft();
             },
 
+            priceDisplay() {
+                if (!this.order) {
+                    return 'gross';
+                }
+
+                const hasTaxExcludedItems = this.order.items.find(item => {
+                    return item.productVariant && item.productVariant.taxIncluded === false
+                });
+
+                return hasTaxExcludedItems
+                    ? 'net'
+                    : 'gross';
+            },
+
             shippingTitle() {
 
                 const shippingMethod = this.$trans('shipping.' + this.order.shipping.shippingMethod.name);
@@ -161,6 +204,13 @@
         },
 
         methods: {
+
+            adjustmentPrice(adjustment) {
+                return this.priceDisplay === 'net'
+                    ? adjustment.price
+                    : adjustment.netPrice;
+            },
+
             toggleContent() {
                 this.expanded = !this.expanded;
                 this.$emit('toggle-content', this.expanded);

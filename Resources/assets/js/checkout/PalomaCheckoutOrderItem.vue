@@ -13,7 +13,8 @@
                         {{ option.label }}: {{ option.value }}
                     </div>
                 </div>
-                <div v-else-if="item.productVariant && item.productVariant.name !== item.itemNumber" class="checkout-order-item__options">
+                <div v-else-if="item.productVariant && item.productVariant.name !== item.itemNumber"
+                     class="checkout-order-item__options">
                     <div class="checkout-order-item__option">
                         {{ item.productVariant.name }}
                     </div>
@@ -24,9 +25,9 @@
         <div class="checkout-order-item__price">
             <div class="checkout-order-item__unit">
                 {{ item.quantity }} &times;
-                <paloma-price :price="item.unitPrice" :original="item.originalPrice"></paloma-price>
+                <paloma-price :price="priceDisplay === 'net' ? item.netUnitPrice : item.unitPrice" :original="item.originalPrice"></paloma-price>
             </div>
-            <paloma-price :price="item.itemPrice"></paloma-price>
+            <paloma-price :price="priceDisplay === 'net' ? item.netItemPrice : item.itemPrice"></paloma-price>
         </div>
 
     </div>
@@ -42,7 +43,8 @@
         components: {PalomaImage, PalomaPrice},
 
         props: {
-            item: Object
+            item: Object,
+            priceDisplay: String,
         },
 
         data() {
