@@ -220,6 +220,7 @@ order:
   shipping_price: 'Versandkosten (%method%)'
   net_total_price: Total netto
   total_price: Total
+  tax_incl: inkl.
 
 shipping:
   default: Standardlieferung

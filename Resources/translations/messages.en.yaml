@@ -218,6 +218,7 @@ order:
   shipping_price: Shipping costs (%method%)
   net_total_price: Net total
   total_price: Total
+  tax_incl: incl.
 
 shipping:
   default: Standard Delivery

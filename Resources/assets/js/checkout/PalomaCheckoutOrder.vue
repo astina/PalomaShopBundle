@@ -124,7 +124,7 @@
 
                 <div v-for="tax in order.includedTaxes">
                     <paloma-checkout-order-adjustment
-                            :title="tax.description"
+                            :title="$trans('order.tax_incl') + ' ' + tax.description"
                             :price="tax.price"
                             type="tax"></paloma-checkout-order-adjustment>
                 </div>
