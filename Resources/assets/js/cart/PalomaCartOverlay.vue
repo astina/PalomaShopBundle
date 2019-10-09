@@ -28,6 +28,7 @@
                         <paloma-cart-item v-for="item in cart.items"
                                           :key="item.id"
                                           :item="item"
+                                          :price-display="priceDisplay"
                                           :highlight="lastItem && item.id === lastItem.id"></paloma-cart-item>
                     </div>
 
@@ -36,7 +37,7 @@
                             {{ $trans('cart.total') }}
                         </div>
                         <div class="cart__total-price">
-                            <paloma-price :price="cart.itemsPrice"></paloma-price>
+                            <paloma-price :price="priceDisplay === 'net' ? cart.netItemsPrice : cart.itemsPrice"></paloma-price>
                         </div>
                     </div>
 
@@ -94,6 +95,21 @@
         },
 
         computed: {
+
+            priceDisplay() {
+                if (!this.cart) {
+                    return 'gross';
+                }
+
+                const hasTaxExcludedItems = this.cart.items.find(item => {
+                    return item.productVariant && item.productVariant.taxIncluded === false
+                });
+
+                return hasTaxExcludedItems
+                    ? 'net'
+                    : 'gross';
+            },
+
             checkoutUrl() {
                 return paloma.router.resolve('checkout_start');
             }

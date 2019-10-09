@@ -62,7 +62,7 @@
         </div>
 
         <div class="cart-item__price">
-            <paloma-price :price="item.itemPrice"></paloma-price>
+            <paloma-price :price="priceDisplay === 'net' ? item.netItemPrice : item.itemPrice"></paloma-price>
         </div>
 
     </div>
@@ -81,7 +81,8 @@
 
         props: {
             item: Object,
-            highlight: Boolean
+            priceDisplay: String,
+            highlight: Boolean,
         },
 
         data() {
