@@ -207,8 +207,8 @@
 
             adjustmentPrice(adjustment) {
                 return this.priceDisplay === 'net'
-                    ? adjustment.price
-                    : adjustment.netPrice;
+                    ? adjustment.netPrice
+                    : adjustment.price;
             },
 
             toggleContent() {
