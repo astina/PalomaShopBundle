@@ -4,6 +4,9 @@
 
 {% block meta %}
     {{ parent() }}
+    {% if product.shortDescription %}
+        <meta name="description" content="{{ product.shortDescription }}"/>
+    {% endif %}
     <link rel="canonical" href="{{ product_url(product) }}">
 {% endblock %}
 
