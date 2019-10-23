@@ -21,10 +21,6 @@
   padding: 20px 70px 50px 70px;
 }
 
-.user-login .modal-card-body .user-login__info {
-  text-align: center;
-}
-
 .user-login__info {
   margin-bottom: 40px;
   color: $text-light;
@@ -44,6 +40,11 @@
   .user-login.modal-card {
     max-height: none;
     height: 100vh;
+  }
+
+  .user-login .modal-card-head,
+  .user-login .modal-card-head {
+    border-radius: 0;
   }
 
   .user-login .modal-card-body {
