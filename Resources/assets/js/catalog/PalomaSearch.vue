@@ -6,7 +6,7 @@
             </span>
         </a>
         <div class="quick-search__form-wrapper" :class="{'quick-search__form-wrapper--active': showForm}">
-            <div class="quick-search__form">
+            <div class="quick-search__form" v-if="showForm" v-click-outside="closeForm" v-on:keyup.esc="closeForm">
                 <div class="container">
 
                     <form method="get" :action="searchUrl">
@@ -45,13 +45,22 @@
         data() {
             return {
                 searchUrl: paloma.router.resolve('catalog_search'),
-                showForm: false
+                showForm: false,
+                opened: null,
             }
         },
 
         methods: {
             toggleForm() {
                 this.showForm = !this.showForm;
+                if (this.showForm) {
+                    this.opened = new Date();
+                }
+            },
+            closeForm() {
+                if (this.opened && (new Date().getTime() - this.opened.getTime()) > 200) {
+                    this.showForm = false;
+                }
             }
         }
     }
