@@ -10,6 +10,9 @@
 
         <div class="product-summary__price">
             <paloma-price :price="variant.price" :original="variant.originalPrice"></paloma-price>
+            <span v-if="variant.reductionPercent" class="product-summary__reduction">
+                <span class="badge">{{ variant.reductionPercent }}</span>
+            </span>
             <div v-if="variant.taxIncluded" class="product-summary__price-info">
                 {{ $trans('catalog.products.vat_info_incl', {'rate': variant.taxRate}) }}
             </div>
