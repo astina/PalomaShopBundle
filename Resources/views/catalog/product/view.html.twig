@@ -8,6 +8,7 @@
         <meta name="description" content="{{ product.shortDescription }}"/>
     {% endif %}
     <link rel="canonical" href="{{ product_url(product) }}">
+    {% include '@PalomaShop/catalog/product/opengraph.html.twig' with {product: product} %}
 {% endblock %}
 
 {% block main %}

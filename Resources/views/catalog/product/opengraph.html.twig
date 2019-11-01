@@ -1,0 +1,8 @@
+<meta property="og:title" content="{{ product.name }}" />
+{% if product.shortDescription %}
+    <meta property="og:description" content="{{ product.shortDescription }}" />
+{% endif %}
+{% set image_first = product.firstImage %}
+{% if image_first %}
+    <meta property="og:image" content="{{ image_first.getSource('medium').url }}" />
+{% endif %}
