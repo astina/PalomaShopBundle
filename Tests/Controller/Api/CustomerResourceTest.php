@@ -107,7 +107,9 @@ class CustomerResourceTest extends FunctionalTest
             ['CONTENT_TYPE' => 'application/json'],
             '{
                 "emailAddress": "test@astina.io",
-                "firstName": "Hans"
+                "firstName": "Hans",
+                "locale": "en",
+                "gender": "unknown"
             }'
         );
 

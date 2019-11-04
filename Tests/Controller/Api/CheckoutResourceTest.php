@@ -21,6 +21,9 @@ class CheckoutResourceTest extends FunctionalTest
                     "title": "mr",
                     "firstName": "Hans",
                     "lastName": "Muster",
+                    "street": "Musterweg 1",
+                    "zipCode": "8000",
+                    "city": "Zurich",
                     "country": "CH"
                 },
                 "shipping": null
