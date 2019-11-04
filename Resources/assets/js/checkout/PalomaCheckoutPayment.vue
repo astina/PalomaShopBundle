@@ -18,7 +18,15 @@
 
                 const order = paloma.checkout.orderDraft();
                 if (order.billing.address) {
-                    this.$router.push({name: 'state_confirm'});
+
+                    paloma.checkout.validateBillingAddress()
+                        .then(() => {
+                            this.$router.push({name: 'state_confirm'});
+                        })
+                        .catch(() => {
+                            this.$router.push({name: 'state_payment_address'});
+                        });
+
                 } else {
                     this.$router.push({name: 'state_payment_address'});
                 }

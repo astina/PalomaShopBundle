@@ -97,6 +97,19 @@ security:
     - { path: '^/customer/account', roles: ROLE_CUSTOMER }
 ```
 
+## Validation
+
+Make sure the `validation.yaml` is loaded:
+
+```yaml
+# config/packages/validator.yaml
+framework:
+    validation:
+        mapping:
+            paths:
+                - "%kernel.project_dir%/vendor/paloma/shop-client/src/Paloma/Shop/Resources/validation.yaml"
+```
+
 ## Web Shop Frontend
 
 If you want to use the Paloma shop front-end, you also need to install [Webpack Encore](https://symfony.com/doc/current/frontend.html).

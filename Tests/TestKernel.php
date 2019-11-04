@@ -46,6 +46,13 @@ class TestKernel extends Kernel
             'session' => [
                 'storage_id' => 'session.storage.mock_file',
             ],
+            'validation' => [
+                'mapping' => [
+                    'paths' => [
+                        __DIR__ . '/../vendor/paloma/shop-client/src/Paloma/Shop/Resources/validation.yaml'
+                    ]
+                ],
+            ],
         ]);
 
         $loader->load(__DIR__ . '/Resources/config/paloma.yaml');

@@ -236,3 +236,10 @@ paloma_api_orders_latest:
   path: /orders/latest
   controller: paloma_shop.controller.order_resource:latest
   methods: GET
+
+# Addresses
+
+paloma_api_address_validate:
+  path: /address/validate
+  controller: paloma_shop.controller.address_resource::validateAddress
+  methods: POST

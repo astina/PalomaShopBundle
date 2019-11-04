@@ -44,6 +44,10 @@ services:
     class: Paloma\ShopBundle\Controller\Api\OrderResource
     tags: ['controller.service_arguments']
 
+  paloma_shop.controller.address_resource:
+    class: Paloma\ShopBundle\Controller\Api\AddressResource
+    tags: ['controller.service_arguments']
+
   # Catalog
 
   paloma_shop.controller.catalog_home:

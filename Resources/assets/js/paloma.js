@@ -244,6 +244,31 @@ const checkout = {
             .catch(onHttpError);
     },
 
+    validateShippingAddress() {
+        return this._validateAddress('shipping');
+    },
+
+    validateBillingAddress() {
+        return this._validateAddress('billing');
+    },
+
+    _validateAddress(type) {
+
+        if (['billing', 'shipping'].indexOf(type) === -1) {
+            throw 'Invalid address type: ' + type;
+        }
+
+        const order = this.orderDraft();
+        const address = order[type].address || {};
+
+        return axios
+            .post(routes['api_address_validate'], address)
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
     fetchShippingMethods() {
 
         return axios

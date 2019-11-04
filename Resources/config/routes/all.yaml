@@ -19,11 +19,3 @@ paloma_security:
 paloma_api:
   resource: '@PalomaShopBundle/Resources/config/routes/api.yaml'
   prefix: /api
-
-#paloma_checkout:
-#  resource: '@PalomaShopBundle/Resources/config/routes/checkout.yaml'
-#  prefix: /checkout
-#
-#paloma_account:
-#  resource: '@PalomaShopBundle/Resources/config/routes/account.yaml'
-#  prefix: /account
