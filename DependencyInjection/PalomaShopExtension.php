@@ -28,7 +28,7 @@ class PalomaShopExtension extends Extension
         $def->replaceArgument(0, $config['channels']);
 
         $def = $container->getDefinition('paloma_shop.client_factory');
-        $def->replaceArgument(1, $config['client']);
+        $def->replaceArgument(1, $this->createClientFactoryOptions($config));
 
         // TODO only load controllers if needed (if default UI is used)
         $loader->load('services/controllers.yaml');
@@ -37,5 +37,27 @@ class PalomaShopExtension extends Extension
         if ('dev' === $env) {
             $loader->load('services/profiler.yaml');
         }
+    }
+
+    /**
+     * @param array $config
+     * @return array
+     */
+    private function createClientFactoryOptions(array $config)
+    {
+        $defaultChannel = null;
+        $defaultLocale = null;
+        foreach ($config['channels'] as $name => $channel) {
+            if ($channel['is_default']) {
+                $defaultChannel = $name;
+                $defaultLocale = count($channel['locales']) > 0 ? $channel['locales'][0] : null;
+                break;
+            }
+        }
+
+        return $config['client'] + [
+                'channel' => $defaultChannel,
+                'locale' => $defaultLocale,
+            ];
     }
 }
