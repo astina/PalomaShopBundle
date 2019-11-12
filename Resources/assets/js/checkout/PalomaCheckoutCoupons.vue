@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <p v-show="errors" class="help is-danger">
+                <p v-show="errors && couponInput" class="help is-danger">
                     <span v-for="error in errors">
                         {{ $trans('error.coupon.' + error.status, {'coupon': error.coupon})}}
                     </span>

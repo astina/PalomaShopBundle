@@ -6,7 +6,7 @@
         <div v-if="!loading">
 
             <section class="checkout__section m-t">
-                <paloma-checkout-coupons></paloma-checkout-coupons>
+                <paloma-checkout-coupons ref="palomaCheckoutCoupons"></paloma-checkout-coupons>
             </section>
 
             <form class="form form--purchase" @submit.prevent="purchase">
@@ -76,6 +76,12 @@
             },
 
             purchase() {
+
+                // HACK submit un-submitted coupon codes
+                if (this.$refs.palomaCheckoutCoupons.couponInput) {
+                    this.$refs.palomaCheckoutCoupons.submit();
+                    return;
+                }
 
                 this.purchasing = true;
 
