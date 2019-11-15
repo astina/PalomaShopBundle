@@ -31,7 +31,9 @@
 
         mounted() {
             paloma.cart.getRecommendations(3)
-                .then(products => this.products = products);
+                .then(results => {
+                    this.products = results.content;
+                });
         },
 
         methods: {
