@@ -15,9 +15,11 @@
                             <div class="control is-expanded">
                                 <input v-if="showForm"
                                        v-focus
+                                       v-model="searchInput"
                                        class="input is-large" type="search" name="query"
-                                       value=""
-                                       :placeholder="$trans('search.placeholder')">
+                                       required="required"
+                                       :placeholder="$trans('search.placeholder')"
+                                       @keyup="keyUp">
                             </div>
                             <div class="control">
                                 <button type="submit" class="button is-large">
@@ -29,6 +31,9 @@
                         </div>
 
                     </form>
+
+                    <paloma-search-suggestions :suggestions="suggestions" v-if="suggestions"></paloma-search-suggestions>
+
                 </div>
             </div>
         </div>
@@ -38,29 +43,60 @@
 <script>
 
     import paloma from '../paloma';
+    import PalomaSearchSuggestions from './PalomaSearchSuggestions';
+
+    const debounce = {
+        duration: 250,
+        timeout: null,
+    };
 
     export default {
         name: 'PalomaSearch',
 
+        components: {
+            PalomaSearchSuggestions,
+        },
+
         data() {
             return {
+                searchInput: null,
                 searchUrl: paloma.router.resolve('catalog_search'),
                 showForm: false,
                 opened: null,
+                suggestions: null,
             }
         },
 
         methods: {
+
             toggleForm() {
                 this.showForm = !this.showForm;
                 if (this.showForm) {
                     this.opened = new Date();
                 }
             },
+
             closeForm() {
                 if (this.opened && (new Date().getTime() - this.opened.getTime()) > 200) {
                     this.showForm = false;
                 }
+            },
+
+            keyUp() {
+
+                debounce.timeout && window.clearTimeout(debounce.timeout);
+                debounce.timeout = window.setTimeout(() => {
+
+                    if (this.searchInput && this.searchInput.length < 2) {
+                        return;
+                    }
+
+                    paloma.catalog.searchSuggestions(this.searchInput).then(data => {
+                        this.suggestions = data;
+                    });
+
+                }, debounce.duration);
+
             }
         }
     }

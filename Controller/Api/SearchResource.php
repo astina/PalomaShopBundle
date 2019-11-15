@@ -34,32 +34,7 @@ class SearchResource
                 'include' => SerializationConstants::DEFAULT_INCLUDE_PRODUCT_PAGE,
                 'extend' => [
                     '$' => [
-                        '_links' => function() use ($router) {
-                            return [
-                                'product' => [
-                                    'href' => $router->generate('paloma_catalog_product', [
-                                        'itemNumber' => '__itemNumber__',
-                                        'productSlug' => '__productSlug__',
-                                    ]),
-                                    'templated' => true,
-                                ],
-                                'category_product' => [
-                                    'href' => $router->generate('paloma_catalog_category_product', [
-                                        'categorySlug' => '__categorySlug__',
-                                        'categoryCode' => '__categoryCode__',
-                                        'itemNumber' => '__itemNumber__',
-                                        'productSlug' => '__productSlug__',
-                                    ]),
-                                    'templated' => true,
-                                ],
-                                'get' => [
-                                    'href' => $router->generate('paloma_api_products_get', [
-                                        'itemNumber' => '__itemNumber__',
-                                    ]),
-                                    'templated' => true,
-                                ],
-                            ];
-                        },
+                        '_links' => $this->createProductLinks($router),
                     ]
                 ],
             ]);
@@ -71,7 +46,7 @@ class SearchResource
         }
     }
 
-    public function suggestions(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request)
+    public function suggestions(CatalogInterface $catalog, PalomaSerializer $serializer, Request $request, RouterInterface $router)
     {
         $query = trim($request->get('query', ''));
 
@@ -83,10 +58,57 @@ class SearchResource
 
             $suggestions = $catalog->getSearchSuggestions($query);
 
-            return $serializer->toJsonResponse($suggestions);
+            return $serializer->toJsonResponse($suggestions, [
+                'extend' => [
+                    '$' => [
+                        '_links' => $this->createProductLinks($router)
+                    ]
+                ],
+            ]);
 
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         }
+    }
+
+    /**
+     * @param RouterInterface $router
+     * @return \Closure
+     */
+    private function createProductLinks(RouterInterface $router): \Closure
+    {
+        return function() use ($router) {
+            return [
+                'product' => [
+                    'href' => $router->generate('paloma_catalog_product', [
+                        'itemNumber' => '__itemNumber__',
+                        'productSlug' => '__productSlug__',
+                    ]),
+                    'templated' => true,
+                ],
+                'category_product' => [
+                    'href' => $router->generate('paloma_catalog_category_product', [
+                        'categorySlug' => '__categorySlug__',
+                        'categoryCode' => '__categoryCode__',
+                        'itemNumber' => '__itemNumber__',
+                        'productSlug' => '__productSlug__',
+                    ]),
+                    'templated' => true,
+                ],
+                'get' => [
+                    'href' => $router->generate('paloma_api_products_get', [
+                        'itemNumber' => '__itemNumber__',
+                    ]),
+                    'templated' => true,
+                ],
+                'category' => [
+                    'href' => $router->generate('paloma_catalog_category', [
+                        'categorySlug' => '__categorySlug__',
+                        'categoryCode' => '__categoryCode__',
+                    ]),
+                    'templated' => true,
+                ],
+            ];
+        };
     }
 }

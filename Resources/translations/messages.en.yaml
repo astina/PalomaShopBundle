@@ -5,6 +5,8 @@ locale:
 
 search:
   placeholder: Search...
+  suggested_products: Product Suggestions
+  suggested_categories: Category Suggestions
 
 catalog:
   categories: Categories

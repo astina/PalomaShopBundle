@@ -30,10 +30,12 @@
         </div>
     </section>
 
-    <section class="section">
-        <div class="container">
-            {% include '@PalomaShop/catalog/product/list.html.twig' %}
-        </div>
-    </section>
+    {% if search_query %}
+        <section class="section">
+            <div class="container">
+                {% include '@PalomaShop/catalog/product/list.html.twig' %}
+            </div>
+        </section>
+    {% endif %}
 
 {% endblock %}

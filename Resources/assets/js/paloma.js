@@ -86,6 +86,15 @@ const catalog = {
             .catch(onHttpError);
     },
 
+    searchSuggestions(query) {
+        return axios
+            .get(routes['api_search_suggestions'], {params: {query: query}})
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
     product(itemNumber) {
         return axios
             .get(routes['api_products_get'], {params: {itemNumber: itemNumber}})
