@@ -45,7 +45,7 @@ class GoogleSitemapGenerator
         $context->setBaseUrl($urlComponents['path'] ?? null);
 
         $client = $this->clientFactory->create($channel, $locale, '');
-        $catalog = new Catalog($client);
+        $catalog = new Catalog($client, new GoogleSitemapPricingContextProvider());
 
         $xml = new SimpleXMLElement('<urlset/>');
         $xml->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
