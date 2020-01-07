@@ -56,6 +56,9 @@
 
 .product-summary__reduction .badge {
   @extend .badge--red;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .product-summary__price-info {

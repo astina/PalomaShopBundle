@@ -235,7 +235,7 @@ class CheckoutResource
         } catch (BackendUnavailable $e) {
             return new Response('Service unavailable', 503);
         } catch (UnknownPaymentMethod $e) {
-            return new Response('Unknown shipping method', 404);
+            return new Response('Unknown payment method', 404);
         }
     }
 

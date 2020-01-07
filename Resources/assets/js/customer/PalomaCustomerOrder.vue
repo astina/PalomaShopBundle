@@ -84,7 +84,7 @@
                     </div>
                 </div>
 
-                <div v-for="tax in order.includedTaxes">
+                <div v-for="tax in order.taxes">
                     <paloma-customer-order-adjustment
                             :title="tax.description"
                             :price="tax.price"
@@ -114,7 +114,7 @@
                     </div>
                 </div>
 
-                <div v-for="tax in order.includedTaxes">
+                <div v-for="tax in order.taxes">
                     <paloma-customer-order-adjustment
                             :title="$trans('order.tax_incl') + ' ' + tax.description"
                             :price="tax.price"
@@ -251,6 +251,12 @@
             priceDisplay() {
                 if (!this.order) {
                     return 'gross';
+                }
+
+                if (this.order.taxIncluded !== undefined) {
+                    return this.order.taxIncluded
+                        ? 'gross'
+                        : 'net';
                 }
 
                 const hasTaxExcludedItems = this.order.items.find(item => {
