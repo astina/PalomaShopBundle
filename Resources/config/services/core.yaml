@@ -33,7 +33,7 @@ services:
 
   paloma_shop.client:
     class: Paloma\Shop\PalomaClientInterface
-    factory: 'paloma_shop.client_factory:create'
+    factory: ['@paloma_shop.client_factory', 'create']
 
   paloma_shop.config:
     class: Paloma\ShopBundle\PalomaConfig
