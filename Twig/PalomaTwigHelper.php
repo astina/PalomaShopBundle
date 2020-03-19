@@ -21,7 +21,9 @@ class PalomaTwigHelper
 
     public function getChannel(): string
     {
-        return $this->requestStack->getMasterRequest()->attributes->get('paloma.channel');
+        $channel = $this->requestStack->getMasterRequest()->attributes->get('paloma.channel');
+
+        return $channel ?: $this->getDefaultChannel();
     }
 
     public function getLocales(): array
@@ -32,5 +34,18 @@ class PalomaTwigHelper
     public function getSupportEmailAddress()
     {
         return $this->config['channels'][$this->getChannel()]['support_mail'];
+    }
+
+    private function getDefaultChannel()
+    {
+        foreach ($this->config['channels'] as $name => $channel) {
+            if ($channel['is_default']) {
+                return $name;
+            }
+        }
+
+        foreach ($this->config['channels'] as $name => $channel) {
+            return $name;
+        }
     }
 }
