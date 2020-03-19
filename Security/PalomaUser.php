@@ -26,7 +26,7 @@ class PalomaUser implements UserInterface
     /**
      * @return UserDetailsInterface
      */
-    public function getDetails(): UserDetailsInterface
+    public function getDetails(): ?UserDetailsInterface
     {
         return $this->details;
     }
