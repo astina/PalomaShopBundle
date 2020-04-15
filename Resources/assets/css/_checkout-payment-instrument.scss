@@ -29,10 +29,10 @@
 
 .checkout-payment-instrument__expiration {
   display: block;
+  width: 20%;
   font-size: $size-8;
   color: $grey;
 }
-
 
 @media screen and (max-width: 768px) {
 

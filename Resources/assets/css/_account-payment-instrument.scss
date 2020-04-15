@@ -9,6 +9,7 @@
 
 .account-payment-instrument__type {
   padding-right: 10px;
+  width: 25%;
 }
 
 .account-payment-instrument__card-number {
@@ -18,4 +19,11 @@
 
 .account-payment-instrument__expiration {
   padding-right: 10px;
+  width: 20%;
+  color: $grey;
+  font-size: $size-7;
+}
+
+.account-payment-instrument__actions {
+  text-align: right;
 }
