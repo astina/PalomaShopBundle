@@ -8,7 +8,7 @@
             </div>
 
             <div v-for="method in methods"
-                 @click.prevent="selected = method.name"
+                 @click.prevent="selectPaymentMethod(method)"
                  :class="{'checkout-option--active': method.name === selected}"
                  class="checkout-option">
 
@@ -26,6 +26,48 @@
                     <p class="checkout-option__text">{{ $trans('payment.info.' + method.name) }}</p>
                     <div class="checkout-option__content">
                         <paloma-content :id="'payment-' + method.name"></paloma-content>
+                    </div>
+
+                    <div class="checkout-option__saved" v-if="method.paymentInstruments.length > 0">
+
+                        <div class="checkout-payment-instrument checkout-payment-instrument--none"
+                             @click.prevent="selectedInstrument = null"
+                             :class="{'checkout-payment-instrument--active': method.name === selected && !selectedInstrument}">
+                            <div class="checkout-payment-instrument__control">
+                                <span class="icon">
+                                    <i v-if="method.name === selected && !selectedInstrument" class="far fa-dot-circle"></i>
+                                    <i v-else class="far fa-circle"></i>
+                                </span>
+                            </div>
+                            <div class="checkout-payment-instrument__info">
+                                <span class="checkout-payment-instrument__name">
+                                    {{ $trans('payment.instrument.none') }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div v-for="instrument in method.paymentInstruments"
+                             @click.prevent="selectedInstrument = instrument.id"
+                             :class="{'checkout-payment-instrument--active': instrument.id === selectedInstrument}"
+                             class="checkout-payment-instrument">
+
+                            <div class="checkout-payment-instrument__control">
+                                <span class="icon">
+                                    <i v-if="instrument.id === selectedInstrument" class="far fa-dot-circle"></i>
+                                    <i v-else class="far fa-circle"></i>
+                                </span>
+                            </div>
+
+                            <div class="checkout-payment-instrument__info">
+                                <span class="checkout-payment-instrument__name">
+                                    {{ instrument.type }}
+                                    {{ instrument.maskedCardNumber }}
+                                </span>
+                                <span class="checkout-payment-instrument__expiration">
+                                    {{ instrument.expirationMonth }}/{{ instrument.expirationYear }}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -93,6 +135,7 @@
                 order: order,
                 methods: null,
                 selected: null,
+                selectedInstrument: null,
                 loading: false,
             }
         },
@@ -105,7 +148,12 @@
                 .fetchPaymentMethods()
                 .then(data => {
                     this.methods = data;
-                    this.selected = this.methods.find(m => m.selected).name;
+                    const selectedMethod = this.methods.find(m => m.selected);
+                    this.selected = selectedMethod && selectedMethod.name;
+                    if (selectedMethod) {
+                        const selectedInstrument = (selectedMethod.paymentInstruments || []).find(i => i.selected);
+                        this.selectedInstrument = selectedInstrument && selectedInstrument.id;
+                    }
                 })
                 .finally(() => {
                     this.loading = false;
@@ -119,13 +167,21 @@
                 this.loading = true;
 
                 paloma.checkout
-                    .setPaymentMethod(this.selected)
+                    .setPaymentMethod(this.selected, this.selectedInstrument)
                     .then(() => {
                         this.$emit('payment-method-select');
                     })
                     .finally(() => {
                         this.loading = false;
                     });
+            },
+
+            selectPaymentMethod(method) {
+                this.selected = method.name;
+                if (this.selectedInstrument
+                    && !(method.paymentInstruments || []).find(i => i.id === this.selectedInstrument)) {
+                    this.selectedInstrument = null;
+                }
             }
         }
     }

@@ -1,0 +1,21 @@
+.account-payment-instrument {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $grey-lighter;
+}
+
+.account-payment-instrument__type {
+  padding-right: 10px;
+}
+
+.account-payment-instrument__card-number {
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+.account-payment-instrument__expiration {
+  padding-right: 10px;
+}

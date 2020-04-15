@@ -176,4 +176,31 @@ class CustomerResource
             return new JsonResponse(null, $e->getHttpStatus());
         }
     }
+
+    public function listPaymentInstruments(CustomersInterface $customers, PalomaSerializer $serializer)
+    {
+        try {
+            $paymentInstruments = $customers->listPaymentInstruments();
+
+            return $serializer->toJsonResponse($paymentInstruments);
+
+        } catch (BackendUnavailable $e) {
+            return new JsonResponse(null, $e->getHttpStatus());
+        }
+    }
+
+    public function deletePaymentInstrument(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
+    {
+        $paymentInstrumentId = $request->get('id');
+
+        try {
+
+            $customers->deletePaymentInstrument($paymentInstrumentId);
+
+            return new Response(null, 202);
+
+        } catch (BackendUnavailable $e) {
+            return new JsonResponse(null, $e->getHttpStatus());
+        }
+    }
 }

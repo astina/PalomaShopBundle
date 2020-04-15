@@ -33,9 +33,13 @@ class TestKernel extends Kernel
     {
         $routes->import(__DIR__ . '/../Resources/config/routes/all.yaml');
 
-        $routes->add('/', null, 'index');
-        $routes->add('/register/confirm', null, 'paloma_register_confirm');
-        $routes->add('/password_reset/confirm', null, 'paloma_password_reset_confirm');
+        $routes->add('/', 'Paloma\ShopBundle\Tests\TestKernel::noopController', 'index');
+        $routes->add('/register/confirm', 'Paloma\ShopBundle\Tests\TestKernel::noopController', 'paloma_register_confirm');
+        $routes->add('/password_reset/confirm', 'Paloma\ShopBundle\Tests\TestKernel::noopController', 'paloma_password_reset_confirm');
+    }
+
+    public function noopController()
+    {
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)

@@ -1,0 +1,32 @@
+.checkout-payment-instrument {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid $grey-light;
+  border-radius: 3px;
+  height: 67px;
+}
+
+.checkout-payment-instrument:hover {
+  background-color: $white-bis;
+}
+
+.checkout-payment-instrument__control {
+  padding-right: 10px;
+}
+
+.checkout-payment-instrument__info {
+  flex-grow: 1;
+}
+
+.checkout-payment-instrument__name {
+  display: block;
+}
+
+.checkout-payment-instrument__expiration {
+  display: block;
+  font-size: $size-7;
+  color: $grey;
+}

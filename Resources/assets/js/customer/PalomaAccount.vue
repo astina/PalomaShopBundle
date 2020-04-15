@@ -26,6 +26,7 @@
     import PalomaAccountOrderDetails from "./PalomaAccountOrderDetails";
     import PalomaAccountAddressList from "./PalomaAccountAddressList";
     import PalomaAccountAddressForm from "./PalomaAccountAddressForm";
+    import PalomaAccountPaymentInstruments from "./PalomaAccountPaymentInstruments";
     import PalomaAccountEmail from "./PalomaAccountEmail";
     import PalomaAccountPassword from "./PalomaAccountPassword";
     import PalomaNotifications from "../common/PalomaNotifications";
@@ -73,6 +74,15 @@
             path: '/addresses/:type',
             name: 'address_form',
             component: PalomaAccountAddressForm
+        },
+        {
+            path: '/payment',
+            name: 'payment_instruments',
+            component: PalomaAccountPaymentInstruments,
+            meta: {
+                order: 30,
+                group: 'customer',
+            }
         },
         {
             path: '/email',

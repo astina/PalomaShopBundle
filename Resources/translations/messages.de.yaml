@@ -89,6 +89,9 @@ customer:
       contact: Kontaktadresse
       shipping: Lieferadresse
       billing: Rechnungsadresse
+    payment_instruments: Meine Zahlungsmittel
+    no_payment_instruments: Keine gespeicherten Zahlungsmittel vorhanden
+    confirm_delete_payment_instrument: Zahlungsmittel sicher löschen?
   order:
     title: Bestellung %order_number% vom %order_date%
     order_total: Total
@@ -252,6 +255,8 @@ payment:
     paypal: Nach Abschicken der Bestellung werden Sie zu PayPal weitergeleitet.
     postfinance: Nach Abschicken der Bestellung werden Sie zu PostFinance weitergeleitet.
     twint: Nach Abschicken der Bestellung werden Sie zu Twint weitergeleitet.
+  instrument:
+    none: Neue Karte
 
 error:
   general:

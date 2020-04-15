@@ -190,6 +190,16 @@ paloma_api_customer_exists_email:
   controller: paloma_shop.controller.customer_resource:existsCustomerByEmailAddress
   methods: GET
 
+paloma_api_customer_payment_instruments_list:
+  path: /customers/payment_instruments/list
+  controller: paloma_shop.controller.customer_resource:listPaymentInstruments
+  methods: GET
+
+paloma_api_customer_payment_instruments_delete:
+  path: /customers/payment_instruments/delete
+  controller: paloma_shop.controller.customer_resource:deletePaymentInstrument
+  methods: DELETE
+
 # User
 
 paloma_api_user_authenticate:

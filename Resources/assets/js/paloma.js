@@ -312,11 +312,12 @@ const checkout = {
             .catch(onHttpError);
     },
 
-    setPaymentMethod(method) {
+    setPaymentMethod(method, instrument) {
 
         return axios
             .post(routes['api_checkout_payment_methods_set'], {
                 method: method,
+                paymentInstrument: instrument,
             })
             .then(response => {
                 this.store.commit('updateOrder', response.data);
@@ -489,6 +490,28 @@ const customer = {
 
         return axios
             .get(routes['api_orders_latest'])
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
+    listPaymentInstruments() {
+
+        return axios
+            .get(routes['api_customer_payment_instruments_list'])
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
+    deletePaymentInstrument(paymentInstrumentId) {
+
+        return axios
+            .delete(routes['api_customer_payment_instruments_delete'], { params: {
+                id: paymentInstrumentId,
+            }})
             .then(response => {
                 return response.data;
             })

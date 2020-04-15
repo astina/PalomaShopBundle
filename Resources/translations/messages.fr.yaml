@@ -87,6 +87,9 @@ customer:
       contact: Adresse de contact
       shipping: Adresse de livraison
       billing: Adresse de facturation
+    payment_instruments: Mes moyens de paiement
+    no_payment_instruments: Aucun moyen de paiement disponible
+    confirm_delete_payment_instrument: Êtes-vous sûr de vouloir supprimer ce moyen de paiement ?
   order:
     title: Commande %order_number% à partir du %order_date%
     order_total: Total
@@ -247,6 +250,8 @@ payment:
     paypal: Après avoir passé la commande, vous serez redirigé vers PayPal.
     postfinance: Après avoir passé la commande, vous serez redirigé vers PostFinance.
     twint: Après avoir passé la commande, vous serez redirigé vers Twint.
+  instrument:
+    none: Nouvelle carte
 
 error:
   general:

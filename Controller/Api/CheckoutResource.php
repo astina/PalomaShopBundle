@@ -221,6 +221,7 @@ class CheckoutResource
         $data = $serializer->toArray($request->getContent());
 
         $method = $data['method'] ?? null;
+        $paymentInstrument = $data['paymentInstrument'] ?? null;
 
         if (!$method) {
             return new Response('Parameter `method` missing', 400);
@@ -228,7 +229,7 @@ class CheckoutResource
 
         try {
 
-            $order = $checkout->setPaymentMethod($method);
+            $order = $checkout->setPaymentMethod($method, $paymentInstrument);
 
             return $serializer->toJsonResponse($order);
 

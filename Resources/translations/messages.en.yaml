@@ -89,6 +89,9 @@ customer:
       contact: Contact address
       shipping: Delivery address
       billing: Billing address
+    payment_instruments: My payment means
+    no_payment_instruments: No stored payment means available
+    confirm_delete_payment_instrument: Are you sure you want to delete this payment means?
   order:
     title: Order %order_number% from %order_date%
     order_total: Total
@@ -249,6 +252,8 @@ payment:
     paypal: After submitting the order you will be forwarded to PayPal.
     postfinance: After submitting the order you will be forwarded to PostFinance.
     twint: After submitting the order you will be forwarded to Twint.
+  instrument:
+    none: New card
 
 error:
   general:
