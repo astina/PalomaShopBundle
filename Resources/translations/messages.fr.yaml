@@ -263,6 +263,7 @@ error:
   email:
     required: Veuillez entrer une adresse e-mail.
     invalid: Cette adresse e-mail n'est pas valide.
+    differs: Veuillez entrer deux fois la même adresse e-mail.
   password:
     too_short: Le mot de passe doit comporter au moins %min% caractères.
     differs: Veuillez entrer deux fois le même mot de passe.
@@ -292,6 +293,7 @@ error:
 
 field:
   email: Adresse e-mail
+  email_confirm: Confirmer l'adresse e-mail
   password: Mot de passe
   password_current: Mot de passe actuel
   password_new: Nouveau mot de passe

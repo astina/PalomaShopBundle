@@ -268,6 +268,7 @@ error:
   email:
     required: Bitte geben Sie eine E-Mail-Addresse ein.
     invalid: Diese E-Mail-Adresse ist ungültig.
+    differs: Bitte geben Sie zweimal dieselbe E-Mail-Adresse ein.
   password:
     too_short: Das Passwort muss mindestens %min% Zeichen lang sein.
     differs: Bitte geben Sie zweimal dasselbe Passwort ein.
@@ -297,6 +298,7 @@ error:
 
 field:
   email: E-Mail-Adresse
+  email_confirm: E-Mail-Adresse bestätigen
   password: Passwort
   password_current: Aktuelles Passwort
   password_new: Neues Passwort

@@ -265,6 +265,7 @@ error:
   email:
     required: Please enter an e-mail address.
     invalid: This email address is invalid.
+    differs: Please enter the same e-mail address twice.
   password:
     too_short: The password must be at least %min% characters long.
     differs: Please enter the same password twice.
@@ -294,6 +295,7 @@ error:
 
 field:
   email: Email address
+  email_confirm: Confirm email address
   password: Password
   password_current: Current password
   password_new: New Password

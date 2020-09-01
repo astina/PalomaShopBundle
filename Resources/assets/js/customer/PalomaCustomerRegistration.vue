@@ -72,6 +72,26 @@
 
                     </div>
                     <div class="column">
+
+                        <div class="field form__field form__field--required"
+                             v-if="confirmEmailAddress"
+                             :class="{ 'form__field--invalid': $v.customer._emailAddress_confirm.$error }">
+                            <label class="label" for="c__email_confirm">{{ $trans('field.email_confirm') }}</label>
+                            <div class="control">
+                                <input v-model="customer._emailAddress_confirm" class="input" type="email" id="c__email_confirm" required
+                                       name="email">
+                            </div>
+                            <p v-if="!$v.customer._emailAddress_confirm.required" class="help is-danger">
+                                {{ $trans('error.email.required') }}
+                            </p>
+                            <p v-if="!$v.customer._emailAddress_confirm.email" class="help is-danger">
+                                {{ $trans('error.email.invalid') }}
+                            </p>
+                            <p v-if="!$v.customer._emailAddress_confirm.confirmEmailAddress" class="help is-danger">
+                                {{ $trans('error.email.differs') }}
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
@@ -178,14 +198,14 @@
 
 <script>
 
-    import paloma from "../paloma";
-    import config from '../paloma-config';
-    import utils from '../utils';
-    import {validationMixin} from 'vuelidate';
-    import {email, maxLength, minLength, required, requiredIf, sameAs} from 'vuelidate/lib/validators';
-    import PalomaContent from "../common/PalomaContent";
+import paloma from "../paloma";
+import config from '../paloma-config';
+import utils from '../utils';
+import {validationMixin} from 'vuelidate';
+import {email, maxLength, minLength, required, requiredIf, sameAs} from 'vuelidate/lib/validators';
+import PalomaContent from "../common/PalomaContent";
 
-    const isValidDate = utils.validators.isValidDate;
+const isValidDate = utils.validators.isValidDate;
 
     export default {
         name: "PalomaCustomerRegistration",
@@ -197,46 +217,59 @@
             return {
                 customer: {},
                 errors: [],
-                loading: false
+                loading: false,
+                confirmEmailAddress: config.customer.confirmEmailAddress,
             }
         },
 
-        validations: {
-            customer: {
-                firstName: {
-                    required,
-                    maxLength: maxLength(30)
-                },
-                lastName: {
-                    required,
-                    maxLength: maxLength(30)
-                },
-                emailAddress: {
-                    required,
-                    email
-                },
-                gender: {
-                    required: requiredIf(() => {
-                        return config.customer.requireGender;
-                    }),
-                },
-                dateOfBirth: {
-                    required: requiredIf(() => {
-                        return config.customer.requireDateOfBirth;
-                    }),
-                    isValidDate
-                },
-                phoneNumber: {
-                    maxLength: maxLength(30)
-                },
-                password: {
-                    required,
-                    minLength: minLength(6)
-                },
-                _password_confirm: {
-                    confirmPassword: sameAs('password')
+        validations() {
+            const validations = {
+                customer: {
+                    firstName: {
+                        required,
+                        maxLength: maxLength(30)
+                    },
+                    lastName: {
+                        required,
+                        maxLength: maxLength(30)
+                    },
+                    emailAddress: {
+                        required,
+                        email
+                    },
+                    gender: {
+                        required: requiredIf(() => {
+                            return config.customer.requireGender;
+                        }),
+                    },
+                    dateOfBirth: {
+                        required: requiredIf(() => {
+                            return config.customer.requireDateOfBirth;
+                        }),
+                        isValidDate
+                    },
+                    phoneNumber: {
+                        maxLength: maxLength(30)
+                    },
+                    password: {
+                        required,
+                        minLength: minLength(6)
+                    },
+                    _password_confirm: {
+                        confirmPassword: sameAs('password')
+                    }
                 }
             }
+
+            if (config.customer.confirmEmailAddress) {
+                validations.customer._emailAddress_confirm = {
+                    required: true,
+                    email,
+                    confirmEmailAddress: sameAs('emailAddress')
+                };
+            }
+
+            return validations;
         },
 
         methods: {

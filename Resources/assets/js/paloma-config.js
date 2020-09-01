@@ -13,7 +13,7 @@ const config =  {
     checkout: {
 
         /**
-         * If true, users are allowed to make purchases as guest (not logged in)
+         * If true, users are allowed to make purchases as guest (not logged in).
          */
         allowGuests: true,
     },
@@ -23,6 +23,11 @@ const config =  {
         requireGender: false,
 
         requireDateOfBirth: false,
+
+        /**
+         * If true, an email address confirmation field is displayed during customer registration.
+         */
+        confirmEmailAddress: false,
     }
 
 };
