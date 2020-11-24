@@ -6,7 +6,7 @@
         "ext-json": "*",
         "ext-dom": "*",
         "ext-simplexml": "*",
-        "paloma/shop-client": "^3.2.0",
+        "paloma/shop-client": "^3.3.0",
         "symfony/serializer": "^4.4,<4.5",
         "symfony/property-access": "^4.4,<4.5",
         "symfony/security": "^4.4,<4.5",

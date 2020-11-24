@@ -35,10 +35,14 @@ catalog:
   search:
     title: 'Suche'
 
+  per_unit: 'pro'
+
 cart:
   title: Warenkorb
   empty: Ihr Warenkorb ist leer
   units_count: '%count% Artikel'
+  n_items_for: '%quantity% × %unit%'
+  n_items_at: '%quantity% × %unit% à'
   item_added: 'wurde Ihrem Warenkorb hinzugefügt.'
   open: Warenkorb öffnen
   to_checkout: Zur Kasse gehen

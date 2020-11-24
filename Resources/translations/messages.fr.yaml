@@ -35,10 +35,14 @@ catalog:
   search:
     title: 'Chercher'
 
+  per_unit: 'par'
+
 cart:
   title: Panier
   empty: Votre panier est vide
   units_count: '%count% articles'
+  n_items_for: '%quantity% × %unit%'
+  n_items_at: '%quantity% × %unit% à'
   item_added: 'a été ajouté à votre panier.'
   open: Ouvrir le panier
   to_checkout: Aller à la caisse

@@ -9,7 +9,7 @@
         </div>
 
         <div class="product-summary__price">
-            <paloma-price :price="variant.price" :original="variant.originalPrice"></paloma-price>
+            <paloma-price :price="variant.price" :original="variant.originalPrice" :unit="variant.priceUnit"></paloma-price>
             <span v-if="variant.reductionPercent" class="product-summary__reduction">
                 <span class="badge">{{ variant.reductionPercent }}</span>
             </span>
@@ -51,12 +51,12 @@
 
 <script>
 
-    import paloma from "../paloma";
-    import PalomaPrice from "../common/PalomaPrice";
-    import PalomaCartItemAdded from "../cart/PalomaCartItemAdded";
-    import PalomaProductOption from "./PalomaProductOption";
+import paloma from "../paloma";
+import PalomaPrice from "../common/PalomaPrice";
+import PalomaCartItemAdded from "../cart/PalomaCartItemAdded";
+import PalomaProductOption from "./PalomaProductOption";
 
-    export default {
+export default {
         name: "PalomaProductSelect",
 
         components: {

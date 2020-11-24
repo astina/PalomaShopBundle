@@ -62,6 +62,9 @@
         </div>
 
         <div class="cart-item__price">
+            <span v-if="item.unit" class="cart-item__price-unit">
+                {{ $trans('cart.n_items_for', {quantity: quantity, unit: item.unit}) }}
+            </span>
             <paloma-price :price="priceDisplay === 'net' ? item.netItemPrice : item.itemPrice"></paloma-price>
         </div>
 
@@ -70,11 +73,11 @@
 
 <script>
 
-    import paloma from "../paloma";
-    import PalomaImage from "../common/PalomaImage";
-    import PalomaPrice from "../common/PalomaPrice";
+import paloma from "../paloma";
+import PalomaImage from "../common/PalomaImage";
+import PalomaPrice from "../common/PalomaPrice";
 
-    export default {
+export default {
         name: "PalomaCartItem",
 
         components: {PalomaPrice, PalomaImage},

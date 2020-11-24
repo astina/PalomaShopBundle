@@ -28,7 +28,7 @@
 
         <div class="customer-order-item__price">
             <div class="customer-order-item__unit">
-                {{ item.quantity }} &times;
+                {{ item.unit ? $trans('cart.n_items_at', {quantity: item.quantity, unit: item.unit}) : (item.quantity + '&times;') }}
                 <paloma-price :price="item.unitPrice" :original="item.originalPrice"></paloma-price>
             </div>
             <paloma-price :price="item.itemPrice"></paloma-price>
@@ -37,10 +37,10 @@
 </template>
 
 <script>
-    import PalomaImage from "../common/PalomaImage";
-    import PalomaPrice from "../common/PalomaPrice";
+import PalomaImage from "../common/PalomaImage";
+import PalomaPrice from "../common/PalomaPrice";
 
-    export default {
+export default {
         name: "PalomaCustomerOrderItem",
 
         components: {PalomaPrice, PalomaImage},

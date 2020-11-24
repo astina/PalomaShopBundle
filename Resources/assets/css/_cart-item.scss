@@ -42,9 +42,13 @@
 }
 
 .cart-item__price {
-  width: 20%;
+  width: 30%;
   margin-left: 20px;
   text-align: right;
+}
+
+.cart-item__price-unit {
+  font-size: $size-7;
 }
 
 .cart-item__quantity .input {

@@ -9,6 +9,10 @@
         <span v-if="original" class="price__original">
             {{ original }}
         </span>
+        <span v-if="unit" class="price__unit">
+            {{ $trans('catalog.per_unit') }}
+            {{ unit }}
+        </span>
     </span>
 </template>
 
@@ -18,7 +22,8 @@
 
         props: {
             price: String,
-            original: String
+            original: String,
+            unit: String,
         },
 
         computed: {
