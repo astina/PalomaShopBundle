@@ -41,8 +41,8 @@ cart:
   title: Shopping Cart
   empty: Your shopping cart is empty
   units_count: '%count% articles'
-  n_items_for: '%quantity% × %unit%'
-  n_items_at: '%quantity% × %unit% at'
+  n_items_for: '%quantity% %unit%'
+  n_items_at: '%quantity% %unit% at'
   item_added: 'was added to your shopping cart.'
   open: Open shopping cart
   to_checkout: Go to checkout
