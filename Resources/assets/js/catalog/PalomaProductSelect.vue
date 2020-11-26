@@ -52,6 +52,7 @@
 <script>
 
 import paloma from "../paloma";
+import config from '../paloma-config';
 import PalomaPrice from "../common/PalomaPrice";
 import PalomaCartItemAdded from "../cart/PalomaCartItemAdded";
 import PalomaProductOption from "./PalomaProductOption";
@@ -113,25 +114,28 @@ export default {
                     this.quantity
                 ).then(item => {
 
-                    this.cartItem = item;
+                    if (config.catalog.showCartAfterItemAdded) {
+                        paloma.events.$emit('paloma.cart_show', item);
+                    } else {
 
-                    window.setTimeout(() => {
-                        // make the "item added" box disappear
-                        this.cartItem = null;
-                    }, 5000);
+                        this.cartItem = item;
+
+                        window.setTimeout(() => {
+                            // make the "item added" box disappear
+                            this.cartItem = null;
+                        }, 5000);
+                    }
 
                     // refresh product
                     paloma.catalog.product(this.product.itemNumber)
                         .then(product => {
-
-                            this.loading = false;
 
                             Object.assign(this.product, product);
                             this.variant = product.variants.find(v => v.sku === item.sku);
                             this._refreshOptions(this.options, this.product, this.variant);
                         });
 
-                }).catch(() => {
+                }).finally(() => {
                     this.loading = false;
                 });
             },

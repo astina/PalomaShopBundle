@@ -10,6 +10,14 @@ const config =  {
         orderInvoicePdfDownloadAvailable: false
     },
 
+    catalog: {
+
+        /**
+         * If true, the cart is opened after an item was added (instead of the PalomaCartItemAdded component)
+         */
+        showCartAfterItemAdded: false
+    },
+
     checkout: {
 
         /**
