@@ -10,13 +10,13 @@ class ProductResourceTest extends FunctionalTest
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/products/get?itemNumber=6303640');
+        $client->request('GET', '/api/products/get?itemNumber=INTEGRATION_TEST');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $category = json_decode($client->getResponse()->getContent(), true);
 
-        $this->assertEquals('6303640', $category['itemNumber']);
+        $this->assertEquals('INTEGRATION_TEST', $category['itemNumber']);
     }
 
     public function testGetNoItemNumber()
@@ -41,7 +41,7 @@ class ProductResourceTest extends FunctionalTest
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/products/similar?itemNumber=6303640');
+        $client->request('GET', '/api/products/similar?itemNumber=INTEGRATION_TEST');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
@@ -50,7 +50,7 @@ class ProductResourceTest extends FunctionalTest
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/products/recommended?itemNumber=6303640');
+        $client->request('GET', '/api/products/recommended?itemNumber=INTEGRATION_TEST');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

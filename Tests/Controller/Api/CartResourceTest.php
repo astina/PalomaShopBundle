@@ -30,7 +30,7 @@ class CartResourceTest extends FunctionalTest
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
-            '{ "sku": "5881388", "quantity": 1 }'
+            '{ "sku": "INTEGRATION_TEST", "quantity": 1 }'
         );
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());

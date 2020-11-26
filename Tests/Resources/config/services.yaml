@@ -1,4 +1,2 @@
 services:
 
-  security.token_storage:
-    class: Paloma\ShopBundle\Tests\Security\TestTokenStorage
