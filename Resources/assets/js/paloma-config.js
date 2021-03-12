@@ -13,9 +13,14 @@ const config =  {
     catalog: {
 
         /**
-         * If true, the cart is opened after an item was added (instead of the PalomaCartItemAdded component)
+         * If true, the cart is opened after an item was added (instead of the PalomaCartItemAdded component).
          */
-        showCartAfterItemAdded: false
+        showCartAfterItemAdded: false,
+
+        /**
+         * Which image size to use to display product card images.
+         */
+        productCardImageSize: 'medium',
     },
 
     checkout: {

@@ -7,7 +7,7 @@
                 <div class="product-card__image-inner">
                     <paloma-image
                             :image="product.firstImage"
-                            size="medium"
+                            :size="productCardImageSize"
                     ></paloma-image>
                 </div>
             </div>
@@ -53,10 +53,12 @@
 </template>
 
 <script>
-    import PalomaImage from "../common/PalomaImage";
-    import PalomaPrice from "../common/PalomaPrice";
 
-    export default {
+import config from "../paloma-config";
+import PalomaImage from "../common/PalomaImage";
+import PalomaPrice from "../common/PalomaPrice";
+
+export default {
         name: "PalomaProductCard",
 
         components: {PalomaPrice, PalomaImage},
@@ -75,7 +77,8 @@
 
             return {
                 productCategory: productCategory,
-                badges: badges
+                badges: badges,
+                productCardImageSize: config.catalog.productCardImageSize,
             }
         },
 

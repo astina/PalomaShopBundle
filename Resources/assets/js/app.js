@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import numeral from 'numeral';
+import VueLazyload from 'vue-lazyload'
+
 
 // TODO create plugin
 Vue.prototype.$trans = function(key, params) {
@@ -39,6 +41,8 @@ numeral.locale('de'); // TODO proper localization //document.querySelector('html
 Vue.filter('formatNumber', function (value) {
     return numeral(value).format('0,0');
 });
+
+Vue.use(VueLazyload);
 
 require('./paloma-category-nav');
 

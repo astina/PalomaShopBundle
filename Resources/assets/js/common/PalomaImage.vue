@@ -1,6 +1,6 @@
 <template>
     <div class="image" :class="cssClass">
-        <img v-if="sourceUrl" v-bind:src="sourceUrl" v-bind:alt="imageTitle"/>
+        <img v-if="sourceUrl" v-lazy="sourceUrl" v-bind:alt="imageTitle"/>
     </div>
 </template>
 
