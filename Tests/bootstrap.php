@@ -11,3 +11,5 @@ $ phpunit
 EOT;
     exit(1);
 }
+
+\PHPUnit\Framework\Error\Deprecated::$enabled = false;
