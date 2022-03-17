@@ -8,7 +8,7 @@ import PalomaProductImages from "./catalog/PalomaProductImages";
 const productListElements = document.getElementsByClassName('paloma-product-list');
 if (productListElements) {
 
-    productListElements.forEach(elem => {
+    Array.from(productListElements).forEach(elem => {
         const productList = new Vue({
             components: {
                 PalomaProductList
