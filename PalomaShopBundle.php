@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class PalomaShopBundle extends Bundle
 {
-    protected function getContainerExtensionClass()
+    protected function getContainerExtensionClass(): string
     {
         return PalomaShopExtension::class;
     }

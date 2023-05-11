@@ -9,11 +9,11 @@ security:
 
     paloma:
 
-      anonymous: true
-
-      guard:
-        authenticators:
-          - paloma_shop.security.authenticator
+#      anonymous: true
+#
+#      guard:
+#        authenticators:
+#          - paloma_shop.security.authenticator
 
       logout:
         path: paloma_security_logout

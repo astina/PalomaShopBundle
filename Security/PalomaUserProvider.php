@@ -7,19 +7,19 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class PalomaUserProvider implements UserProviderInterface
 {
-    public function loadUserByUsername($username)
+    public function loadUserByIdentifier(string $identifier): UserInterface
     {
         // Actual user will be loaded when checking credentials
 
-        return new PalomaUser($username);
+        return new PalomaUser($identifier);
     }
 
-    public function refreshUser(UserInterface $user)
+    public function refreshUser(UserInterface $user): UserInterface
     {
         return $user;
     }
 
-    public function supportsClass($class)
+    public function supportsClass(string $class): bool
     {
         return PalomaUser::class === $class;
     }

@@ -44,7 +44,7 @@ class PalomaUser implements UserInterface
         return $this->username;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
         return $this->roles;
     }
@@ -61,5 +61,10 @@ class PalomaUser implements UserInterface
     public function getSalt()
     {
         return null;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->getUsername();
     }
 }

@@ -20,7 +20,7 @@ class TestKernel extends Kernel
         parent::__construct('test', true);
     }
 
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         return [
             new FrameworkBundle(),
@@ -48,7 +48,7 @@ class TestKernel extends Kernel
             'test' => true,
             'secret' => 'test',
             'session' => [
-                'storage_id' => 'session.storage.mock_file',
+                'handler_id' => null,
             ],
             'validation' => [
                 'mapping' => [
@@ -66,7 +66,7 @@ class TestKernel extends Kernel
         $loader->load(__DIR__ . '/Resources/config/security.yaml');
     }
 
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return __DIR__ . '/../cache/' . spl_object_hash($this);
     }

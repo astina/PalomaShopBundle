@@ -6,17 +6,16 @@
         "ext-json": "*",
         "ext-dom": "*",
         "ext-simplexml": "*",
-        "paloma/shop-client": "^3.3.0",
-        "symfony/serializer": "^4.4,<4.5",
-        "symfony/property-access": "^4.4,<4.5",
-        "symfony/security": "^4.4,<4.5",
-        "symfony/security-bundle": "^4.4,<4.5",
-        "twig/twig": "^2.9"
+        "paloma/shop-client": "^3.5",
+        "symfony/serializer": "^6.2,<6.3",
+        "symfony/property-access": "^6.2,<6.3",
+        "symfony/security-bundle": "^6.2,<6.3",
+        "twig/twig": "^3.6"
     },
     "require-dev": {
-        "symfony/framework-bundle": "^4.4,<4.5",
+        "symfony/framework-bundle": "^6.2,<6.3",
         "symfony/test-pack": "^1.0",
-        "symfony/phpunit-bridge": "^4.4,<4.5",
+        "symfony/phpunit-bridge": "^6.2,<6.3",
         "phpunit/phpunit": "^8.1"
     },
     "license": "MIT",

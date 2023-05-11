@@ -7,7 +7,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 abstract class FunctionalTest extends WebTestCase
 {
-    protected static function getKernelClass()
+    protected static function getKernelClass(): string
     {
         return TestKernel::class;
     }
