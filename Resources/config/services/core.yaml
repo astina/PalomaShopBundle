@@ -19,7 +19,7 @@ services:
   paloma_shop.client_factory:
     class: Paloma\ShopBundle\SymfonyPalomaClientFactory
     arguments:
-      - '@session'
+      - '@request_stack'
       - [] # injected by bundle extension
       - '@?paloma_shop.paloma_profiler'
 

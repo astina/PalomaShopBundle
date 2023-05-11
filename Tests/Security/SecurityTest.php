@@ -12,7 +12,7 @@ class SecurityTest extends FunctionalTest
         $client = static::createClient();
 
         /** @var CsrfTokenManagerInterface $tokenManager */
-        $tokenManager = static::$container->get('security.csrf.token_manager');
+        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
         $token = $tokenManager->getToken('authenticate');
 
         $client->request(
@@ -31,7 +31,7 @@ class SecurityTest extends FunctionalTest
         $this->assertNotNull($cookies->get('REMEMBERME'));
 
         /** @var PalomaSecurityInterface $palomaSecurity */
-        $palomaSecurity = static::$container->get('paloma_shop.security');
+        $palomaSecurity = static::getContainer()->get('paloma_shop.security');
 
         $user = $palomaSecurity->getUser();
 
@@ -44,7 +44,7 @@ class SecurityTest extends FunctionalTest
         $client = static::createClient();
 
         /** @var CsrfTokenManagerInterface $tokenManager */
-        $tokenManager = static::$container->get('security.csrf.token_manager');
+        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
         $token = $tokenManager->getToken('authenticate');
 
         $client->request(
@@ -65,7 +65,7 @@ class SecurityTest extends FunctionalTest
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         /** @var PalomaSecurityInterface $palomaSecurity */
-        $palomaSecurity = static::$container->get('paloma_shop.security');
+        $palomaSecurity = static::getContainer()->get('paloma_shop.security');
 
         $user = $palomaSecurity->getUser();
 
@@ -78,7 +78,7 @@ class SecurityTest extends FunctionalTest
         $client = static::createClient();
 
         /** @var CsrfTokenManagerInterface $tokenManager */
-        $tokenManager = static::$container->get('security.csrf.token_manager');
+        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
         $token = $tokenManager->getToken('authenticate');
 
         $client->request(
@@ -99,7 +99,7 @@ class SecurityTest extends FunctionalTest
         $this->assertEquals(403, $client->getResponse()->getStatusCode());
 
         /** @var PalomaSecurityInterface $palomaSecurity */
-        $palomaSecurity = static::$container->get('paloma_shop.security');
+        $palomaSecurity = static::getContainer()->get('paloma_shop.security');
 
         $user = $palomaSecurity->getUser();
 

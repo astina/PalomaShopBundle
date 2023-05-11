@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CartResource
 {
-    public function get(CheckoutInterface $checkout, PalomaSerializer $serializer)
+    public function get(CheckoutInterface $checkout, PalomaSerializer $serializer): Response
     {
         try {
 

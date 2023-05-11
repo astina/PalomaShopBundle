@@ -9,7 +9,7 @@ use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 class TestKernel extends Kernel
 {
@@ -29,7 +29,7 @@ class TestKernel extends Kernel
         ];
     }
 
-    protected function configureRoutes(RouteCollectionBuilder $routes)
+    protected function configureRoutes(RoutingConfigurator $routes)
     {
         $routes->import(__DIR__ . '/../Resources/config/routes/all.yaml');
 
@@ -48,7 +48,7 @@ class TestKernel extends Kernel
             'test' => true,
             'secret' => 'test',
             'session' => [
-                'handler_id' => null,
+                'storage_factory_id' => 'session.storage.factory.mock_file',
             ],
             'validation' => [
                 'mapping' => [

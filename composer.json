@@ -2,11 +2,17 @@
     "name": "paloma/shop-bundle",
     "description": "Symfony bundle for Paloma web shop",
     "type": "library",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../shop-client-php"
+        }
+    ],
     "require": {
         "ext-json": "*",
         "ext-dom": "*",
         "ext-simplexml": "*",
-        "paloma/shop-client": "^3.5",
+        "paloma/shop-client": "@dev",
         "symfony/serializer": "^6.2,<6.3",
         "symfony/property-access": "^6.2,<6.3",
         "symfony/security-bundle": "^6.2,<6.3",

@@ -17,7 +17,7 @@ abstract class FunctionalTest extends WebTestCase
         $client = static::createClient();
 
         /** @var CsrfTokenManagerInterface $tokenManager */
-        $tokenManager = static::$container->get('security.csrf.token_manager');
+        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
         $token = $tokenManager->getToken('authenticate');
 
         $client->request(

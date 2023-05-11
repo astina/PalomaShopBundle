@@ -14,190 +14,190 @@ paloma_api_categories_get:
 
 paloma_api_products_get:
   path: /products/get
-  controller: paloma_shop.controller.product_resource:get
+  controller: paloma_shop.controller.product_resource::get
   methods: GET
 
 paloma_api_products_similar:
   path: /products/similar
-  controller: paloma_shop.controller.product_resource:similar
+  controller: paloma_shop.controller.product_resource::similar
   methods: GET
 
 paloma_api_products_recommended:
   path: /products/recommended
-  controller: paloma_shop.controller.product_resource:recommended
+  controller: paloma_shop.controller.product_resource::recommended
   methods: GET
 
 paloma_api_products_purchased_together:
   path: /products/purchased_together
-  controller: paloma_shop.controller.product_resource:purchasedTogether
+  controller: paloma_shop.controller.product_resource::purchasedTogether
   methods: GET
 
 # Search
 
 paloma_api_search:
   path: /search
-  controller: paloma_shop.controller.search_resource:search
+  controller: paloma_shop.controller.search_resource::search
   methods: [ GET, POST ]
 
 paloma_api_search_suggestions:
   path: /search/suggestions
-  controller: paloma_shop.controller.search_resource:suggestions
+  controller: paloma_shop.controller.search_resource::suggestions
   methods: GET
 
 # Cart
 
 paloma_api_cart:
   path: /cart
-  controller: paloma_shop.controller.cart_resource:get
+  controller: paloma_shop.controller.cart_resource::get
   methods: GET
 
 paloma_api_cart_item_add:
   path: /cart/items/add
-  controller: paloma_shop.controller.cart_resource:addItem
+  controller: paloma_shop.controller.cart_resource::addItem
   methods: POST
 
 paloma_api_cart_item_update:
   path: /cart/items/update
-  controller: paloma_shop.controller.cart_resource:updateItem
+  controller: paloma_shop.controller.cart_resource::updateItem
   methods: POST
 
 paloma_api_cart_item_remove:
   path: /cart/items/remove
-  controller: paloma_shop.controller.cart_resource:removeItem
+  controller: paloma_shop.controller.cart_resource::removeItem
   methods: DELETE
 
 paloma_api_cart_recommendations:
   path: /cart/recommendations
-  controller: paloma_shop.controller.cart_resource:recommendations
+  controller: paloma_shop.controller.cart_resource::recommendations
   methods: GET
 
 paloma_api_cart_repeat_order:
   path: /cart/repeat_order
-  controller: paloma_shop.controller.cart_resource:repeatOrder
+  controller: paloma_shop.controller.cart_resource::repeatOrder
   methods: POST
 
 # Checkout
 
 paloma_api_checkout_order:
   path: /checkout/order
-  controller: paloma_shop.controller.checkout_resource:getOrderDraft
+  controller: paloma_shop.controller.checkout_resource::getOrderDraft
   methods: GET
 
 paloma_api_checkout_customer_set_guest:
   path: /checkout/customer/set_guest
-  controller: paloma_shop.controller.checkout_resource:setGuestCustomer
+  controller: paloma_shop.controller.checkout_resource::setGuestCustomer
   methods: POST
 
 paloma_api_checkout_addresses_update:
   path: /checkout/addresses
-  controller: paloma_shop.controller.checkout_resource:setAddresses
+  controller: paloma_shop.controller.checkout_resource::setAddresses
   methods: POST
 
 paloma_api_checkout_shipping_address_update:
   path: /checkout/shipping_address
-  controller: paloma_shop.controller.checkout_resource:setShippingAddress
+  controller: paloma_shop.controller.checkout_resource::setShippingAddress
   methods: POST
 
 paloma_api_checkout_billing_address_update:
   path: /checkout/billing_address
-  controller: paloma_shop.controller.checkout_resource:setBillingAddress
+  controller: paloma_shop.controller.checkout_resource::setBillingAddress
   methods: POST
 
 paloma_api_checkout_shipping_methods_list:
   path: /checkout/shipping_methods/list
-  controller: paloma_shop.controller.checkout_resource:listShippingMethods
+  controller: paloma_shop.controller.checkout_resource::listShippingMethods
   methods: GET
 
 paloma_api_checkout_shipping_methods_options:
   path: /checkout/shipping_methods/options
-  controller: paloma_shop.controller.checkout_resource:getShippingMethodOptions
+  controller: paloma_shop.controller.checkout_resource::getShippingMethodOptions
   methods: GET
 
 paloma_api_checkout_shipping_methods_set:
   path: /checkout/shipping_methods/set
-  controller: paloma_shop.controller.checkout_resource:setShippingMethod
+  controller: paloma_shop.controller.checkout_resource::setShippingMethod
   methods: POST
 
 paloma_api_checkout_payment_methods_list:
   path: /checkout/payment_methods/list
-  controller: paloma_shop.controller.checkout_resource:listPaymentMethods
+  controller: paloma_shop.controller.checkout_resource::listPaymentMethods
   methods: GET
 
 paloma_api_checkout_payment_methods_set:
   path: /checkout/payment_methods/set
-  controller: paloma_shop.controller.checkout_resource:setPaymentMethod
+  controller: paloma_shop.controller.checkout_resource::setPaymentMethod
   methods: POST
 
 paloma_api_checkout_coupon_code_add:
   path: /checkout/coupon_codes/add
-  controller: paloma_shop.controller.checkout_resource:addCouponCode
+  controller: paloma_shop.controller.checkout_resource::addCouponCode
   methods: POST
 
 paloma_api_checkout_coupon_code_remove:
   path: /checkout/coupon_codes/remove
-  controller: paloma_shop.controller.checkout_resource:removeCouponCode
+  controller: paloma_shop.controller.checkout_resource::removeCouponCode
   methods: [ POST, DELETE ]
 
 paloma_api_checkout_payments_initialize:
   path: /checkout/payments/initialize
-  controller: paloma_shop.controller.checkout_resource:initializePayment
+  controller: paloma_shop.controller.checkout_resource::initializePayment
   methods: POST
 
 paloma_api_checkout_finalize:
   path: /checkout/finalize
-  controller: paloma_shop.controller.checkout_resource:finalize
+  controller: paloma_shop.controller.checkout_resource::finalize
   methods: POST
 
 paloma_api_checkout_purchase:
   path: /checkout/purchase
-  controller: paloma_shop.controller.checkout_resource:purchase
+  controller: paloma_shop.controller.checkout_resource::purchase
   methods: POST
 
 # Customer
 
 paloma_api_customer_get:
   path: /customer/get
-  controller: paloma_shop.controller.customer_resource:get
+  controller: paloma_shop.controller.customer_resource::get
   methods: GET
 
 paloma_api_customer_register:
   path: /customer/register
-  controller: paloma_shop.controller.customer_resource:register
+  controller: paloma_shop.controller.customer_resource::register
   methods: POST
 
 paloma_api_customer_update:
   path: /customer/update
-  controller: paloma_shop.controller.customer_resource:update
+  controller: paloma_shop.controller.customer_resource::update
   methods: POST
 
 paloma_api_customer_address_update:
   path: /customer/addresses/update
-  controller: paloma_shop.controller.customer_resource:updateAddress
+  controller: paloma_shop.controller.customer_resource::updateAddress
   methods: POST
 
 paloma_api_customer_update_email:
   path: /customer/email/update
-  controller: paloma_shop.controller.customer_resource:updateEmailAddress
+  controller: paloma_shop.controller.customer_resource::updateEmailAddress
   methods: POST
 
 paloma_api_customer_confirm_email:
   path: /customer/confirm/email
-  controller: paloma_shop.controller.customer_resource:confirmEmailAddress
+  controller: paloma_shop.controller.customer_resource::confirmEmailAddress
   methods: POST
 
 paloma_api_customer_exists_email:
   path: /customer/exists/email
-  controller: paloma_shop.controller.customer_resource:existsCustomerByEmailAddress
+  controller: paloma_shop.controller.customer_resource::existsCustomerByEmailAddress
   methods: GET
 
 paloma_api_customer_payment_instruments_list:
   path: /customers/payment_instruments/list
-  controller: paloma_shop.controller.customer_resource:listPaymentInstruments
+  controller: paloma_shop.controller.customer_resource::listPaymentInstruments
   methods: GET
 
 paloma_api_customer_payment_instruments_delete:
   path: /customers/payment_instruments/delete
-  controller: paloma_shop.controller.customer_resource:deletePaymentInstrument
+  controller: paloma_shop.controller.customer_resource::deletePaymentInstrument
   methods: DELETE
 
 # User
@@ -212,39 +212,39 @@ paloma_api_user_logout:
 
 paloma_api_user_password_update:
   path: /user/password/update
-  controller: paloma_shop.controller.user_resource:updatePassword
+  controller: paloma_shop.controller.user_resource::updatePassword
   methods: POST
 
 paloma_api_user_password_reset_start:
   path: /user/password/reset/start
-  controller: paloma_shop.controller.user_resource:startPasswordReset
+  controller: paloma_shop.controller.user_resource::startPasswordReset
   methods: POST
 
 paloma_api_user_password_reset_exists:
   path: /user/password/reset/exists
-  controller: paloma_shop.controller.user_resource:existsPasswordReset
+  controller: paloma_shop.controller.user_resource::existsPasswordReset
   methods: GET
 
 paloma_api_user_password_reset_complete:
   path: /user/password/reset/complete
-  controller: paloma_shop.controller.user_resource:completePasswordReset
+  controller: paloma_shop.controller.user_resource::completePasswordReset
   methods: POST
 
 # Orders
 
 paloma_api_orders_list:
   path: /orders/list
-  controller: paloma_shop.controller.order_resource:list
+  controller: paloma_shop.controller.order_resource::list
   methods: GET
 
 paloma_api_orders_get:
   path: /orders/get
-  controller: paloma_shop.controller.order_resource:get
+  controller: paloma_shop.controller.order_resource::get
   methods: GET
 
 paloma_api_orders_latest:
   path: /orders/latest
-  controller: paloma_shop.controller.order_resource:latest
+  controller: paloma_shop.controller.order_resource::latest
   methods: GET
 
 # Addresses

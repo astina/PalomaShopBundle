@@ -4,7 +4,7 @@ namespace Paloma\ShopBundle;
 
 use Paloma\Shop\PalomaClientFactory;
 use Paloma\Shop\PalomaProfiler;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class SymfonyPalomaClientFactory extends PalomaClientFactory
 {
@@ -14,11 +14,11 @@ class SymfonyPalomaClientFactory extends PalomaClientFactory
 
     private $traceId;
 
-    public function __construct(SessionInterface $session,
+    public function __construct(RequestStack $requestStack,
                                 array $options,
                                 PalomaProfiler $profiler = null)
     {
-        $options['session'] = $session;
+        $options['request_stack'] = $requestStack;
         $options['profiler'] = $profiler;
         $options['trace_id'] = null;
 
