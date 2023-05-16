@@ -21,7 +21,7 @@ class PalomaTwigHelper
 
     public function getChannel(): string
     {
-        $channel = $this->requestStack->getMasterRequest()->attributes->get('paloma.channel');
+        $channel = $this->requestStack->getMainRequest()->attributes->get('paloma.channel');
 
         return $channel ?: $this->getDefaultChannel();
     }

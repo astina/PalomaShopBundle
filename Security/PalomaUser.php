@@ -7,39 +7,30 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class PalomaUser implements UserInterface
 {
-    private $username;
+    private string $username;
 
-    private $roles = [
+    private array $roles = [
         'ROLE_CUSTOMER'
     ];
 
-    /**
-     * @var UserDetailsInterface
-     */
-    private $details;
+    private UserDetailsInterface $details;
 
-    public function __construct($username)
+    public function __construct(string $username)
     {
         $this->username = $username;
     }
 
-    /**
-     * @return UserDetailsInterface
-     */
     public function getDetails(): ?UserDetailsInterface
     {
         return $this->details;
     }
 
-    /**
-     * @param UserDetailsInterface $details
-     */
     public function setDetails(UserDetailsInterface $details): void
     {
         $this->details = $details;
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
@@ -49,18 +40,8 @@ class PalomaUser implements UserInterface
         return $this->roles;
     }
 
-    public function getPassword()
-    {
-        return null;
-    }
-
     public function eraseCredentials()
     {
-    }
-
-    public function getSalt()
-    {
-        return null;
     }
 
     public function getUserIdentifier(): string

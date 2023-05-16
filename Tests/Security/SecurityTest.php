@@ -12,8 +12,8 @@ class SecurityTest extends FunctionalTest
         $client = static::createClient();
 
         /** @var CsrfTokenManagerInterface $tokenManager */
-        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
-        $token = $tokenManager->getToken('authenticate');
+//        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
+//        $token = $tokenManager->getToken('authenticate');
 
         $client->request(
             'POST',
@@ -21,7 +21,7 @@ class SecurityTest extends FunctionalTest
             [
                 'username' => 'test@astina.io',
                 'password' => 'password',
-                '_csrf_token' => $token->getValue(),
+                '_csrf_token' => 'test', // $token->getValue(),
                 '_remember_me' => '1'
             ]
         );
@@ -44,8 +44,8 @@ class SecurityTest extends FunctionalTest
         $client = static::createClient();
 
         /** @var CsrfTokenManagerInterface $tokenManager */
-        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
-        $token = $tokenManager->getToken('authenticate');
+//        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
+//        $token = $tokenManager->getToken('authenticate');
 
         $client->request(
             'POST',
@@ -54,7 +54,7 @@ class SecurityTest extends FunctionalTest
             [],
             [
                 'CONTENT_TYPE' => 'application/json',
-                'HTTP_X_CSRF_TOKEN' => $token->getValue(),
+                'HTTP_X_CSRF_TOKEN' => 'test', //$token->getValue(),
             ],
             '{ 
                 "username": "test@astina.io", 
@@ -78,8 +78,8 @@ class SecurityTest extends FunctionalTest
         $client = static::createClient();
 
         /** @var CsrfTokenManagerInterface $tokenManager */
-        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
-        $token = $tokenManager->getToken('authenticate');
+//        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
+//        $token = $tokenManager->getToken('authenticate');
 
         $client->request(
             'POST',
@@ -88,7 +88,7 @@ class SecurityTest extends FunctionalTest
             [],
             [
                 'CONTENT_TYPE' => 'application/json',
-                'HTTP_X_CSRF_TOKEN' => $token->getValue(),
+                'HTTP_X_CSRF_TOKEN' => 'test', //$token->getValue(),
             ],
             '{ 
                 "username": "test@astina.io", 

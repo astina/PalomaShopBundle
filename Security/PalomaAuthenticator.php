@@ -8,23 +8,31 @@ use Paloma\Shop\Error\BadCredentials;
 use Paloma\Shop\Security\PalomaSecurityInterface;
 use Paloma\ShopBundle\Serializer\PalomaSerializer;
 use Paloma\ShopBundle\Serializer\SerializationConstants;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\AuthenticationServiceException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCredentials;
+use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
+use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class PalomaAuthenticator extends AbstractFormLoginAuthenticator
+class PalomaAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
@@ -32,15 +40,15 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
 
     const ROUTE_API_AUTH = 'paloma_api_user_authenticate';
 
-    private $urlGenerator;
+    private UrlGeneratorInterface $urlGenerator;
 
-    private $csrfTokenManager;
+    private CsrfTokenManagerInterface $csrfTokenManager;
 
-    private $customers;
+    private CustomersInterface $customers;
 
-    private $security;
+    private PalomaSecurityInterface $security;
 
-    private $serializer;
+    private PalomaSerializer $serializer;
 
     public function __construct(UrlGeneratorInterface $urlGenerator,
                                 CsrfTokenManagerInterface $csrfTokenManager,
@@ -54,14 +62,32 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
         $this->security = $security;
         $this->serializer = $serializer;
     }
+    public function authenticate(Request $request): Passport
+    {
+        $credentials = $this->getCredentials($request);
 
-    public function supports(Request $request)
+        $passport = new SelfValidatingPassport(
+            new UserBadge($credentials['username']),
+            [
+                new CustomCredentials([$this, 'checkCredentials'], $credentials['password']),
+                new CsrfTokenBadge('authenticate', $credentials['csrf_token']),
+            ]
+        );
+
+        if (isset($credentials['remember_me'])) {
+            $passport->addBadge((new RememberMeBadge())->enable());
+        }
+
+        return $passport;
+    }
+
+    public function supports(Request $request): bool
     {
         return $this->isLoginFormRequest($request)
             || $this->isApiAuthRequest($request);
     }
 
-    public function getCredentials(Request $request)
+    private function getCredentials(Request $request): array
     {
         if ($this->isLoginFormRequest($request)) {
             return $this->getLoginFormCredentials($request);
@@ -70,23 +96,13 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
         return $this->getApiAuthCredentials($request);
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider)
-    {
-        $token = new CsrfToken('authenticate', $credentials['csrf_token']);
-        if (!$this->csrfTokenManager->isTokenValid($token)) {
-            throw new InvalidCsrfTokenException();
-        }
-
-        return $userProvider->loadUserByUsername($credentials['username']);
-    }
-
     public function checkCredentials($credentials, UserInterface $user)
     {
         try {
 
             $userDetails = $this->customers->authenticate(
-                $credentials['username'],
-                $credentials['password']
+                $user->getUserIdentifier(),
+                $credentials
             );
 
             /** @var $user PalomaUser */
@@ -100,7 +116,7 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
         }
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $firewallName): ?Response
     {
         if ($this->isApiAuthRequest($request)) {
 
@@ -109,14 +125,14 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
             return $this->serializer->toJsonResponse($user, SerializationConstants::OPTIONS_USER);
         }
 
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
         return new RedirectResponse($this->urlGenerator->generate('paloma_catalog_home'));
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
         if ($this->isApiAuthRequest($request)) {
             return new JsonResponse(['message' => 'Bad credentials'], 403);
@@ -125,18 +141,18 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
         return parent::onAuthenticationFailure($request, $exception);
     }
 
-    protected function getLoginUrl()
+    protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::ROUTE_LOGIN_FORM);
     }
 
-    private function isLoginFormRequest(Request $request)
+    private function isLoginFormRequest(Request $request): bool
     {
         return self::ROUTE_LOGIN_FORM === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
-    private function isApiAuthRequest(Request $request)
+    private function isApiAuthRequest(Request $request): bool
     {
         return self::ROUTE_API_AUTH === $request->attributes->get('_route')
             && $request->isMethod('POST');
@@ -148,6 +164,7 @@ class PalomaAuthenticator extends AbstractFormLoginAuthenticator
             'username' => $request->request->get('username'),
             'password' => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
+            'remember_me' => $request->request->get('_remember_me'),
         ];
         $request->getSession()->set(
             Security::LAST_USERNAME,

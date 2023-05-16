@@ -113,7 +113,7 @@ class PalomaTwigExtension extends AbstractExtension
         ];
 
         if ($includeQueryParams) {
-            $request = $this->requestStack->getMasterRequest();
+            $request = $this->requestStack->getMainRequest();
             $params = $params + $request->query->all();
         }
 
@@ -129,7 +129,7 @@ class PalomaTwigExtension extends AbstractExtension
      */
     public function currentPath($parameters = [])
     {
-        $request = $this->requestStack->getMasterRequest();
+        $request = $this->requestStack->getMainRequest();
 
         $route = $request->attributes->get('_route');
 

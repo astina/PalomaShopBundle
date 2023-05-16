@@ -76,7 +76,6 @@ class PalomaSecurity implements PalomaSecurityInterface
 
         $token = new UsernamePasswordToken(
             $user,
-            '',
             'paloma',
             $user->getRoles()
         );
@@ -85,7 +84,7 @@ class PalomaSecurity implements PalomaSecurityInterface
 
         unset($this->_cache['customers'][$userDetails->getCustomerId()]);
 
-        $event = new InteractiveLoginEvent($this->requestStack->getMasterRequest(), $token);
+        $event = new InteractiveLoginEvent($this->requestStack->getMainRequest(), $token);
         $this->eventDispatcher->dispatch($event, SecurityEvents::INTERACTIVE_LOGIN);
     }
 

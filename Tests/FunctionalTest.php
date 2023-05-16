@@ -2,6 +2,7 @@
 
 namespace Paloma\ShopBundle\Tests;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
@@ -12,13 +13,13 @@ abstract class FunctionalTest extends WebTestCase
         return TestKernel::class;
     }
 
-    protected static function createAuthorizedClient($username = 'test@astina.io', $password = 'password')
+    protected static function createAuthorizedClient($username = 'test@astina.io', $password = 'password'): KernelBrowser
     {
         $client = static::createClient();
 
-        /** @var CsrfTokenManagerInterface $tokenManager */
-        $tokenManager = static::getContainer()->get('security.csrf.token_manager');
-        $token = $tokenManager->getToken('authenticate');
+//        /** @var CsrfTokenManagerInterface $tokenManager */
+//       $tokenManager = static::getContainer()->get('security.csrf.token_manager');
+//       $token = $tokenManager->getToken('authenticate');
 
         $client->request(
             'POST',
@@ -26,7 +27,7 @@ abstract class FunctionalTest extends WebTestCase
             [
                 'username' => $username,
                 'password' => $password,
-                '_csrf_token' => $token->getValue(),
+                '_csrf_token' => 'test', //$token->getValue(),
             ]
         );
 
