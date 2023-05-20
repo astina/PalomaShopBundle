@@ -6,6 +6,7 @@ use Paloma\ShopBundle\PalomaShopBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
@@ -26,6 +27,7 @@ class TestKernel extends Kernel
             new FrameworkBundle(),
             new SecurityBundle(),
             new PalomaShopBundle(),
+            new TwigBundle(),
         ];
     }
 
@@ -46,6 +48,7 @@ class TestKernel extends Kernel
     {
         $c->loadFromExtension('framework', [
             'test' => true,
+//            'csrf_protection' => false,
             'secret' => 'test',
             'session' => [
                 'storage_factory_id' => 'session.storage.factory.mock_file',
@@ -64,6 +67,8 @@ class TestKernel extends Kernel
         $loader->load(__DIR__ . '/Resources/config/services.yaml');
 
         $loader->load(__DIR__ . '/Resources/config/security.yaml');
+
+        $loader->load(__DIR__ . '/Resources/config/twig.yaml');
     }
 
     public function getCacheDir(): string

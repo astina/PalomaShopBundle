@@ -17,9 +17,11 @@ abstract class FunctionalTest extends WebTestCase
     {
         $client = static::createClient();
 
-//        /** @var CsrfTokenManagerInterface $tokenManager */
-//       $tokenManager = static::getContainer()->get('security.csrf.token_manager');
-//       $token = $tokenManager->getToken('authenticate');
+        $crawler = $client->request('GET', '/');
+        $csrfToken = $crawler->filter('meta[data-csrf-token]')
+            ->getNode(0)
+            ->attributes['data-csrf-token']
+            ->value;
 
         $client->request(
             'POST',
@@ -27,7 +29,7 @@ abstract class FunctionalTest extends WebTestCase
             [
                 'username' => $username,
                 'password' => $password,
-                '_csrf_token' => 'test', //$token->getValue(),
+                '_csrf_token' => $csrfToken,
             ]
         );
 

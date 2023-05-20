@@ -11,9 +11,9 @@ use Twig\TwigFunction;
 
 class PalomaTwigExtension extends AbstractExtension
 {
-    private $generator;
+    private UrlGeneratorInterface $generator;
 
-    private $requestStack;
+    private RequestStack $requestStack;
 
     public function __construct(UrlGeneratorInterface $generator, RequestStack $requestStack)
     {
@@ -21,7 +21,7 @@ class PalomaTwigExtension extends AbstractExtension
         $this->requestStack = $requestStack;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('price', [$this, 'price'], ['is_safe' => ['html']]),
@@ -33,7 +33,7 @@ class PalomaTwigExtension extends AbstractExtension
         ];
     }
 
-    public function price($object)
+    public function price($object): string
     {
         if ($object instanceof ProductInterface) {
             return $this->productPrice($object);
@@ -42,7 +42,7 @@ class PalomaTwigExtension extends AbstractExtension
         return $this->priceStr((string)$object);
     }
 
-    protected function productPrice(ProductInterface $product)
+    protected function productPrice(ProductInterface $product): string
     {
         $basePrice = $product->getBasePrice();
         $originalPrice = $product->getOriginalBasePrice();
@@ -50,7 +50,7 @@ class PalomaTwigExtension extends AbstractExtension
         return $this->priceStr($basePrice, $originalPrice);
     }
 
-    protected function priceStr($basePrice, $originalPrice = null)
+    protected function priceStr($basePrice, $originalPrice = null): string
     {
         $spacePos = strpos($basePrice, ' ');
 
@@ -65,17 +65,17 @@ class PalomaTwigExtension extends AbstractExtension
             $currency, $price, $originalPrice);
     }
 
-    public function productPath(ProductInterface $product, CategoryReferenceInterface $category = null)
+    public function productPath(ProductInterface $product, CategoryReferenceInterface $category = null): string
     {
-        return $this->generateProductRoute($product, $category, UrlGeneratorInterface::ABSOLUTE_PATH);
+        return $this->generateProductRoute($product, $category);
     }
 
-    public function productUrl(ProductInterface $product, CategoryReferenceInterface $category = null)
+    public function productUrl(ProductInterface $product, CategoryReferenceInterface $category = null): string
     {
         return $this->generateProductRoute($product, $category, UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
-    private function generateProductRoute(ProductInterface $product, CategoryReferenceInterface $category = null, $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    private function generateProductRoute(ProductInterface $product, CategoryReferenceInterface $category = null, $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): string
     {
         if ($category) {
 
@@ -93,19 +93,19 @@ class PalomaTwigExtension extends AbstractExtension
         ], $referenceType);
     }
 
-    public function categoryPath(CategoryReferenceInterface $category, array $options = [])
+    public function categoryPath(CategoryReferenceInterface $category, array $options = []): string
     {
-        return $this->generateCategoryRoute($category, $options, UrlGeneratorInterface::ABSOLUTE_PATH);
+        return $this->generateCategoryRoute($category, $options);
     }
 
-    public function categoryUrl(CategoryReferenceInterface $category, array $options = [])
+    public function categoryUrl(CategoryReferenceInterface $category, array $options = []): string
     {
         return $this->generateCategoryRoute($category, $options, UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
-    private function generateCategoryRoute(CategoryReferenceInterface $category, array $options = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    private function generateCategoryRoute(CategoryReferenceInterface $category, array $options = [], $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): string
     {
-        $includeQueryParams = isset($options['include_query_params']) ? $options['include_query_params'] : false;
+        $includeQueryParams = $options['include_query_params'] ?? false;
 
         $params = [
             'categorySlug' => $category->getSlug(),
@@ -127,7 +127,7 @@ class PalomaTwigExtension extends AbstractExtension
      * @param array $parameters
      * @return string
      */
-    public function currentPath($parameters = [])
+    public function currentPath(array $parameters = []): string
     {
         $request = $this->requestStack->getMainRequest();
 
@@ -139,6 +139,6 @@ class PalomaTwigExtension extends AbstractExtension
             $parameters
         );
 
-        return $this->generator->generate($route, $routeParams, UrlGeneratorInterface::ABSOLUTE_PATH);
+        return $this->generator->generate($route, $routeParams);
     }
 }

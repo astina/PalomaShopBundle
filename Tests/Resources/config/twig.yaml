@@ -1,0 +1,5 @@
+twig:
+  globals:
+    paloma: '@paloma_shop.twig_helper'
+  number_format:
+    thousands_separator: "'"

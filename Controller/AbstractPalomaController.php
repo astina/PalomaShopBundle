@@ -86,7 +86,7 @@ abstract class AbstractPalomaController extends AbstractController
     protected function searchRequest(Request $request, CategoryInterface $category = null)
     {
         return new SearchRequest(
-            $category ? $category->getCode() : null,
+            $category?->getCode(),
             $request->get('query'),
             [],
             true,
