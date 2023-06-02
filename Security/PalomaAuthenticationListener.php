@@ -29,15 +29,13 @@ class PalomaAuthenticationListener implements EventSubscriberInterface
         $this->checkout = $checkout;
     }
 
-    public function onLogin(InteractiveLoginEvent $event)
+    public function onLogin(InteractiveLoginEvent $event): void
     {
         $user = $this->security->getUser();
 
         try {
             $order = $this->checkout->getOrderDraft();
-        } catch (BackendUnavailable $e) {
-            return;
-        } catch (CartIsEmpty $e) {
+        } catch (BackendUnavailable|CartIsEmpty $e) {
             return;
         }
 
@@ -52,7 +50,7 @@ class PalomaAuthenticationListener implements EventSubscriberInterface
         }
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             SecurityEvents::INTERACTIVE_LOGIN => 'onLogin'

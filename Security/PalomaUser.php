@@ -40,6 +40,11 @@ class PalomaUser implements UserInterface
         return $this->roles;
     }
 
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
     public function eraseCredentials()
     {
     }
