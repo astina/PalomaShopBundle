@@ -39,7 +39,6 @@ class Configuration implements ConfigurationInterface
                 ->end()
 
                 ->arrayNode('urls')
-                    ->addDefaultsIfNotSet()
                     ->arrayPrototype()
                         ->children()
                             ->scalarNode('confirm_registration')
