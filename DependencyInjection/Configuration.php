@@ -24,9 +24,8 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('channels')
                     ->useAttributeAsKey('name')
                     ->addDefaultChildrenIfNoneSet([
-                        'default' => [
-                            'is_default' => true,
-                        ]
+                        'name' => 'default',
+                        'is_default' => true,
                     ])
                     ->arrayPrototype()
                         ->children()
@@ -41,16 +40,18 @@ class Configuration implements ConfigurationInterface
 
                 ->arrayNode('urls')
                     ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('confirm_registration')
-                            ->info('Route name of the registration confirmation page')
-                            ->isRequired()
-                            ->defaultValue('paloma_customer_register_confirm')
-                        ->end()
-                        ->scalarNode('confirm_password_reset')
-                            ->info('Route name of the password reset confirmation page')
-                            ->isRequired()
-                            ->defaultValue('paloma_security_password_reset_confirm')
+                    ->arrayPrototype()
+                        ->children()
+                            ->scalarNode('confirm_registration')
+                                ->info('Route name of the registration confirmation page')
+                                ->isRequired()
+                                ->defaultValue('paloma_customer_register_confirm')
+                            ->end()
+                            ->scalarNode('confirm_password_reset')
+                                ->info('Route name of the password reset confirmation page')
+                                ->isRequired()
+                                ->defaultValue('paloma_security_password_reset_confirm')
+                            ->end()
                         ->end()
                     ->end()
                 ->end()
