@@ -6,7 +6,10 @@ use Paloma\Shop\Customers\AddressUpdate;
 use Paloma\Shop\Customers\CustomerDraft;
 use Paloma\Shop\Customers\CustomersInterface;
 use Paloma\Shop\Customers\CustomerUpdate;
+use Paloma\Shop\Customers\CustomerUserDraft;
 use Paloma\Shop\Error\BackendUnavailable;
+use Paloma\Shop\Error\CustomerNotFound;
+use Paloma\Shop\Error\CustomerUserNotFound;
 use Paloma\Shop\Error\InvalidConfirmationToken;
 use Paloma\Shop\Error\InvalidInput;
 use Paloma\Shop\Error\NotAuthenticated;
@@ -160,7 +163,7 @@ class CustomerResource
             if ($exists) {
                 $request->getSession()->remove($sessionKey);
 
-            // make crawling for valid email addresses a little slower
+                // make crawling for valid email addresses a little slower
             } else {
                 $failedAttempts = $request->getSession()->get($sessionKey, 0);
                 if ($failedAttempts > 2) {
@@ -189,7 +192,7 @@ class CustomerResource
         }
     }
 
-    public function deletePaymentInstrument(CustomersInterface $customers, PalomaSerializer $serializer, Request $request)
+    public function deletePaymentInstrument(CustomersInterface $customers, Request $request)
     {
         $paymentInstrumentId = $request->get('id');
 
@@ -201,6 +204,114 @@ class CustomerResource
 
         } catch (BackendUnavailable $e) {
             return new JsonResponse(null, $e->getHttpStatus());
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        }
+    }
+
+    public function listUsers(CustomersInterface $customers, PalomaSerializer $serializer, Request $request): JsonResponse|Response
+    {
+        $locale = $request->get('locale');
+
+        try {
+
+            $users = $customers->listUsers($locale);
+
+            return $serializer->toJsonResponse($users);
+
+        } catch (BackendUnavailable $e) {
+            return new JsonResponse(null, $e->getHttpStatus());
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        } catch (CustomerNotFound $e) {
+            return new Response('Customer not found', 404);
+        }
+    }
+
+    public function getUser(CustomersInterface $customers, PalomaSerializer $serializer, Request $request): JsonResponse|Response
+    {
+        $userId = $request->get('id');
+
+        try {
+
+            $users = $customers->getUser($userId);
+
+            return $serializer->toJsonResponse($users);
+
+        } catch (BackendUnavailable $e) {
+            return new JsonResponse(null, $e->getHttpStatus());
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        } catch (CustomerNotFound $e) {
+            return new Response('Customer not found', 404);
+        } catch (CustomerUserNotFound $e) {
+            return new Response('User not found', 404);
+        }
+    }
+
+    public function createUser(CustomersInterface $customers, PalomaSerializer $serializer, Request $request): JsonResponse|Response
+    {
+        /** @var CustomerUserDraft $draft */
+        $draft = $serializer->deserialize($request->getContent(), CustomerUserDraft::class);
+
+        try {
+
+            $users = $customers->createUser($draft);
+
+            return $serializer->toJsonResponse($users);
+
+        } catch (BackendUnavailable $e) {
+            return new JsonResponse(null, $e->getHttpStatus());
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        } catch (CustomerNotFound $e) {
+            return new Response('Customer not found', 404);
+        } catch (InvalidInput $e) {
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
+        }
+    }
+
+    public function updateUser(CustomersInterface $customers, PalomaSerializer $serializer, Request $request): JsonResponse|Response
+    {
+        /** @var CustomerUserDraft $draft */
+        $draft = $serializer->deserialize($request->getContent(), CustomerUserDraft::class);
+        $userId = $request->get('id');
+
+        try {
+
+            $users = $customers->updateUser($userId, $draft);
+
+            return $serializer->toJsonResponse($users);
+
+        } catch (BackendUnavailable $e) {
+            return new JsonResponse(null, $e->getHttpStatus());
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        } catch (CustomerNotFound $e) {
+            return new Response('Customer not found', 404);
+        } catch (CustomerUserNotFound $e) {
+            return new Response('User not found', 404);
+        } catch (InvalidInput $e) {
+            return $serializer->toJsonResponse($e->getValidation(), ['status' => 400]);
+        }
+    }
+
+    public function deleteUser(CustomersInterface $customers, Request $request): Response
+    {
+        $userId = $request->get('id');
+
+        try {
+
+            $customers->deleteUser($userId);
+
+            return new Response(null, 202);
+
+        } catch (BackendUnavailable $e) {
+            return new Response(null, $e->getHttpStatus());
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        } catch (CustomerNotFound $e) {
+            return new Response('Customer not found', 404);
         }
     }
 }

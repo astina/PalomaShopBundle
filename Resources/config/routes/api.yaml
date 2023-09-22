@@ -200,6 +200,31 @@ paloma_api_customer_payment_instruments_delete:
   controller: paloma_shop.controller.customer_resource::deletePaymentInstrument
   methods: DELETE
 
+paloma_api_customer_users_list:
+  path: /customers/users/list
+  controller: paloma_shop.controller.customer_resource::listUsers
+  methods: GET
+
+paloma_api_customer_users_get:
+  path: /customers/users/get
+  controller: paloma_shop.controller.customer_resource::getUser
+  methods: GET
+
+paloma_api_customer_users_create:
+  path: /customers/users/create
+  controller: paloma_shop.controller.customer_resource::createUser
+  methods: POST
+
+paloma_api_customer_users_update:
+  path: /customers/users/update
+  controller: paloma_shop.controller.customer_resource::updateUser
+  methods: POST
+
+paloma_api_customer_users_delete:
+  path: /customers/users/delete
+  controller: paloma_shop.controller.customer_resource::deleteUser
+  methods: DELETE
+
 # User
 
 paloma_api_user_authenticate:
