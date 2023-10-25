@@ -25,11 +25,13 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('name')
                     ->addDefaultChildrenIfNoneSet([
                         'name' => 'default',
+                        'catalog' => null,
                         'is_default' => true,
                     ])
                     ->arrayPrototype()
                         ->children()
                             ->scalarNode('is_default')->defaultFalse()->end()
+                            ->scalarNode('catalog')->defaultNull()->end()
                             ->arrayNode('locales')
                                 ->scalarPrototype()->defaultValue(['de', 'en'])->end()
                             ->end()
