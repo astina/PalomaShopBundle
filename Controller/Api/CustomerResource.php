@@ -7,6 +7,7 @@ use Paloma\Shop\Customers\CustomerDraft;
 use Paloma\Shop\Customers\CustomersInterface;
 use Paloma\Shop\Customers\CustomerUpdate;
 use Paloma\Shop\Customers\CustomerUserDraft;
+use Paloma\Shop\Customers\CustomerUserUpdate;
 use Paloma\Shop\Error\BackendUnavailable;
 use Paloma\Shop\Error\CustomerNotFound;
 use Paloma\Shop\Error\CustomerUserNotFound;
@@ -249,6 +250,34 @@ class CustomerResource
         }
     }
 
+    public function getCurrentUser(CustomersInterface $customers, PalomaSerializer $serializer, PalomaSecurityInterface $security, Request $request): JsonResponse|Response
+    {
+        try {
+            $userId = $security->getUser()->getUserId();
+
+            $users = $customers->listUsers();
+
+            $users = array_filter($users, function ($user) use ($userId) {
+                return $user->getId() == $userId;
+            });
+
+            if (count($users) > 0) {
+                return $serializer->toJsonResponse(array_values($users)[0]);
+            } else {
+                return new Response('Customer not found', 404);
+            }
+
+        } catch (BackendUnavailable $e) {
+            return new JsonResponse(null, $e->getHttpStatus());
+        } catch (NotAuthenticated $e) {
+            return new Response('Unauthorized', 401);
+        } catch (CustomerNotFound $e) {
+            return new Response('Customer not found', 404);
+        } catch (CustomerUserNotFound $e) {
+            return new Response('User not found', 404);
+        }
+    }
+
     public function createUser(CustomersInterface $customers, PalomaSerializer $serializer, Request $request): JsonResponse|Response
     {
         /** @var CustomerUserDraft $draft */
@@ -274,7 +303,7 @@ class CustomerResource
     public function updateUser(CustomersInterface $customers, PalomaSerializer $serializer, Request $request): JsonResponse|Response
     {
         /** @var CustomerUserDraft $draft */
-        $draft = $serializer->deserialize($request->getContent(), CustomerUserDraft::class);
+        $draft = $serializer->deserialize($request->getContent(), CustomerUserUpdate::class);
         $userId = $request->get('id');
 
         try {

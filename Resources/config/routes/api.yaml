@@ -210,6 +210,11 @@ paloma_api_customer_users_get:
   controller: paloma_shop.controller.customer_resource::getUser
   methods: GET
 
+paloma_api_customer_users_get_current:
+  path: /customers/users/get/current
+  controller: paloma_shop.controller.customer_resource::getCurrentUser
+  methods: GET
+
 paloma_api_customer_users_create:
   path: /customers/users/create
   controller: paloma_shop.controller.customer_resource::createUser

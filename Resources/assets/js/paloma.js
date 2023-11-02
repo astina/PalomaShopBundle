@@ -534,6 +534,14 @@ const customer = {
             .catch(onHttpError);
     },
 
+    getCurrentUser() {
+
+        return axios
+            .get(routes['api_customer_users_get_current'])
+            .then(response => response.data)
+            .catch(onHttpError);
+    },
+
     createUser(user) {
 
         return axios
