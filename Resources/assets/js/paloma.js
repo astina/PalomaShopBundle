@@ -437,6 +437,16 @@ const customer = {
             .catch(onHttpError);
     },
 
+    updateCustomer(draft) {
+
+        return axios
+            .put(routes['api_customer_update'], draft)
+            .then(response => {
+                return response.data;
+            })
+            .catch(onHttpError);
+    },
+
     updateEmailAddress(emailAddress) {
 
         return axios

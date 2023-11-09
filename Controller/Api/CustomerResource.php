@@ -69,7 +69,7 @@ class CustomerResource
 
         try {
 
-            $customer = $customers->updateCustomer($update);
+            $customer = $customers->updateCustomer($update, $serializer->toArray($request->getContent())['customerId']);
 
             return $serializer->toJsonResponse($customer);
 

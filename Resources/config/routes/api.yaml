@@ -168,7 +168,7 @@ paloma_api_customer_register:
 paloma_api_customer_update:
   path: /customer/update
   controller: paloma_shop.controller.customer_resource::update
-  methods: POST
+  methods: PUT
 
 paloma_api_customer_address_update:
   path: /customer/addresses/update
