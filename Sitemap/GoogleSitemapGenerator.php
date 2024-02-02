@@ -42,7 +42,7 @@ class GoogleSitemapGenerator
         $context = $this->urlGenerator->getContext();
         $context->setScheme($urlComponents['scheme']);
         $context->setHost($urlComponents['host']);
-        $context->setBaseUrl($urlComponents['path'] ?? null);
+        $context->setBaseUrl($urlComponents['path'] ?? '');
 
         $client = $this->clientFactory->create($channel, $locale, '');
         $catalog = new Catalog($client, new GoogleSitemapPricingContextProvider());
