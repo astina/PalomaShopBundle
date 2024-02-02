@@ -57,6 +57,8 @@ class GenerateSitemapCommand extends Command
         if ($sitemapIndex) {
             $this->updateSitemapIndex($sitemapIndex, $path, $file, $baseUrl);
         }
+
+        return 0; //everything went fine
     }
 
     private function updateSitemapIndex(string $sitemapIndex, string $path, string $file, string $baseUrl)
