@@ -518,6 +518,54 @@ const customer = {
             .catch(onHttpError);
     },
 
+    listUsers() {
+
+        return axios
+            .get(routes['api_customer_users_list'])
+            .then(response => response.data)
+            .catch(onHttpError);
+    },
+
+    getUser(userId) {
+
+        return axios
+            .get(routes['api_customer_users_get'], {params: {id: userId}})
+            .then(response => response.data)
+            .catch(onHttpError);
+    },
+
+    getCurrentUser() {
+
+        return axios
+            .get(routes['api_customer_users_get_current'])
+            .then(response => response.data)
+            .catch(onHttpError);
+    },
+
+    createUser(user) {
+
+        return axios
+            .post(routes['api_customer_users_create'], user)
+            .then(response => response.data)
+            .catch(onHttpError);
+    },
+
+    updateUser(userId, user) {
+
+        return axios
+            .post(routes['api_customer_users_update'], user, {params: {id: userId}})
+            .then(response => response.data)
+            .catch(onHttpError);
+    },
+
+    deleteUser(userId) {
+
+        return axios
+            .delete(routes['api_customer_users_delete'], {params: {id: userId}})
+            .then(response => response.data)
+            .catch(onHttpError);
+    },
+
     titleCodeForGender(gender) {
 
         switch (gender) {

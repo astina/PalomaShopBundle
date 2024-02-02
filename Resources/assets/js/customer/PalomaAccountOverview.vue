@@ -89,7 +89,7 @@
                 </router-link>
             </div>
 
-            <p v-if="customer.customer">{{ customer.customer.emailAddress }}</p>
+            <p v-if="!user.loading">{{ user.emailAddress }}</p>
 
         </section>
 
@@ -122,6 +122,10 @@
                     customer: null,
                     no_addresses: false
                 },
+                user: {
+                    loading: true,
+                    emailAddress: null,
+                },
             }
         },
 
@@ -129,7 +133,7 @@
 
             this.loadLastOrder();
             this.loadCustomer();
-
+            this.loadUser();
         },
 
         methods: {
@@ -166,7 +170,19 @@
                     .finally(() => {
                         this.customer.loading = false;
                     });
-            }
+            },
+
+            loadUser() {
+                this.user.loading = true;
+                paloma.customer
+                    .getCurrentUser()
+                    .then(currentUser => {
+                        this.user.emailAddress = currentUser.emailAddress;
+                    })
+                    .finally(() => {
+                        this.user.loading = false;
+                    });
+            },
         }
     }
 </script>

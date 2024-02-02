@@ -46,10 +46,12 @@ class PalomaShopExtension extends Extension
     private function createClientFactoryOptions(array $config)
     {
         $defaultChannel = null;
+        $defaultCatalog = null;
         $defaultLocale = null;
         foreach ($config['channels'] as $name => $channel) {
             if ($channel['is_default']) {
                 $defaultChannel = $name;
+                $defaultCatalog = $channel['catalog'];
                 $defaultLocale = count($channel['locales']) > 0 ? $channel['locales'][0] : null;
                 break;
             }
@@ -57,6 +59,7 @@ class PalomaShopExtension extends Extension
 
         return $config['client'] + [
                 'channel' => $defaultChannel,
+                'catalog' => $defaultCatalog,
                 'locale' => $defaultLocale,
             ];
     }

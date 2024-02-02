@@ -24,8 +24,8 @@ catalog:
       active: 'Aktive Filter:'
       clear: 'alle entfernen'
     article_number: 'Artikel Nr.:'
-    vat_info_incl: inkl. %rate% MwSt.
-    vat_info_excl: exkl. %rate% MwSt.
+    vat_info_incl: inkl. %rate%
+    vat_info_excl: exkl. %rate%
     add_to_cart: In den Warenkorb
     out_of_stock: Zur Zeit leider nicht verfügbar.
     description: Beschreibung
@@ -249,6 +249,7 @@ payment:
   invoice: Rechnung
   electronic: Kreditkarte
   creditcard: Kreditkarte
+  stripe: Kreditkarte
   paypal: PayPal
   postfinance: PostFinance
   twint: Twint
@@ -256,6 +257,7 @@ payment:
     invoice: Sie erhalten eine Rechnung mit Einzahlungsschein per Post.
     electronic: Nach Abschicken der Bestellung werden Sie zur Bezahlseite weitergeleitet.
     creditcard: Nach Abschicken der Bestellung werden Sie zur Bezahlseite weitergeleitet.
+    stripe: Nach Abschicken der Bestellung werden Sie zur Bezahlseite weitergeleitet.
     paypal: Nach Abschicken der Bestellung werden Sie zu PayPal weitergeleitet.
     postfinance: Nach Abschicken der Bestellung werden Sie zu PostFinance weitergeleitet.
     twint: Nach Abschicken der Bestellung werden Sie zu Twint weitergeleitet.

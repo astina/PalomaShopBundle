@@ -24,13 +24,14 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('channels')
                     ->useAttributeAsKey('name')
                     ->addDefaultChildrenIfNoneSet([
-                        'default' => [
-                            'is_default' => true,
-                        ]
+                        'name' => 'default',
+                        'catalog' => null,
+                        'is_default' => true,
                     ])
                     ->arrayPrototype()
                         ->children()
                             ->scalarNode('is_default')->defaultFalse()->end()
+                            ->scalarNode('catalog')->defaultNull()->end()
                             ->arrayNode('locales')
                                 ->scalarPrototype()->defaultValue(['de', 'en'])->end()
                             ->end()
@@ -40,7 +41,6 @@ class Configuration implements ConfigurationInterface
                 ->end()
 
                 ->arrayNode('urls')
-                    ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('confirm_registration')
                             ->info('Route name of the registration confirmation page')

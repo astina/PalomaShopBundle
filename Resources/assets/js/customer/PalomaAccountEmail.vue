@@ -85,7 +85,7 @@
         },
 
         mounted() {
-            this.loadCustomer();
+            this.setEmail();
         },
 
         methods: {
@@ -100,26 +100,36 @@
                 this.loading = true;
 
                 paloma.customer
-                    .updateEmailAddress(this.emailInput)
-                    .then(() => {
-                        paloma.events.$emit('paloma.success', 'customer.account.email_saved');
-                    })
-                    .catch(e => {
-                        this.errors = e.errors;
+                    .getCurrentUser()
+                    .then(currentUser => {
+
+                        const userUpdate = {
+                            emailAddress: this.emailInput,
+                            username: this.emailInput,
+                        }
+
+                        paloma.customer
+                            .updateUser(currentUser.id, userUpdate)
+                            .then(() => {
+                                paloma.events.$emit('paloma.success', 'customer.account.email_saved');
+                            })
+                            .catch(e => {
+                                this.errors = e.errors;
+                            })
                     })
                     .finally(() => {
                         this.loading = false;
                     });
             },
 
-            loadCustomer() {
+            setEmail() {
 
                 this.loading = true;
 
                 paloma.customer
-                    .get()
-                    .then(customer => {
-                        this.emailInput = customer.emailAddress;
+                    .getCurrentUser()
+                    .then(currentUser => {
+                        this.emailInput = currentUser ? currentUser.emailAddress : null;
                     })
                     .finally(() => {
                         this.loading = false;

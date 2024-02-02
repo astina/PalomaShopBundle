@@ -2,12 +2,6 @@
     "name": "paloma/shop-bundle",
     "description": "Symfony bundle for Paloma web shop",
     "type": "library",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../shop-client-php"
-        }
-    ],
     "require": {
         "ext-json": "*",
         "ext-dom": "*",
